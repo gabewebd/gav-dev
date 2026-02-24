@@ -162,7 +162,7 @@ export const PROJECTS_DATA: ProjectData[] = [
                     {
                         type: 'link-group', links: [
                             { url: 'https://prelim-project-thefourwhoadore.netlify.app/', label: 'Live Link' },
-                            { url: 'https://github.com/gabewebd/6AWEB-The-Four-WhoAdore', label: 'Source Code' }
+                            { url: 'https://github.com/gabewebd/6AWEB-TheFourWhoAdore', label: 'Source Code' }
                         ]
                     }
                 ]
