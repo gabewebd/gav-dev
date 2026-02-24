@@ -23,8 +23,8 @@ export type ContentBlock =
 
 export const BLOG_POSTS: BlogPost[] = [
     {
-        slug: "my-web-dev-journey",
-        title: "From Drag-andDrop to Full-Stack: My Development Journey",
+        slug: "canvas-to-code",
+        title: "From Canvas to Code: My Evolution to Full-Stack",
         excerpt: "Looking back at how I started with making simple pages in high school, to designing in Figma, and eventually wrestling with databases to build full-stack applications.",
         date: "2026-02-24",
         displayDate: "Feb 24, 2026",
