@@ -4,7 +4,7 @@ import { useRef } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { Github, Linkedin, Mail, ArrowUpRight, FileDown, Facebook } from "lucide-react";
+import { Github, Linkedin, Mail, ArrowUpRight, FileDown } from "lucide-react";
 import Logo from "@/components/Logo";
 
 gsap.registerPlugin(useGSAP);
@@ -13,7 +13,6 @@ gsap.registerPlugin(useGSAP);
 const SOCIALS = [
     { label: "GitHub", href: "https://github.com/gabewebd", icon: Github },
     { label: "LinkedIn", href: "https://linkedin.com/in/gabrielle-velasquez-gav", icon: Linkedin },
-    { label: "Facebook", href: "https://www.facebook.com/ainshley.velasquez", icon: Facebook },
     { label: "Email", href: "mailto:visqz.gabrielle@gmail.com", icon: Mail },
 ];
 
@@ -71,7 +70,7 @@ function MagneticSocial({
             className="magnetic-btn w-12 h-12 sm:w-14 sm:h-14 rounded-full
         border border-brand-white/10 hover:border-brand-accent
         grid place-items-center
-        text-brand-white/50 hover:text-brand-accent
+        text-brand-white/70 hover:text-brand-accent
         transition-colors duration-300"
             aria-label={label}
         >
@@ -118,7 +117,7 @@ export default function Footer() {
             <div className="border-b border-brand-white/5">
                 <div className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-28 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8 md:gap-10">
                     <div>
-                        <p className="text-xs font-bold uppercase tracking-[0.3em] text-brand-white/40 mb-3">
+                        <p className="text-xs font-bold uppercase tracking-[0.3em] text-brand-white/70 mb-3">
                             Want the full picture?
                         </p>
                         <h3 className="font-outfit font-black text-2xl sm:text-3xl md:text-5xl uppercase tracking-tighter leading-[0.95]">
@@ -153,7 +152,7 @@ export default function Footer() {
                             <Logo className="h-10 w-auto text-brand-white" />
                         </Link>
 
-                        <p className="mt-5 text-sm text-brand-white/40 leading-relaxed max-w-sm">
+                        <p className="mt-5 text-sm text-brand-white/70 leading-relaxed max-w-sm">
                             Full-Stack Developer.
                             Building precise, systems-driven digital experiences with
                             modern web technologies and an obsession for craft.
@@ -169,7 +168,7 @@ export default function Footer() {
 
                     {/* Quick Links */}
                     <div className="md:col-span-3 md:col-start-7">
-                        <h4 className="text-xs font-bold uppercase tracking-[0.25em] text-brand-white/30 mb-6">
+                        <h4 className="text-xs font-bold uppercase tracking-[0.25em] text-brand-white/85 mb-6">
                             Navigation
                         </h4>
                         <ul className="space-y-3.5">
@@ -177,7 +176,7 @@ export default function Footer() {
                                 <li key={link.href}>
                                     <Link
                                         href={link.href}
-                                        className="text-sm text-brand-white/50 hover:text-brand-accent
+                                        className="text-sm text-brand-white/70 hover:text-brand-accent
                       transition-colors duration-200
                       flex items-center gap-1.5 group"
                                     >
@@ -191,18 +190,18 @@ export default function Footer() {
 
                     {/* Contact Column */}
                     <div className="md:col-span-3">
-                        <h4 className="text-xs font-bold uppercase tracking-[0.25em] text-brand-white/30 mb-6">
+                        <h4 className="text-xs font-bold uppercase tracking-[0.25em] text-brand-white/85 mb-6">
                             Get In Touch
                         </h4>
                         <a
                             href="mailto:visqz.gabrielle@gmail.com"
-                            className="text-sm text-brand-white/50 hover:text-brand-accent
+                            className="text-sm text-brand-white/70 hover:text-brand-accent
                 transition-colors duration-200 break-all"
                         >
                             visqz.gabrielle@gmail.com
                         </a>
 
-                        <p className="mt-6 text-xs text-brand-white/25 leading-relaxed">
+                        <p className="mt-6 text-xs text-brand-white/70 leading-relaxed">
                             Holy Angel University<br />
                             BSIT 2023–2027<br />
                             Angeles City, Philippines
@@ -214,10 +213,10 @@ export default function Footer() {
             {/* ── Bottom Bar ─────────────────────────────────────── */}
             <div className="border-t border-brand-white/5">
                 <div className="max-w-7xl mx-auto px-6 md:px-12 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-3 text-center sm:text-left">
-                    <p className="text-xs text-brand-white/25">
+                    <p className="text-xs text-brand-white/85">
                         &copy; {new Date().getFullYear()} Gabrielle Ainshley Velasquez. All rights reserved.
                     </p>
-                    <p className="text-xs text-brand-white/15">
+                    <p className="text-xs text-brand-white/85">
                         Designed &amp; developed with obsessive precision.
                     </p>
                 </div>

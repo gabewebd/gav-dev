@@ -33,21 +33,21 @@ function CardInner({ project, index }: { project: typeof PROJECTS[0]; index: num
             {/* MIDDLE SECTION — image fading into bottom block */}
             <div className="relative flex-1 overflow-hidden">
                 <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,black_30%,transparent_85%)] [-webkit-mask-image:linear-gradient(to_bottom,black_30%,transparent_85%)]">
-                    <Image 
-                        src={project.image} 
-                        alt={project.title} 
-                        fill 
-                        className="object-cover object-center transition-transform duration-700 group-hover:scale-105" 
+                    <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        quality={100} 
-                        priority={index < 2} 
+                        quality={100}
+                        priority={index < 2}
                     />
                     <div className="absolute inset-0 bg-brand-ink/5 mix-blend-multiply pointer-events-none" />
                 </div>
 
                 <div className="absolute bottom-0 left-0 right-0 z-10 flex flex-col gap-4 md:gap-5 pt-16 px-6 pb-6 md:px-8 md:pb-8
                     bg-gradient-to-t from-brand-light dark:from-[#0A0A0A] via-brand-light/95 dark:via-[#0A0A0A]/95 to-transparent">
-                    <p className="text-xs md:text-sm text-brand-ink/70 dark:text-brand-white/70 leading-relaxed font-medium">
+                    <p className="text-xs md:text-sm text-brand-ink/80 dark:text-brand-white/70 leading-relaxed font-medium">
                         {project.desc}
                     </p>
 
@@ -129,7 +129,7 @@ export default function ProjectShowcase() {
             <div className="w-full px-6 md:px-12 text-center z-30 pt-10 md:pt-16 mb-8 md:mb-12 relative">
                 <div className="inline-flex items-center gap-3 justify-center mb-4">
                     <div className="w-2 h-2 bg-brand-accent rounded-sm animate-pulse" />
-                    <p className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-brand-ink/70 dark:text-brand-white/70">
+                    <p className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-brand-ink/80 dark:text-brand-white/70">
                         Selected Work
                     </p>
                 </div>
@@ -172,7 +172,7 @@ export default function ProjectShowcase() {
 
             {/* ── EXPLORE PROJECTS BUTTON — matches projects page style ── */}
             <div ref={btnRef} className="w-full flex flex-col items-center gap-4 mt-12 lg:mt-16 z-30 relative px-6 text-center">
-                <p className="text-xs md:text-sm font-medium tracking-[0.2em] uppercase text-brand-ink/70 dark:text-brand-white/70">
+                <p className="text-xs md:text-sm font-medium tracking-[0.2em] uppercase text-brand-ink/80 dark:text-brand-white/70">
                     Want to see more of my work?
                 </p>
                 <Link
