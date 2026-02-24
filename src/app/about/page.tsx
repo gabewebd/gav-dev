@@ -256,8 +256,8 @@ export default function AboutPage() {
 
           <div className="w-full max-w-[240px] sm:max-w-[300px] md:max-w-[380px] lg:max-w-[420px] mx-auto lg:mx-0 shrink-0 flex flex-col items-start">
             <div className="relative w-full max-h-[480px] sm:max-h-[500px] lg:max-h-none rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden border border-brand-ink/15 dark:border-brand-white/10 bg-brand-ink/5 dark:bg-brand-white/5 profile-pic">
-              <Image src="/assets/hero-photo.jpg" alt="Gabrielle Ainshley Velasquez - Full-Stack Developer Profile Portrait" width={800} height={1000} className="hidden lg:block w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-1000 ease-out" priority sizes="480px" />
-              <Image src="/assets/mobile-photo.jpg" alt="Gabrielle Ainshley Velasquez - Full-Stack Developer Profile Portrait" width={800} height={1000} className="block lg:hidden w-full h-auto object-cover grayscale-0 transition-all duration-1000 ease-out" priority sizes="(max-width: 640px) 240px, (max-width: 1024px) 380px" />
+              <Image src="/assets/hero-photo.png" alt="Gabrielle Ainshley Velasquez - Full-Stack Developer Profile Portrait" width={800} height={1000} className="hidden lg:block w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-1000 ease-out" priority sizes="480px" />
+              <Image src="/assets/mobile-photo.png" alt="Gabrielle Ainshley Velasquez - Full-Stack Developer Profile Portrait" width={800} height={1000} className="block lg:hidden w-full h-auto object-cover grayscale-0 transition-all duration-1000 ease-out" priority sizes="(max-width: 640px) 240px, (max-width: 1024px) 380px" />
             </div>
           </div>
 
