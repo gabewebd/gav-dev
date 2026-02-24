@@ -16,7 +16,7 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 function ContentBlockRenderer({ block, onImageClick }: { block: ContentBlock, onImageClick?: (src: string) => void }) {
     switch (block.type) {
         case 'p':
-            return <p className="text-base md:text-xl text-brand-ink/70 dark:text-brand-white/70 leading-relaxed font-medium mb-6">{block.text}</p>;
+            return <p className="text-base md:text-xl text-brand-ink/80 dark:text-brand-white/70 leading-relaxed font-medium mb-6">{block.text}</p>;
         case 'h2':
             return <h2 className="font-outfit font-black text-2xl md:text-3xl uppercase tracking-tighter text-brand-ink dark:text-brand-white mt-12 mb-6">{block.text}<span className="text-brand-accent">.</span></h2>;
         case 'img':
@@ -30,7 +30,7 @@ function ContentBlockRenderer({ block, onImageClick }: { block: ContentBlock, on
                         <Image src={block.src} alt={block.alt || "Project visual"} width={1200} height={800} className="w-full h-auto object-contain group-hover:scale-[1.02] transition-transform duration-700" quality={95} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 60vw" />
                     </div>
                     {block.caption && (
-                        <p className="text-sm md:text-base font-medium text-brand-ink/70 dark:text-brand-white/70 text-center px-4">
+                        <p className="text-sm md:text-base font-medium text-brand-ink/90 dark:text-brand-white/90 text-center px-4">
                             {block.caption}
                         </p>
                     )}
@@ -39,8 +39,8 @@ function ContentBlockRenderer({ block, onImageClick }: { block: ContentBlock, on
         case 'quote':
             return (
                 <blockquote className="my-10 pl-6 sm:pl-8 border-l-4 border-brand-ink dark:border-brand-accent italic flex flex-col gap-4">
-                    <p className="text-xl sm:text-2xl md:text-3xl font-medium text-brand-ink/80 dark:text-brand-white/80 leading-relaxed">"{block.text}"</p>
-                    {block.author && <footer className="font-outfit font-bold uppercase tracking-widest text-[#111]/50 dark:text-brand-white/70 text-[10px] sm:text-xs md:text-sm">— {block.author}</footer>}
+                    <p className="text-xl sm:text-2xl md:text-3xl font-medium text-brand-ink/80 dark:text-brand-white/70 leading-relaxed">"{block.text}"</p>
+                    {block.author && <footer className="font-outfit font-bold uppercase tracking-widest text-brand-ink/70 dark:text-brand-white/70 text-[10px] sm:text-xs md:text-sm">— {block.author}</footer>}
                 </blockquote>
             );
         case 'video':
@@ -69,7 +69,7 @@ function ContentBlockRenderer({ block, onImageClick }: { block: ContentBlock, on
                     </div>
                     {/* @ts-ignore */}
                     {block.caption && (
-                        <p className="text-sm md:text-base font-medium text-brand-ink/70 dark:text-brand-white/70 text-center px-4">
+                        <p className="text-sm md:text-base font-medium text-brand-ink/90 dark:text-brand-white/90 text-center px-4">
                             {/* @ts-ignore */}
                             {block.caption}
                         </p>
@@ -185,7 +185,7 @@ export default function ProjectDetail() {
 
                 <div className="relative z-20 w-full max-w-7xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-8">
                     <div className="flex flex-col">
-                        <Link href="/projects" className="hero-title group inline-flex items-center gap-2 text-brand-ink/70 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white text-[10px] md:text-xs font-bold uppercase tracking-widest mb-6 transition-colors w-fit">
+                        <Link href="/projects" className="hero-title group inline-flex items-center gap-2 text-brand-ink/80 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white text-[10px] md:text-xs font-bold uppercase tracking-widest mb-6 transition-colors w-fit">
                             <ArrowLeft size={16} className="group-hover:-translate-x-1.5 transition-transform" /> Back to Projects
                         </Link>
                         <p className="hero-title text-brand-ink dark:text-brand-accent font-bold uppercase tracking-[0.3em] text-[10px] md:text-xs mb-4">
@@ -265,16 +265,16 @@ export default function ProjectDetail() {
             <section className="max-w-7xl mx-auto px-6 md:px-12 pt-16 md:pt-24 pb-32 flex flex-col lg:flex-row gap-16 lg:gap-32 relative z-10">
 
                 <aside className="hidden lg:flex w-1/4 flex-col gap-8 sticky top-40 h-fit">
-                    <Link href="/projects" className="group inline-flex items-center gap-2 text-brand-ink/70 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white text-[10px] font-bold uppercase tracking-widest transition-colors w-fit">
+                    <Link href="/projects" className="group inline-flex items-center gap-2 text-brand-ink/80 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white text-[10px] font-bold uppercase tracking-widest transition-colors w-fit">
                         <ArrowLeft size={14} className="group-hover:-translate-x-1.5 transition-transform" /> Back to projects
                     </Link>
                     <span className="w-6 h-[2px] bg-brand-ink/30 dark:bg-brand-accent -mt-2" />
                     <nav className="flex flex-col gap-6 font-outfit font-bold uppercase tracking-widest text-xs">
-                        <a href="#overview" className="text-brand-ink/70 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white transition-colors">01. Overview</a>
-                        <a href="#role" className="text-brand-ink/70 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white transition-colors">02. Role & Impact</a>
-                        <a href="#tech" className="text-brand-ink/70 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white transition-colors">03. Technology</a>
+                        <a href="#overview" className="text-brand-ink/80 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white transition-colors">01. Overview</a>
+                        <a href="#role" className="text-brand-ink/80 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white transition-colors">02. Role & Impact</a>
+                        <a href="#tech" className="text-brand-ink/80 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white transition-colors">03. Technology</a>
                         {project.customSections?.map((section, index) => (
-                            <a key={section.id} href={`#${section.id}`} className="text-brand-ink/70 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white transition-colors">
+                            <a key={section.id} href={`#${section.id}`} className="text-brand-ink/80 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white transition-colors">
                                 {String(index + 4).padStart(2, '0')}. {section.title}
                             </a>
                         ))}
