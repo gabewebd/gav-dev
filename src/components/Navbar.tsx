@@ -141,7 +141,7 @@ export default function Navbar() {
                                     className={`relative px-4 py-2 text-[11px] lg:text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-300 group
                                     ${isActive
                                             ? 'text-brand-ink dark:text-brand-white'
-                                            : 'text-brand-ink/60 dark:text-brand-white/60 hover:text-brand-ink dark:hover:text-brand-white hover:bg-brand-ink/5 dark:hover:bg-brand-white/5'
+                                            : 'text-brand-ink/70 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white hover:bg-brand-ink/5 dark:hover:bg-brand-white/5'
                                         }`}
                                 >
                                     {link.label}
@@ -195,14 +195,14 @@ export default function Navbar() {
                                 href={link.href}
                                 onClick={handleLinkClick}
                                 className={`mobile-link relative flex items-center justify-between w-full px-6 py-6 rounded-2xl text-3xl font-outfit font-black uppercase tracking-tighter transition-all duration-300 group mb-2
-                                ${isActive ? 'bg-brand-ink/5 dark:bg-brand-white/5 text-brand-ink dark:text-brand-white' : 'text-brand-ink/60 dark:text-brand-white/60 hover:bg-brand-ink/5 dark:hover:bg-brand-white/5 hover:text-brand-ink dark:hover:text-brand-white'}`}
+                                ${isActive ? 'bg-brand-ink/5 dark:bg-brand-white/5 text-brand-ink dark:text-brand-white' : 'text-brand-ink/70 dark:text-brand-white/70 hover:bg-brand-ink/5 dark:hover:bg-brand-white/5 hover:text-brand-ink dark:hover:text-brand-white'}`}
                             >
                                 {isActive && <div className="absolute left-0 top-1/2 -translate-y-1/2 h-1/2 w-1.5 rounded-r-full bg-brand-accent" />}
                                 <span>{link.label}</span>
                                 <span className={`font-mono text-sm transition-colors 
                                     ${isActive
-                                        ? 'text-brand-ink/60 dark:text-brand-accent'
-                                        : 'text-brand-ink/30 dark:text-brand-accent/40 group-hover:text-brand-ink/60 dark:group-hover:text-brand-accent/80'}`
+                                        ? 'text-brand-ink/70 dark:text-brand-accent'
+                                        : 'text-brand-ink/30 dark:text-brand-accent/40 group-hover:text-brand-ink/70 dark:group-hover:text-brand-accent/80'}`
                                 }>
                                     0{i + 1}
                                 </span>

@@ -10,7 +10,6 @@ import {
     Github,
     Linkedin,
     FileText,
-    Facebook
 } from "lucide-react";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -73,7 +72,7 @@ export default function ResumePage() {
                     <div className="relative z-10">
                         <div className="hero-reveal inline-flex items-center gap-3 mb-6 md:mb-8">
                             <div className="w-2 h-2 bg-brand-accent rounded-sm animate-pulse" />
-                            <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-brand-ink/50 dark:text-brand-white/50">Work Experience</span>
+                            <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-brand-ink/80 dark:text-brand-white/70">Work Experience</span>
                         </div>
 
                         <h1 className="font-outfit font-black text-[clamp(2.5rem,8vw,7rem)] leading-[0.85] tracking-tighter uppercase text-brand-ink dark:text-brand-white mb-8 lg:mb-12">
@@ -81,7 +80,7 @@ export default function ResumePage() {
                             <div className="overflow-hidden py-3 -my-3 pr-4 -mr-4"><span className="hero-reveal inline-block">Resume<span className="text-brand-accent">.</span></span></div>
                         </h1>
 
-                        <p className="hero-desc text-base md:text-xl text-brand-ink/70 dark:text-brand-white/70 leading-relaxed font-medium max-w-2xl mb-10 md:mb-12">
+                        <p className="hero-desc text-base md:text-xl text-brand-ink/80 dark:text-brand-white/70 leading-relaxed font-medium max-w-2xl mb-10 md:mb-12">
                             Full-Stack Developer specializing in building precise, systems-driven digital architectures and immersive brand experiences.
                         </p>
 
@@ -92,16 +91,13 @@ export default function ResumePage() {
 
                             {/* Compact Contact Links */}
                             <div className="flex flex-wrap items-center gap-3">
-                                <a href="https://github.com/gabewebd" target="_blank" rel="noopener noreferrer" className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-brand-ink/20 dark:border-brand-white/20 flex items-center justify-center text-brand-ink/60 dark:text-brand-white/60 hover:bg-brand-ink hover:text-brand-white dark:hover:bg-brand-white dark:hover:text-brand-ink transition-colors">
+                                <a href="https://github.com/gabewebd" target="_blank" rel="noopener noreferrer" className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-brand-ink/20 dark:border-brand-white/20 flex items-center justify-center text-brand-ink/80 dark:text-brand-white/70 hover:bg-brand-ink hover:text-brand-white dark:hover:bg-brand-white dark:hover:text-brand-ink transition-colors">
                                     <Github className="w-4 h-4 md:w-5 md:h-5" />
                                 </a>
-                                <a href="https://linkedin.com/in/gabrielle-velasquez-gav" target="_blank" rel="noopener noreferrer" className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-brand-ink/20 dark:border-brand-white/20 flex items-center justify-center text-brand-ink/60 dark:text-brand-white/60 hover:bg-brand-ink hover:text-brand-white dark:hover:bg-brand-white dark:hover:text-brand-ink transition-colors">
+                                <a href="https://linkedin.com/in/gabrielle-velasquez-gav" target="_blank" rel="noopener noreferrer" className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-brand-ink/20 dark:border-brand-white/20 flex items-center justify-center text-brand-ink/80 dark:text-brand-white/70 hover:bg-brand-ink hover:text-brand-white dark:hover:bg-brand-white dark:hover:text-brand-ink transition-colors">
                                     <Linkedin className="w-4 h-4 md:w-5 md:h-5" />
                                 </a>
-                                <a href="https://facebook.com/kye.reii" target="_blank" rel="noopener noreferrer" className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-brand-ink/20 dark:border-brand-white/20 flex items-center justify-center text-brand-ink/60 dark:text-brand-white/60 hover:bg-brand-ink hover:text-brand-white dark:hover:bg-brand-white dark:hover:text-brand-ink transition-colors">
-                                    <Facebook className="w-4 h-4 md:w-5 md:h-5" />
-                                </a>
-                                <a href="mailto:vlsqz.gabrielle@gmail.com" className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-brand-ink/20 dark:border-brand-white/20 flex items-center justify-center text-brand-ink/60 dark:text-brand-white/60 hover:bg-brand-ink hover:text-brand-white dark:hover:bg-brand-white dark:hover:text-brand-ink transition-colors">
+                                <a href="mailto:vlsqz.gabrielle@gmail.com" className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-brand-ink/20 dark:border-brand-white/20 flex items-center justify-center text-brand-ink/80 dark:text-brand-white/70 hover:bg-brand-ink hover:text-brand-white dark:hover:bg-brand-white dark:hover:text-brand-ink transition-colors">
                                     <Mail className="w-4 h-4 md:w-5 md:h-5" />
                                 </a>
                             </div>

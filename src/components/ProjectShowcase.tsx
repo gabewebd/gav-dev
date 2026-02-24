@@ -129,7 +129,7 @@ export default function ProjectShowcase() {
             <div className="w-full px-6 md:px-12 text-center z-30 pt-10 md:pt-16 mb-8 md:mb-12 relative">
                 <div className="inline-flex items-center gap-3 justify-center mb-4">
                     <div className="w-2 h-2 bg-brand-accent rounded-sm animate-pulse" />
-                    <p className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-brand-ink/50 dark:text-brand-white/50">
+                    <p className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-brand-ink/70 dark:text-brand-white/70">
                         Selected Work
                     </p>
                 </div>
@@ -172,7 +172,7 @@ export default function ProjectShowcase() {
 
             {/* ── EXPLORE PROJECTS BUTTON — matches projects page style ── */}
             <div ref={btnRef} className="w-full flex flex-col items-center gap-4 mt-12 lg:mt-16 z-30 relative px-6 text-center">
-                <p className="text-xs md:text-sm font-medium tracking-[0.2em] uppercase text-brand-ink/40 dark:text-brand-white/40">
+                <p className="text-xs md:text-sm font-medium tracking-[0.2em] uppercase text-brand-ink/70 dark:text-brand-white/70">
                     Want to see more of my work?
                 </p>
                 <Link

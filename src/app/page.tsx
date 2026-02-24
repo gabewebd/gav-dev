@@ -339,13 +339,13 @@ export default function Home() {
           </div>
 
           <div className="hero-sub mt-6 md:mt-8">
-            <p className="font-outfit text-xs md:text-base font-bold uppercase tracking-[0.25em] text-brand-ink/40 dark:text-brand-white/40">
+            <span className="inline-block bg-brand-accent text-[#111111] px-4 md:px-5 py-2 md:py-2.5 rounded-full font-outfit text-[11px] md:text-sm font-black uppercase tracking-[0.2em] md:tracking-[0.25em]">
               Full Stack Developer
-            </p>
+            </span>
           </div>
 
           <div className="hero-bio mt-4 md:mt-5 max-w-lg">
-            <p className="text-sm md:text-lg text-brand-ink/60 dark:text-brand-white/60 leading-relaxed font-medium">
+            <p className="text-sm md:text-lg text-brand-ink/80 dark:text-brand-white/70 leading-relaxed font-medium">
               I&apos;m <strong className="text-brand-ink dark:text-brand-white">Gabrielle Ainshley Velasquez</strong>,
               a third-year BS Information Technology student with hands-on experience across the full stack. I enjoy turning complex ideas into structured,
               well-designed solutions. I approach every project with clarity, intention, and strong attention to detail.
@@ -391,7 +391,7 @@ export default function Home() {
             <div key={setIdx} className="flex items-center shrink-0">
               {MARQUEE_WORDS.map((word, wi) => (
                 <span key={`${setIdx}-${wi}`} className="flex items-center shrink-0">
-                  <span className="font-outfit font-black text-[clamp(1.5rem,4vw,5rem)] uppercase tracking-[-0.02em] text-brand-ink/40 md:text-brand-ink/20 dark:text-brand-white/40 md:dark:text-brand-white/20 hover:!text-brand-ink dark:hover:!text-brand-white px-3 md:px-8 py-2 transition-colors duration-300 whitespace-nowrap cursor-pointer">
+                  <span className="font-outfit font-black text-[clamp(1.5rem,4vw,5rem)] uppercase tracking-[-0.02em] text-brand-ink/70 md:text-brand-ink/20 dark:text-brand-white/70 md:dark:text-brand-white/20 hover:!text-brand-ink dark:hover:!text-brand-white px-3 md:px-8 py-2 transition-colors duration-300 whitespace-nowrap cursor-pointer">
                     {word}
                   </span>
                   <span className="w-2 h-2 md:w-4 md:h-4 rounded-full bg-brand-accent shrink-0 mx-6 md:mx-10" />
@@ -417,12 +417,12 @@ export default function Home() {
           <div className="lg:w-1/3 lg:sticky lg:top-40 relative z-20">
             <div className="service-header-element inline-flex items-center gap-3 mb-6">
               <div className="w-2 h-2 bg-brand-accent rounded-sm animate-pulse" />
-              <p className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-brand-ink/50 dark:text-brand-white/50">Capabilities</p>
+              <p className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-brand-ink/70 dark:text-brand-white/70">Capabilities</p>
             </div>
             <h2 className="service-header-element font-outfit font-black text-5xl md:text-7xl uppercase tracking-tighter leading-[0.9] text-brand-ink dark:text-brand-white mb-6">
               What I <br /> Bring To <br /> The Table<span className="text-brand-accent">.</span>
             </h2>
-            <p className="service-header-element text-sm md:text-base text-brand-ink/60 dark:text-brand-white/60 leading-relaxed max-w-xs font-medium">
+            <p className="service-header-element text-sm md:text-base text-brand-ink/70 dark:text-brand-white/70 leading-relaxed max-w-xs font-medium">
               I don&apos;t just write code, I build scalable, well-structured systems by combining analytical thinking with refined frontend development.
             </p>
 
@@ -469,7 +469,7 @@ export default function Home() {
                               key={idx}
                               className={`inline-flex items-center px-3 py-1 rounded-full border text-[10px] md:text-[11px] font-bold uppercase tracking-[0.15em] transition-all duration-300 ${isActive
                                 ? "border-brand-ink/25 dark:border-brand-white/25 text-brand-ink dark:text-brand-white bg-brand-ink/5 dark:bg-brand-white/5"
-                                : "border-brand-ink/10 dark:border-brand-white/10 text-brand-ink/40 dark:text-brand-white/40 bg-transparent"
+                                : "border-brand-ink/10 dark:border-brand-white/10 text-brand-ink/90 dark:text-brand-white/90 bg-transparent"
                                 }`}
                             >
                               {tech}
@@ -493,7 +493,7 @@ export default function Home() {
                       }}
                       className={`w-10 h-10 md:w-14 md:h-14 rounded-full border flex items-center justify-center transition-all duration-500 shrink-0 ${isActive
                         ? "bg-brand-ink border-brand-ink text-brand-white dark:bg-brand-white dark:border-brand-white dark:text-brand-ink rotate-45"
-                        : "border-brand-ink/20 text-brand-ink/40 dark:border-brand-white/20 dark:text-brand-white/40"
+                        : "border-brand-ink/20 text-brand-ink/90 dark:border-brand-white/20 dark:text-brand-white/90"
                         }`}
                     >
                       <Plus className="w-5 h-5 md:w-6 md:h-6" strokeWidth={2} />
@@ -505,7 +505,7 @@ export default function Home() {
                       <div className="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-brand-accent flex items-center justify-center shrink-0 mt-1">
                         <Icon className="w-6 h-6 md:w-8 md:h-8 text-brand-dark" strokeWidth={2} />
                       </div>
-                      <p className="text-sm md:text-base lg:text-lg text-brand-ink/70 dark:text-brand-white/70 leading-relaxed max-w-lg font-medium pt-2">
+                      <p className="text-sm md:text-base lg:text-lg text-brand-ink/80 dark:text-brand-white/70 leading-relaxed max-w-lg font-medium pt-2">
                         {service.desc}
                       </p>
                     </div>
@@ -549,7 +549,7 @@ export default function Home() {
           <div className="testimonial-header mb-12 md:mb-20 text-center">
             <div className="inline-flex items-center gap-3 justify-center mb-3">
               <div className="w-2 h-2 bg-brand-accent rounded-sm animate-pulse" />
-              <p className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-brand-ink/50 dark:text-brand-white/50">Kind Words</p>
+              <p className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-brand-ink/70 dark:text-brand-white/70">Kind Words</p>
             </div>
             <h2 className="font-outfit font-black text-5xl md:text-7xl uppercase tracking-tighter leading-[0.95]">
               Client <br /> Feedback<span className="text-brand-accent">.</span>
@@ -573,7 +573,7 @@ export default function Home() {
                     </div>
                     <div>
                       <p className="font-outfit font-bold text-sm md:text-lg uppercase tracking-wider text-brand-ink dark:text-brand-white">{TESTIMONIALS[tIndex].author}</p>
-                      <p className="text-xs md:text-sm text-brand-ink/50 dark:text-brand-white/50">{TESTIMONIALS[tIndex].role}</p>
+                      <p className="text-xs md:text-sm text-brand-ink/70 dark:text-brand-white/70">{TESTIMONIALS[tIndex].role}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
@@ -631,13 +631,13 @@ export default function Home() {
             </Link>
           </div>
 
-          <p className="mt-12 md:mt-16 text-xs md:text-sm font-medium uppercase tracking-widest text-brand-ink/40 dark:text-brand-white/40 max-w-md mx-auto px-4">
+          <p className="mt-12 md:mt-16 text-xs md:text-sm font-medium uppercase tracking-widest text-brand-ink/80 dark:text-brand-white/70 max-w-md mx-auto px-4">
             Always open to new opportunities, collaborations, and building something meaningful.
           </p>
         </div>
       </section>
 
 
-    </main>
+    </main >
   );
 }

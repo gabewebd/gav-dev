@@ -47,7 +47,7 @@ export const BLOG_POSTS: BlogPost[] = [
 // ─── BLOG CONTENT ENGINE ──────────────────────────────────────────────────────
 
 export const BLOG_CONTENT: Record<string, ContentBlock[]> = {
-    "my-web-dev-journey": [
+    "canvas-to-code": [
         { type: 'p', text: "Back in high school around 2018, I used to design user interfaces just for fun. I didn’t even know what 'UI/UX' meant back then; I simply enjoyed arranging elements on a screen. It wasn’t on any formal platform—just me experimenting and figuring out what looked good visually. Sadly, I don’t have any screenshots of those early designs saved." },
         { type: 'p', text: "Fast forward to the pandemic, and suddenly everyone was living online. Having a personal [carrd.co](https://carrd.co) site became a sort of digital introduction. That was my first real experience creating something for the web. It was mostly visual, no heavy coding yet, but I loved making multiple versions of my Carrd just for the process. That’s when I realized how much I enjoyed crafting digital interfaces people could actually visit and interact with." },
         { type: 'h2', text: "The College Reality Check" },

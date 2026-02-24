@@ -63,7 +63,7 @@ export default function BlogPage() {
           <div className="relative z-10">
             <div className="hero-reveal inline-flex items-center gap-3 mb-6 md:mb-8">
               <div className="w-2 h-2 bg-brand-accent rounded-sm animate-pulse" />
-              <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-brand-ink/50 dark:text-brand-white/50">Dev Journal</span>
+              <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-brand-ink/80 dark:text-brand-white/70">Dev Journal</span>
             </div>
 
             <h1 className="font-outfit font-black text-[clamp(3rem,8vw,7rem)] leading-[0.85] tracking-tighter uppercase text-brand-ink dark:text-brand-white mb-8 lg:mb-12">
@@ -72,7 +72,7 @@ export default function BlogPage() {
               <div className="overflow-hidden py-4 -my-4 pr-8 -mr-8"><span className="hero-reveal inline-block pr-4">& Insights<span className="text-brand-accent">.</span></span></div>
             </h1>
 
-            <p className="hero-desc text-base md:text-xl text-brand-ink/70 dark:text-brand-white/70 leading-relaxed font-medium max-w-3xl">
+            <p className="hero-desc text-base md:text-xl text-brand-ink/80 dark:text-brand-white/70 leading-relaxed font-medium max-w-3xl">
               Thoughts on development, design systems, and lessons learned while building full-stack applications and shaping brand identities.
             </p>
 
@@ -92,7 +92,7 @@ export default function BlogPage() {
                     </div>
                   )}
                   <div className={`flex flex-col justify-center gap-4 lg:gap-6 w-full ${i % 2 === 0 ? "" : "lg:items-end"}`}>
-                    <div className={`flex items-center gap-3 text-[10px] md:text-xs text-brand-ink/40 dark:text-brand-white/40 font-medium uppercase tracking-widest ${i % 2 === 0 ? "" : "lg:flex-row-reverse"}`}>
+                    <div className={`flex items-center gap-3 text-[10px] md:text-xs text-brand-ink/80 dark:text-brand-white/70 font-medium uppercase tracking-widest ${i % 2 === 0 ? "" : "lg:flex-row-reverse"}`}>
                       <Calendar className="w-3.5 h-3.5" />{post.date}
                       <span className="w-1.5 h-1.5 rounded-full bg-brand-ink/20 dark:bg-brand-white/20" />
                       <span>{post.readTime}</span>
@@ -100,7 +100,7 @@ export default function BlogPage() {
                     <h2 className="font-outfit font-black text-3xl md:text-4xl lg:text-5xl uppercase tracking-tight text-brand-ink dark:text-brand-white leading-[1.1] group-hover:text-brand-ink/70 dark:group-hover:text-brand-accent transition-colors">
                       {post.title}
                     </h2>
-                    <p className="text-sm md:text-base text-brand-ink/60 dark:text-brand-white/60 font-medium leading-relaxed line-clamp-3">
+                    <p className="text-sm md:text-base text-brand-ink/80 dark:text-brand-white/70 font-medium leading-relaxed line-clamp-3">
                       {post.excerpt}
                     </p>
                     <div className={`flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand-ink dark:text-brand-white mt-2 mb-2 ${i % 2 === 0 ? "" : "lg:flex-row-reverse"}`}>

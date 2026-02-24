@@ -96,11 +96,11 @@ export default function BlogPost() {
 
                 {/* ── 1. ARTICLE HEADER ── */}
                 <header className="mb-16 flex flex-col items-center text-center">
-                    <Link href="/blog" className="hero-reveal group inline-flex items-center gap-2 text-brand-ink/60 dark:text-brand-white/60 hover:text-brand-ink dark:hover:text-brand-white text-[10px] md:text-xs font-bold uppercase tracking-widest mb-10 transition-colors">
+                    <Link href="/blog" className="hero-reveal group inline-flex items-center gap-2 text-brand-ink/70 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white text-[10px] md:text-xs font-bold uppercase tracking-widest mb-10 transition-colors">
                         <ArrowLeft size={16} className="group-hover:-translate-x-1.5 transition-transform" /> Back to Blogs
                     </Link>
 
-                    <div className="hero-reveal flex flex-wrap justify-center items-center gap-3 md:gap-4 mb-6 md:mb-8 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-brand-ink/50 dark:text-brand-white/50">
+                    <div className="hero-reveal flex flex-wrap justify-center items-center gap-3 md:gap-4 mb-6 md:mb-8 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-brand-ink/70 dark:text-brand-white/70">
                         {/* STRICTLY INK ON LIGHT, ACCENT ON DARK */}
                         <span className="text-brand-ink dark:text-brand-accent">{post.category}</span>
                         <span className="w-1 h-1 rounded-full bg-brand-ink/20 dark:bg-brand-white/20" />
@@ -152,7 +152,7 @@ export default function BlogPost() {
                                             "{block.text}"
                                         </p>
                                         {block.author && (
-                                            <footer className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-brand-ink/50 dark:text-brand-white/50">
+                                            <footer className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-brand-ink/70 dark:text-brand-white/70">
                                                 — {block.author}
                                             </footer>
                                         )}
@@ -169,7 +169,7 @@ export default function BlogPost() {
                                             <div className="absolute inset-0 bg-brand-ink/20 dark:bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                                         </div>
                                         {block.caption && (
-                                            <figcaption className="text-center text-[10px] md:text-xs font-bold uppercase tracking-widest text-brand-ink/40 dark:text-brand-white/40">
+                                            <figcaption className="text-center text-[10px] md:text-xs font-bold uppercase tracking-widest text-brand-ink/70 dark:text-brand-white/70">
                                                 {block.caption}
                                             </figcaption>
                                         )}
@@ -199,7 +199,7 @@ export default function BlogPost() {
                                         </div>
                                         {/* @ts-ignore */}
                                         {block.caption && (
-                                            <figcaption className="text-center text-[10px] md:text-xs font-bold uppercase tracking-widest text-brand-ink/40 dark:text-brand-white/40">
+                                            <figcaption className="text-center text-[10px] md:text-xs font-bold uppercase tracking-widest text-brand-ink/70 dark:text-brand-white/70">
                                                 {/* @ts-ignore */}
                                                 {block.caption}
                                             </figcaption>

@@ -264,7 +264,7 @@ export default function AboutPage() {
           <div className="flex-1 flex flex-col relative z-10 w-full text-left">
             <div className="hero-reveal mb-4 sm:mb-6 inline-flex items-center gap-2 justify-start">
               <div className="w-2 h-2 rounded-sm rotate-45 bg-brand-accent" />
-              <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.3em] text-brand-ink/50 dark:text-brand-white/50">Based in the Philippines</span>
+              <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.3em] text-brand-ink/80 dark:text-brand-white/70">Based in the Philippines</span>
             </div>
             <h1 className="font-outfit font-black text-[clamp(3rem,8vw,7rem)] leading-[0.85] tracking-tighter uppercase text-brand-ink dark:text-brand-white mb-7 sm:mb-10 lg:mb-12">
               <div className="overflow-hidden py-1"><span className="hero-reveal inline-block">Hi, I&apos;m</span></div>
@@ -275,7 +275,7 @@ export default function AboutPage() {
                 </span>
               </div>
             </h1>
-            <div className="flex flex-col gap-4 sm:gap-6 text-sm md:text-[1.05rem] text-brand-ink/65 dark:text-brand-white/65 leading-relaxed font-medium max-w-xl fade-in-element">
+            <div className="flex flex-col gap-4 sm:gap-6 text-sm md:text-[1.05rem] text-brand-ink/80 dark:text-brand-white/70 leading-relaxed font-medium max-w-xl fade-in-element">
               <p>I am a full-stack developer based in the Philippines 🇵🇭, specializing in building modern web applications that are both structurally robust and visually compelling. My work focuses on creating digital solutions that are purposeful, scalable, and thoughtfully designed.</p>
 
               <p>I am currently a third-year BS Information Technology student at Holy Angel University. With a strong foundation in both development and design, I bring a balanced and strategic perspective to every project I take on.</p>
@@ -286,7 +286,7 @@ export default function AboutPage() {
               <a href="/assets/gav-resume.pdf" download className="group inline-flex items-center gap-2 sm:gap-3 bg-brand-ink dark:bg-brand-white text-brand-white dark:text-brand-dark px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-full font-outfit font-bold uppercase tracking-[0.15em] text-[11px] sm:text-xs md:text-sm hover:opacity-85 transition-opacity">
                 <Download className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />Download Resume
               </a>
-              <div className="inline-flex items-center gap-2 px-4 sm:px-6 py-3 sm:py-4 rounded-full border border-brand-ink/15 dark:border-brand-white/15 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-brand-ink/50 dark:text-brand-white/50">
+              <div className="inline-flex items-center gap-2 px-4 sm:px-6 py-3 sm:py-4 rounded-full border border-brand-ink/15 dark:border-brand-white/15 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-brand-ink/80 dark:text-brand-white/70">
                 <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />Open to work
               </div>
             </div>
@@ -309,7 +309,7 @@ export default function AboutPage() {
               <div className="w-10 h-10 md:w-12 md:h-12 bg-brand-ink text-brand-light dark:bg-brand-white dark:text-brand-dark rounded-[14px] md:rounded-2xl flex items-center justify-center shadow-lg">
                 <FaGraduationCap className="w-4 h-4 md:w-5 md:h-5" />
               </div>
-              <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-brand-ink/50 dark:text-brand-white/50">02. Academia</span>
+              <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-brand-ink/80 dark:text-brand-white/70">02. Academia</span>
             </div>
             <h2 className="font-outfit font-black text-4xl sm:text-5xl md:text-7xl uppercase tracking-tighter leading-[0.95] text-brand-ink dark:text-brand-white">
               Education<span className="text-brand-accent">.</span>
@@ -327,18 +327,18 @@ export default function AboutPage() {
                 <div key={i} className="timeline-item relative pl-6 sm:pl-10 md:pl-16 pt-2">
 
                   <div className="flex flex-col gap-2 md:gap-3 mb-6 md:mb-8">
-                    <span className="font-mono text-[10px] sm:text-xs md:text-sm text-brand-ink/50 dark:text-brand-white/50">{edu.period}</span>
+                    <span className="font-mono text-[10px] sm:text-xs md:text-sm text-brand-ink/80 dark:text-brand-white/70">{edu.period}</span>
                     <h3 className="font-outfit font-black text-3xl sm:text-4xl md:text-5xl uppercase tracking-tighter text-brand-ink dark:text-brand-white leading-none">
                       {edu.degree}
                     </h3>
-                    <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-brand-ink/70 dark:text-brand-white/70 mt-1 md:mt-2">
+                    <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-brand-ink/80 dark:text-brand-white/70 mt-1 md:mt-2">
                       <span className="text-brand-ink dark:text-brand-accent">{edu.school}</span>
                     </div>
                   </div>
 
                   <ul className="flex flex-col gap-4 md:gap-6">
                     {edu.points.map((point, j) => (
-                      <li key={j} className="flex items-start gap-3 sm:gap-4 md:gap-5 text-sm sm:text-base md:text-lg text-brand-ink/80 dark:text-brand-white/80 font-medium leading-relaxed">
+                      <li key={j} className="flex items-start gap-3 sm:gap-4 md:gap-5 text-sm sm:text-base md:text-lg text-brand-ink/80 dark:text-brand-white/70 font-medium leading-relaxed">
                         <ArrowRight className="w-4 h-4 md:w-5 md:h-5 text-brand-ink dark:text-brand-accent shrink-0 mt-0.5 md:mt-1" strokeWidth={2.5} />
                         {point}
                       </li>
@@ -366,7 +366,7 @@ export default function AboutPage() {
             <h2 className="font-outfit font-black text-5xl md:text-7xl uppercase tracking-tighter leading-[0.9] text-brand-ink dark:text-brand-white">
               Core <br />Stack<span className="text-brand-accent">.</span>
             </h2>
-            <p className="text-sm md:text-base text-brand-ink/55 dark:text-brand-white/55 font-medium max-w-xs pb-1">
+            <p className="text-sm md:text-base text-brand-ink/80 dark:text-brand-white/70 font-medium max-w-xs pb-1">
               Primary frameworks and systems used in my development cycles.
             </p>
           </div>
@@ -418,7 +418,7 @@ export default function AboutPage() {
                         dark:hover:border-brand-white/15 dark:hover:bg-brand-accent/[0.07]
                         transition-all duration-300 overflow-hidden cursor-default"
                       >
-                        <Icon className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 shrink-0 text-brand-ink/50 dark:text-brand-white/50 group-hover:text-brand-ink dark:group-hover:text-brand-white transition-colors duration-300" />
+                        <Icon className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 shrink-0 text-brand-ink/70 dark:text-brand-white/70 group-hover:text-brand-ink dark:group-hover:text-brand-white transition-colors duration-300" />
                         <div className="flex-1 min-w-0">
                           <div className="flex justify-between items-center mb-2.5 sm:mb-3">
                             <div className="flex items-center gap-2 min-w-0">
@@ -464,7 +464,7 @@ export default function AboutPage() {
             <div>
               <div className="inline-flex items-center gap-3 mb-4 sm:mb-6">
                 <div className="w-2 h-2 bg-brand-accent rounded-sm animate-pulse" />
-                <p className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.3em] text-brand-ink/50 dark:text-brand-white/50">About Me</p>
+                <p className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.3em] text-brand-ink/80 dark:text-brand-white/70">About Me</p>
               </div>
               <h2 className="font-outfit font-black text-5xl md:text-7xl uppercase tracking-tighter leading-[0.9] text-brand-ink dark:text-brand-white">
                 Beyond <br />The Code<span className="text-brand-accent">.</span>
@@ -515,9 +515,6 @@ export default function AboutPage() {
                         className="toggle-card group relative flex flex-col gap-5 sm:gap-6 p-6 sm:p-7 md:p-8 rounded-[1.75rem] sm:rounded-[2rem] border border-brand-ink/15 dark:border-brand-white/10 shadow-xl shadow-brand-ink/[0.04] dark:shadow-none bg-white/40 dark:bg-[#111]/40 backdrop-blur-md hover:border-brand-ink/20 dark:hover:border-brand-white/15 transition-all duration-300 overflow-hidden"
                       >
                         <div className="flex items-start justify-between">
-                          <span className="font-mono text-[9px] text-brand-ink/25 dark:text-brand-white/25 font-bold">
-                            {String(i + 1).padStart(2, "0")}
-                          </span>
                           <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-[#eff9d9] dark:bg-[#202812] flex items-center justify-center shrink-0 group-hover:bg-brand-accent group-hover:scale-110 transition-all duration-300">
                             <Icon
                               className="w-5 h-5 sm:w-6 sm:h-6 text-brand-ink dark:text-brand-accent group-hover:text-brand-dark transition-colors duration-300"
@@ -526,14 +523,19 @@ export default function AboutPage() {
                           </div>
                         </div>
 
-                        <div className="flex flex-col gap-2 sm:gap-2.5">
+                        <div className="flex flex-col gap-2 sm:gap-2.5 relative z-10">
                           <h3 className="font-outfit font-black text-lg sm:text-xl uppercase tracking-tight text-brand-ink dark:text-brand-white leading-tight">
                             {item.title}
                           </h3>
-                          <p className="text-xs sm:text-sm text-brand-ink/55 dark:text-brand-white/55 font-medium leading-relaxed">
+                          <p className="text-xs sm:text-sm text-brand-ink/80 dark:text-brand-white/70 font-medium leading-relaxed">
                             {item.desc}
                           </p>
                         </div>
+
+                        {/* Large Background Number */}
+                        <span className="absolute -bottom-4 -right-2 text-[8rem] sm:text-[10rem] font-outfit font-black leading-none tracking-tighter text-brand-ink/[0.03] dark:text-brand-white/[0.02] select-none pointer-events-none group-hover:text-brand-ink/[0.05] dark:group-hover:text-brand-white/[0.05] transition-colors duration-500">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
                       </div>
                     );
                   })}
@@ -555,7 +557,7 @@ export default function AboutPage() {
             <div>
               <div className="inline-flex items-center gap-3 mb-4 sm:mb-6">
                 <Compass className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-accent animate-pulse" />
-                <p className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.3em] text-brand-ink/50 dark:text-brand-white/50">Objectives</p>
+                <p className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.3em] text-brand-ink/80 dark:text-brand-white/70">Objectives</p>
               </div>
               <h2 className="font-outfit font-black text-5xl md:text-7xl uppercase tracking-tighter leading-[0.9] text-brand-ink dark:text-brand-white">
                 My Career <br />Goals<span className="text-brand-accent">.</span>
@@ -580,7 +582,7 @@ export default function AboutPage() {
                     {/* Splitting the title into two lines based on words if possible, or just letting it wrap */}
                     {goal.title.split(' ').map((word, idx) => <span key={idx} className="block">{word}</span>)}
                   </h3>
-                  <p className="text-sm md:text-base text-brand-ink/65 dark:text-brand-white/65 font-medium leading-relaxed max-w-[90%] lg:max-w-none xl:max-w-[90%]">
+                  <p className="text-sm md:text-base text-brand-ink/80 dark:text-brand-white/70 font-medium leading-relaxed max-w-[90%] lg:max-w-none xl:max-w-[90%]">
                     {goal.desc}
                   </p>
                 </div>
@@ -600,7 +602,7 @@ export default function AboutPage() {
           <div className="mb-10 sm:mb-14 md:mb-20">
             <div className="inline-flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
               <div className="w-2 h-2 bg-brand-accent rounded-sm rotate-45" />
-              <p className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.3em] text-brand-ink/50 dark:text-brand-white/50">Accreditations</p>
+              <p className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.3em] text-brand-ink/80 dark:text-brand-white/70">Accreditations</p>
             </div>
             <h2 className="font-outfit font-black text-5xl md:text-7xl uppercase tracking-tighter leading-[0.92] text-brand-ink dark:text-brand-white">
               Certifi&shy;cations<span className="text-brand-accent">.</span>
@@ -626,7 +628,7 @@ export default function AboutPage() {
                       rel="noopener noreferrer"
                       className="group/item relative inline-flex items-start px-3 sm:px-5 py-3 sm:py-4 -mx-3 sm:-mx-5 rounded-xl sm:rounded-2xl hover:bg-white/50 dark:hover:bg-[#111]/50 transition-all duration-300"
                     >
-                      <h3 className="font-outfit font-black text-base sm:text-xl md:text-2xl lg:text-3xl uppercase tracking-tight text-brand-ink dark:text-brand-white leading-[1.1] group-hover/item:text-brand-ink/60 dark:group-hover/item:text-brand-accent transition-colors duration-300">
+                      <h3 className="font-outfit font-black text-base sm:text-xl md:text-2xl lg:text-3xl uppercase tracking-tight text-brand-ink dark:text-brand-white leading-[1.1] group-hover/item:text-brand-ink/70 dark:group-hover/item:text-brand-accent transition-colors duration-300">
                         {item.title}
                         <ArrowUpRight className="inline-block w-[1em] h-[1em] -rotate-0 ml-1 align-baseline" strokeWidth={2.5} />
                       </h3>
@@ -635,7 +637,7 @@ export default function AboutPage() {
                         <span className="text-[10px] sm:text-xs font-bold text-brand-white dark:text-brand-ink tracking-wide">
                           View Certificate ↗
                         </span>
-                        <p className="text-[9px] sm:text-[10px] text-brand-white/60 dark:text-brand-ink/60 mt-0.5 max-w-[200px] sm:max-w-[260px] truncate">
+                        <p className="text-[9px] sm:text-[10px] text-brand-white/60 dark:text-brand-ink/70 mt-0.5 max-w-[200px] sm:max-w-[260px] truncate">
                           {item.url}
                         </p>
                         <div className="absolute -bottom-1 left-4 sm:left-5 w-2 h-2 bg-brand-ink dark:bg-brand-white rotate-45" />

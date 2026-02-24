@@ -110,7 +110,7 @@ export default function ProjectsPage() {
           <div className="relative z-10">
             <div className="hero-reveal inline-flex items-center gap-3 mb-6 md:mb-8">
               <div className="w-2 h-2 bg-brand-accent rounded-sm animate-pulse" />
-              <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-brand-ink/50 dark:text-brand-white/50">Portfolio</span>
+              <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-brand-ink/80 dark:text-brand-white/70">Portfolio</span>
             </div>
 
             <h1 className="font-outfit font-black text-[clamp(2.5rem,8vw,7rem)] leading-[0.85] tracking-tighter uppercase text-brand-ink dark:text-brand-white mb-8 lg:mb-12">
@@ -119,7 +119,7 @@ export default function ProjectsPage() {
               <div className="overflow-hidden py-4 -my-4 pr-8 -mr-8"><span className="hero-reveal inline-block pr-4">Projects<span className="text-brand-accent">.</span></span></div>
             </h1>
 
-            <p className="hero-desc text-base md:text-xl text-brand-ink/70 dark:text-brand-white/70 leading-relaxed font-medium max-w-3xl">
+            <p className="hero-desc text-base md:text-xl text-brand-ink/80 dark:text-brand-white/70 leading-relaxed font-medium max-w-3xl">
               A curated selection of projects that showcase my approach to full-stack development, systems design, and brand engineering. From luxury e-commerce to gamified ecology.
             </p>
 
@@ -146,7 +146,7 @@ export default function ProjectsPage() {
                     </div>
 
                     <div className="relative z-10 mt-6 md:mt-0">
-                      <span className="meta-item inline-block text-sm md:text-base text-brand-ink/50 dark:text-brand-white/50 mb-3 md:mb-4 uppercase tracking-widest font-bold">
+                      <span className="meta-item inline-block text-sm md:text-base text-brand-ink/80 dark:text-brand-white/70 mb-3 md:mb-4 uppercase tracking-widest font-bold">
                         {project.tagline}
                       </span>
 
@@ -154,7 +154,7 @@ export default function ProjectsPage() {
                         {project.title}<span className="text-brand-accent">.</span>
                       </h2>
 
-                      <p className="meta-item text-sm md:text-base text-brand-ink/70 dark:text-brand-white/70 leading-relaxed font-medium mb-8 max-w-md">
+                      <p className="meta-item text-sm md:text-base text-brand-ink/80 dark:text-brand-white/70 leading-relaxed font-medium mb-8 max-w-md">
                         {project.desc}
                       </p>
 
@@ -234,7 +234,7 @@ export default function ProjectsPage() {
               <span className="relative z-10">Me</span>
             </span>?
           </h3>
-          <p className="text-sm sm:text-base md:text-lg text-brand-ink/60 dark:text-brand-white/60 mb-8 md:mb-10 max-w-xl font-medium leading-relaxed px-4">
+          <p className="text-sm sm:text-base md:text-lg text-brand-ink/80 dark:text-brand-white/70 mb-8 md:mb-10 max-w-xl font-medium leading-relaxed px-4">
             I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">

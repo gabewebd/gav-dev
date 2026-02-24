@@ -8,7 +8,6 @@ import {
     Send,
     Github,
     Linkedin,
-    Facebook,
     Mail,
     MapPin,
     CheckCircle2,
@@ -25,7 +24,6 @@ const SOCIALS = [
         href: "https://linkedin.com/in/gabrielle-velasquez-gav",
         icon: Linkedin,
     },
-    { label: "Facebook", href: "https://facebook.com", icon: Facebook },
     { label: "Email", href: "mailto:vlsqz.gabrielle@gmail.com", icon: Mail },
 ];
 
@@ -133,13 +131,13 @@ export default function ContactPage() {
                     <Mail className="w-full h-full text-brand-ink dark:text-brand-white" strokeWidth={1} />
                 </div>
                 <div className="relative z-10">
-                    <p className="contact-hero-line text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-brand-ink/50 dark:text-brand-white/50 mb-4">
+                    <p className="contact-hero-line text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-brand-ink/80 dark:text-brand-white/70 mb-4">
                         Get In Touch
                     </p>
                     <h1 className="contact-hero-line font-outfit font-black text-[clamp(3rem,8vw,7rem)] leading-[0.85] tracking-tighter uppercase">
                         Let&apos;s Connect<span className="text-brand-accent">.</span>
                     </h1>
-                    <p className="contact-hero-sub mt-4 md:mt-6 text-sm md:text-lg text-brand-ink/50 dark:text-brand-white/50 max-w-xl mx-auto">
+                    <p className="contact-hero-sub mt-4 md:mt-6 text-sm md:text-lg text-brand-ink/80 dark:text-brand-white/70 max-w-xl mx-auto">
                         Have a project in mind, or just want to say hello? I&apos;d love to hear
                         from you. Fill out the form below or reach out directly.
                     </p>
@@ -167,13 +165,13 @@ export default function ContactPage() {
                                 <h3 className="font-outfit font-bold text-2xl uppercase tracking-tight mb-3 text-brand-ink dark:text-brand-white">
                                     Message Sent!
                                 </h3>
-                                <p className="text-sm text-brand-ink/60 dark:text-brand-white/60 mb-6">
+                                <p className="text-sm text-brand-ink/80 dark:text-brand-white/70 mb-6">
                                     Thank you for reaching out. I&apos;ll get back to you as soon
                                     as possible.
                                 </p>
                                 <button
                                     onClick={() => setStatus("idle")}
-                                    className="text-xs font-bold uppercase tracking-widest text-brand-ink/60 hover:text-brand-ink dark:text-brand-accent dark:hover:text-brand-white transition-colors cursor-pointer"
+                                    className="text-xs font-bold uppercase tracking-widest text-brand-ink/80 hover:text-brand-ink dark:text-brand-accent dark:hover:text-brand-white transition-colors cursor-pointer"
                                 >
                                     Send Another Message
                                 </button>
@@ -195,7 +193,7 @@ export default function ContactPage() {
                                 <div>
                                     <label
                                         htmlFor="contact-name"
-                                        className="block text-xs font-bold uppercase tracking-widest text-brand-ink/50 dark:text-brand-white/50 mb-2"
+                                        className="block text-xs font-bold uppercase tracking-widest text-brand-ink/90 dark:text-brand-white/90 mb-2"
                                     >
                                         Name <span className="text-red-500">*</span>
                                     </label>
@@ -222,7 +220,7 @@ export default function ContactPage() {
                                 <div>
                                     <label
                                         htmlFor="contact-email"
-                                        className="block text-xs font-bold uppercase tracking-widest text-brand-ink/50 dark:text-brand-white/50 mb-2"
+                                        className="block text-xs font-bold uppercase tracking-widest text-brand-ink/90 dark:text-brand-white/90 mb-2"
                                     >
                                         Email <span className="text-red-500">*</span>
                                     </label>
@@ -249,7 +247,7 @@ export default function ContactPage() {
                                 <div>
                                     <label
                                         htmlFor="contact-message"
-                                        className="block text-xs font-bold uppercase tracking-widest text-brand-ink/50 dark:text-brand-white/50 mb-2"
+                                        className="block text-xs font-bold uppercase tracking-widest text-brand-ink/90 dark:text-brand-white/90 mb-2"
                                     >
                                         Message <span className="text-red-500">*</span>
                                     </label>
@@ -299,7 +297,7 @@ export default function ContactPage() {
                             <a
                                 href="mailto:vlsqz.gabrielle@gmail.com"
                                 className="text-sm md:text-base text-brand-ink dark:text-brand-white
-                                hover:text-brand-ink/60 dark:hover:text-brand-accent transition-colors duration-200 font-medium break-all"
+                                hover:text-brand-ink/70 dark:hover:text-brand-accent transition-colors duration-200 font-medium break-all"
                             >
                                 vlsqz.gabrielle@gmail.com
                             </a>
@@ -310,8 +308,8 @@ export default function ContactPage() {
                             <h3 className="text-xs font-bold uppercase tracking-[0.25em] text-brand-ink/30 dark:text-brand-white/30 mb-4">
                                 Location
                             </h3>
-                            <p className="text-sm text-brand-ink/60 dark:text-brand-white/60 flex items-center gap-2">
-                                <MapPin className="w-4 h-4 text-brand-ink/60 dark:text-brand-accent" />
+                            <p className="text-sm text-brand-ink/80 dark:text-brand-white/70 flex items-center gap-2">
+                                <MapPin className="w-4 h-4 text-brand-ink/80 dark:text-brand-accent" />
                                 Angeles City, Philippines
                             </p>
                         </div>
@@ -331,7 +329,7 @@ export default function ContactPage() {
                                         className="w-12 h-12 rounded-full
                                         border border-brand-ink/10 dark:border-brand-white/10
                                         grid place-items-center
-                                        text-brand-ink/50 dark:text-brand-white/50
+                                        text-brand-ink/80 dark:text-brand-white/70
                                         hover:text-brand-ink hover:border-brand-ink dark:hover:text-brand-accent dark:hover:border-brand-accent
                                         transition-all duration-300"
                                         aria-label={s.label}
@@ -348,7 +346,7 @@ export default function ContactPage() {
                                 border border-brand-ink/15 dark:border-brand-white/5 shadow-md shadow-brand-ink/[0.03] dark:shadow-none
                                 bg-brand-accent/5"
                         >
-                            <p className="text-xs text-brand-ink/60 dark:text-brand-white/60 leading-relaxed">
+                            <p className="text-xs text-brand-ink/80 dark:text-brand-white/70 leading-relaxed">
                                 <strong className="text-brand-ink dark:text-brand-white">
                                     Currently open
                                 </strong>{" "}

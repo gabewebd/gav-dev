@@ -30,7 +30,7 @@ function ContentBlockRenderer({ block, onImageClick }: { block: ContentBlock, on
                         <Image src={block.src} alt={block.alt || "Project visual"} width={1200} height={800} className="w-full h-auto object-contain group-hover:scale-[1.02] transition-transform duration-700" quality={95} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 60vw" />
                     </div>
                     {block.caption && (
-                        <p className="text-sm md:text-base font-medium text-brand-ink/60 dark:text-brand-white/60 text-center px-4">
+                        <p className="text-sm md:text-base font-medium text-brand-ink/70 dark:text-brand-white/70 text-center px-4">
                             {block.caption}
                         </p>
                     )}
@@ -40,7 +40,7 @@ function ContentBlockRenderer({ block, onImageClick }: { block: ContentBlock, on
             return (
                 <blockquote className="my-10 pl-6 sm:pl-8 border-l-4 border-brand-ink dark:border-brand-accent italic flex flex-col gap-4">
                     <p className="text-xl sm:text-2xl md:text-3xl font-medium text-brand-ink/80 dark:text-brand-white/80 leading-relaxed">"{block.text}"</p>
-                    {block.author && <footer className="font-outfit font-bold uppercase tracking-widest text-[#111]/50 dark:text-brand-white/50 text-[10px] sm:text-xs md:text-sm">— {block.author}</footer>}
+                    {block.author && <footer className="font-outfit font-bold uppercase tracking-widest text-[#111]/50 dark:text-brand-white/70 text-[10px] sm:text-xs md:text-sm">— {block.author}</footer>}
                 </blockquote>
             );
         case 'video':
@@ -69,7 +69,7 @@ function ContentBlockRenderer({ block, onImageClick }: { block: ContentBlock, on
                     </div>
                     {/* @ts-ignore */}
                     {block.caption && (
-                        <p className="text-sm md:text-base font-medium text-brand-ink/60 dark:text-brand-white/60 text-center px-4">
+                        <p className="text-sm md:text-base font-medium text-brand-ink/70 dark:text-brand-white/70 text-center px-4">
                             {/* @ts-ignore */}
                             {block.caption}
                         </p>
@@ -270,11 +270,11 @@ export default function ProjectDetail() {
                     </Link>
                     <span className="w-6 h-[2px] bg-brand-ink/30 dark:bg-brand-accent -mt-2" />
                     <nav className="flex flex-col gap-6 font-outfit font-bold uppercase tracking-widest text-xs">
-                        <a href="#overview" className="text-brand-ink/50 dark:text-brand-white/50 hover:text-brand-ink dark:hover:text-brand-white transition-colors">01. Overview</a>
-                        <a href="#role" className="text-brand-ink/50 dark:text-brand-white/50 hover:text-brand-ink dark:hover:text-brand-white transition-colors">02. Role & Impact</a>
-                        <a href="#tech" className="text-brand-ink/50 dark:text-brand-white/50 hover:text-brand-ink dark:hover:text-brand-white transition-colors">03. Technology</a>
+                        <a href="#overview" className="text-brand-ink/70 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white transition-colors">01. Overview</a>
+                        <a href="#role" className="text-brand-ink/70 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white transition-colors">02. Role & Impact</a>
+                        <a href="#tech" className="text-brand-ink/70 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white transition-colors">03. Technology</a>
                         {project.customSections?.map((section, index) => (
-                            <a key={section.id} href={`#${section.id}`} className="text-brand-ink/50 dark:text-brand-white/50 hover:text-brand-ink dark:hover:text-brand-white transition-colors">
+                            <a key={section.id} href={`#${section.id}`} className="text-brand-ink/70 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white transition-colors">
                                 {String(index + 4).padStart(2, '0')}. {section.title}
                             </a>
                         ))}
