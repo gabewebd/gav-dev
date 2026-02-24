@@ -253,8 +253,8 @@ export const PROJECTS_DATA: ProjectData[] = [
             { type: 'p', text: "Full-Stack Developer. I contributed heavily across the entire application ecosystem, building out the login and registration systems, role management protocols, and the user-facing frontend architecture." },
             { type: 'p', text: "On the backend, I designed the normalized database architecture and successfully handled the live production deployment of the platform using AwardSpace." }
         ],
-        stack: ["PHP", "MySQL", "AwardSpace"],
-        techLabel: "PHP · MySQL",
+        stack: ["PHP", "MySQL", "CSS", "AwardSpace"],
+        techLabel: "PHP · MySQL · CSS",
         live: "http://the-wellness-apparel.onlinewebshop.net/",
         github: "https://github.com/gabewebd/the-wellness-apparel",
         heroImg: "/assets/projects/wellness-apparel/wellness-apparel.png",
