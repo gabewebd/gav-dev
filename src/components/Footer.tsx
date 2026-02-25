@@ -153,9 +153,8 @@ export default function Footer() {
                         </Link>
 
                         <p className="mt-5 text-sm text-brand-white/70 leading-relaxed max-w-sm">
-                            Full-Stack Developer.
-                            Building precise, systems-driven digital experiences with
-                            modern web technologies and an obsession for craft.
+                            I’m a Full-Stack Developer who enjoys turning ideas into thoughtful, well-crafted digital experiences.
+                            I work across the stack with modern web technologies, always aiming for clarity, performance, and a little bit of polish.
                         </p>
 
                         {/* Magnetic Social Icons — wraps gracefully on small screens */}
@@ -217,7 +216,7 @@ export default function Footer() {
                         &copy; {new Date().getFullYear()} Gabrielle Ainshley Velasquez. All rights reserved.
                     </p>
                     <p className="text-xs text-brand-white/85">
-                        Designed &amp; developed with obsessive precision.
+                        Designed and developed with care, curiosity, and an eye for detail.
                     </p>
                 </div>
             </div>

@@ -24,13 +24,13 @@ const manrope = Manrope({
 
 /* --- SEO Metadata (Rubric Requirement) --- */
 export const metadata: Metadata = {
-  metadataBase: new URL("https://gabriellevelasquez.com"), // Placeholder URL, update as needed
+  metadataBase: new URL("http://localhost:3000"), // Updated to local/placeholder to prevent incorrect sharing link
   title: "GAV | Gabrielle Ainshley Velasquez — Full-stack Developer",
   description: "Official portfolio of Gabrielle Ainshley Velasquez. Full-stack development and systems-driven design.",
   openGraph: {
     title: "GAV | Gabrielle Ainshley Velasquez",
     description: "Official portfolio of Gabrielle Ainshley Velasquez. Full-stack development and systems-driven design.",
-    url: "https://gabriellevelasquez.com",
+    url: "/",
     siteName: "GAV Portfolio",
     locale: "en_US",
     type: "website",
@@ -41,8 +41,11 @@ export const metadata: Metadata = {
     description: "Official portfolio of Gabrielle Ainshley Velasquez. Full-stack development and systems-driven design.",
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "/favicons/favicon.ico",
+    apple: "/favicons/apple-icon.png",
+    shortcut: "/favicons/favicon.ico",
   },
+  manifest: "/favicons/manifest.json",
 };
 
 export default function RootLayout({
