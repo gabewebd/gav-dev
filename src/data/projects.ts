@@ -244,7 +244,7 @@ export const PROJECTS_DATA: ProjectData[] = [
         slug: "wellness-apparel",
         title: "Wellness Apparel",
         tagline: "Full-Stack E-Commerce",
-        desc: "A robust full-stack e-commerce platform featuring complex database normalization, user authentication, seamless catalog management, and a secure order processing pipeline.",
+        desc: "A full-stack e-commerce simulation showcasing complex database normalization, secure authentication, scalable catalog management, and a simulated order processing pipeline that models real transactional workflows.",
         overview: [
             { type: 'p', text: "Wellness Apparel is a comprehensive e-commerce simulation that provides users with the ability to browse and purchase clothing online while offering store owners powerful administrative management tools." },
             { type: 'p', text: "The platform supports a complete digital retail workflow. It handles everything from digital catalog browsing and dynamic shipping address management to complex order fulfillment and an internal notification system between customers and admins. As a conceptual prototype, it is designed to strictly simulate the e-commerce architecture and does not process real monetary transactions." }
