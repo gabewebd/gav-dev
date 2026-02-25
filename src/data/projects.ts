@@ -88,7 +88,7 @@ export const PROJECTS_DATA: ProjectData[] = [
                 title: "Visual Identity & Theme",
                 blocks: [
                     { type: 'p', text: "The website's visual identity is designed to be warm, energetic, and appetizing to directly reflect the highly visual nature of Danono's products. We utilized a color palette featuring Burnt Orange and Cream Beige to stimulate appetite while providing a clean canvas for macro food photography." },
-                    { type: 'p', text: "For typography, we paired Fredoka for headers to mirror the soft, circular shape of doughnuts, alongside Barlow Condensed for efficient, highly legible menu lists." },
+                    { type: 'p', text: "For typography, we paired Fredoka for headers to mirror the soft, circular shape of doughnuts, alongside Barlow for efficient, highly legible menu lists." },
                     { type: 'img', src: '/assets/projects/danonos/danonos-favorites.png', alt: 'Danonos Most Loved Treats', caption: 'The Home page displaying the best-selling donuts to capture users\' attention.' }
                 ]
             },
@@ -98,7 +98,7 @@ export const PROJECTS_DATA: ProjectData[] = [
                 blocks: [
                     { type: 'p', text: "A major focus of this build was ensuring the platform could actually be found by local consumers searching for study spots or desserts. I implemented a comprehensive SEO strategy utilizing both short-tail and long-tail keywords specific to the Pampanga region." },
                     { type: 'p', text: "To maintain high accessibility and search engine ranking standards, specifically for our content-driven Blogs page, I engineered the frontend with descriptive page titles, targeted meta descriptions, meaningful URL structures, strict alt text rules for all images, and proper ARIA labels for screen readers." },
-                    { type: 'img', src: '/assets/projects/danonos/danonos-blogs.png', alt: 'Danonos Blog CMS', caption: 'Dynamic blog routing powered by the custom mini-CMS.' }
+                    { type: 'img', src: '/assets/projects/danonos/danonos-blogs.png', alt: 'Danonos Blog Page', caption: 'Dynamic blog routing powered by the custom mini-CMS.' }
                 ]
             },
             {
@@ -250,7 +250,7 @@ export const PROJECTS_DATA: ProjectData[] = [
             { type: 'p', text: "The platform supports a complete digital retail workflow. It handles everything from digital catalog browsing and dynamic shipping address management to complex order fulfillment and an internal notification system between customers and admins. As a conceptual prototype, it is designed to strictly simulate the e-commerce architecture and does not process real monetary transactions." }
         ],
         role: [
-            { type: 'p', text: "Full-Stack Developer. I contributed heavily across the entire application ecosystem, building out the login and registration systems, role management protocols, and the user-facing frontend architecture." },
+            { type: 'p', text: "Full-Stack Developer. I contributed heavily across the entire application ecosystem, building out the login and registration systems, role management protocols, and the user-facing frontend architecture like Home Page, Shop Page, Login and Register Pages." },
             { type: 'p', text: "On the backend, I designed the normalized database architecture and successfully handled the live production deployment of the platform using AwardSpace." }
         ],
         stack: ["PHP", "MySQL", "CSS", "AwardSpace"],

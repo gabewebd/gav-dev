@@ -81,7 +81,7 @@ export default function ResumePage() {
                         </h1>
 
                         <p className="hero-desc text-base md:text-xl text-brand-ink/80 dark:text-brand-white/70 leading-relaxed font-medium max-w-2xl mb-10 md:mb-12">
-                            Full-Stack Developer specializing in building precise, systems-driven digital architectures and immersive brand experiences.
+                            I’m a Full-Stack Developer who loves building thoughtful digital products — from solid, scalable systems behind the scenes to immersive, memorable experiences on the surface.
                         </p>
 
                         <div className="hero-desc flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-4 sm:gap-6">
