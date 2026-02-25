@@ -309,7 +309,7 @@ export default function AboutPage() {
               <div className="w-10 h-10 md:w-12 md:h-12 bg-brand-ink text-brand-light dark:bg-brand-white dark:text-brand-dark rounded-[14px] md:rounded-2xl flex items-center justify-center shadow-lg">
                 <FaGraduationCap className="w-4 h-4 md:w-5 md:h-5" />
               </div>
-              <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-brand-ink/80 dark:text-brand-white/70">02. Academia</span>
+              <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-brand-ink/80 dark:text-brand-white/70">01. Background</span>
             </div>
             <h2 className="font-outfit font-black text-4xl sm:text-5xl md:text-7xl uppercase tracking-tighter leading-[0.95] text-brand-ink dark:text-brand-white">
               Education<span className="text-brand-accent">.</span>

@@ -136,7 +136,7 @@ export const INTERESTS: Interest[] = [
 export const CERTIFICATIONS: Certification[] = [
     {
         issuer: "freeCodeCamp",
-        year: "2023",
+        year: "2024-2025",
         items: [
             { title: "Responsive Web Design", url: "https://www.freecodecamp.org/certification/fcc29b5be29-0382-4cbc-ac6a-7697d65d3777/responsive-web-design" },
             { title: "JS Algorithms & Data Structures", url: "https://www.freecodecamp.org/certification/fcc29b5be29-0382-4cbc-ac6a-7697d65d3777/javascript-algorithms-and-data-structures" },
@@ -145,7 +145,7 @@ export const CERTIFICATIONS: Certification[] = [
     },
     {
         issuer: "HubSpot Academy",
-        year: "2023",
+        year: "2025-2026",
         items: [
             { title: "SEO", url: "https://app-na2.hubspot.com/academy/achievements/65nrkw8z/en/1/gabrielle-velasquez/seo " },
             { title: "Digital Marketing", url: "https://app-na2.hubspot.com/academy/achievements/g9gt7wzz/en/1/gabrielle-velasquez/digital-marketing" },

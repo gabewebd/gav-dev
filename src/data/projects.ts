@@ -67,7 +67,7 @@ export const PROJECTS_DATA: ProjectData[] = [
         ],
         role: [
             { type: 'p', text: "Project Manager & Full-Stack Developer. I architected the entire project and designed the database from the ground up using PHP and MySQL. I integrated a custom mini-CMS into the backend admin folder to handle dynamic menu updates and blog publications." },
-            { type: 'p', text: "Furthermore, I ensured strict mobile responsiveness across all devices, managed the deployment process using Hostinger, and implemented a robust local SEO strategy." }
+            { type: 'p', text: "Furthermore, I ensured strict mobile responsiveness across all devices, managed the deployment process using Hostinger, implemented a robust local SEO strategy, and integrated Google Analytics to monitor traffic, user behavior, and overall performance insights." }
         ],
         stack: ["PHP", "MySQL", "CSS", "Hostinger", "SEO", "Custom CMS"],
         techLabel: "PHP · Custom CMS",
