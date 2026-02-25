@@ -249,7 +249,7 @@ export default function BlogPost() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
                         {/* PREVIOUS BLOG CARD WITH FEATURED IMAGE BACKGROUND */}
                         {prevPost ? (
-                            <Link href={`/blog/${prevPost.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/9] rounded-[2rem] overflow-hidden border border-brand-ink/10 dark:border-brand-white/10 block cursor-pointer shadow-xl dark:shadow-2xl">
+                            <Link href={`/blog/${prevPost.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/9] rounded-[2rem] overflow-hidden border border-brand-ink/10 dark:border-brand-white/10 block cursor-pointer shadow-xl dark:shadow-2xl hover:-translate-y-2 transition-all duration-500 hover:shadow-brand-ink/20 dark:hover:shadow-brand-accent/10">
                                 <Image src={prevPost.featuredImage} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" alt={prevPost.title} sizes="(max-width: 768px) 100vw, 50vw" quality={90} />
                                 <div className="absolute inset-0 bg-[#111111]/70 dark:bg-[#0A0A0A]/70 transition-colors group-hover:bg-[#111111]/50 dark:group-hover:bg-[#0A0A0A]/50" />
                                 <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
@@ -257,7 +257,7 @@ export default function BlogPost() {
                                         <ArrowLeft className="w-3.5 h-3.5 text-brand-accent group-hover:-translate-x-1.5 transition-transform" />
                                         <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/70">Previous Post</span>
                                     </div>
-                                    <h4 className="font-outfit font-black text-2xl md:text-4xl uppercase tracking-tighter text-white leading-[1.1]">
+                                    <h4 className="font-outfit font-black text-2xl md:text-4xl uppercase tracking-tighter text-white leading-[1.1] drop-shadow-md">
                                         {prevPost.title}<span className="text-brand-accent">.</span>
                                     </h4>
                                 </div>
@@ -266,7 +266,7 @@ export default function BlogPost() {
 
                         {/* NEXT BLOG CARD WITH FEATURED IMAGE BACKGROUND */}
                         {nextPost ? (
-                            <Link href={`/blog/${nextPost.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/9] rounded-[2rem] overflow-hidden border border-brand-ink/10 dark:border-brand-white/10 block cursor-pointer shadow-xl dark:shadow-2xl">
+                            <Link href={`/blog/${nextPost.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/9] rounded-[2rem] overflow-hidden border border-brand-ink/10 dark:border-brand-white/10 block cursor-pointer shadow-xl dark:shadow-2xl hover:-translate-y-2 transition-all duration-500 hover:shadow-brand-ink/20 dark:hover:shadow-brand-accent/10">
                                 <Image src={nextPost.featuredImage} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" alt={nextPost.title} sizes="(max-width: 768px) 100vw, 50vw" quality={90} />
                                 <div className="absolute inset-0 bg-[#111111]/70 dark:bg-[#0A0A0A]/70 transition-colors group-hover:bg-[#111111]/50 dark:group-hover:bg-[#0A0A0A]/50" />
                                 <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
@@ -274,7 +274,7 @@ export default function BlogPost() {
                                         <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/70">Next Post</span>
                                         <ArrowRight className="w-3.5 h-3.5 text-brand-accent group-hover:translate-x-1.5 transition-transform" />
                                     </div>
-                                    <h4 className="font-outfit font-black text-2xl md:text-4xl uppercase tracking-tighter text-white leading-[1.1]">
+                                    <h4 className="font-outfit font-black text-2xl md:text-4xl uppercase tracking-tighter text-white leading-[1.1] drop-shadow-md">
                                         {nextPost.title}<span className="text-brand-accent">.</span>
                                     </h4>
                                 </div>

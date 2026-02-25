@@ -175,35 +175,35 @@ export default function ProjectDetail() {
             </div>
 
             {/* ── 1. 100VH HERO IMAGE ── */}
-            <section className="relative w-full h-[80vh] md:h-screen flex items-end pb-16 md:pb-24 px-6 md:px-12 bg-brand-light dark:bg-brand-dark">
-                <div className="absolute inset-0 bg-brand-light dark:bg-brand-dark z-0 flex items-center justify-center overflow-hidden">
+            <section className="relative w-full h-[80vh] md:h-screen flex items-end pb-16 md:pb-24 px-6 md:px-12 bg-brand-dark">
+                <div className="absolute inset-0 bg-brand-dark z-0 flex items-center justify-center overflow-hidden">
                     {/* Max quality for the primary 100vh hero image */}
                     <Image src={project.slugImg || project.heroImg} alt={project.title} fill className="object-cover object-center opacity-40 dark:opacity-50 scale-105" priority quality={100} sizes="100vw" />
                 </div>
 
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-light via-brand-light/80 dark:from-brand-dark dark:via-brand-dark/80 to-transparent z-10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/80 to-transparent z-10" />
 
                 <div className="relative z-20 w-full max-w-7xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-8">
                     <div className="flex flex-col">
-                        <Link href="/projects" className="hero-title group inline-flex items-center gap-2 text-brand-ink/80 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white text-[10px] md:text-xs font-bold uppercase tracking-widest mb-6 transition-colors w-fit">
+                        <Link href="/projects" className="hero-title group inline-flex items-center gap-2 text-white/70 hover:text-white text-[10px] md:text-xs font-bold uppercase tracking-widest mb-6 transition-colors w-fit drop-shadow-md">
                             <ArrowLeft size={16} className="group-hover:-translate-x-1.5 transition-transform" /> Back to Projects
                         </Link>
-                        <p className="hero-title text-brand-ink dark:text-brand-accent font-bold uppercase tracking-[0.3em] text-[10px] md:text-xs mb-4">
+                        <p className="hero-title text-brand-accent font-bold uppercase tracking-[0.3em] text-[10px] md:text-xs mb-4 drop-shadow-md">
                             {project.tagline}
                         </p>
-                        <h1 className="hero-title font-outfit font-black text-5xl md:text-7xl lg:text-[8rem] uppercase tracking-tighter leading-none text-brand-ink dark:text-brand-white">
+                        <h1 className="hero-title font-outfit font-black text-5xl md:text-7xl lg:text-[8rem] uppercase tracking-tighter leading-none text-white drop-shadow-lg">
                             {project.title}<span className="text-brand-accent">.</span>
                         </h1>
                     </div>
 
                     <div className="hero-title flex flex-row flex-wrap items-center gap-3 md:gap-4 mt-4 md:mt-0">
                         {project.live !== "#" && (
-                            <Link href={project.live} target="_blank" className="group bg-brand-ink dark:bg-brand-white text-brand-white dark:text-brand-ink px-6 md:px-8 py-3.5 md:py-4 rounded-full font-outfit font-bold uppercase tracking-widest text-[10px] md:text-xs flex items-center gap-2 hover:opacity-85 transition-opacity">
+                            <Link href={project.live} target="_blank" className="group bg-brand-white text-brand-ink px-6 md:px-8 py-3.5 md:py-4 rounded-full font-outfit font-bold uppercase tracking-widest text-[10px] md:text-xs flex items-center gap-2 hover:opacity-85 transition-opacity shadow-lg">
                                 <ExternalLink size={16} /> Live Link
                             </Link>
                         )}
                         {project.github !== "#" && (
-                            <Link href={project.github} target="_blank" className="group border border-brand-ink/30 dark:border-brand-white/30 text-brand-ink dark:text-brand-white backdrop-blur-md px-6 md:px-8 py-3.5 md:py-4 rounded-full font-outfit font-bold uppercase tracking-widest text-[10px] md:text-xs flex items-center gap-2 hover:bg-brand-ink/5 dark:hover:bg-brand-white/10 transition-colors">
+                            <Link href={project.github} target="_blank" className="group border border-white/30 text-white backdrop-blur-md px-6 md:px-8 py-3.5 md:py-4 rounded-full font-outfit font-bold uppercase tracking-widest text-[10px] md:text-xs flex items-center gap-2 hover:bg-white/10 transition-colors shadow-lg">
                                 <Github size={16} /> Source Code
                             </Link>
                         )}
@@ -214,47 +214,58 @@ export default function ProjectDetail() {
             {/* ── 1.5. IMAGE GALLERY CAROUSEL ── */}
             {project.gallery && project.gallery.length > 0 && (
                 <section className="relative w-full max-w-7xl mx-auto px-6 md:px-12 pt-16 md:pt-24 z-10 flex flex-col gap-6">
-                    <div className="grid w-full rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden border border-brand-ink/10 dark:border-brand-white/10 bg-brand-light-alt dark:bg-brand-dark-alt group shadow-2xl">
+                    <div className="flex flex-col gap-6 sm:gap-8">
+                        <div className="grid w-full rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden border border-brand-ink/10 dark:border-brand-white/10 bg-brand-light-alt dark:bg-brand-dark-alt group shadow-2xl">
 
-                        {project.gallery.map((img, idx) => (
-                            <div
-                                key={idx}
-                                className={`col-start-1 row-start-1 transition-opacity duration-700 ease-in-out ${idx === activeGalleryIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-                            >
-                                {/* High quality enabled for Gallery Slider */}
-                                <Image src={img.src} alt={img.alt} width={1200} height={800} className="w-full h-auto object-contain cursor-zoom-in group-hover:scale-[1.02] transition-transform duration-700" onClick={() => setLightboxIndex(idx)} priority={idx === 0} quality={95} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw" />
-                                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
-                                {img.caption && (
-                                    <div className="absolute bottom-6 md:bottom-10 left-6 md:left-12 right-6 md:right-12">
-                                        <p className="text-white text-sm md:text-lg font-medium drop-shadow-md">{img.caption}</p>
-                                    </div>
-                                )}
-                            </div>
-                        ))}
+                            {project.gallery.map((img, idx) => (
+                                <div
+                                    key={idx}
+                                    className={`col-start-1 row-start-1 transition-opacity duration-700 ease-in-out ${idx === activeGalleryIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+                                >
+                                    {/* High quality enabled for Gallery Slider */}
+                                    <Image src={img.src} alt={img.alt} width={1200} height={800} className="w-full h-auto object-contain cursor-zoom-in group-hover:scale-[1.02] transition-transform duration-700" onClick={() => setLightboxIndex(idx)} priority={idx === 0} quality={95} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw" />
+                                    <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none hidden md:block" />
+                                    {img.caption && (
+                                        <div className="absolute bottom-6 md:bottom-10 left-6 md:left-12 right-6 md:right-12 hidden md:block">
+                                            <p className="text-white text-sm md:text-lg font-medium drop-shadow-md">{img.caption}</p>
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
 
-                        {/* Navigation Controls */}
-                        {project.gallery.length > 1 && (
-                            <div className="absolute inset-0 flex items-center justify-between px-4 z-20 pointer-events-none">
-                                <button onClick={(e) => { e.stopPropagation(); setActiveGalleryIndex(prev => (prev - 1 + project.gallery.length) % project.gallery.length); }} className="pointer-events-auto w-10 h-10 md:w-14 md:h-14 rounded-full bg-black/20 hover:bg-black/40 backdrop-blur-md flex items-center justify-center text-white transition-colors border border-white/10 group/btn">
-                                    <ChevronLeft size={24} className="group-hover/btn:-translate-x-0.5 transition-transform" />
-                                </button>
-                                <button onClick={(e) => { e.stopPropagation(); setActiveGalleryIndex(prev => (prev + 1) % project.gallery.length); }} className="pointer-events-auto w-10 h-10 md:w-14 md:h-14 rounded-full bg-black/20 hover:bg-black/40 backdrop-blur-md flex items-center justify-center text-white transition-colors border border-white/10 group/btn">
-                                    <ChevronRight size={24} className="group-hover/btn:translate-x-0.5 transition-transform" />
-                                </button>
-                            </div>
-                        )}
+                            {/* Navigation Controls */}
+                            {project.gallery.length > 1 && (
+                                <div className="absolute inset-0 flex items-center justify-between px-4 z-20 pointer-events-none">
+                                    <button onClick={(e) => { e.stopPropagation(); setActiveGalleryIndex(prev => (prev - 1 + project.gallery.length) % project.gallery.length); }} className="pointer-events-auto w-10 h-10 md:w-14 md:h-14 rounded-full bg-black/20 hover:bg-black/40 backdrop-blur-md flex items-center justify-center text-white transition-colors border border-white/10 group/btn">
+                                        <ChevronLeft size={24} className="group-hover/btn:-translate-x-0.5 transition-transform" />
+                                    </button>
+                                    <button onClick={(e) => { e.stopPropagation(); setActiveGalleryIndex(prev => (prev + 1) % project.gallery.length); }} className="pointer-events-auto w-10 h-10 md:w-14 md:h-14 rounded-full bg-black/20 hover:bg-black/40 backdrop-blur-md flex items-center justify-center text-white transition-colors border border-white/10 group/btn">
+                                        <ChevronRight size={24} className="group-hover/btn:translate-x-0.5 transition-transform" />
+                                    </button>
+                                </div>
+                            )}
 
-                        {/* Indicators */}
-                        {project.gallery.length > 1 && (
-                            <div className="absolute top-6 right-6 z-20 flex gap-2">
-                                {project.gallery.map((_, idx) => (
-                                    <button
-                                        key={idx}
-                                        onClick={(e) => { e.stopPropagation(); setActiveGalleryIndex(idx); }}
-                                        className={`h-1.5 rounded-full transition-all duration-300 shadow-sm ${idx === activeGalleryIndex ? 'w-6 bg-brand-accent' : 'w-2 bg-white/50 hover:bg-white'}`}
-                                        aria-label={`Go to slide ${idx + 1}`}
-                                    />
-                                ))}
+                            {/* Indicators */}
+                            {project.gallery.length > 1 && (
+                                <div className="absolute top-6 right-6 z-20 flex gap-2">
+                                    {project.gallery.map((_, idx) => (
+                                        <button
+                                            key={idx}
+                                            onClick={(e) => { e.stopPropagation(); setActiveGalleryIndex(idx); }}
+                                            className={`h-1.5 rounded-full transition-all duration-300 shadow-sm ${idx === activeGalleryIndex ? 'w-6 bg-brand-accent' : 'w-2 bg-white/50 hover:bg-white'}`}
+                                            aria-label={`Go to slide ${idx + 1}`}
+                                        />
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Mobile Gallery Captions - Below the gallery */}
+                        {project.gallery[activeGalleryIndex]?.caption && (
+                            <div className="md:hidden px-2 text-center">
+                                <p className="text-brand-ink/80 dark:text-brand-white/80 text-xs sm:text-sm font-medium italic leading-relaxed">
+                                    {project.gallery[activeGalleryIndex].caption}
+                                </p>
                             </div>
                         )}
                     </div>
@@ -331,44 +342,41 @@ export default function ProjectDetail() {
                     <svg className="w-full h-full"><filter id="noise-proj-nav"><feTurbulence type="fractalNoise" baseFrequency="3.5" numOctaves="3" stitchTiles="stitch" /><feColorMatrix type="matrix" values="1 0 0 0 0, 1 0 0 0 0, 1 0 0 0 0, 0 0 0 1 0" /></filter><rect width="100%" height="100%" filter="url(#noise-proj-nav)" /></svg>
                 </div>
                 <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col relative z-10">
-
                     <div className="flex justify-center mb-12 md:mb-16">
                         <Link href="/projects" className="group inline-flex items-center gap-3 border border-brand-ink/20 dark:border-brand-white/20 text-brand-ink dark:text-brand-white px-8 md:px-10 py-4 rounded-full font-outfit font-bold uppercase tracking-widest text-xs hover:bg-brand-ink/5 dark:hover:bg-brand-white/5 transition-colors">
                             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1.5 transition-transform" /> Return to Projects
                         </Link>
                     </div>
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
                         {prevProject && (
-                            <Link href={`/projects/${prevProject.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/9] rounded-[2rem] overflow-hidden border border-brand-ink/10 dark:border-brand-white/10 block cursor-pointer shadow-xl dark:shadow-2xl">
-                                {/* Next/Prev Quality Bump */}
+                            <Link href={`/projects/${prevProject.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/9] rounded-[2rem] overflow-hidden border border-brand-ink/10 dark:border-brand-white/10 block cursor-pointer shadow-xl dark:shadow-2xl hover:-translate-y-2 transition-all duration-500 hover:shadow-brand-ink/20 dark:hover:shadow-brand-accent/10">
                                 <Image src={prevProject.slugImg || prevProject.heroImg} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" alt={prevProject.title} sizes="(max-width: 768px) 100vw, 50vw" quality={90} />
                                 <div className="absolute inset-0 bg-brand-ink/60 dark:bg-brand-dark/70 transition-colors group-hover:bg-brand-ink/40 dark:group-hover:bg-brand-dark/50" />
                                 <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
                                     <div className="inline-flex items-center gap-2 mb-4">
                                         <ArrowLeft className="w-3.5 h-3.5 text-brand-accent group-hover:-translate-x-1.5 transition-transform" />
-                                        <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-brand-white/70">Previous</span>
+                                        <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/70">Previous</span>
                                     </div>
-                                    <h4 className="font-outfit font-black text-3xl md:text-5xl uppercase tracking-tighter text-brand-white">{prevProject.title}<span className="text-brand-accent">.</span></h4>
+                                    <h4 className="font-outfit font-black text-3xl md:text-5xl uppercase tracking-tighter text-white drop-shadow-md">{prevProject.title}<span className="text-brand-accent">.</span></h4>
                                 </div>
                             </Link>
                         )}
 
                         {nextProject && (
-                            <Link href={`/projects/${nextProject.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/9] rounded-[2rem] overflow-hidden border border-brand-ink/10 dark:border-brand-white/10 block cursor-pointer shadow-xl dark:shadow-2xl">
-                                {/* Next/Prev Quality Bump */}
+                            <Link href={`/projects/${nextProject.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/9] rounded-[2rem] overflow-hidden border border-brand-ink/10 dark:border-brand-white/10 block cursor-pointer shadow-xl dark:shadow-2xl hover:-translate-y-2 transition-all duration-500 hover:shadow-brand-ink/20 dark:hover:shadow-brand-accent/10">
                                 <Image src={nextProject.slugImg || nextProject.heroImg} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" alt={nextProject.title} sizes="(max-width: 768px) 100vw, 50vw" quality={90} />
                                 <div className="absolute inset-0 bg-brand-ink/60 dark:bg-brand-dark/70 transition-colors group-hover:bg-brand-ink/40 dark:group-hover:bg-brand-dark/50" />
                                 <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
                                     <div className="inline-flex items-center gap-2 mb-4">
-                                        <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-brand-white/70">Next Project</span>
+                                        <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/70">Next Project</span>
                                         <ArrowRight className="w-3.5 h-3.5 text-brand-accent group-hover:translate-x-1.5 transition-transform" />
                                     </div>
-                                    <h4 className="font-outfit font-black text-3xl md:text-5xl uppercase tracking-tighter text-brand-white">{nextProject.title}<span className="text-brand-accent">.</span></h4>
+                                    <h4 className="font-outfit font-black text-3xl md:text-5xl uppercase tracking-tighter text-white drop-shadow-md">{nextProject.title}<span className="text-brand-accent">.</span></h4>
                                 </div>
                             </Link>
                         )}
                     </div>
-
                 </div>
             </section>
 
@@ -383,7 +391,6 @@ export default function ProjectDetail() {
                     )}
 
                     <div className="relative w-full h-full max-w-7xl max-h-[90vh] rounded-[1rem] md:rounded-[2rem] overflow-hidden flex flex-col items-center justify-center" onClick={(e) => e.stopPropagation()}>
-                        {/* 100% Quality inside Lightbox */}
                         <Image src={allImages[lightboxIndex].src} alt={allImages[lightboxIndex].alt || "Fullscreen project visual"} fill className="object-contain" quality={100} sizes="100vw" priority />
 
                         {allImages[lightboxIndex].caption && (
@@ -406,7 +413,6 @@ export default function ProjectDetail() {
                     </button>
                 </div>
             )}
-
         </main>
     );
 }
