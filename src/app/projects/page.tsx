@@ -241,8 +241,8 @@ export default function ProjectsPage() {
             <Link href="/contact" className="group inline-flex items-center gap-2 sm:gap-3 bg-brand-ink dark:bg-brand-white text-brand-white dark:text-brand-ink px-8 sm:px-10 py-4 sm:py-5 rounded-full font-outfit font-bold uppercase tracking-widest text-[10px] sm:text-xs hover:opacity-85 transition-opacity">
               Contact Me <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1.5 transition-transform" />
             </Link>
-            <Link href="/about" className="group inline-flex items-center gap-2 sm:gap-3 border border-brand-ink/20 dark:border-brand-white/20 text-brand-ink dark:text-brand-white px-8 sm:px-10 py-4 sm:py-5 rounded-full font-outfit font-bold uppercase tracking-widest text-[10px] sm:text-xs hover:bg-brand-ink/5 dark:hover:bg-brand-white/5 transition-colors">
-              Learn More
+            <Link href="/blog" className="group inline-flex items-center gap-2 sm:gap-3 border border-brand-ink/20 dark:border-brand-white/20 text-brand-ink dark:text-brand-white px-8 sm:px-10 py-4 sm:py-5 rounded-full font-outfit font-bold uppercase tracking-widest text-[10px] sm:text-xs hover:bg-brand-ink/5 dark:hover:bg-brand-white/5 transition-colors">
+              Read Blogs
             </Link>
           </div>
         </div>

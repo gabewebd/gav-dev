@@ -286,9 +286,9 @@ export default function AboutPage() {
               <a href="/assets/gav-resume.pdf" download className="group inline-flex items-center gap-2 sm:gap-3 bg-brand-ink dark:bg-brand-white text-brand-white dark:text-brand-dark px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-full font-outfit font-bold uppercase tracking-[0.15em] text-[11px] sm:text-xs md:text-sm hover:opacity-85 transition-opacity">
                 <Download className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />Download Resume
               </a>
-              <div className="inline-flex items-center gap-2 px-4 sm:px-6 py-3 sm:py-4 rounded-full border border-brand-ink/15 dark:border-brand-white/15 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-brand-ink/80 dark:text-brand-white/70">
-                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />Open to work
-              </div>
+              <Link href="/contact" className="group inline-flex items-center gap-2 px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-full border border-brand-ink/15 dark:border-brand-white/15 text-[11px] sm:text-xs md:text-sm font-outfit font-bold uppercase tracking-widest text-brand-ink/80 dark:text-brand-white/70 hover:bg-brand-ink/5 dark:hover:bg-brand-white/5 transition-all">
+                Contact Me <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
             </div>
           </div>
 

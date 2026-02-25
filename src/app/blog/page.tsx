@@ -104,7 +104,7 @@ export default function BlogPage() {
                       {post.excerpt}
                     </p>
                     <div className={`flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand-ink dark:text-brand-white mt-2 mb-2 ${i % 2 === 0 ? "" : "lg:flex-row-reverse"}`}>
-                      Read More <ArrowRight className={`w-4 h-4 transition-transform ${i % 2 === 0 ? "group-hover:translate-x-1.5" : "rotate-180 group-hover:-translate-x-1.5"}`} />
+                      Read More <ArrowRight className={`w-4 h-4 transition-transform ${i % 2 === 0 ? "group-hover:translate-x-1.5" : "lg:rotate-180 group-hover:translate-x-1.5 lg:group-hover:-translate-x-1.5"}`} />
                     </div>
                   </div>
                 </article>
