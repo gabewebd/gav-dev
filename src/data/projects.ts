@@ -180,7 +180,7 @@ export const PROJECTS_DATA: ProjectData[] = [
             { type: 'p', text: "By transforming routine eco-friendly activities into entertaining quests, the platform promotes community involvement through digital badges, point systems, and friendly rivalry via dynamic leaderboards." }
         ],
         role: [
-            { type: 'p', text: "Full-Stack Developer. I designed the MongoDB database schema and built out nearly all the core pages. This included the Quest page, Community feed, Login and Signup flows, Dashboard data visualizations, and Role Management architecture." },
+            { type: 'p', text: "Full-Stack Developer and UI/UX Designer. I designed the MongoDB database schema and built out nearly all the core pages. This included the Quest page, Community feed, Login and Signup flows, Dashboard data visualizations, and Role Management architecture." },
             { type: 'p', text: "I successfully integrated Cloudinary for secure image proof uploads, managed our weekly Agile sprint planning in Notion, and executed the dual-deployment strategy using Vercel for the frontend and Render for the backend." }
         ],
         stack: ["MongoDB", "Express.js", "React", "Node.js", "Cloudinary"],
@@ -250,7 +250,7 @@ export const PROJECTS_DATA: ProjectData[] = [
             { type: 'p', text: "The platform supports a complete digital retail workflow. It handles everything from digital catalog browsing and dynamic shipping address management to complex order fulfillment and an internal notification system between customers and admins. As a conceptual prototype, it is designed to strictly simulate the e-commerce architecture and does not process real monetary transactions." }
         ],
         role: [
-            { type: 'p', text: "Full-Stack Developer. I contributed heavily across the entire application ecosystem, building out the login and registration systems, role management protocols, and the user-facing frontend architecture like Home Page, Shop Page, Login and Register Pages." },
+            { type: 'p', text: "Full-Stack Developer and UI/UX Designer. I contributed heavily across the entire application ecosystem, initializing the branding assets, building out the login and registration systems, role management protocols, and the user-facing frontend architecture like Home Page, Shop Page, Dashboard data visualizations, Login and Register Pages." },
             { type: 'p', text: "On the backend, I designed the normalized database architecture and successfully handled the live production deployment of the platform using AwardSpace." }
         ],
         stack: ["PHP", "MySQL", "CSS", "AwardSpace"],
@@ -329,10 +329,10 @@ export const SHOWCASE_PROJECTS = PROJECTS_DATA
         };
     });
 
-// ─── MAJOR PROJECTS (first 5 for the projects listing page) ───────────────────
+// ─── MAJOR PROJECTS (first 4 for the projects listing page) ───────────────────
 
 export const MAJOR_PROJECTS = PROJECTS_DATA.filter((p) =>
-    ["danonos", "chanel-showcase", "hau-ecoquest", "wellness-apparel", "foodsaver-app"].includes(p.slug)
+    ["danonos", "chanel-showcase", "hau-ecoquest", "wellness-apparel"].includes(p.slug)
 );
 
 // ─── MINOR PROJECTS ───────────────────────────────────────────────────────────
@@ -351,7 +351,7 @@ export const MINOR_PROJECTS: MinorProject[] = [
         title: "Japan Chronicles",
         tagline: "Editorial CMS Platform",
         stack: ["WordPress", "SEO", "PHP"],
-        live: "https://japanchronicles.com",
+        live: "https://vlsqzgabrielle.wordpress.com",
         slug: "japan-chronicles",
         icon: FaWordpress,
         image: "/assets/projects/japan-1.png",
