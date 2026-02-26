@@ -47,7 +47,7 @@ function CardInner({ project, index }: { project: typeof PROJECTS[0]; index: num
 
                 <div className="absolute bottom-0 left-0 right-0 z-10 flex flex-col gap-4 md:gap-5 pt-16 px-6 pb-6 md:px-8 md:pb-8
                     bg-gradient-to-t from-brand-light dark:from-[#0A0A0A] via-brand-light/95 dark:via-[#0A0A0A]/95 to-transparent">
-                    <p className="text-xs md:text-sm text-brand-ink/80 dark:text-brand-white/70 leading-relaxed font-medium">
+                    <p className="text-xs md:text-sm text-brand-ink/80 dark:text-brand-white/90 leading-relaxed font-medium">
                         {project.desc}
                     </p>
 
@@ -112,9 +112,9 @@ export default function ProjectShowcase() {
                 },
             });
 
-            tl.fromTo(cards[0], { y: vh, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: "power2.out" }, 0);
-            tl.fromTo(cards[1], { y: -vh, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: "power2.out" }, 0.1);
-            tl.fromTo(cards[2], { y: vh, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: "power2.out" }, 0.2);
+            tl.fromTo(cards[0], { y: vh, opacity: 0, rotation: 10, scale: 0.8 }, { y: 0, opacity: 1, rotation: 0, scale: 1, duration: 1.2, ease: "expo.out" }, 0);
+            tl.fromTo(cards[1], { y: vh, opacity: 0, rotation: 10, scale: 0.8 }, { y: 0, opacity: 1, rotation: 0, scale: 1, duration: 1.2, ease: "expo.out" }, 0.3);
+            tl.fromTo(cards[2], { y: vh, opacity: 0, rotation: 10, scale: 0.8 }, { y: 0, opacity: 1, rotation: 0, scale: 1, duration: 1.2, ease: "expo.out" }, 0.6);
             tl.fromTo(btnRef.current, { y: 40, opacity: 0, scale: 0.95 }, { y: 0, opacity: 1, scale: 1, duration: 0.4 }, 0.8);
         });
     }, { scope: sectionRef });

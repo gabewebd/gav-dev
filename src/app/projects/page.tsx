@@ -238,10 +238,10 @@ export default function ProjectsPage() {
             I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-            <Link href="/contact" className="group inline-flex items-center gap-2 sm:gap-3 bg-brand-ink dark:bg-brand-white text-brand-white dark:text-brand-ink px-8 sm:px-10 py-4 sm:py-5 rounded-full font-outfit font-bold uppercase tracking-widest text-[10px] sm:text-xs hover:opacity-85 transition-opacity">
-              Contact Me <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1.5 transition-transform" />
+            <Link href="/contact" className="group inline-flex items-center gap-2 sm:gap-3 bg-brand-ink dark:bg-brand-white text-brand-white dark:text-brand-dark px-6 md:px-14 py-3.5 md:py-6 rounded-full font-outfit font-bold uppercase tracking-[0.15em] text-xs md:text-base hover:opacity-85 transition-opacity duration-300">
+              Contact Me <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1.5 transition-transform duration-300" />
             </Link>
-            <Link href="/blog" className="group inline-flex items-center gap-2 sm:gap-3 border border-brand-ink/20 dark:border-brand-white/20 text-brand-ink dark:text-brand-white px-8 sm:px-10 py-4 sm:py-5 rounded-full font-outfit font-bold uppercase tracking-widest text-[10px] sm:text-xs hover:bg-brand-ink/5 dark:hover:bg-brand-white/5 transition-colors">
+            <Link href="/blog" className="group inline-flex items-center gap-2 sm:gap-3 border border-brand-ink/20 dark:border-brand-white/20 text-brand-ink dark:text-brand-white px-6 md:px-14 py-3.5 md:py-6 rounded-full font-outfit font-bold uppercase tracking-[0.15em] text-xs md:text-base hover:bg-brand-ink/5 dark:hover:bg-brand-white/5 transition-colors duration-300">
               Read Blogs
             </Link>
           </div>
