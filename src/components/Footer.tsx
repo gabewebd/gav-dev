@@ -127,8 +127,9 @@ export default function Footer() {
                     <a
                         ref={ctaBtnRef}
                         href="/assets/gav-resume.pdf"
-                        download
-                        aria-label="Download Gabrielle's Resume PDF"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="View Gabrielle's Resume PDF in new tab"
                         className="magnetic-btn inline-flex items-center gap-3
               bg-brand-white text-brand-dark
               px-7 sm:px-10 py-4 sm:py-5 rounded-full
@@ -193,11 +194,11 @@ export default function Footer() {
                             Get In Touch
                         </h4>
                         <a
-                            href="mailto:visqz.gabrielle@gmail.com"
+                            href="mailto:vlsqz.gabrielle@gmail.com"
                             className="text-sm text-brand-white/70 hover:text-brand-accent
                 transition-colors duration-200 break-all"
                         >
-                            visqz.gabrielle@gmail.com
+                            vlsqz.gabrielle@gmail.com
                         </a>
 
                         <p className="mt-6 text-xs text-brand-white/70 leading-relaxed">

@@ -85,8 +85,8 @@ export default function ResumePage() {
                         </p>
 
                         <div className="hero-desc flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-4 sm:gap-6">
-                            <a href="/assets/gav-resume.pdf" download className="group w-full sm:w-auto justify-center inline-flex items-center gap-3 bg-brand-ink dark:bg-brand-white text-brand-light dark:text-brand-dark px-8 md:px-10 py-4 md:py-5 rounded-full font-outfit font-bold uppercase tracking-[0.15em] text-[10px] sm:text-[11px] md:text-sm hover:opacity-85 transition-opacity duration-300">
-                                <FileDown className="w-4 h-4 md:w-5 md:h-5 group-hover:-translate-y-1 transition-transform" /> Download PDF
+                            <a href="/assets/gav-resume.pdf" target="_blank" rel="noopener noreferrer" className="group w-full sm:w-auto justify-center inline-flex items-center gap-3 bg-brand-ink dark:bg-brand-white text-brand-light dark:text-brand-dark px-8 md:px-10 py-4 md:py-5 rounded-full font-outfit font-bold uppercase tracking-[0.15em] text-[10px] sm:text-[11px] md:text-sm hover:opacity-85 transition-opacity duration-300">
+                                <FileDown className="w-4 h-4 md:w-5 md:h-5 group-hover:-translate-y-1 transition-transform" /> View PDF
                             </a>
 
                             {/* Compact Contact Links */}

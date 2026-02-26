@@ -283,8 +283,8 @@ export default function AboutPage() {
               <p>My technical expertise spans the full stack, including React and Next.js for frontend development, as well as PHP and Node.js for backend systems. I approach each project with clarity, precision, and a commitment to delivering efficient, maintainable solutions built for long-term impact.</p>
             </div>
             <div className="mt-8 sm:mt-10 lg:mt-12 flex flex-wrap items-center justify-start gap-3 sm:gap-4 fade-in-element">
-              <a href="/assets/gav-resume.pdf" download className="group inline-flex items-center gap-2 sm:gap-3 bg-brand-ink dark:bg-brand-white text-brand-white dark:text-brand-dark px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-full font-outfit font-bold uppercase tracking-[0.15em] text-[11px] sm:text-xs md:text-sm hover:opacity-85 transition-opacity">
-                <Download className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />Download Resume
+              <a href="/assets/gav-resume.pdf" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-2 sm:gap-3 bg-brand-ink dark:bg-brand-white text-brand-white dark:text-brand-dark px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-full font-outfit font-bold uppercase tracking-[0.15em] text-[11px] sm:text-xs md:text-sm hover:opacity-85 transition-opacity">
+                <Download className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />View Resume
               </a>
               <Link href="/contact" className="group inline-flex items-center gap-2 px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-full border border-brand-ink/15 dark:border-brand-white/15 text-[11px] sm:text-xs md:text-sm font-outfit font-bold uppercase tracking-widest text-brand-ink/80 dark:text-brand-white/70 hover:bg-brand-ink/5 dark:hover:bg-brand-white/5 transition-all">
                 Contact Me <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
