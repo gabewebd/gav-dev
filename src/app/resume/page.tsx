@@ -11,6 +11,12 @@ import {
     Linkedin,
     FileText,
 } from "lucide-react";
+import Button from "@/components/ui/Button";
+import SectionTag from "@/components/ui/SectionTag";
+import SectionTitle from "@/components/ui/SectionTitle";
+import HeroHeading from "@/components/ui/HeroHeading";
+import PreviewLink from "@/components/ui/PreviewLink";
+import SocialButton from "@/components/ui/SocialButton";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -70,36 +76,61 @@ export default function ResumePage() {
                     </div>
 
                     <div className="relative z-10">
-                        <div className="hero-reveal inline-flex items-center gap-3 mb-6 md:mb-8">
-                            <div className="w-2 h-2 bg-brand-accent rounded-sm animate-pulse" />
-                            <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-brand-ink/80 dark:text-brand-white/70">Work Experience</span>
-                        </div>
+                        <SectionTag className="hero-reveal mb-6 md:mb-8">Work Experience</SectionTag>
 
-                        <h1 className="font-outfit font-black text-[clamp(2.5rem,8vw,7rem)] leading-[0.85] tracking-tighter uppercase text-brand-ink dark:text-brand-white mb-8 lg:mb-12">
-                            <div className="overflow-hidden py-3 -my-3 pr-4 -mr-4"><span className="hero-reveal inline-block">Professional</span></div>
-                            <div className="overflow-hidden py-3 -my-3 pr-4 -mr-4"><span className="hero-reveal inline-block">Resume<span className="text-brand-accent">.</span></span></div>
-                        </h1>
+                        <HeroHeading>
+                            <div className="overflow-hidden py-3 -my-3 pr-4 -mr-4">
+                                <span className="hero-reveal inline-block pr-4">Professional</span>
+                            </div>
+                            <div className="hero-reveal flex items-center justify-start gap-4 overflow-hidden py-2 -my-2">
+                                <span className="text-brand-ink dark:text-brand-white">Resume<span className="text-brand-accent">.</span></span>
+                            </div>
+                        </HeroHeading>
 
                         <p className="hero-desc text-base md:text-xl text-brand-ink/80 dark:text-brand-white/70 leading-relaxed font-medium max-w-2xl mb-10 md:mb-12">
                             I’m a Full-Stack Developer who loves building thoughtful digital products — from solid, scalable systems behind the scenes to immersive, memorable experiences on the surface.
                         </p>
 
                         <div className="hero-desc flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-4 sm:gap-6">
-                            <a href="/assets/gav-resume.pdf" target="_blank" rel="noopener noreferrer" className="group w-full sm:w-auto justify-center inline-flex items-center gap-3 bg-brand-ink dark:bg-brand-white text-brand-light dark:text-brand-dark px-8 md:px-10 py-4 md:py-5 rounded-full font-outfit font-bold uppercase tracking-[0.15em] text-[10px] sm:text-[11px] md:text-sm hover:opacity-85 transition-opacity duration-300">
-                                <FileDown className="w-4 h-4 md:w-5 md:h-5 group-hover:-translate-y-1 transition-transform" /> View PDF
-                            </a>
+                            <Button href="/assets/gav-resume.pdf" target="_blank" rel="noopener noreferrer" icon={FileDown} iconPosition="left" className="w-full sm:w-auto !px-8 md:!px-10 !py-4 md:!py-5 !text-[10px] sm:!text-[11px] md:!text-sm">
+                                View PDF
+                            </Button>
 
                             {/* Compact Contact Links */}
                             <div className="flex flex-wrap items-center gap-3">
-                                <a href="https://github.com/gabewebd" target="_blank" rel="noopener noreferrer" className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-brand-ink/20 dark:border-brand-white/20 flex items-center justify-center text-brand-ink/80 dark:text-brand-white/70 hover:bg-brand-ink hover:text-brand-white dark:hover:bg-brand-white dark:hover:text-brand-ink transition-colors">
-                                    <Github className="w-4 h-4 md:w-5 md:h-5" />
-                                </a>
-                                <a href="https://linkedin.com/in/gabrielle-velasquez-gav" target="_blank" rel="noopener noreferrer" className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-brand-ink/20 dark:border-brand-white/20 flex items-center justify-center text-brand-ink/80 dark:text-brand-white/70 hover:bg-brand-ink hover:text-brand-white dark:hover:bg-brand-white dark:hover:text-brand-ink transition-colors">
-                                    <Linkedin className="w-4 h-4 md:w-5 md:h-5" />
-                                </a>
-                                <a href="mailto:vlsqz.gabrielle@gmail.com" className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-brand-ink/20 dark:border-brand-white/20 flex items-center justify-center text-brand-ink/80 dark:text-brand-white/70 hover:bg-brand-ink hover:text-brand-white dark:hover:bg-brand-white dark:hover:text-brand-ink transition-colors">
-                                    <Mail className="w-4 h-4 md:w-5 md:h-5" />
-                                </a>
+                                <PreviewLink
+                                    href="https://github.com/gabewebd"
+                                    label="GitHub"
+                                    description="github.com/gabewebd"
+                                >
+                                    <SocialButton
+                                        icon={Github}
+                                        label="GitHub"
+                                        className="md:w-14 md:h-14"
+                                    />
+                                </PreviewLink>
+                                <PreviewLink
+                                    href="https://linkedin.com/in/gabrielle-velasquez-gav"
+                                    label="LinkedIn"
+                                    description="linkedin.com/in/gabrielle-velasquez-gav"
+                                >
+                                    <SocialButton
+                                        icon={Linkedin}
+                                        label="LinkedIn"
+                                        className="md:w-14 md:h-14"
+                                    />
+                                </PreviewLink>
+                                <PreviewLink
+                                    href="mailto:vlsqz.gabrielle@gmail.com"
+                                    label="Email"
+                                    description="vlsqz.gabrielle@gmail.com"
+                                >
+                                    <SocialButton
+                                        icon={Mail}
+                                        label="Email"
+                                        className="md:w-14 md:h-14"
+                                    />
+                                </PreviewLink>
                             </div>
                         </div>
 

@@ -9,15 +9,17 @@ import { useGSAP } from "@gsap/react";
 import {
   Download,
   Smile,
-  ArrowUpRight,
   ArrowRight,
   MapPin,
-  Target,
-  Waves,
-  Compass,
 } from "lucide-react";
 
-import { FaHeadphones, FaFileAlt, FaBriefcase, FaGraduationCap, FaArrowUp, FaUser } from "react-icons/fa";
+import Button from "@/components/ui/Button";
+import SectionTag from "@/components/ui/SectionTag";
+import SectionTitle from "@/components/ui/SectionTitle";
+import HeroHeading from "@/components/ui/HeroHeading";
+import PreviewLink from "@/components/ui/PreviewLink";
+
+import { FaHeadphones, FaFileAlt, FaGraduationCap, FaArrowUp } from "react-icons/fa";
 
 import {
   SKILLS,
@@ -262,19 +264,18 @@ export default function AboutPage() {
           </div>
 
           <div className="flex-1 flex flex-col relative z-10 w-full text-left">
-            <div className="hero-reveal mb-4 sm:mb-6 inline-flex items-center gap-2 justify-start">
-              <div className="w-2 h-2 rounded-sm rotate-45 bg-brand-accent" />
-              <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.3em] text-brand-ink/80 dark:text-brand-white/70">Based in the Philippines</span>
-            </div>
-            <h1 className="font-outfit font-black text-[clamp(3rem,8vw,7rem)] leading-[0.85] tracking-tighter uppercase text-brand-ink dark:text-brand-white mb-7 sm:mb-10 lg:mb-12">
-              <div className="overflow-hidden py-1"><span className="hero-reveal inline-block">Hi, I&apos;m</span></div>
-              <div className="overflow-hidden py-1 flex items-center justify-start gap-3 sm:gap-5">
-                <span className="hero-reveal inline-block">Gabrielle<span className="text-brand-accent">.</span></span>
-                <span className="hero-reveal inline-flex items-center justify-center w-10 h-10 sm:w-14 sm:h-14 md:w-20 md:h-20 bg-brand-accent rounded-[0.75rem] sm:rounded-[1rem] md:rounded-[1.25rem] shrink-0">
+            <SectionTag className="hero-reveal mb-4 sm:mb-6">Based in the Philippines</SectionTag>
+            <HeroHeading>
+              <div className="overflow-hidden py-1">
+                <span className="hero-reveal block mb-2">Hi, I&apos;m</span>
+              </div>
+              <div className="hero-reveal flex items-center justify-start gap-3 sm:gap-5 overflow-hidden py-2 -my-2">
+                <span className="text-brand-ink dark:text-brand-white">Gabrielle<span className="text-brand-accent">.</span></span>
+                <span className="inline-flex items-center justify-center w-10 h-10 sm:w-14 sm:h-14 md:w-20 md:h-20 bg-brand-accent rounded-[0.75rem] sm:rounded-[1rem] md:rounded-[1.25rem] shrink-0">
                   <Smile className="w-5 h-5 sm:w-7 sm:h-7 md:w-10 md:h-10 text-brand-dark" strokeWidth={2.5} />
                 </span>
               </div>
-            </h1>
+            </HeroHeading>
             <div className="flex flex-col gap-4 sm:gap-6 text-sm md:text-[1.05rem] text-brand-ink/80 dark:text-brand-white/70 leading-relaxed font-medium max-w-xl fade-in-element">
               <p>I am a full-stack developer based in the Philippines 🇵🇭, specializing in building modern web applications that are both structurally robust and visually compelling. My work focuses on creating digital solutions that are purposeful, scalable, and thoughtfully designed.</p>
 
@@ -283,12 +284,12 @@ export default function AboutPage() {
               <p>My technical expertise spans the full stack, including React and Next.js for frontend development, as well as PHP and Node.js for backend systems. I approach each project with clarity, precision, and a commitment to delivering efficient, maintainable solutions built for long-term impact.</p>
             </div>
             <div className="mt-8 sm:mt-10 lg:mt-12 flex flex-wrap items-center justify-start gap-3 sm:gap-4 fade-in-element">
-              <a href="/assets/gav-resume.pdf" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-2 sm:gap-3 bg-brand-ink dark:bg-brand-white text-brand-white dark:text-brand-dark px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-full font-outfit font-bold uppercase tracking-[0.15em] text-[11px] sm:text-xs md:text-sm hover:opacity-85 transition-opacity">
-                <Download className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />View Resume
-              </a>
-              <Link href="/contact" className="group inline-flex items-center gap-2 px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-full border border-brand-ink/15 dark:border-brand-white/15 text-[11px] sm:text-xs md:text-sm font-outfit font-bold uppercase tracking-widest text-brand-ink/80 dark:text-brand-white/70 hover:bg-brand-ink/5 dark:hover:bg-brand-white/5 transition-all">
-                Contact Me <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
+              <Button href="/assets/gav-resume.pdf" target="_blank" rel="noopener noreferrer" icon={Download} iconPosition="left" className="!px-6 sm:!px-8 md:!px-10 !py-3 sm:!py-4 md:!py-5 !text-[11px] sm:!text-xs md:!text-sm">
+                View Resume
+              </Button>
+              <Button href="/contact" variant="secondary" icon={ArrowRight} className="!px-6 sm:!px-8 md:!px-10 !py-3 sm:!py-4 md:!py-5 !text-[11px] sm:!text-xs md:!text-sm">
+                Contact Me
+              </Button>
             </div>
           </div>
 
@@ -311,9 +312,7 @@ export default function AboutPage() {
               </div>
               <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-brand-ink/80 dark:text-brand-white/70">01. Background</span>
             </div>
-            <h2 className="font-outfit font-black text-4xl sm:text-5xl md:text-7xl uppercase tracking-tighter leading-[0.95] text-brand-ink dark:text-brand-white">
-              Education<span className="text-brand-accent">.</span>
-            </h2>
+            <SectionTitle>Education</SectionTitle>
           </div>
 
           <div className="w-full lg:w-8/12 lg:pt-6">
@@ -363,9 +362,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 relative z-10">
 
           <div className="mb-10 sm:mb-14 md:mb-16 flex flex-col md:flex-row md:items-end gap-3 md:gap-16">
-            <h2 className="font-outfit font-black text-5xl md:text-7xl uppercase tracking-tighter leading-[0.9] text-brand-ink dark:text-brand-white">
-              Core <br />Stack<span className="text-brand-accent">.</span>
-            </h2>
+            <SectionTitle>Core <br />Stack</SectionTitle>
             <p className="text-sm md:text-base text-brand-ink/80 dark:text-brand-white/70 font-medium max-w-xs pb-1">
               Primary frameworks and systems used in my development cycles.
             </p>
@@ -462,13 +459,10 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 relative z-10">
           <div className="mb-12 sm:mb-16 md:mb-24 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 lg:gap-16">
             <div>
-              <div className="inline-flex items-center gap-3 mb-4 sm:mb-6">
-                <div className="w-2 h-2 bg-brand-accent rounded-sm animate-pulse" />
-                <p className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.3em] text-brand-ink/80 dark:text-brand-white/70">About Me</p>
-              </div>
-              <h2 className="font-outfit font-black text-5xl md:text-7xl uppercase tracking-tighter leading-[0.9] text-brand-ink dark:text-brand-white">
-                Beyond <br />The Code<span className="text-brand-accent">.</span>
-              </h2>
+              <SectionTag className="mb-4 sm:mb-6">About Me</SectionTag>
+              <SectionTitle>
+                Beyond <br />The Code
+              </SectionTitle>
             </div>
 
             {/* Toggle */}
@@ -555,13 +549,10 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 relative z-10 flex flex-col gap-10 sm:gap-12 md:gap-16">
           <div className="flex flex-col md:flex-row md:items-end gap-6 md:gap-16">
             <div>
-              <div className="inline-flex items-center gap-3 mb-4 sm:mb-6">
-                <Compass className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-accent animate-pulse" />
-                <p className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.3em] text-brand-ink/80 dark:text-brand-white/70">Objectives</p>
-              </div>
-              <h2 className="font-outfit font-black text-5xl md:text-7xl uppercase tracking-tighter leading-[0.9] text-brand-ink dark:text-brand-white">
-                My Career <br />Goals<span className="text-brand-accent">.</span>
-              </h2>
+              <SectionTag className="mb-4 sm:mb-6">Objectives</SectionTag>
+              <SectionTitle>
+                My Career <br />Goals
+              </SectionTitle>
             </div>
           </div>
 
@@ -600,13 +591,10 @@ export default function AboutPage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 relative z-10">
           <div className="mb-10 sm:mb-14 md:mb-20">
-            <div className="inline-flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
-              <div className="w-2 h-2 bg-brand-accent rounded-sm rotate-45" />
-              <p className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.3em] text-brand-ink/80 dark:text-brand-white/70">Accreditations</p>
-            </div>
-            <h2 className="font-outfit font-black text-5xl md:text-7xl uppercase tracking-tighter leading-[0.92] text-brand-ink dark:text-brand-white">
-              Certifi&shy;cations<span className="text-brand-accent">.</span>
-            </h2>
+            <SectionTag className="mb-4 sm:mb-6">Accreditations</SectionTag>
+            <SectionTitle>
+              Certifi&shy;cations
+            </SectionTitle>
           </div>
 
           <div className="cert-list flex flex-col max-w-4xl">
@@ -621,28 +609,18 @@ export default function AboutPage() {
 
                 <div className="flex flex-col gap-2 sm:gap-3">
                   {group.items.map((item, ii) => (
-                    <Link
+                    <PreviewLink
                       key={ii}
                       href={item.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group/item relative inline-flex items-start px-3 sm:px-5 py-3 sm:py-4 -mx-3 sm:-mx-5 rounded-xl sm:rounded-2xl hover:bg-white/50 dark:hover:bg-[#111]/50 transition-all duration-300"
+                      label="View Certificate"
+                      description={item.url}
+                      className="px-3 sm:px-5 py-3 sm:py-4 -mx-3 sm:-mx-5 rounded-xl sm:rounded-2xl hover:bg-white/50 dark:hover:bg-[#111]/50 transition-all duration-300"
                     >
-                      <h3 className="font-outfit font-black text-base sm:text-xl md:text-2xl lg:text-3xl uppercase tracking-tight text-brand-ink dark:text-brand-white leading-[1.1] group-hover/item:text-brand-ink/70 dark:group-hover/item:text-brand-accent transition-colors duration-300">
+                      <h3 className="font-outfit font-black text-base sm:text-xl md:text-2xl lg:text-3xl uppercase tracking-tight text-brand-ink dark:text-brand-white leading-[1.1] group-hover/preview:text-brand-ink/70 dark:group-hover/preview:text-brand-accent transition-colors duration-300">
                         {item.title}
-                        <ArrowUpRight className="inline-block w-[1em] h-[1em] -rotate-0 ml-1 align-baseline" strokeWidth={2.5} />
+                        <ArrowRight className="inline-block w-[1em] h-[1em] -rotate-45 ml-1 align-baseline" strokeWidth={2.5} />
                       </h3>
-
-                      <div className="absolute bottom-full left-3 sm:left-5 mb-2 px-4 py-2.5 rounded-xl bg-brand-ink dark:bg-brand-white shadow-xl opacity-0 scale-95 pointer-events-none group-hover/item:opacity-100 group-hover/item:scale-100 transition-all duration-200 origin-bottom-left whitespace-nowrap z-50">
-                        <span className="text-[10px] sm:text-xs font-bold text-brand-white dark:text-brand-ink tracking-wide">
-                          View Certificate ↗
-                        </span>
-                        <p className="text-[9px] sm:text-[10px] text-brand-white/60 dark:text-brand-ink/70 mt-0.5 max-w-[200px] sm:max-w-[260px] truncate">
-                          {item.url}
-                        </p>
-                        <div className="absolute -bottom-1 left-4 sm:left-5 w-2 h-2 bg-brand-ink dark:bg-brand-white rotate-45" />
-                      </div>
-                    </Link>
+                    </PreviewLink>
                   ))}
                 </div>
               </div>

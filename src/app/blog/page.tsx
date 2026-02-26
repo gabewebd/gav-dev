@@ -7,6 +7,10 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { ArrowRight, FolderOpen, Calendar } from "lucide-react";
+import SectionTag from "@/components/ui/SectionTag";
+import SectionTitle from "@/components/ui/SectionTitle";
+import HeroHeading from "@/components/ui/HeroHeading";
+import PreviewLink from "@/components/ui/PreviewLink";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -61,16 +65,15 @@ export default function BlogPage() {
           </div>
 
           <div className="relative z-10">
-            <div className="hero-reveal inline-flex items-center gap-3 mb-6 md:mb-8">
-              <div className="w-2 h-2 bg-brand-accent rounded-sm animate-pulse" />
-              <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-brand-ink/80 dark:text-brand-white/70">Dev Journal</span>
-            </div>
-
-            <h1 className="font-outfit font-black text-[clamp(3rem,8vw,7rem)] leading-[0.85] tracking-tighter uppercase text-brand-ink dark:text-brand-white mb-8 lg:mb-12">
-              {/* Added extended padding buffers to prevent clipping */}
-              <div className="overflow-hidden py-4 -my-4 pr-8 -mr-8"><span className="hero-reveal inline-block pr-4">Dev Notes</span></div>
-              <div className="overflow-hidden py-4 -my-4 pr-8 -mr-8"><span className="hero-reveal inline-block pr-4">& Insights<span className="text-brand-accent">.</span></span></div>
-            </h1>
+            <SectionTag className="hero-reveal mb-6 md:mb-8">Dev Journal</SectionTag>
+            <HeroHeading>
+              <div className="overflow-hidden py-4 -my-4 pr-8 -mr-8">
+                <span className="hero-reveal inline-block pr-4">Dev Notes</span>
+              </div>
+              <div className="hero-reveal flex items-center justify-start gap-3 sm:gap-5 overflow-hidden py-2 -my-2">
+                <span className="text-brand-ink dark:text-brand-white">& Insights<span className="text-brand-accent">.</span></span>
+              </div>
+            </HeroHeading>
 
             <p className="hero-desc text-base md:text-xl text-brand-ink/80 dark:text-brand-white/70 leading-relaxed font-medium max-w-3xl">
               Thoughts on development, design systems, and lessons learned while building full-stack applications and shaping brand identities.
@@ -84,11 +87,15 @@ export default function BlogPage() {
         <section className="pb-32 md:pb-48">
           <div className="grid gap-8 md:gap-12">
             {BLOG_POSTS.map((post, i) => (
-              <Link key={i} href={`/blog/${post.slug}`} className="blog-card group block">
-                <article className={`flex flex-col ${i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse lg:text-right lg:justify-end"} gap-6 lg:gap-10 p-6 md:p-8 rounded-[2.5rem] border border-brand-ink/10 dark:border-brand-white/10 bg-gradient-to-br from-white/40 to-white/10 dark:from-white/[0.04] dark:to-white/[0.01] backdrop-blur-md shadow-xl shadow-brand-ink/[0.02] dark:shadow-black/20 hover:-translate-y-2 hover:border-brand-ink/20 dark:hover:border-brand-white/15 transition-all duration-500`}>
+              <Link
+                key={i}
+                href={`/blog/${post.slug}`}
+                className="blog-card group block w-full"
+              >
+                <article className={`flex flex-col ${i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse lg:text-right lg:justify-end"} gap-6 lg:gap-10 p-6 md:p-8 rounded-[2.5rem] border border-brand-ink/10 dark:border-brand-white/10 bg-gradient-to-br from-white/40 to-white/10 dark:from-white/[0.04] dark:to-white/[0.01] backdrop-blur-md shadow-xl shadow-brand-ink/[0.02] dark:shadow-black/20 hover:-translate-y-2 hover:border-brand-ink/20 dark:hover:border-brand-white/15 transition-all duration-500 w-full`}>
                   {post.featuredImage && (
                     <div className="relative w-full lg:w-[480px] xl:w-[560px] aspect-[16/10] sm:aspect-[2/1] lg:aspect-[4/3] rounded-[2rem] overflow-hidden shrink-0 border border-brand-ink/10 dark:border-brand-white/10 bg-brand-light-alt dark:bg-brand-dark-alt">
-                      <Image src={post.featuredImage} alt={post.title} fill className="object-cover group-hover:scale-105 group-hover:-rotate-1 transition-transform duration-1000 ease-out" sizes="(max-width: 1024px) 100vw, 560px" />
+                      <Image src={post.featuredImage} alt={post.title} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" sizes="(max-width: 1024px) 100vw, 560px" />
                     </div>
                   )}
                   <div className={`flex flex-col justify-center gap-4 lg:gap-6 w-full ${i % 2 === 0 ? "" : "lg:items-end"}`}>
@@ -97,14 +104,14 @@ export default function BlogPage() {
                       <span className="w-1.5 h-1.5 rounded-full bg-brand-ink/20 dark:bg-brand-white/20" />
                       <span>{post.readTime}</span>
                     </div>
-                    <h2 className="font-outfit font-black text-3xl md:text-4xl lg:text-5xl uppercase tracking-tight text-brand-ink dark:text-brand-white leading-[1.1] group-hover:text-brand-ink/70 dark:group-hover:text-brand-accent transition-colors">
+                    <h2 className="font-outfit font-black text-3xl md:text-4xl lg:text-5xl uppercase tracking-tight text-brand-ink dark:text-brand-white leading-[1.1] transition-colors">
                       {post.title}
                     </h2>
                     <p className="text-sm md:text-base text-brand-ink/80 dark:text-brand-white/70 font-medium leading-relaxed line-clamp-3">
                       {post.excerpt}
                     </p>
                     <div className={`flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand-ink dark:text-brand-white mt-2 mb-2 ${i % 2 === 0 ? "" : "lg:flex-row-reverse"}`}>
-                      Read More <ArrowRight className={`w-4 h-4 transition-transform ${i % 2 === 0 ? "group-hover:translate-x-1.5" : "lg:rotate-180 group-hover:translate-x-1.5 lg:group-hover:-translate-x-1.5"}`} />
+                      Read Article <ArrowRight className={`w-4 h-4 transition-transform ${i % 2 === 0 ? "group-hover:translate-x-1.5" : "lg:rotate-180 group-hover:translate-x-1.5 lg:group-hover:-translate-x-1.5"}`} />
                     </div>
                   </div>
                 </article>

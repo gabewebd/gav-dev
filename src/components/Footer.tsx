@@ -4,8 +4,14 @@ import { useRef } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { Github, Linkedin, Mail, ArrowUpRight, FileDown } from "lucide-react";
+import {
+    Github, Linkedin, Mail, ArrowUpRight, FileDown, CheckCircle2,
+    Loader2, ArrowUp
+} from "lucide-react";
+import Button from "@/components/ui/Button";
 import Logo from "@/components/Logo";
+import PreviewLink from "@/components/ui/PreviewLink";
+import SocialButton from "@/components/ui/SocialButton";
 
 gsap.registerPlugin(useGSAP);
 
@@ -13,7 +19,7 @@ gsap.registerPlugin(useGSAP);
 const SOCIALS = [
     { label: "GitHub", href: "https://github.com/gabewebd", icon: Github },
     { label: "LinkedIn", href: "https://linkedin.com/in/gabrielle-velasquez-gav", icon: Linkedin },
-    { label: "Email", href: "mailto:visqz.gabrielle@gmail.com", icon: Mail },
+    { label: "Email", href: "mailto:vlsqz.gabrielle@gmail.com", icon: Mail },
 ];
 
 const QUICK_LINKS = [
@@ -62,20 +68,19 @@ function MagneticSocial({
     });
 
     return (
-        <a
+        <PreviewLink
             ref={ref}
             href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="magnetic-btn w-12 h-12 sm:w-14 sm:h-14 rounded-full
-        border border-brand-white/10 hover:border-brand-accent
-        grid place-items-center
-        text-brand-white/70 hover:text-brand-accent
-        transition-colors duration-300"
-            aria-label={label}
+            label={label}
+            description={href}
+            className="magnetic-btn"
         >
-            <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
-        </a>
+            <SocialButton
+                icon={Icon}
+                label={label}
+                className="w-12 h-12 sm:w-14 sm:h-14 border-brand-white/10 hover:border-brand-accent text-brand-white/70 hover:text-brand-accent"
+            />
+        </PreviewLink>
     );
 }
 
@@ -109,9 +114,13 @@ export default function Footer() {
         };
     });
 
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
     return (
         /* FIX: solid bg-brand-dark (no transparency), top border added */
-        <footer className="bg-brand-dark text-brand-white border-t border-brand-white/10">
+        <footer className="dark bg-brand-dark text-brand-white border-t border-brand-white/10">
 
             {/* ── Resume CTA Banner ──────────────────────────────── */}
             <div className="border-b border-brand-white/5">
@@ -124,22 +133,17 @@ export default function Footer() {
                             Download My Resume<span className="text-brand-accent">.</span>
                         </h3>
                     </div>
-                    <a
+                    <Button
                         ref={ctaBtnRef}
                         href="/assets/gav-resume.pdf"
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label="View Gabrielle's Resume PDF in new tab"
-                        className="magnetic-btn inline-flex items-center gap-3
-              bg-brand-white text-brand-dark
-              px-7 sm:px-10 py-4 sm:py-5 rounded-full
-              font-outfit font-bold uppercase tracking-[0.15em] text-xs sm:text-sm
-              hover:opacity-85
-              transition-opacity duration-300 shrink-0 whitespace-nowrap"
+                        ariaLabel="View Gabrielle's Resume PDF in new tab"
+                        className="magnetic-btn !bg-brand-white !text-brand-dark !px-7 sm:!px-10 !py-4 sm:!py-5"
                     >
                         <FileDown className="w-4 h-4 sm:w-5 sm:h-5" />
                         Get Resume PDF
-                    </a>
+                    </Button>
                 </div>
             </div>
 
@@ -174,15 +178,17 @@ export default function Footer() {
                         <ul className="space-y-3.5">
                             {QUICK_LINKS.map((link) => (
                                 <li key={link.href}>
-                                    <Link
+                                    <PreviewLink
                                         href={link.href}
+                                        label="Navigate"
+                                        description={link.label}
                                         className="text-sm text-brand-white/70 hover:text-brand-accent
-                      transition-colors duration-200
-                      flex items-center gap-1.5 group"
+                                            transition-colors duration-200
+                                            flex items-center gap-1.5 group"
                                     >
                                         {link.label}
                                         <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                    </Link>
+                                    </PreviewLink>
                                 </li>
                             ))}
                         </ul>
@@ -193,13 +199,15 @@ export default function Footer() {
                         <h4 className="text-xs font-bold uppercase tracking-[0.25em] text-brand-white/85 mb-6">
                             Get In Touch
                         </h4>
-                        <a
+                        <PreviewLink
                             href="mailto:vlsqz.gabrielle@gmail.com"
+                            label="Send Email"
+                            description="vlsqz.gabrielle@gmail.com"
                             className="text-sm text-brand-white/70 hover:text-brand-accent
-                transition-colors duration-200 break-all"
+                                transition-colors duration-200 break-all"
                         >
                             vlsqz.gabrielle@gmail.com
-                        </a>
+                        </PreviewLink>
 
                         <p className="mt-6 text-xs text-brand-white/70 leading-relaxed">
                             Holy Angel University<br />

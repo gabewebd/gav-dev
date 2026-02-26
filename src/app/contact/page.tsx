@@ -13,6 +13,12 @@ import {
     CheckCircle2,
     Loader2,
 } from "lucide-react";
+import Button from "@/components/ui/Button";
+import SectionTag from "@/components/ui/SectionTag";
+import SectionTitle from "@/components/ui/SectionTitle";
+import HeroHeading from "@/components/ui/HeroHeading";
+import PreviewLink from "@/components/ui/PreviewLink";
+import SocialButton from "@/components/ui/SocialButton";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -131,12 +137,10 @@ export default function ContactPage() {
                     <Mail className="w-full h-full text-brand-ink dark:text-brand-white" strokeWidth={1} />
                 </div>
                 <div className="relative z-10">
-                    <p className="contact-hero-line text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-brand-ink/80 dark:text-brand-white/70 mb-4">
-                        Get In Touch
-                    </p>
-                    <h1 className="contact-hero-line font-outfit font-black text-[clamp(3rem,8vw,7rem)] leading-[0.85] tracking-tighter uppercase">
+                    <SectionTag className="contact-hero-line justify-center mb-4">Get In Touch</SectionTag>
+                    <HeroHeading className="contact-hero-line">
                         Let&apos;s Connect<span className="text-brand-accent">.</span>
-                    </h1>
+                    </HeroHeading>
                     <p className="contact-hero-sub mt-4 md:mt-6 text-sm md:text-lg text-brand-ink/80 dark:text-brand-white/70 max-w-xl mx-auto">
                         Have a project in mind, or just want to say hello? I&apos;d love to hear
                         from you. Fill out the form below or reach out directly.
@@ -169,12 +173,13 @@ export default function ContactPage() {
                                     Thank you for reaching out. I&apos;ll get back to you as soon
                                     as possible.
                                 </p>
-                                <button
+                                <Button
                                     onClick={() => setStatus("idle")}
-                                    className="text-xs font-bold uppercase tracking-widest text-brand-ink/80 hover:text-brand-ink dark:text-brand-accent dark:hover:text-brand-white transition-colors cursor-pointer"
+                                    variant="secondary"
+                                    className="!px-6 sm:!px-8 !py-3 sm:!py-4 !text-[10px] sm:!text-xs"
                                 >
                                     Send Another Message
-                                </button>
+                                </Button>
                             </div>
                         ) : (
                             <form
@@ -270,19 +275,16 @@ export default function ContactPage() {
                                     />
                                 </div>
 
-                                <button
+                                <Button
                                     type="submit"
                                     disabled={status === "sending"}
-                                    className="w-full inline-flex items-center justify-center gap-2
-                                    bg-brand-ink dark:bg-brand-white
-                                    text-brand-white dark:text-brand-dark
-                                    px-8 py-4 rounded-xl font-outfit font-bold uppercase tracking-widest text-sm
-                                    hover:opacity-85 transition-opacity duration-300
-                                    disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                                    icon={status === "sending" ? Loader2 : Send}
+                                    iconPosition="left"
+                                    iconClassName={status === "sending" ? "animate-spin" : ""}
+                                    className="w-full !px-6 sm:!px-8 md:!px-10 !py-3 sm:!py-4 md:!py-5 !text-[11px] sm:!text-xs md:!text-sm"
                                 >
-                                    {status === "sending" ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
                                     {status === "sending" ? "Sending..." : "Send Message"}
-                                </button>
+                                </Button>
                             </form>
                         )}
                     </div>
@@ -294,13 +296,15 @@ export default function ContactPage() {
                             <h3 className="text-xs font-bold uppercase tracking-[0.25em] text-brand-ink/30 dark:text-brand-white/30 mb-4">
                                 Email
                             </h3>
-                            <a
+                            <PreviewLink
                                 href="mailto:vlsqz.gabrielle@gmail.com"
+                                label="Send Email"
+                                description="vlsqz.gabrielle@gmail.com"
                                 className="text-sm md:text-base text-brand-ink dark:text-brand-white
                                 hover:text-brand-ink/70 dark:hover:text-brand-accent transition-colors duration-200 font-medium break-all"
                             >
                                 vlsqz.gabrielle@gmail.com
-                            </a>
+                            </PreviewLink>
                         </div>
 
                         {/* Location */}
@@ -321,21 +325,17 @@ export default function ContactPage() {
                             </h3>
                             <div className="flex items-center gap-3">
                                 {SOCIALS.map((s) => (
-                                    <a
+                                    <PreviewLink
                                         key={s.label}
                                         href={s.href}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="w-12 h-12 rounded-full
-                                        border border-brand-ink/10 dark:border-brand-white/10
-                                        grid place-items-center
-                                        text-brand-ink/80 dark:text-brand-white/70
-                                        hover:text-brand-ink hover:border-brand-ink dark:hover:text-brand-accent dark:hover:border-brand-accent
-                                        transition-all duration-300"
-                                        aria-label={s.label}
+                                        label={s.label}
+                                        description={s.href}
                                     >
-                                        <s.icon className="w-5 h-5" />
-                                    </a>
+                                        <SocialButton
+                                            icon={s.icon}
+                                            label={s.label}
+                                        />
+                                    </PreviewLink>
                                 ))}
                             </div>
                         </div>

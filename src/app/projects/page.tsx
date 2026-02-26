@@ -14,6 +14,10 @@ import {
   ChevronLeft,
   ChevronRight
 } from "lucide-react";
+import Button from "@/components/ui/Button";
+import SectionTag from "@/components/ui/SectionTag";
+import SectionTitle from "@/components/ui/SectionTitle";
+import HeroHeading from "@/components/ui/HeroHeading";
 import { MAJOR_PROJECTS } from "@/data/projects";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -108,16 +112,16 @@ export default function ProjectsPage() {
           </div>
 
           <div className="relative z-10">
-            <div className="hero-reveal inline-flex items-center gap-3 mb-6 md:mb-8">
-              <div className="w-2 h-2 bg-brand-accent rounded-sm animate-pulse" />
-              <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-brand-ink/80 dark:text-brand-white/70">Portfolio</span>
-            </div>
+            <SectionTag className="hero-reveal mb-6 md:mb-8">Portfolio</SectionTag>
 
-            <h1 className="font-outfit font-black text-[clamp(2.5rem,8vw,7rem)] leading-[0.85] tracking-tighter uppercase text-brand-ink dark:text-brand-white mb-8 lg:mb-12">
-              {/* Added extended padding buffers to prevent clipping */}
-              <div className="overflow-hidden py-4 -my-4 pr-8 -mr-8"><span className="hero-reveal inline-block pr-4">Selected</span></div>
-              <div className="overflow-hidden py-4 -my-4 pr-8 -mr-8"><span className="hero-reveal inline-block pr-4">Projects<span className="text-brand-accent">.</span></span></div>
-            </h1>
+            <HeroHeading>
+              <div className="overflow-hidden py-4 -my-4 pr-8 -mr-8">
+                <span className="hero-reveal inline-block pr-4">Selected</span>
+              </div>
+              <div className="hero-reveal flex items-center justify-start gap-3 sm:gap-5 overflow-hidden py-2 -my-2">
+                <span className="text-brand-ink dark:text-brand-white">Projects<span className="text-brand-accent">.</span></span>
+              </div>
+            </HeroHeading>
 
             <p className="hero-desc text-base md:text-xl text-brand-ink/80 dark:text-brand-white/70 leading-relaxed font-medium max-w-3xl">
               A curated selection of projects that showcase my approach to full-stack development, systems design, and brand engineering. From luxury e-commerce to gamified ecology.
@@ -150,9 +154,9 @@ export default function ProjectsPage() {
                         {project.tagline}
                       </span>
 
-                      <h2 className="meta-item font-outfit font-black text-4xl md:text-6xl uppercase tracking-tighter leading-[0.95] text-brand-ink dark:text-brand-white mb-6 pr-2 md:pr-4">
-                        {project.title}<span className="text-brand-accent">.</span>
-                      </h2>
+                      <SectionTitle className="meta-item !text-4xl md:!text-6xl mb-6 pr-2 md:pr-4">
+                        {project.title}
+                      </SectionTitle>
 
                       <p className="meta-item text-sm md:text-base text-brand-ink/80 dark:text-brand-white/70 leading-relaxed font-medium mb-8 max-w-md">
                         {project.desc}
@@ -171,15 +175,15 @@ export default function ProjectsPage() {
 
                       <div className="meta-item flex flex-wrap items-center gap-3 md:gap-4 mt-2">
                         {project.live !== "#" && (
-                          <Link href={project.live} target="_blank" className="group bg-brand-ink dark:bg-brand-white text-brand-white dark:text-brand-ink px-6 md:px-8 py-3.5 md:py-4 rounded-full font-outfit font-bold uppercase tracking-widest text-[10px] md:text-xs inline-flex items-center gap-2 hover:opacity-85 transition-opacity duration-300">
-                            <ExternalLink className="w-4 h-4" /> Live Link
-                          </Link>
+                          <Button href={project.live} target="_blank" icon={ExternalLink} className="!px-6 md:!px-8 !py-3.5 md:!py-4 !text-[10px] md:!text-xs">
+                            Live Link
+                          </Button>
                         )}
 
                         {project.github !== "#" && (
-                          <Link href={project.github} target="_blank" className="group border border-brand-ink/20 dark:border-brand-white/20 text-brand-ink dark:text-brand-white px-6 md:px-8 py-3.5 md:py-4 rounded-full font-outfit font-bold uppercase tracking-widest text-[10px] md:text-xs inline-flex items-center gap-2 hover:bg-brand-ink/5 dark:hover:bg-brand-white/5 transition-colors duration-300">
-                            <Github className="w-4 h-4" /> Source Code
-                          </Link>
+                          <Button href={project.github} target="_blank" variant="secondary" icon={Github} className="!px-6 md:!px-8 !py-3.5 md:!py-4 !text-[10px] md:!text-xs">
+                            Source Code
+                          </Button>
                         )}
                       </div>
                     </div>
@@ -192,7 +196,7 @@ export default function ProjectsPage() {
 
                     <div className="lg:hidden mt-2 flex justify-center w-full">
                       <Link href={`/projects/${project.slug}`} className="group text-brand-ink dark:text-brand-white text-xs font-outfit font-bold uppercase tracking-widest inline-flex items-center gap-2 transition-colors py-2">
-                        View Project <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
+                        Project Details <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
                       </Link>
                     </div>
 
@@ -208,7 +212,7 @@ export default function ProjectsPage() {
 
                           <div className="absolute inset-0 bg-brand-ink/20 dark:bg-brand-dark/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-white text-brand-dark px-8 py-4 rounded-full font-outfit font-bold uppercase tracking-widest text-xs flex items-center gap-3 opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 shadow-2xl z-20">
-                            View Project <ArrowRight className="w-4 h-4" />
+                            Project Details <ArrowRight className="w-4 h-4" />
                           </div>
                         </Link>
                       ))}
@@ -238,12 +242,20 @@ export default function ProjectsPage() {
             I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-            <Link href="/contact" className="group inline-flex items-center gap-2 sm:gap-3 bg-brand-ink dark:bg-brand-white text-brand-white dark:text-brand-dark px-6 md:px-14 py-3.5 md:py-6 rounded-full font-outfit font-bold uppercase tracking-[0.15em] text-xs md:text-base hover:opacity-85 transition-opacity duration-300">
-              Contact Me <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1.5 transition-transform duration-300" />
-            </Link>
-            <Link href="/blog" className="group inline-flex items-center gap-2 sm:gap-3 border border-brand-ink/20 dark:border-brand-white/20 text-brand-ink dark:text-brand-white px-6 md:px-14 py-3.5 md:py-6 rounded-full font-outfit font-bold uppercase tracking-[0.15em] text-xs md:text-base hover:bg-brand-ink/5 dark:hover:bg-brand-white/5 transition-colors duration-300">
+            <Button
+              href="/contact"
+              icon={ArrowRight}
+              className="!px-6 sm:!px-8 md:!px-10 !py-3 sm:!py-4 md:!py-5 !text-[11px] sm:!text-xs md:!text-sm"
+            >
+              Contact Me
+            </Button>
+            <Button
+              href="/blog"
+              variant="secondary"
+              className="!px-6 sm:!px-8 md:!px-10 !py-3 sm:!py-4 md:!py-5 !text-[11px] sm:!text-xs md:!text-sm"
+            >
               Read Blogs
-            </Link>
+            </Button>
           </div>
         </div>
       </section>

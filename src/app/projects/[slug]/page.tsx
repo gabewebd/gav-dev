@@ -8,6 +8,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { ArrowLeft, ExternalLink, Github, ArrowRight, ChevronLeft, ChevronRight, X } from "lucide-react";
+import PreviewLink from "@/components/ui/PreviewLink";
+import Button from "@/components/ui/Button";
 
 import { PROJECTS_DATA, type ContentBlock, type ProjectImage } from "@/data/projects";
 
@@ -81,14 +83,15 @@ function ContentBlockRenderer({ block, onImageClick }: { block: ContentBlock, on
                 <div className="flex flex-wrap items-center gap-6 mt-4">
                     {/* @ts-ignore */}
                     {block.links.map((link: any, idx: number) => (
-                        <Link
+                        <PreviewLink
                             key={idx}
                             href={link.url}
-                            target="_blank"
+                            label="Project Link"
+                            description={link.url}
                             className="font-outfit font-bold text-sm md:text-base text-brand-ink dark:text-brand-white uppercase tracking-widest underline decoration-brand-ink/20 dark:decoration-brand-white/20 underline-offset-[6px] hover:decoration-brand-accent dark:hover:decoration-brand-accent transition-colors duration-300"
                         >
                             {link.label} ↗
-                        </Link>
+                        </PreviewLink>
                     ))}
                 </div>
             );
@@ -198,14 +201,18 @@ export default function ProjectDetail() {
 
                     <div className="hero-title flex flex-row flex-wrap items-center gap-3 md:gap-4 mt-4 md:mt-0">
                         {project.live !== "#" && (
-                            <Link href={project.live} target="_blank" className="group bg-brand-white text-brand-ink px-6 md:px-8 py-3.5 md:py-4 rounded-full font-outfit font-bold uppercase tracking-widest text-[10px] md:text-xs flex items-center gap-2 hover:opacity-85 transition-opacity shadow-lg">
-                                <ExternalLink size={16} /> Live Link
-                            </Link>
+                            <PreviewLink href={project.live} label="External Link" description={project.live} className="hero-title">
+                                <div className="group bg-brand-white text-brand-ink px-6 md:px-8 py-3.5 md:py-4 rounded-full font-outfit font-bold uppercase tracking-widest text-[10px] md:text-xs flex items-center gap-2 hover:opacity-85 transition-opacity shadow-lg">
+                                    <ExternalLink size={16} /> Live Link
+                                </div>
+                            </PreviewLink>
                         )}
                         {project.github !== "#" && (
-                            <Link href={project.github} target="_blank" className="group border border-white/30 text-white backdrop-blur-md px-6 md:px-8 py-3.5 md:py-4 rounded-full font-outfit font-bold uppercase tracking-widest text-[10px] md:text-xs flex items-center gap-2 hover:bg-white/10 transition-colors shadow-lg">
-                                <Github size={16} /> Source Code
-                            </Link>
+                            <PreviewLink href={project.github} label="Repository" description={project.github} className="hero-title">
+                                <div className="group border border-white/30 text-white backdrop-blur-md px-6 md:px-8 py-3.5 md:py-4 rounded-full font-outfit font-bold uppercase tracking-widest text-[10px] md:text-xs flex items-center gap-2 hover:bg-white/10 transition-colors shadow-lg">
+                                    <Github size={16} /> Source Code
+                                </div>
+                            </PreviewLink>
                         )}
                     </div>
                 </div>
@@ -293,7 +300,7 @@ export default function ProjectDetail() {
                 </aside>
 
                 <div className="w-full lg:w-3/4 flex flex-col gap-24 md:gap-32">
-                    <div id="overview" className="content-section flex flex-col gap-6">
+                    <div id="overview" className="content-section flex flex-col gap-6 scroll-mt-32">
                         <h2 className="font-outfit font-black text-3xl md:text-5xl uppercase tracking-tighter text-brand-ink dark:text-brand-white">Project Overview<span className="text-brand-accent">.</span></h2>
                         <div className="flex flex-col">
                             {project.overview.map((block, i) => (
@@ -302,7 +309,7 @@ export default function ProjectDetail() {
                         </div>
                     </div>
 
-                    <div id="role" className="content-section flex flex-col gap-6">
+                    <div id="role" className="content-section flex flex-col gap-6 scroll-mt-32">
                         <h2 className="font-outfit font-black text-3xl md:text-5xl uppercase tracking-tighter text-brand-ink dark:text-brand-white">Role & Contributions<span className="text-brand-accent">.</span></h2>
                         <div className="border-l-2 border-brand-ink/20 dark:border-brand-accent pl-6 py-2">
                             {project.role.map((block, i) => (
@@ -311,7 +318,7 @@ export default function ProjectDetail() {
                         </div>
                     </div>
 
-                    <div id="tech" className="content-section flex flex-col gap-8">
+                    <div id="tech" className="content-section flex flex-col gap-8 scroll-mt-32">
                         <h2 className="font-outfit font-black text-3xl md:text-5xl uppercase tracking-tighter text-brand-ink dark:text-brand-white">Technology Stack<span className="text-brand-accent">.</span></h2>
                         <div className="flex flex-wrap items-center gap-x-2 gap-y-2 md:gap-x-3">
                             {project.stack.map((t: string, i: number) => (
@@ -323,7 +330,7 @@ export default function ProjectDetail() {
                     </div>
 
                     {project.customSections?.map((section) => (
-                        <div id={section.id} key={section.id} className="content-section flex flex-col gap-6">
+                        <div id={section.id} key={section.id} className="content-section flex flex-col gap-6 scroll-mt-32">
                             <h2 className="font-outfit font-black text-3xl md:text-5xl uppercase tracking-tighter text-brand-ink dark:text-brand-white">{section.title}<span className="text-brand-accent">.</span></h2>
                             <div className="flex flex-col">
                                 {section.blocks.map((block, i) => (

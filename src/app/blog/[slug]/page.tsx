@@ -9,6 +9,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { ArrowLeft, ArrowRight, Calendar, Clock, X } from "lucide-react";
 import { BLOG_POSTS, BLOG_CONTENT, type ContentBlock } from "@/data/blog";
+import PreviewLink from "@/components/ui/PreviewLink";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -29,14 +30,15 @@ function renderTextWithLinks(text: string) {
         const isInternal = url.startsWith('/');
 
         parts.push(
-            <Link
+            <PreviewLink
                 key={match.index}
                 href={url}
-                target={isInternal ? "_self" : "_blank"}
+                label={isInternal ? "Internal Link" : "External Link"}
+                description={label}
                 className="font-bold underline decoration-brand-ink/30 dark:decoration-brand-white/30 underline-offset-4 hover:decoration-brand-ink hover:text-brand-ink/80 dark:hover:decoration-brand-accent dark:hover:text-brand-accent transition-colors"
             >
                 {label}
-            </Link>
+            </PreviewLink>
         );
         lastIndex = linkRegex.lastIndex;
     }
@@ -134,10 +136,10 @@ export default function BlogPost() {
                         switch (block.type) {
                             case 'p':
                                 return (
-                                    <p key={i} className="content-block text-base md:text-lg text-brand-ink/80 dark:text-brand-white/70 leading-[1.8] font-medium">
+                                    <div key={i} className="content-block text-base md:text-lg text-brand-ink/80 dark:text-brand-white/70 leading-[1.8] font-medium">
                                         {/* Applying the inline link parser here */}
                                         {renderTextWithLinks(block.text)}
-                                    </p>
+                                    </div>
                                 );
                             case 'h2':
                                 return (
@@ -213,14 +215,15 @@ export default function BlogPost() {
                                         {block.links.map((link: any, idx: number) => {
                                             const isInternal = link.url.startsWith('/');
                                             return (
-                                                <Link
+                                                <PreviewLink
                                                     key={idx}
                                                     href={link.url}
-                                                    target={isInternal ? "_self" : "_blank"}
+                                                    label={isInternal ? "Internal Link" : "External Link"}
+                                                    description={link.label}
                                                     className="font-outfit font-bold text-sm md:text-base text-brand-ink dark:text-brand-white uppercase tracking-widest underline decoration-brand-ink/20 dark:decoration-brand-white/20 underline-offset-[6px] hover:decoration-brand-ink dark:hover:decoration-brand-accent transition-colors duration-300"
                                                 >
                                                     {link.label} {isInternal ? '→' : '↗'}
-                                                </Link>
+                                                </PreviewLink>
                                             );
                                         })}
                                     </div>
@@ -242,7 +245,7 @@ export default function BlogPost() {
                 <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col relative z-10">
 
                     <div className="flex justify-center mb-12 md:mb-16">
-                        <Link href="/blog" aria-label="Return to all blog posts" className="group inline-flex items-center gap-3 border border-brand-ink/20 dark:border-brand-white/20 text-brand-ink dark:text-brand-white px-8 md:px-10 py-4 rounded-full font-outfit font-bold uppercase tracking-widest text-xs hover:bg-brand-ink/5 dark:hover:bg-brand-white/5 transition-colors">
+                        <Link href="/blog" className="group inline-flex items-center gap-3 border border-brand-ink/20 dark:border-brand-white/20 text-brand-ink dark:text-brand-white px-8 md:px-10 py-4 rounded-full font-outfit font-bold uppercase tracking-widest text-xs hover:bg-brand-ink/5 dark:hover:bg-brand-white/5 transition-colors">
                             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1.5 transition-transform" /> Return to Blogs
                         </Link>
                     </div>

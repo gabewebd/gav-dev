@@ -46,6 +46,9 @@ import {
   SERVICES,
   TESTIMONIALS,
 } from "@/data/home";
+import Button from "@/components/ui/Button";
+import SectionTag from "@/components/ui/SectionTag";
+import SectionTitle from "@/components/ui/SectionTitle";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -353,13 +356,20 @@ export default function Home() {
           </div>
 
           <div className="mt-8 md:mt-10 flex flex-wrap gap-3 md:gap-4 relative z-20">
-            <Link href="/projects" className="hero-cta-btn group bg-brand-ink dark:bg-brand-white text-brand-white dark:text-brand-dark px-6 md:px-8 py-3.5 md:py-4 rounded-full font-outfit font-bold uppercase tracking-widest text-xs md:text-sm inline-flex items-center gap-2 hover:opacity-85 transition-opacity duration-300">
+            <Button
+              href="/projects"
+              icon={ArrowRight}
+              className="hero-cta-btn !px-6 sm:!px-8 md:!px-10 !py-3 sm:!py-4 md:!py-5 !text-[11px] sm:!text-xs md:!text-sm"
+            >
               View Projects
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
-            </Link>
-            <Link href="/contact" className="hero-cta-btn group border border-brand-ink/20 dark:border-brand-white/20 text-brand-ink dark:text-brand-white px-6 md:px-8 py-3.5 md:py-4 rounded-full font-outfit font-bold uppercase tracking-widest text-xs md:text-sm inline-flex items-center gap-2 hover:bg-brand-ink/5 dark:hover:bg-brand-white/5 transition-colors duration-300">
+            </Button>
+            <Button
+              href="/contact"
+              variant="secondary"
+              className="hero-cta-btn !px-6 sm:!px-8 md:!px-10 !py-3 sm:!py-4 md:!py-5 !text-[11px] sm:!text-xs md:!text-sm"
+            >
               Contact Me
-            </Link>
+            </Button>
           </div>
         </div>
 
@@ -414,26 +424,24 @@ export default function Home() {
 
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-start relative z-10">
 
-          <div className="lg:w-1/3 lg:sticky lg:top-40 relative z-20">
-            <div className="service-header-element inline-flex items-center gap-3 mb-6">
-              <div className="w-2 h-2 bg-brand-accent rounded-sm animate-pulse" />
-              <p className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-brand-ink/70 dark:text-brand-white/70">Capabilities</p>
-            </div>
-            <h2 className="service-header-element font-outfit font-black text-5xl md:text-7xl uppercase tracking-tighter leading-[0.9] text-brand-ink dark:text-brand-white mb-6">
-              What I <br /> Bring To <br /> The Table<span className="text-brand-accent">.</span>
-            </h2>
+          <div className="lg:w-1/3 lg:sticky lg:top-40 relative z-20 flex flex-col items-start">
+            <SectionTag className="service-header-element mb-6">Capabilities</SectionTag>
+            <SectionTitle className="service-header-element mb-6">
+              What I <br /> Bring To <br /> The Table
+            </SectionTitle>
             <p className="service-header-element text-sm md:text-base text-brand-ink/70 dark:text-brand-white/70 leading-relaxed max-w-xs font-medium">
               I don&apos;t just write code, I build scalable, well-structured systems by combining analytical thinking with refined frontend development.
             </p>
 
             {/* About Me button — matches hero CTA sizing */}
-            <Link
+            <Button
               href="/about"
-              className="service-header-element group mt-8 inline-flex items-center gap-2 border border-brand-ink/20 dark:border-brand-white/20 text-brand-ink dark:text-brand-white px-6 md:px-8 py-3.5 md:py-4 rounded-full font-outfit font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-brand-ink/5 dark:hover:bg-brand-white/5 transition-colors duration-300"
+              variant="primary"
+              icon={ArrowRight}
+              className="mt-8 !px-6 sm:!px-8 md:!px-10 !py-3 sm:!py-4 md:!py-5"
             >
               About Me
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
-            </Link>
+            </Button>
           </div>
 
           <div className="lg:w-2/3 flex flex-col w-full mt-10 lg:mt-0 relative z-10 border-t border-brand-ink/10 dark:border-brand-white/10">
@@ -547,13 +555,10 @@ export default function Home() {
         <div className="py-24 md:py-40 px-6 md:px-12 max-w-7xl mx-auto flex flex-col items-center justify-center relative z-10">
 
           <div className="testimonial-header mb-12 md:mb-20 text-center">
-            <div className="inline-flex items-center gap-3 justify-center mb-3">
-              <div className="w-2 h-2 bg-brand-accent rounded-sm animate-pulse" />
-              <p className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-brand-ink/70 dark:text-brand-white/70">Kind Words</p>
-            </div>
-            <h2 className="font-outfit font-black text-5xl md:text-7xl uppercase tracking-tighter leading-[0.95]">
-              Client <br /> Feedback<span className="text-brand-accent">.</span>
-            </h2>
+            <SectionTag className="justify-center mb-3">Kind Words</SectionTag>
+            <SectionTitle>
+              Client <br /> Feedback
+            </SectionTitle>
           </div>
 
           <div className="w-full max-w-4xl relative">
@@ -622,13 +627,22 @@ export default function Home() {
           </h2>
 
           <div className="mt-16 md:mt-24 flex flex-wrap items-center justify-center gap-3 md:gap-4 relative z-20">
-            <Link href="/contact" aria-label="Navigate to contact page" className="group inline-flex items-center gap-2 md:gap-3 bg-brand-ink dark:bg-brand-white text-brand-white dark:text-brand-dark px-6 md:px-14 py-3.5 md:py-6 rounded-full font-outfit font-bold uppercase tracking-[0.15em] text-xs md:text-base hover:opacity-85 transition-opacity duration-300">
+            <Button
+              href="/contact"
+              icon={ArrowRight}
+              ariaLabel="Navigate to contact page"
+              className="!px-6 sm:!px-8 md:!px-10 !py-3 sm:!py-4 md:!py-5 !text-[11px] sm:!text-xs md:!text-sm"
+            >
               Contact Me
-              <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1.5 transition-transform duration-300" />
-            </Link>
-            <Link href="/projects" aria-label="View all featured projects" className="group inline-flex items-center gap-2 md:gap-3 border border-brand-ink/20 dark:border-brand-white/20 text-brand-ink dark:text-brand-white px-6 md:px-14 py-3.5 md:py-6 rounded-full font-outfit font-bold uppercase tracking-[0.15em] text-xs md:text-base hover:bg-brand-ink/5 dark:hover:bg-brand-white/5 transition-colors duration-300">
+            </Button>
+            <Button
+              href="/projects"
+              variant="secondary"
+              ariaLabel="View all featured projects"
+              className="!px-6 sm:!px-8 md:!px-10 !py-3 sm:!py-4 md:!py-5 !text-[11px] sm:!text-xs md:!text-sm"
+            >
               See My Work
-            </Link>
+            </Button>
           </div>
 
           <p className="mt-12 md:mt-16 text-xs md:text-sm font-medium uppercase tracking-widest text-brand-ink/80 dark:text-brand-white/70 max-w-md mx-auto px-4">
