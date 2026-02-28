@@ -151,6 +151,14 @@ export default function ProjectDetail() {
         }
     };
 
+    const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+        e.preventDefault();
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
     useGSAP(() => {
         if (!project) return;
 
@@ -288,11 +296,11 @@ export default function ProjectDetail() {
                     </Link>
                     <span className="w-6 h-[2px] bg-brand-ink/30 dark:bg-brand-accent -mt-2" />
                     <nav className="flex flex-col gap-6 font-outfit font-bold uppercase tracking-widest text-xs">
-                        <a href="#overview" className="text-brand-ink/80 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white transition-colors">01. Overview</a>
-                        <a href="#role" className="text-brand-ink/80 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white transition-colors">02. Role & Impact</a>
-                        <a href="#tech" className="text-brand-ink/80 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white transition-colors">03. Technology</a>
+                        <a href="#overview" onClick={(e) => handleScrollTo(e, "overview")} className="text-brand-ink/80 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white transition-colors">01. Overview</a>
+                        <a href="#role" onClick={(e) => handleScrollTo(e, "role")} className="text-brand-ink/80 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white transition-colors">02. Role & Impact</a>
+                        <a href="#tech" onClick={(e) => handleScrollTo(e, "tech")} className="text-brand-ink/80 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white transition-colors">03. Technology</a>
                         {project.customSections?.map((section, index) => (
-                            <a key={section.id} href={`#${section.id}`} className="text-brand-ink/80 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white transition-colors">
+                            <a key={section.id} href={`#${section.id}`} onClick={(e) => handleScrollTo(e, section.id)} className="text-brand-ink/80 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white transition-colors">
                                 {String(index + 4).padStart(2, '0')}. {section.title}
                             </a>
                         ))}
