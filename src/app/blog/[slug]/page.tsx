@@ -112,7 +112,7 @@ export default function BlogPost() {
                     </div>
 
                     {/* Adjusted text-[clamp()] to be slightly smaller */}
-                    <h1 className="hero-reveal font-outfit font-black text-[clamp(2.5rem,6vw,5.5rem)] leading-[0.9] tracking-tighter uppercase text-brand-ink dark:text-brand-white mb-6 md:mb-8">
+                    <h1 className="hero-reveal font-mori font-semibold text-[clamp(2.5rem,6vw,5.5rem)] leading-[0.9] tracking-tighter text-brand-ink dark:text-brand-white mb-6 md:mb-8">
                         {post.title}<span className="text-brand-accent">.</span>
                     </h1>
 
@@ -143,14 +143,14 @@ export default function BlogPost() {
                                 );
                             case 'h2':
                                 return (
-                                    <h2 key={i} className="content-block font-outfit font-black text-2xl md:text-4xl uppercase tracking-tighter text-brand-ink dark:text-brand-white mt-8 mb-2">
+                                    <h2 key={i} className="content-block font-mori font-semibold text-2xl md:text-4xl tracking-tighter text-brand-ink dark:text-brand-white mt-8 mb-2">
                                         {block.text}<span className="text-brand-accent">.</span>
                                     </h2>
                                 );
                             case 'quote':
                                 return (
                                     <blockquote key={i} className="content-block my-8 pl-6 md:pl-8 border-l-4 border-brand-accent">
-                                        <p className="font-outfit font-bold text-xl md:text-3xl uppercase tracking-tight text-brand-ink dark:text-brand-white leading-snug mb-4">
+                                        <p className="font-mori font-semibold text-xl md:text-3xl tracking-tight text-brand-ink dark:text-brand-white leading-snug mb-4">
                                             "{block.text}"
                                         </p>
                                         {block.author && (
@@ -260,7 +260,7 @@ export default function BlogPost() {
                                         <ArrowLeft className="w-3.5 h-3.5 text-brand-accent group-hover:-translate-x-1.5 transition-transform" />
                                         <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/70">Previous Post</span>
                                     </div>
-                                    <h4 className="font-outfit font-black text-2xl md:text-4xl uppercase tracking-tighter text-white leading-[1.1] drop-shadow-md">
+                                    <h4 className="font-outfit font-black text-2xl md:text-4xl tracking-tighter text-white leading-[1.1] drop-shadow-md">
                                         {prevPost.title}<span className="text-brand-accent">.</span>
                                     </h4>
                                 </div>
@@ -277,7 +277,7 @@ export default function BlogPost() {
                                         <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/70">Next Post</span>
                                         <ArrowRight className="w-3.5 h-3.5 text-brand-accent group-hover:translate-x-1.5 transition-transform" />
                                     </div>
-                                    <h4 className="font-outfit font-black text-2xl md:text-4xl uppercase tracking-tighter text-white leading-[1.1] drop-shadow-md">
+                                    <h4 className="font-outfit font-black text-2xl md:text-4xl tracking-tighter text-white leading-[1.1] drop-shadow-md">
                                         {nextPost.title}<span className="text-brand-accent">.</span>
                                     </h4>
                                 </div>

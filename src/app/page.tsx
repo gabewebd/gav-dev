@@ -328,23 +328,33 @@ export default function Home() {
 
         <div className="flex-1 w-full relative z-10">
           <div className="overflow-hidden">
-            <h1 className="font-outfit font-black text-[clamp(3rem,8vw,7rem)] leading-[0.85] tracking-tighter uppercase text-brand-ink dark:text-brand-white mb-7 sm:mb-10 lg:mb-12">
-              <span className="hero-line block text-brand-ink dark:text-brand-white mb-2">Building your</span>
-              <span className="hero-line flex items-center gap-3 md:gap-4 overflow-hidden py-2 -my-2">
-                <span ref={rotatingWordRef} className="text-brand-ink dark:text-brand-white block">
+            <h1 className="font-mori font-semibold text-[clamp(3rem,8vw,7rem)] leading-none tracking-tighter text-brand-ink dark:text-brand-white mb-7 sm:mb-10 lg:mb-12">
+
+              <span className="hero-line block text-brand-ink dark:text-brand-white pt-4 pb-2 -mb-6 md:-mb-8 lg:-mb-10">
+                Building
+              </span>
+
+              <span className="hero-line block text-brand-ink dark:text-brand-white pt-4 pb-2 -mb-4 md:-mb-6 lg:-mb-8">
+                your
+              </span>
+
+              <span className="hero-line flex items-center gap-3 md:gap-4 overflow-hidden py-4 -my-4">
+                <span ref={rotatingWordRef} className="text-brand-ink dark:text-brand-white block pt-2">
                   {ROTATING_PAIRS[rotatingIndex].word}
                 </span>
+
                 <span ref={rotatingIconRef} className="inline-flex items-center justify-center w-12 h-12 md:w-20 md:h-20 bg-brand-accent rounded-[1rem] md:rounded-[1.25rem] shrink-0">
                   <CurrentIcon className="w-6 h-6 md:w-10 md:h-10 text-brand-dark" strokeWidth={2.5} />
                 </span>
               </span>
+
             </h1>
           </div>
 
-          <div className="hero-sub mt-6 md:mt-8">
-            <span className="inline-block bg-brand-accent text-[#111111] px-4 md:px-5 py-2 md:py-2.5 rounded-full font-outfit text-[11px] md:text-sm font-black uppercase tracking-[0.2em] md:tracking-[0.25em]">
+          <div className="hero-sub mt-4 md:mt-6">
+            <h3 className="font-mori font-semibold text-2xl md:text-4xl tracking-normal text-brand-ink dark:text-brand-white">
               Full Stack Developer
-            </span>
+            </h3>
           </div>
 
           <div className="hero-bio mt-4 md:mt-5 max-w-lg">
@@ -378,7 +388,7 @@ export default function Home() {
             <div className="flex-1 relative overflow-hidden group rounded-l-[2rem]">
               <Image src="/assets/hero-photo.png" alt="Gabrielle Ainshley Velasquez" fill className="object-cover scale-[1.02] grayscale-0 lg:grayscale group-hover:grayscale-0 group-hover:scale-[1.06] transition-all duration-700" priority sizes="(max-width: 768px) 100vw, 540px" />
               <div className="absolute bottom-3 left-3 right-3 md:bottom-4 md:left-4 md:right-4 bg-white/15 dark:bg-black/30 backdrop-blur-xl border border-white/20 rounded-xl p-3 md:p-4 flex items-center justify-between">
-                <span className="font-outfit font-black text-white tracking-[0.15em] text-[10px] md:text-xs uppercase">GAV.DEV</span>
+                <span className="font-mori font-semibold text-white tracking-[0.15em] text-[10px] md:text-xs uppercase">GAV.DEV</span>
                 <div className="w-2 h-2 rounded-full bg-brand-accent animate-pulse" />
               </div>
             </div>
@@ -395,13 +405,13 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════
           SECTION 2 — MARQUEE TAPE
           ═══════════════════════════════════════════════════════ */}
-      <section ref={marqueeRef} className="bg-brand-ink/5 dark:bg-brand-white/5 py-8 md:py-20 overflow-hidden cursor-default select-none relative z-10 md:-rotate-2 md:scale-105 my-8 md:my-24 border-y border-brand-ink/10 dark:border-brand-white/10 backdrop-blur-sm">
+      <section ref={marqueeRef} className="bg-brand-ink/5 dark:bg-brand-white/5 py-8 md:py-20 overflow-hidden overflow-x-clip cursor-default select-none relative z-10 md:-rotate-2 md:scale-105 my-8 md:my-24 border-y border-brand-ink/10 dark:border-brand-white/10 backdrop-blur-sm">
         <div ref={marqueeTrackRef} className="marquee-track flex items-center">
           {[...Array(4)].map((_, setIdx) => (
             <div key={setIdx} className="flex items-center shrink-0">
               {MARQUEE_WORDS.map((word, wi) => (
                 <span key={`${setIdx}-${wi}`} className="flex items-center shrink-0">
-                  <span className="font-outfit font-black text-[clamp(1.5rem,4vw,5rem)] uppercase tracking-[-0.02em] text-brand-ink/70 md:text-brand-ink/20 dark:text-brand-white/70 md:dark:text-brand-white/20 hover:!text-brand-ink dark:hover:!text-brand-white px-3 md:px-8 py-2 transition-colors duration-300 whitespace-nowrap cursor-pointer">
+                  <span className="font-mori font-semibold text-[clamp(1.5rem,4vw,5rem)] uppercase tracking-[-0.02em] text-brand-ink/70 md:text-brand-ink/20 dark:text-brand-white/70 md:dark:text-brand-white/20 hover:!text-brand-ink dark:hover:!text-brand-white px-3 md:px-8 py-2 transition-colors duration-300 whitespace-nowrap cursor-pointer">
                     {word}
                   </span>
                   <span className="w-2 h-2 md:w-4 md:h-4 rounded-full bg-brand-accent shrink-0 mx-6 md:mx-10" />
@@ -466,7 +476,7 @@ export default function Home() {
                         0{i + 1}
                       </span>
                       <div className="flex flex-col gap-3 md:gap-4">
-                        <h3 className={`font-outfit font-black text-2xl md:text-4xl lg:text-5xl uppercase tracking-tight transition-colors duration-500 ${isActive ? "text-brand-ink dark:text-brand-white" : "text-brand-ink/30 dark:text-brand-white/30"}`}>
+                        <h3 className={`font-mori font-semibold text-2xl md:text-4xl lg:text-5xl tracking-tight transition-colors duration-500 ${isActive ? "text-brand-ink dark:text-brand-white" : "text-brand-ink/30 dark:text-brand-white/30"}`}>
                           {service.title}
                         </h3>
 
@@ -568,16 +578,16 @@ export default function Home() {
 
             <div ref={testimonialWrapperRef} className="relative z-10 overflow-hidden transition-all duration-500">
               <div className="flex flex-col justify-center px-4 md:px-12" ref={testimonialContentRef}>
-                <blockquote className="testimonial-quote text-2xl md:text-4xl lg:text-5xl leading-[1.3] text-brand-ink dark:text-brand-white font-outfit font-medium mb-10 md:mb-16">
+                <blockquote className="testimonial-quote text-2xl md:text-4xl lg:text-5xl leading-[1.3] text-brand-ink dark:text-brand-white font-mori font-normal mb-10 md:mb-16">
                   {TESTIMONIALS[tIndex].quote}
                 </blockquote>
                 <div className="testimonial-author-block flex items-center justify-between border-t border-brand-ink/10 dark:border-brand-white/10 pt-6 md:pt-8">
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-brand-ink/10 dark:bg-brand-white/10 flex items-center justify-center">
-                      <span className="font-outfit font-black text-lg text-brand-ink dark:text-brand-white">{TESTIMONIALS[tIndex].author[0]}</span>
+                      <span className="font-mori font-semibold text-lg text-brand-ink dark:text-brand-white">{TESTIMONIALS[tIndex].author[0]}</span>
                     </div>
                     <div>
-                      <p className="font-outfit font-bold text-sm md:text-lg uppercase tracking-wider text-brand-ink dark:text-brand-white">{TESTIMONIALS[tIndex].author}</p>
+                      <p className="font-mori font-semibold text-sm md:text-lg uppercase tracking-wider text-brand-ink dark:text-brand-white">{TESTIMONIALS[tIndex].author}</p>
                       <p className="text-xs md:text-sm text-brand-ink/70 dark:text-brand-white/70">{TESTIMONIALS[tIndex].role}</p>
                     </div>
                   </div>
@@ -612,7 +622,7 @@ export default function Home() {
         </div>
 
         <div className="max-w-5xl mx-auto relative z-10">
-          <h2 className="cta-heading font-outfit font-black text-[clamp(2.8rem,8vw,8rem)] uppercase tracking-[-0.04em] leading-[0.95]">
+          <h2 className="cta-heading font-mori font-semibold text-[clamp(2.8rem,8vw,8rem)] tracking-[-0.04em] leading-[0.95]">
             LET&apos;S BUILD SOMETHING{" "}
             <span className="relative inline-block mx-3 md:mx-4 mt-2 md:mt-0">
               <span
@@ -643,6 +653,7 @@ export default function Home() {
             >
               See My Work
             </Button>
+            <div className="absolute -top-12 -left-4 md:-top-20 md:-left-12 text-[100px] md:text-[160px] font-mori font-semibold tracking-tighter text-brand-ink/[0.04] dark:text-brand-white/[0.03] pointer-events-none select-none z-0 leading-none" />
           </div>
 
           <p className="mt-12 md:mt-16 text-xs md:text-sm font-medium uppercase tracking-widest text-brand-ink/80 dark:text-brand-white/70 max-w-md mx-auto px-4">

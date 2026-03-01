@@ -80,10 +80,10 @@ export default function ResumePage() {
 
                         <HeroHeading>
                             <div className="overflow-hidden py-3 -my-3 pr-4 -mr-4">
-                                <span className="hero-reveal inline-block pr-4">Professional</span>
+                                <span className="hero-reveal inline-block pr-4 font-mori font-semibold">Professional</span>
                             </div>
                             <div className="hero-reveal flex items-center justify-start gap-4 overflow-hidden py-2 -my-2">
-                                <span className="text-brand-ink dark:text-brand-white">Resume<span className="text-brand-accent">.</span></span>
+                                <span className="text-brand-ink dark:text-brand-white font-mori font-semibold">Resume<span className="text-brand-accent">.</span></span>
                             </div>
                         </HeroHeading>
 

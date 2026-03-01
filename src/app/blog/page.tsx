@@ -104,7 +104,7 @@ export default function BlogPage() {
                       <span className="w-1.5 h-1.5 rounded-full bg-brand-ink/20 dark:bg-brand-white/20" />
                       <span>{post.readTime}</span>
                     </div>
-                    <h2 className="font-outfit font-black text-3xl md:text-4xl lg:text-5xl uppercase tracking-tight text-brand-ink dark:text-brand-white leading-[1.1] transition-colors">
+                    <h2 className="font-mori font-semibold text-3xl md:text-4xl lg:text-5xl tracking-tight text-brand-ink dark:text-brand-white leading-[1.1] transition-colors">
                       {post.title}
                     </h2>
                     <p className="text-sm md:text-base text-brand-ink/80 dark:text-brand-white/70 font-medium leading-relaxed line-clamp-3">

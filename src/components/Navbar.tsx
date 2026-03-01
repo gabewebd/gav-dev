@@ -122,7 +122,7 @@ export default function Navbar() {
 
                     {/* Logo (Left) */}
                     <div className="flex items-center pl-2">
-                        <Link href="/" className="font-outfit font-black text-xl md:text-2xl tracking-tighter text-brand-ink dark:text-brand-white uppercase group transition-opacity hover:opacity-80 flex items-center gap-2">
+                        <Link href="/" className="font-mori font-semibold text-xl md:text-2xl tracking-tighter text-brand-ink dark:text-brand-white uppercase group transition-opacity hover:opacity-80 flex items-center gap-2">
                             <Logo className="h-7 w-auto text-brand-ink dark:text-brand-white transition-colors duration-300" />
                         </Link>
                     </div>
@@ -194,7 +194,7 @@ export default function Navbar() {
                                 key={link.href}
                                 href={link.href}
                                 onClick={handleLinkClick}
-                                className={`mobile-link relative flex items-center justify-between w-full px-6 py-6 rounded-2xl text-3xl font-outfit font-black uppercase tracking-tighter transition-all duration-300 group mb-2
+                                className={`mobile-link relative flex items-center justify-between w-full px-6 py-6 rounded-2xl text-3xl font-mori font-semibold tracking-tighter transition-all duration-300 group mb-2
                                 ${isActive ? 'bg-brand-ink/5 dark:bg-brand-white/5 text-brand-ink dark:text-brand-white' : 'text-brand-ink/80 dark:text-brand-white/70 hover:bg-brand-ink/5 dark:hover:bg-brand-white/5 hover:text-brand-ink dark:hover:text-brand-white'}`}
                             >
                                 {isActive && <div className="absolute left-0 top-1/2 -translate-y-1/2 h-1/2 w-1.5 rounded-r-full bg-brand-accent" />}

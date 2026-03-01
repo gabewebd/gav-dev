@@ -62,7 +62,7 @@ function CardInner({ project, index }: { project: typeof PROJECTS[0]; index: num
                     <div className="flex flex-wrap items-center gap-x-2 gap-y-2">
                         {project.stack.map((tech, idx) => (
                             <div key={idx} className="px-3 py-1.5 rounded-full border border-brand-ink/10 dark:border-brand-white/10 bg-brand-light-alt dark:bg-brand-dark-alt flex items-center justify-center">
-                                <span className="font-bold text-[9px] md:text-[10px] uppercase tracking-[0.15em] text-brand-ink dark:text-brand-white">
+                                <span className="font-mori font-semibold text-[9px] md:text-[10px] uppercase tracking-[0.15em] text-brand-ink dark:text-brand-white">
                                     {tech}
                                 </span>
                             </div>

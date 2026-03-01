@@ -166,7 +166,7 @@ export default function ContactPage() {
                                 <div className="w-16 h-16 bg-brand-accent rounded-2xl grid place-items-center mx-auto mb-6">
                                     <CheckCircle2 className="w-8 h-8 text-brand-dark" />
                                 </div>
-                                <h3 className="font-outfit font-bold text-2xl uppercase tracking-tight mb-3 text-brand-ink dark:text-brand-white">
+                                <h3 className="font-mori font-semibold text-2xl tracking-tight mb-3 text-brand-ink dark:text-brand-white">
                                     Message Sent!
                                 </h3>
                                 <p className="text-sm text-brand-ink/80 dark:text-brand-white/70 mb-6">

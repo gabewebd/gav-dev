@@ -129,7 +129,7 @@ export default function Footer() {
                         <p className="text-xs font-bold uppercase tracking-[0.3em] text-brand-white/70 mb-3">
                             Want the full picture?
                         </p>
-                        <h3 className="font-outfit font-black text-2xl sm:text-3xl md:text-5xl uppercase tracking-tighter leading-[0.95]">
+                        <h3 className="font-mori font-semibold text-2xl sm:text-3xl md:text-5xl uppercase tracking-tighter leading-[0.95]">
                             Download My Resume<span className="text-brand-accent">.</span>
                         </h3>
                     </div>

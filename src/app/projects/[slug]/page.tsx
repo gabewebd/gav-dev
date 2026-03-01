@@ -20,7 +20,7 @@ function ContentBlockRenderer({ block, onImageClick }: { block: ContentBlock, on
         case 'p':
             return <p className="text-base md:text-xl text-brand-ink/80 dark:text-brand-white/70 leading-relaxed font-medium mb-6">{block.text}</p>;
         case 'h2':
-            return <h2 className="font-outfit font-black text-2xl md:text-3xl uppercase tracking-tighter text-brand-ink dark:text-brand-white mt-12 mb-6">{block.text}<span className="text-brand-accent">.</span></h2>;
+            return <h2 className="font-mori font-semibold text-2xl md:text-3xl tracking-tighter text-brand-ink dark:text-brand-white mt-12 mb-6">{block.text}<span className="text-brand-accent">.</span></h2>;
         case 'img':
             return (
                 <div className="flex flex-col gap-4 my-10 relative">
@@ -202,7 +202,7 @@ export default function ProjectDetail() {
                         <p className="hero-title text-brand-accent font-bold uppercase tracking-[0.3em] text-[10px] md:text-xs mb-4 drop-shadow-md">
                             {project.tagline}
                         </p>
-                        <h1 className="hero-title font-outfit font-black text-5xl md:text-7xl lg:text-[8rem] uppercase tracking-tighter leading-none text-white drop-shadow-lg">
+                        <h1 className="hero-title font-mori font-semibold text-5xl md:text-7xl lg:text-[8rem] tracking-tighter leading-none text-white drop-shadow-lg">
                             {project.title}<span className="text-brand-accent">.</span>
                         </h1>
                     </div>
@@ -309,7 +309,7 @@ export default function ProjectDetail() {
 
                 <div className="w-full lg:w-3/4 flex flex-col gap-24 md:gap-32">
                     <div id="overview" className="content-section flex flex-col gap-6 scroll-mt-32">
-                        <h2 className="font-outfit font-black text-3xl md:text-5xl uppercase tracking-tighter text-brand-ink dark:text-brand-white">Project Overview<span className="text-brand-accent">.</span></h2>
+                        <h2 className="font-mori font-semibold text-3xl md:text-5xl tracking-tighter text-brand-ink dark:text-brand-white">Project Overview<span className="text-brand-accent">.</span></h2>
                         <div className="flex flex-col">
                             {project.overview.map((block, i) => (
                                 <ContentBlockRenderer key={i} block={block} onImageClick={handleInlineImageClick} />
@@ -318,7 +318,7 @@ export default function ProjectDetail() {
                     </div>
 
                     <div id="role" className="content-section flex flex-col gap-6 scroll-mt-32">
-                        <h2 className="font-outfit font-black text-3xl md:text-5xl uppercase tracking-tighter text-brand-ink dark:text-brand-white">Role & Contributions<span className="text-brand-accent">.</span></h2>
+                        <h2 className="font-mori font-semibold text-3xl md:text-5xl tracking-tighter text-brand-ink dark:text-brand-white">Role & Contributions<span className="text-brand-accent">.</span></h2>
                         <div className="border-l-2 border-brand-ink/20 dark:border-brand-accent pl-6 py-2">
                             {project.role.map((block, i) => (
                                 <ContentBlockRenderer key={i} block={block} onImageClick={handleInlineImageClick} />
@@ -327,7 +327,7 @@ export default function ProjectDetail() {
                     </div>
 
                     <div id="tech" className="content-section flex flex-col gap-8 scroll-mt-32">
-                        <h2 className="font-outfit font-black text-3xl md:text-5xl uppercase tracking-tighter text-brand-ink dark:text-brand-white">Technology Stack<span className="text-brand-accent">.</span></h2>
+                        <h2 className="font-mori font-semibold text-3xl md:text-5xl tracking-tighter text-brand-ink dark:text-brand-white">Technology Stack<span className="text-brand-accent">.</span></h2>
                         <div className="flex flex-wrap items-center gap-x-2 gap-y-2 md:gap-x-3">
                             {project.stack.map((t: string, i: number) => (
                                 <div key={i} className="px-4 py-2 rounded-full border border-brand-ink/10 dark:border-brand-white/10 bg-brand-light-alt dark:bg-brand-dark-alt flex items-center justify-center transition-colors">
@@ -339,7 +339,7 @@ export default function ProjectDetail() {
 
                     {project.customSections?.map((section) => (
                         <div id={section.id} key={section.id} className="content-section flex flex-col gap-6 scroll-mt-32">
-                            <h2 className="font-outfit font-black text-3xl md:text-5xl uppercase tracking-tighter text-brand-ink dark:text-brand-white">{section.title}<span className="text-brand-accent">.</span></h2>
+                            <h2 className="font-mori font-semibold text-3xl md:text-5xl tracking-tighter text-brand-ink dark:text-brand-white">{section.title}<span className="text-brand-accent">.</span></h2>
                             <div className="flex flex-col">
                                 {section.blocks.map((block, i) => (
                                     <ContentBlockRenderer key={i} block={block} onImageClick={handleInlineImageClick} />
@@ -373,7 +373,7 @@ export default function ProjectDetail() {
                                         <ArrowLeft className="w-3.5 h-3.5 text-brand-accent group-hover:-translate-x-1.5 transition-transform" />
                                         <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/70">Previous</span>
                                     </div>
-                                    <h4 className="font-outfit font-black text-3xl md:text-5xl uppercase tracking-tighter text-white drop-shadow-md">{prevProject.title}<span className="text-brand-accent">.</span></h4>
+                                    <h4 className="font-mori font-semibold text-3xl md:text-5xl tracking-tighter text-white drop-shadow-md">{prevProject.title}<span className="text-brand-accent">.</span></h4>
                                 </div>
                             </Link>
                         )}
@@ -387,7 +387,7 @@ export default function ProjectDetail() {
                                         <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/70">Next Project</span>
                                         <ArrowRight className="w-3.5 h-3.5 text-brand-accent group-hover:translate-x-1.5 transition-transform" />
                                     </div>
-                                    <h4 className="font-outfit font-black text-3xl md:text-5xl uppercase tracking-tighter text-white drop-shadow-md">{nextProject.title}<span className="text-brand-accent">.</span></h4>
+                                    <h4 className="font-mori font-semibold text-3xl md:text-5xl tracking-tighter text-white drop-shadow-md">{nextProject.title}<span className="text-brand-accent">.</span></h4>
                                 </div>
                             </Link>
                         )}

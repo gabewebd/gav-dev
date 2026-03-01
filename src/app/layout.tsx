@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Manrope, Outfit } from "next/font/google";
+import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Navbar from "@/components/Navbar";
@@ -7,15 +8,29 @@ import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 
 
-/* --- Font Configuration (Rubric: Outfit for Display, Manrope for Body) --- */
-const outfit = Outfit({
+const ppMori = localFont({
+  src: [
+    {
+      path: "./fonts/PPMori-Regular.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/PPMori-RegularItalic.otf",
+      weight: "400",
+      style: "italic",
+    },
+    {
+      path: "./fonts/PPMori-SemiBold.otf",
+      weight: "600",
+      style: "normal",
+    },
+  ],
   variable: "--font-display",
-  subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
-const manrope = Manrope({
+const inter = Inter({
   variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
@@ -54,7 +69,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${outfit.variable} ${manrope.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${ppMori.variable} ${inter.variable}`}>
       <meta name="apple-mobile-web-app-title" content="MyWebSite" />
       <body className="bg-brand-light dark:bg-brand-dark text-brand-ink dark:text-brand-white antialiased transition-colors duration-300 overflow-x-hidden">
         <ThemeProvider

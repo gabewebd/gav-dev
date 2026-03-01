@@ -22,8 +22,8 @@ const config: Config = {
                 },
             },
             fontFamily: {
-                outfit: ["var(--font-display)", "sans-serif"],
-                manrope: ["var(--font-body)", "sans-serif"],
+                mori: ["var(--font-display)", "sans-serif"],
+                inter: ["var(--font-body)", "sans-serif"],
             },
         },
     },

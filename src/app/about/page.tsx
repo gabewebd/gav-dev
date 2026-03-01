@@ -327,7 +327,7 @@ export default function AboutPage() {
 
                   <div className="flex flex-col gap-2 md:gap-3 mb-6 md:mb-8">
                     <span className="font-mono text-[10px] sm:text-xs md:text-sm text-brand-ink/80 dark:text-brand-white/70">{edu.period}</span>
-                    <h3 className="font-outfit font-black text-3xl sm:text-4xl md:text-5xl uppercase tracking-tighter text-brand-ink dark:text-brand-white leading-none">
+                    <h3 className="font-mori font-semibold text-3xl sm:text-4xl md:text-5xl tracking-tighter text-brand-ink dark:text-brand-white leading-none">
                       {edu.degree}
                     </h3>
                     <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-brand-ink/80 dark:text-brand-white/70 mt-1 md:mt-2">
@@ -377,7 +377,7 @@ export default function AboutPage() {
                 <button
                   key={tab.value}
                   onClick={() => handleFilterChange(tab.value)}
-                  className={`filter-tab group relative flex flex-col items-start gap-1.5 px-6 sm:px-8 md:px-10 lg:px-12 pb-5 md:pb-6 pt-3 md:pt-4 font-outfit font-black uppercase tracking-[0.1em] text-sm md:text-base lg:text-lg whitespace-nowrap transition-all duration-300 cursor-pointer border-b-2 -mb-[2px] ${isActive
+                  className={`filter-tab group relative flex flex-col items-start gap-1.5 px-6 sm:px-8 md:px-10 lg:px-12 pb-5 md:pb-6 pt-3 md:pt-4 font-mori font-semibold uppercase tracking-[0.1em] text-sm md:text-base lg:text-lg whitespace-nowrap transition-all duration-300 cursor-pointer border-b-2 -mb-[2px] ${isActive
                     ? "border-brand-ink dark:border-brand-white text-brand-ink dark:text-brand-white"
                     : "border-transparent text-brand-ink/30 dark:text-brand-white/30 hover:text-brand-ink/55 dark:hover:text-brand-white/55"
                     }`}
@@ -419,7 +419,7 @@ export default function AboutPage() {
                         <div className="flex-1 min-w-0">
                           <div className="flex justify-between items-center mb-2.5 sm:mb-3">
                             <div className="flex items-center gap-2 min-w-0">
-                              <span className="font-outfit font-black uppercase tracking-tight text-sm md:text-base text-brand-ink dark:text-brand-white truncate">
+                              <span className="font-mori font-semibold uppercase tracking-tight text-sm md:text-base text-brand-ink dark:text-brand-white truncate">
                                 {skill.name}
                               </span>
                               {skill.learning && (
@@ -478,7 +478,7 @@ export default function AboutPage() {
                   <button
                     key={tab.label}
                     onClick={tab.onClick}
-                    className={`group relative flex flex-col items-start gap-1.5 px-6 sm:px-8 pb-4 md:pb-5 pt-3 font-outfit font-black uppercase tracking-[0.1em] text-sm md:text-base whitespace-nowrap transition-all duration-300 cursor-pointer border-b-2 -mb-[2px] ${tab.active
+                    className={`group relative flex flex-col items-start gap-1.5 px-6 sm:px-8 pb-4 md:pb-5 pt-3 font-mori font-semibold uppercase tracking-[0.1em] text-sm md:text-base whitespace-nowrap transition-all duration-300 cursor-pointer border-b-2 -mb-[2px] ${tab.active
                       ? "border-brand-ink dark:border-brand-white text-brand-ink dark:text-brand-white"
                       : "border-transparent text-brand-ink/30 dark:text-brand-white/30 hover:text-brand-ink/55 dark:hover:text-brand-white/55"
                       }`}
@@ -518,7 +518,7 @@ export default function AboutPage() {
                         </div>
 
                         <div className="flex flex-col gap-2 sm:gap-2.5 relative z-10">
-                          <h3 className="font-outfit font-black text-lg sm:text-xl uppercase tracking-tight text-brand-ink dark:text-brand-white leading-tight">
+                          <h3 className="font-mori font-semibold text-lg sm:text-xl tracking-tight text-brand-ink dark:text-brand-white leading-tight">
                             {item.title}
                           </h3>
                           <p className="text-xs sm:text-sm text-brand-ink/80 dark:text-brand-white/70 font-medium leading-relaxed">
@@ -527,7 +527,7 @@ export default function AboutPage() {
                         </div>
 
                         {/* Large Background Number */}
-                        <span className="absolute -bottom-4 -right-2 text-[8rem] sm:text-[10rem] font-outfit font-black leading-none tracking-tighter text-brand-ink/[0.03] dark:text-brand-white/[0.02] select-none pointer-events-none group-hover:text-brand-ink/[0.05] dark:group-hover:text-brand-white/[0.05] transition-colors duration-500">
+                        <span className="absolute -bottom-4 -right-2 text-[8rem] sm:text-[10rem] font-mori font-semibold leading-none tracking-tighter text-brand-ink/[0.03] dark:text-brand-white/[0.02] select-none pointer-events-none group-hover:text-brand-ink/[0.05] dark:group-hover:text-brand-white/[0.05] transition-colors duration-500">
                           {String(i + 1).padStart(2, "0")}
                         </span>
                       </div>
@@ -560,7 +560,7 @@ export default function AboutPage() {
             {GOALS.map((goal, i) => (
               <div key={i} className={`group relative flex flex-col p-8 sm:p-10 md:p-12 rounded-[2rem] border border-brand-ink/15 dark:border-brand-white/10 overflow-hidden bg-white/40 dark:bg-[#111]/40 backdrop-blur-md hover:border-brand-ink/20 dark:hover:border-brand-white/15 transition-all duration-300 shadow-xl shadow-brand-ink/[0.04] dark:shadow-none`}>
                 {/* Background number */}
-                <span className="absolute -bottom-6 -right-4 text-[10rem] md:text-[14rem] font-outfit font-black leading-none tracking-tighter text-brand-ink/[0.03] dark:text-brand-white/[0.02] select-none pointer-events-none group-hover:text-brand-ink/[0.05] dark:group-hover:text-brand-white/[0.05] transition-colors duration-500">
+                <span className="absolute -bottom-6 -right-4 text-[10rem] md:text-[14rem] font-mori font-semibold leading-none tracking-tighter text-brand-ink/[0.03] dark:text-brand-white/[0.02] select-none pointer-events-none group-hover:text-brand-ink/[0.05] dark:group-hover:text-brand-white/[0.05] transition-colors duration-500">
                   {goal.num}
                 </span>
                 {/* Icon Container */}
@@ -569,7 +569,7 @@ export default function AboutPage() {
                 </div>
                 {/* Content */}
                 <div className="relative z-10 w-full mt-auto">
-                  <h3 className="font-outfit font-black text-2xl sm:text-[1.75rem] md:text-4xl uppercase tracking-tighter text-brand-ink dark:text-brand-white mb-4 leading-[1.05]">
+                  <h3 className="font-mori font-semibold text-2xl sm:text-[1.75rem] md:text-4xl tracking-tighter text-brand-ink dark:text-brand-white mb-4 leading-[1.05]">
                     {/* Splitting the title into two lines based on words if possible, or just letting it wrap */}
                     {goal.title.split(' ').map((word, idx) => <span key={idx} className="block">{word}</span>)}
                   </h3>
@@ -616,7 +616,7 @@ export default function AboutPage() {
                       description={item.url}
                       className="px-3 sm:px-5 py-3 sm:py-4 -mx-3 sm:-mx-5 rounded-xl sm:rounded-2xl hover:bg-white/50 dark:hover:bg-[#111]/50 transition-all duration-300"
                     >
-                      <h3 className="font-outfit font-black text-base sm:text-xl md:text-2xl lg:text-3xl uppercase tracking-tight text-brand-ink dark:text-brand-white leading-[1.1] group-hover/preview:text-brand-ink/70 dark:group-hover/preview:text-brand-accent transition-colors duration-300">
+                      <h3 className="font-mori font-semibold text-base sm:text-xl md:text-2xl lg:text-3xl tracking-tight text-brand-ink dark:text-brand-white leading-[1.1] group-hover/preview:text-brand-ink/70 dark:group-hover/preview:text-brand-accent transition-colors duration-300">
                         {item.title}
                         <ArrowRight className="inline-block w-[1em] h-[1em] -rotate-45 ml-1 align-baseline" strokeWidth={2.5} />
                       </h3>

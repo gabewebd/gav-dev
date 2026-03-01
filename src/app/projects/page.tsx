@@ -231,7 +231,7 @@ export default function ProjectsPage() {
           ═══════════════════════════════════════════════════════ */}
       <section className="cta-section relative py-20 sm:py-24 md:py-32 border-t border-brand-ink/5 dark:border-brand-white/5 bg-black/[0.02] dark:bg-white/[0.01] overflow-hidden flex flex-col items-center justify-center text-center px-4">
         <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center w-full">
-          <h3 className="font-outfit font-black text-3xl sm:text-4xl md:text-5xl uppercase tracking-tighter text-brand-ink dark:text-brand-white mb-4 md:mb-6">
+          <h3 className="font-mori font-semibold text-3xl sm:text-4xl md:text-5xl tracking-tighter text-brand-ink dark:text-brand-white mb-4 md:mb-6">
             Want to Work With{" "}
             <span className="relative inline-block">
               <span ref={epicHighlightRef} className="absolute -bottom-1 md:-bottom-2 left-0 w-full h-2 md:h-3 bg-brand-accent -rotate-1 z-0 opacity-80 rounded-full" style={{ transform: "scaleX(0)" }} />
