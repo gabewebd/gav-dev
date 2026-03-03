@@ -631,9 +631,9 @@ export default function Home() {
                 style={{ transform: "scaleX(0)" }}
                 aria-hidden="true"
               />
-              <span className="relative z-10 text-brand-ink dark:text-brand-white font-black">EPIC</span>
+              <span className="relative z-10 text-brand-ink dark:text-brand-white font-black">TOGETHER</span>
             </span>
-            <span className="text-brand-accent ml-1 md:ml-2">.</span>
+
           </h2>
 
           <div className="mt-16 md:mt-24 flex flex-wrap items-center justify-center gap-3 md:gap-4 relative z-20">

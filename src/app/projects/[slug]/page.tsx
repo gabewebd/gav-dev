@@ -20,7 +20,7 @@ function ContentBlockRenderer({ block, onImageClick }: { block: ContentBlock, on
         case 'p':
             return <p className="text-base md:text-xl text-brand-ink/80 dark:text-brand-white/70 leading-relaxed font-medium mb-6">{block.text}</p>;
         case 'h2':
-            return <h2 className="font-mori font-semibold text-2xl md:text-3xl tracking-tighter text-brand-ink dark:text-brand-white mt-12 mb-6">{block.text}<span className="text-brand-accent">.</span></h2>;
+            return <h2 className="font-mori font-semibold text-2xl md:text-3xl tracking-tighter text-brand-ink dark:text-brand-white mt-12 mb-6">{block.text}</h2>;
         case 'img':
             return (
                 <div className="flex flex-col gap-4 my-10 relative">
@@ -203,7 +203,7 @@ export default function ProjectDetail() {
                             {project.tagline}
                         </p>
                         <h1 className="hero-title font-mori font-semibold text-5xl md:text-7xl lg:text-[8rem] tracking-tighter leading-none text-white drop-shadow-lg">
-                            {project.title}<span className="text-brand-accent">.</span>
+                            {project.title}
                         </h1>
                     </div>
 
@@ -228,23 +228,17 @@ export default function ProjectDetail() {
 
             {/* ── 1.5. IMAGE GALLERY CAROUSEL ── */}
             {project.gallery && project.gallery.length > 0 && (
-                <section className="relative w-full max-w-7xl mx-auto px-6 md:px-12 pt-16 md:pt-24 z-10 flex flex-col gap-6">
+                <section className="relative w-full max-w-5xl mx-auto px-6 md:px-12 pt-16 md:pt-24 z-10 flex flex-col gap-6">
                     <div className="flex flex-col gap-6 sm:gap-8">
-                        <div className="grid w-full rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden border border-brand-ink/10 dark:border-brand-white/10 bg-brand-light-alt dark:bg-brand-dark-alt group shadow-2xl">
+                        <div className="relative grid w-full aspect-[16/10] rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden border border-brand-ink/10 dark:border-brand-white/10 bg-brand-light-alt dark:bg-brand-dark-alt group shadow-xl">
 
                             {project.gallery.map((img, idx) => (
                                 <div
                                     key={idx}
                                     className={`col-start-1 row-start-1 transition-opacity duration-700 ease-in-out ${idx === activeGalleryIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
                                 >
-                                    {/* High quality enabled for Gallery Slider */}
-                                    <Image src={img.src} alt={img.alt} width={1200} height={800} className="w-full h-auto object-contain cursor-zoom-in group-hover:scale-[1.02] transition-transform duration-700" onClick={() => setLightboxIndex(idx)} priority={idx === 0} quality={95} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw" />
-                                    <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none hidden md:block" />
-                                    {img.caption && (
-                                        <div className="absolute bottom-6 md:bottom-10 left-6 md:left-12 right-6 md:right-12 hidden md:block">
-                                            <p className="text-white text-sm md:text-lg font-medium drop-shadow-md">{img.caption}</p>
-                                        </div>
-                                    )}
+                                    {/* High quality enabled for Gallery Slider with fixed aspect ratio */}
+                                    <Image src={img.src} alt={img.alt} fill className="object-cover cursor-zoom-in transition-transform duration-700 hover:scale-[1.01]" onClick={() => setLightboxIndex(idx)} priority={idx === 0} quality={95} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw" />
                                 </div>
                             ))}
 
@@ -275,10 +269,10 @@ export default function ProjectDetail() {
                             )}
                         </div>
 
-                        {/* Mobile Gallery Captions - Below the gallery */}
+                        {/* Unified Gallery Captions - Below the gallery for all devices */}
                         {project.gallery[activeGalleryIndex]?.caption && (
-                            <div className="md:hidden px-2 text-center">
-                                <p className="text-brand-ink/80 dark:text-brand-white/80 text-xs sm:text-sm font-medium italic leading-relaxed">
+                            <div className="px-2 text-center md:text-left">
+                                <p className="text-brand-ink/60 dark:text-brand-white/50 text-xs sm:text-sm font-medium italic leading-relaxed tracking-wide">
                                     {project.gallery[activeGalleryIndex].caption}
                                 </p>
                             </div>
@@ -309,7 +303,7 @@ export default function ProjectDetail() {
 
                 <div className="w-full lg:w-3/4 flex flex-col gap-24 md:gap-32">
                     <div id="overview" className="content-section flex flex-col gap-6 scroll-mt-32">
-                        <h2 className="font-mori font-semibold text-3xl md:text-5xl tracking-tighter text-brand-ink dark:text-brand-white">Project Overview<span className="text-brand-accent">.</span></h2>
+                        <h2 className="font-mori font-semibold text-3xl md:text-5xl tracking-tighter text-brand-ink dark:text-brand-white">Project Overview</h2>
                         <div className="flex flex-col">
                             {project.overview.map((block, i) => (
                                 <ContentBlockRenderer key={i} block={block} onImageClick={handleInlineImageClick} />
@@ -318,7 +312,7 @@ export default function ProjectDetail() {
                     </div>
 
                     <div id="role" className="content-section flex flex-col gap-6 scroll-mt-32">
-                        <h2 className="font-mori font-semibold text-3xl md:text-5xl tracking-tighter text-brand-ink dark:text-brand-white">Role & Contributions<span className="text-brand-accent">.</span></h2>
+                        <h2 className="font-mori font-semibold text-3xl md:text-5xl tracking-tighter text-brand-ink dark:text-brand-white">Role & Contributions</h2>
                         <div className="border-l-2 border-brand-ink/20 dark:border-brand-accent pl-6 py-2">
                             {project.role.map((block, i) => (
                                 <ContentBlockRenderer key={i} block={block} onImageClick={handleInlineImageClick} />
@@ -327,7 +321,7 @@ export default function ProjectDetail() {
                     </div>
 
                     <div id="tech" className="content-section flex flex-col gap-8 scroll-mt-32">
-                        <h2 className="font-mori font-semibold text-3xl md:text-5xl tracking-tighter text-brand-ink dark:text-brand-white">Technology Stack<span className="text-brand-accent">.</span></h2>
+                        <h2 className="font-mori font-semibold text-3xl md:text-5xl tracking-tighter text-brand-ink dark:text-brand-white">Technology Stack</h2>
                         <div className="flex flex-wrap items-center gap-x-2 gap-y-2 md:gap-x-3">
                             {project.stack.map((t: string, i: number) => (
                                 <div key={i} className="px-4 py-2 rounded-full border border-brand-ink/10 dark:border-brand-white/10 bg-brand-light-alt dark:bg-brand-dark-alt flex items-center justify-center transition-colors">
@@ -339,11 +333,22 @@ export default function ProjectDetail() {
 
                     {project.customSections?.map((section) => (
                         <div id={section.id} key={section.id} className="content-section flex flex-col gap-6 scroll-mt-32">
-                            <h2 className="font-mori font-semibold text-3xl md:text-5xl tracking-tighter text-brand-ink dark:text-brand-white">{section.title}<span className="text-brand-accent">.</span></h2>
-                            <div className="flex flex-col">
-                                {section.blocks.map((block, i) => (
-                                    <ContentBlockRenderer key={i} block={block} onImageClick={handleInlineImageClick} />
-                                ))}
+                            <h2 className="font-mori font-semibold text-3xl md:text-5xl tracking-tighter text-brand-ink dark:text-brand-white">
+                                {section.title}
+                            </h2>
+                            <div className="flex flex-col gap-4">
+                                {section.blocks.map((block, i) => {
+                                    // HANDLE THE NEW ITALIC BLOCK TYPE HERE
+                                    if (block.type === 'italic') {
+                                        return (
+                                            <p key={i} className="text-brand-ink/60 dark:text-brand-white/50 italic text-sm md:text-base leading-relaxed">
+                                                {block.text}
+                                            </p>
+                                        );
+                                    }
+
+                                    return <ContentBlockRenderer key={i} block={block} onImageClick={handleInlineImageClick} />;
+                                })}
                             </div>
                         </div>
                     ))}
@@ -365,7 +370,7 @@ export default function ProjectDetail() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
                         {prevProject && (
-                            <Link href={`/projects/${prevProject.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/9] rounded-[2rem] overflow-hidden border border-brand-ink/10 dark:border-brand-white/10 block cursor-pointer shadow-xl dark:shadow-2xl hover:-translate-y-2 transition-all duration-500 hover:shadow-brand-ink/20 dark:hover:shadow-brand-accent/10">
+                            <Link href={`/projects/${prevProject.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/9] rounded-[2rem] overflow-hidden border border-brand-ink/10 dark:border-brand-white/10 block cursor-pointer shadow-lg dark:shadow-xl hover:-translate-y-2 transition-all duration-500 hover:shadow-brand-ink/20 dark:hover:shadow-brand-accent/10">
                                 <Image src={prevProject.slugImg || prevProject.heroImg} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" alt={prevProject.title} sizes="(max-width: 768px) 100vw, 50vw" quality={90} />
                                 <div className="absolute inset-0 bg-brand-ink/60 dark:bg-brand-dark/70 transition-colors group-hover:bg-brand-ink/40 dark:group-hover:bg-brand-dark/50" />
                                 <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
@@ -373,13 +378,13 @@ export default function ProjectDetail() {
                                         <ArrowLeft className="w-3.5 h-3.5 text-brand-accent group-hover:-translate-x-1.5 transition-transform" />
                                         <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/70">Previous</span>
                                     </div>
-                                    <h4 className="font-mori font-semibold text-3xl md:text-5xl tracking-tighter text-white drop-shadow-md">{prevProject.title}<span className="text-brand-accent">.</span></h4>
+                                    <h4 className="font-mori font-semibold text-3xl md:text-5xl tracking-tighter text-white drop-shadow-md">{prevProject.title}</h4>
                                 </div>
                             </Link>
                         )}
 
                         {nextProject && (
-                            <Link href={`/projects/${nextProject.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/9] rounded-[2rem] overflow-hidden border border-brand-ink/10 dark:border-brand-white/10 block cursor-pointer shadow-xl dark:shadow-2xl hover:-translate-y-2 transition-all duration-500 hover:shadow-brand-ink/20 dark:hover:shadow-brand-accent/10">
+                            <Link href={`/projects/${nextProject.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/9] rounded-[2rem] overflow-hidden border border-brand-ink/10 dark:border-brand-white/10 block cursor-pointer shadow-lg dark:shadow-xl hover:-translate-y-2 transition-all duration-500 hover:shadow-brand-ink/20 dark:hover:shadow-brand-accent/10">
                                 <Image src={nextProject.slugImg || nextProject.heroImg} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" alt={nextProject.title} sizes="(max-width: 768px) 100vw, 50vw" quality={90} />
                                 <div className="absolute inset-0 bg-brand-ink/60 dark:bg-brand-dark/70 transition-colors group-hover:bg-brand-ink/40 dark:group-hover:bg-brand-dark/50" />
                                 <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
@@ -387,7 +392,7 @@ export default function ProjectDetail() {
                                         <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/70">Next Project</span>
                                         <ArrowRight className="w-3.5 h-3.5 text-brand-accent group-hover:translate-x-1.5 transition-transform" />
                                     </div>
-                                    <h4 className="font-mori font-semibold text-3xl md:text-5xl tracking-tighter text-white drop-shadow-md">{nextProject.title}<span className="text-brand-accent">.</span></h4>
+                                    <h4 className="font-mori font-semibold text-3xl md:text-5xl tracking-tighter text-white drop-shadow-md">{nextProject.title}</h4>
                                 </div>
                             </Link>
                         )}

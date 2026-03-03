@@ -130,7 +130,7 @@ export default function Footer() {
                             Want the full picture?
                         </p>
                         <h3 className="font-mori font-semibold text-2xl sm:text-3xl md:text-5xl uppercase tracking-tighter leading-[0.95]">
-                            Download My Resume<span className="text-brand-accent">.</span>
+                            Download My Resume
                         </h3>
                     </div>
                     <Button
