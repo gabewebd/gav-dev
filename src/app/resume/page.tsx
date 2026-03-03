@@ -10,6 +10,7 @@ import {
     Github,
     Linkedin,
     FileText,
+    Briefcase,
 } from "lucide-react";
 import Button from "@/components/ui/Button";
 import SectionTag from "@/components/ui/SectionTag";
@@ -83,7 +84,10 @@ export default function ResumePage() {
                                 <span className="hero-reveal inline-block pr-4 font-mori font-semibold">Professional</span>
                             </div>
                             <div className="hero-reveal flex items-center justify-start gap-4 overflow-hidden py-2 -my-2">
-                                <span className="text-brand-ink dark:text-brand-white font-mori font-semibold">Resume<span className="text-brand-accent">.</span></span>
+                                <span className="text-brand-ink dark:text-brand-white font-mori font-semibold">Resume</span>
+                                <span className="inline-flex items-center justify-center w-10 h-10 sm:w-14 sm:h-14 md:w-20 md:h-20 bg-brand-accent rounded-[0.75rem] sm:rounded-[1rem] md:rounded-[1.25rem] shrink-0">
+                                    <Briefcase className="w-5 h-5 sm:w-7 sm:h-7 md:w-10 md:h-10 text-brand-dark" strokeWidth={2.5} />
+                                </span>
                             </div>
                         </HeroHeading>
 

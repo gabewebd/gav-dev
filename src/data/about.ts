@@ -25,6 +25,7 @@ import {
     FaNodeJs,
     FaTrello,
     FaGithub,
+    FaWordpress,
 } from "react-icons/fa";
 
 import {
@@ -110,6 +111,7 @@ export const SKILLS: Skill[] = [
     { name: "Photoshop", icon: SiAdobephotoshop, category: "tools", level: 72 },
     { name: "Notion", icon: SiNotion, category: "tools", level: 88 },
     { name: "Trello", icon: FaTrello, category: "tools", level: 88 },
+    { name: "WordPress", icon: FaWordpress, category: "tools", level: 85 },
     { name: "After Effects", icon: SiAdobeaftereffects, category: "tools", level: 35, learning: true },
 ];
 
@@ -199,9 +201,19 @@ export const EDUCATION: EducationItem[] = [
         school: "Holy Angel University",
         period: "2023 – 2027",
         points: [
-            "Focused on software engineering principles, database management systems, best design practices, and full-stack development.",
+            "Focused on software engineering principles, database management systems, system architecture, best design practices, and full-stack development.",
             "Consistently demonstrating strong analytical skills in practical laboratory environments.",
             "Relevant Coursework: Web Development, UI/UX Design, Database Systems, Software Engineering, Mobile Development (Flutter).",
+        ],
+    },
+    {
+        degree: "Junior to Senior High School",
+        school: "Holy Family Academy",
+        period: "2017 – 2023",
+        points: [
+            "Developed a versatile foundational understanding across technical and creative disciplines.",
+            "Conducted and defended a comprehensive senior research thesis, refining skills in structured analysis and systematic documentation.",
+            "Maintained a high standard of academic performance while fostering core competencies in logical problem-solving and critical thinking.",
         ],
     },
 ];
@@ -209,7 +221,7 @@ export const EDUCATION: EducationItem[] = [
 export const GOALS: Goal[] = [
     {
         title: "Full-Stack Systems",
-        desc: "Building complete web applications from database design to polished user interfaces, with scalability and long-term maintainability in mind.",
+        desc: "Building complete web applications from backend architecture to polished user interfaces, with scalability and long-term maintainability in mind.",
         icon: Layers,
         num: "01",
         span: ""

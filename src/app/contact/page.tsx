@@ -12,6 +12,7 @@ import {
     MapPin,
     CheckCircle2,
     Loader2,
+    User,
 } from "lucide-react";
 import Button from "@/components/ui/Button";
 import SectionTag from "@/components/ui/SectionTag";
@@ -133,13 +134,18 @@ export default function ContactPage() {
           ═══════════════════════════════════════════════════════ */}
             <section className="contact-hero-section pt-28 md:pt-40 pb-12 md:pb-16 px-6 md:px-12 max-w-7xl mx-auto text-center relative">
                 {/* SVG background — line-style Mail icon */}
-                <div className="hero-bg-icon absolute top-[-5vh] right-[-10vw] lg:right-10 w-[300px] h-[300px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] pointer-events-none z-0 opacity-[0.04] dark:opacity-[0.02]">
+                <div className="hero-bg-icon absolute top-[8vh] right-[-10vw] lg:right-10 w-[300px] h-[300px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] pointer-events-none z-0 opacity-[0.04] dark:opacity-[0.02]">
                     <Mail className="w-full h-full text-brand-ink dark:text-brand-white" strokeWidth={1} />
                 </div>
                 <div className="relative z-10">
                     <SectionTag className="contact-hero-line justify-center mb-4">Get In Touch</SectionTag>
                     <HeroHeading className="contact-hero-line">
-                        Let&apos;s Connect<span className="text-brand-accent">.</span>
+                        <div className="flex items-center justify-center gap-3 sm:gap-5">
+                            <span>Let&apos;s Connect</span>
+                            <span className="inline-flex items-center justify-center w-10 h-10 sm:w-14 sm:h-14 md:w-20 md:h-20 bg-brand-accent rounded-[0.75rem] sm:rounded-[1rem] md:rounded-[1.25rem] shrink-0">
+                                <User className="w-5 h-5 sm:w-7 sm:h-7 md:w-10 md:h-10 text-brand-dark" strokeWidth={2.5} />
+                            </span>
+                        </div>
                     </HeroHeading>
                     <p className="contact-hero-sub mt-4 md:mt-6 text-sm md:text-lg text-brand-ink/80 dark:text-brand-white/70 max-w-xl mx-auto">
                         Have a project in mind, or just want to say hello? I&apos;d love to hear

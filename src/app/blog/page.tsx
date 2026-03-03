@@ -6,7 +6,7 @@ import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { ArrowRight, FolderOpen, Calendar } from "lucide-react";
+import { ArrowRight, FolderOpen, Calendar, Book } from "lucide-react";
 import SectionTag from "@/components/ui/SectionTag";
 import SectionTitle from "@/components/ui/SectionTitle";
 import HeroHeading from "@/components/ui/HeroHeading";
@@ -67,11 +67,14 @@ export default function BlogPage() {
           <div className="relative z-10">
             <SectionTag className="hero-reveal mb-6 md:mb-8">Dev Journal</SectionTag>
             <HeroHeading>
-              <div className="overflow-hidden py-4 -my-4 pr-8 -mr-8">
-                <span className="hero-reveal inline-block pr-4">Dev Notes</span>
+              <div className="overflow-hidden py-3 -my-3 pr-4 -mr-4">
+                <span className="hero-reveal inline-block pr-4 font-mori font-semibold">Dev Notes</span>
               </div>
               <div className="hero-reveal flex items-center justify-start gap-3 sm:gap-5 overflow-hidden py-2 -my-2">
-                <span className="text-brand-ink dark:text-brand-white">& Insights<span className="text-brand-accent">.</span></span>
+                <span className="text-brand-ink dark:text-brand-white font-mori font-semibold">& Insights</span>
+                <span className="inline-flex items-center justify-center w-10 h-10 sm:w-14 sm:h-14 md:w-20 md:h-20 bg-brand-accent rounded-[0.75rem] sm:rounded-[1rem] md:rounded-[1.25rem] shrink-0">
+                  <Book className="w-5 h-5 sm:w-7 sm:h-7 md:w-10 md:h-10 text-brand-dark" strokeWidth={2.5} />
+                </span>
               </div>
             </HeroHeading>
 

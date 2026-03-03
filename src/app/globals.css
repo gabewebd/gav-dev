@@ -86,3 +86,10 @@ body {
 .dark ::-webkit-scrollbar-thumb {
   background: #333333;
 }
+
+/* ─────────────────────────────────────────────────────────────
+   UTILITIES
+   ───────────────────────────────────────────────────────────── */
+@layer utilities {
+  /* Utility classes can be added here if needed */
+}

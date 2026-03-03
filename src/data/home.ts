@@ -20,7 +20,6 @@ export const MARQUEE_WORDS = [
     "UI/UX DESIGN",
     "FULL-STACK DEVELOPMENT",
     "BRAND IDENTITY",
-    "DATABASE DESIGN",
     "API ENGINEERING",
 ];
 
@@ -35,7 +34,7 @@ export const SERVICES = [
         icon: Server,
         title: "Backend Systems",
         stack: ["Laravel (PHP)", "Node.js", "Express", "MongoDB", "MySQL"],
-        desc: "Designing secure and scalable backend systems that power reliable applications. From APIs to structured database design, I focus on stability, clarity, and long-term maintainability.",
+        desc: "Designing secure and scalable backend systems that power reliable applications. I focus on building robust APIs, ensuring system stability, clarity, and long-term maintainability.",
     },
     {
         icon: Palette,

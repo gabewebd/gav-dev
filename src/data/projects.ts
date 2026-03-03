@@ -4,6 +4,7 @@ import { FaFigma, FaWordpress } from "react-icons/fa";
 
 export type ContentBlock =
     | { type: 'p'; text: string }
+    | { type: 'italic'; text: string } // Added this for your timestamps
     | { type: 'h2'; text: string }
     | { type: 'img'; src: string; alt: string; caption?: string }
     | { type: 'quote'; text: string; author?: string }
@@ -66,7 +67,7 @@ export const PROJECTS_DATA: ProjectData[] = [
             { type: 'p', text: "To solve this problem, we selected Angeles City as our primary digital launchpad to target the highly tech-savvy demographic of students and young professionals. The main objective was to transition the brand into a highly scalable and centralized digital platform." }
         ],
         role: [
-            { type: 'p', text: "Project Manager & Full-Stack Developer. I architected the entire project and designed the database from the ground up using PHP and MySQL. I integrated a custom mini-CMS into the backend admin folder to handle dynamic menu updates and blog publications." },
+            { type: 'p', text: "Project Manager & Full-Stack Developer. I architected the entire project using PHP and MySQL. I integrated a custom mini-CMS into the backend admin folder to handle dynamic menu updates and blog publications." },
             { type: 'p', text: "Furthermore, I ensured strict mobile responsiveness across all devices, managed the deployment process using Hostinger, implemented a robust local SEO strategy, and integrated Google Analytics to monitor traffic, user behavior, and overall performance insights." }
         ],
         stack: ["PHP", "MySQL", "CSS", "Hostinger", "SEO", "Custom CMS"],
@@ -136,11 +137,7 @@ export const PROJECTS_DATA: ProjectData[] = [
         heroImg: "/assets/projects/chanel/chanel.png",
         slugImg: "/assets/projects/chanel/chanel-slug.png",
         showcaseImg: "/assets/projects/chanel/chanel-showcase.png",
-        images: [
-            "/assets/projects/chanel/chanel.png",
-            "/assets/projects/chanel/chanel-products.png",
-            "/assets/projects/chanel/chanel-directory.png"
-        ],
+        images: ["/assets/projects/chanel/chanel.png", "/assets/projects/chanel/chanel-products.png", "/assets/projects/chanel/chanel-directory.png"],
         gallery: [
             { src: "/assets/projects/chanel/chanel-products.png", alt: "Product Catalog", caption: "The immersive product catalog featuring sorting, filtering, and high-fidelity hover micro-interactions." },
             { src: "/assets/projects/chanel/chanel-directory.png", alt: "Chanel Employee Directory", caption: "The Employee Directory featuring conditional filtering and elegant UI." },
@@ -180,7 +177,7 @@ export const PROJECTS_DATA: ProjectData[] = [
             { type: 'p', text: "By transforming routine eco-friendly activities into entertaining quests, the platform promotes community involvement through digital badges, point systems, and friendly rivalry via dynamic leaderboards." }
         ],
         role: [
-            { type: 'p', text: "Full-Stack Developer and UI/UX Designer. I designed the MongoDB database schema and built out nearly all the core pages. This included the Quest page, Community feed, Login and Signup flows, Dashboard data visualizations, and Role Management architecture." },
+            { type: 'p', text: "Full-Stack Developer and UI/UX Designer. I built out nearly all the core pages. This included the Quest page, Community feed, Login and Signup flows, Dashboard data visualizations, and Role Management architecture." },
             { type: 'p', text: "I successfully integrated Cloudinary for secure image proof uploads, managed our weekly Agile sprint planning in Notion, and executed the dual-deployment strategy using Vercel for the frontend and Render for the backend." }
         ],
         stack: ["MongoDB", "Express.js", "React", "Node.js", "Cloudinary"],
@@ -190,12 +187,7 @@ export const PROJECTS_DATA: ProjectData[] = [
         heroImg: "/assets/projects/hau-ecoquest/hau-ecoquest.png",
         slugImg: "/assets/projects/hau-ecoquest/ecoquest-slug.png",
         showcaseImg: "/assets/projects/hau-ecoquest/ecoquest-showcase.png",
-        images: [
-            "/assets/projects/hau-ecoquest/hau-ecoquest.png",
-            "/assets/projects/hau-ecoquest/ecoquest-quests.png",
-            "/assets/projects/hau-ecoquest/ecoquest-community.png",
-            "/assets/projects/hau-ecoquest/ecoquest-leaderboard.png"
-        ],
+        images: ["/assets/projects/hau-ecoquest/hau-ecoquest.png", "/assets/projects/hau-ecoquest/ecoquest-quests.png", "/assets/projects/hau-ecoquest/ecoquest-community.png", "/assets/projects/hau-ecoquest/ecoquest-leaderboard.png"],
         gallery: [
             { src: "/assets/projects/hau-ecoquest/ecoquest-quests.png", alt: "Quests Page", caption: "The main Quests interface where users browse and accept environmental challenges." },
             { src: "/assets/projects/hau-ecoquest/ecoquest-community.png", alt: "Community Feed", caption: "An online community hub where users post updates and participate in weekly challenges." },
@@ -224,6 +216,7 @@ export const PROJECTS_DATA: ProjectData[] = [
                 title: "Interactive Demonstration",
                 blocks: [
                     { type: 'p', text: "We have recorded a comprehensive video demonstration to walk you through the gamification engine, user dashboard, and quest submission process of the live platform." },
+                    { type: 'italic', text: "You may skip to the 5:00 minute mark for the system demonstration." },
                     {
                         type: 'video',
                         url: 'https://drive.google.com/file/d/1jBZnV-LoXeA1toKPncBZoVZtdlCIDCsB/preview',
@@ -244,14 +237,14 @@ export const PROJECTS_DATA: ProjectData[] = [
         slug: "wellness-apparel",
         title: "Wellness Apparel",
         tagline: "Full-Stack E-Commerce",
-        desc: "A full-stack e-commerce simulation showcasing complex database normalization, secure authentication, scalable catalog management, and a simulated order processing pipeline that models real transactional workflows.",
+        desc: "A full-stack e-commerce simulation showcasing secure authentication, scalable catalog management, and a simulated order processing pipeline that models real transactional workflows.",
         overview: [
             { type: 'p', text: "Wellness Apparel is a comprehensive e-commerce simulation that provides users with the ability to browse and purchase clothing online while offering store owners powerful administrative management tools." },
             { type: 'p', text: "The platform supports a complete digital retail workflow. It handles everything from digital catalog browsing and dynamic shipping address management to complex order fulfillment and an internal notification system between customers and admins. As a conceptual prototype, it is designed to strictly simulate the e-commerce architecture and does not process real monetary transactions." }
         ],
         role: [
             { type: 'p', text: "Full-Stack Developer and UI/UX Designer. I contributed heavily across the entire application ecosystem, initializing the branding assets, building out the login and registration systems, role management protocols, and the user-facing frontend architecture like Home Page, Shop Page, Dashboard data visualizations, Login and Register Pages." },
-            { type: 'p', text: "On the backend, I designed the normalized database architecture and successfully handled the live production deployment of the platform using AwardSpace." }
+            { type: 'p', text: "On the backend, I successfully handled the live production deployment of the platform using AwardSpace." }
         ],
         stack: ["PHP", "MySQL", "CSS", "AwardSpace"],
         techLabel: "PHP · MySQL · CSS",
@@ -260,12 +253,7 @@ export const PROJECTS_DATA: ProjectData[] = [
         heroImg: "/assets/projects/wellness-apparel/wellness-apparel.png",
         slugImg: "/assets/projects/wellness-apparel/wellness-apparel-slug.png",
         showcaseImg: "/assets/projects/wellness-apparel/wellness-showcase.png",
-        images: [
-            "/assets/projects/wellness-apparel/wellness-apparel.png",
-            "/assets/projects/wellness-apparel/wellness-shop.png",
-            "/assets/projects/wellness-apparel/wellness-cart.png",
-            "/assets/projects/wellness-apparel/wellness-checkout.png"
-        ],
+        images: ["/assets/projects/wellness-apparel/wellness-apparel.png", "/assets/projects/wellness-apparel/wellness-shop.png", "/assets/projects/wellness-apparel/wellness-cart.png", "/assets/projects/wellness-apparel/wellness-checkout.png"],
         gallery: [
             { src: "/assets/projects/wellness-apparel/wellness-shop.png", alt: "Shopping Page", caption: "The dynamic digital product catalog where users can browse active inventory." },
             { src: "/assets/projects/wellness-apparel/wellness-cart.png", alt: "Shopping Cart", caption: "The session-based shopping cart handling dynamic stock validation." },
@@ -273,12 +261,12 @@ export const PROJECTS_DATA: ProjectData[] = [
         ],
         customSections: [
             {
-                id: "database-architecture",
-                title: "Database Normalization & Architecture",
+                id: "system-architecture",
+                title: "System Efficiency & Architecture",
                 blocks: [
-                    { type: 'p', text: "A critical phase of this project was the database design. We initially started with flat, unnormalized tables which created heavy data redundancy. I took the lead in normalizing the MySQL schema into highly efficient, interconnected relational tables." },
-                    { type: 'img', src: '/assets/projects/wellness-apparel/wellness-admin.png', alt: 'Admin Management Panel', caption: 'Administrative dashboard interacting securely with normalized database tables.' },
-                    { type: 'p', text: "We successfully isolated user data, multiple shipping addresses, secure authentication tokens for persistent logins, product inventory, and nested order lines. This strict normalization ensured data integrity and optimized server retrieval times." }
+                    { type: 'p', text: "A critical phase of this project was the backend structure. We implemented a highly efficient, interconnected relational system for the MySQL tables to optimize data handling." },
+                    { type: 'img', src: '/assets/projects/wellness-apparel/wellness-admin.png', alt: 'Admin Management Panel', caption: 'Administrative dashboard interacting securely with relational database tables.' },
+                    { type: 'p', text: "We successfully isolated user data, multiple shipping addresses, user authentication tokens for persistent logins, product inventory, and nested order lines. This structure ensured data integrity and optimized server retrieval times." }
                 ]
             },
             {
@@ -293,6 +281,7 @@ export const PROJECTS_DATA: ProjectData[] = [
                 title: "Interactive Demonstration",
                 blocks: [
                     { type: 'p', text: "We have recorded a comprehensive video demonstration to walk you through the e-commerce checkout flow and the administrative database management panel." },
+                    { type: 'italic', text: "You may skip to the 8:50 minute mark for the system demonstration." },
                     {
                         type: 'video',
                         url: 'https://drive.google.com/file/d/1frJTgZWjDmZ9RmT-fH1RoHoi0kVwPe_i/preview',
@@ -323,6 +312,7 @@ export const SHOWCASE_PROJECTS = PROJECTS_DATA
             stack: p.stack.filter(tech => !excludedFromShowcase.includes(tech)),
             desc: p.desc,
             image: p.showcaseImg,
+            bgImage: p.images[1] || p.slugImg,
             slug: p.slug,
             live: p.live,
             github: p.github,

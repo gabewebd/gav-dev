@@ -99,6 +99,8 @@ export default function AboutPage() {
   const toggleGridRef = useRef<HTMLDivElement>(null);
   const timelineLineRef = useRef<HTMLDivElement>(null);
   const timelineLineRef2 = useRef<HTMLDivElement>(null);
+  const timelineLineRef3 = useRef<HTMLDivElement>(null);
+  const goalProgressDotRef = useRef<HTMLDivElement>(null);
 
   const [activeFilter, setActiveFilter] = useState<SkillCategory>("frontend");
   const [showSoftSkills, setShowSoftSkills] = useState(true);
@@ -208,16 +210,79 @@ export default function AboutPage() {
 
 
 
-    // Timeline items fade-in
-    gsap.utils.toArray('.timeline-item').forEach((item: any) => {
-      gsap.fromTo(item,
-        { opacity: 0, x: -30 },
-        { opacity: 1, x: 0, duration: 0.8, ease: "power3.out", scrollTrigger: { trigger: item, start: "top 85%" } }
+    // ─── EDUCATION & GOALS SCROLL ANIMATIONS ────────────────────────────────
+    const eduCards = gsap.utils.toArray<HTMLElement>(".education-card");
+    eduCards.forEach((card) => {
+      gsap.fromTo(card,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 85%",
+            toggleActions: "play none none reverse"
+          }
+        }
       );
     });
 
-    // Scroll-triggered dots (one moving dot per timeline)
-    gsap.utils.toArray('.progress-dot').forEach((dot: any) => {
+    const goalCards = gsap.utils.toArray<HTMLElement>(".goal-card");
+    goalCards.forEach((card) => {
+      gsap.fromTo(card,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 90%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    });
+
+    // Education Progress Line & Dot
+    if (timelineLineRef2.current) {
+      gsap.fromTo(".progress-dot",
+        { y: 0 },
+        {
+          y: timelineLineRef2.current.offsetHeight - (window.innerWidth < 768 ? 16 : 20),
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".education-container",
+            start: "top 45%",
+            end: "bottom 55%",
+            scrub: true,
+          }
+        }
+      );
+    }
+
+    // Career Goals Progress Line & Dot
+    if (timelineLineRef3.current) {
+      gsap.fromTo(".goal-progress-dot",
+        { y: 0 },
+        {
+          y: timelineLineRef3.current.offsetHeight - (window.innerWidth < 768 ? 16 : 20),
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".goals-container",
+            start: "top 45%",
+            end: "bottom 55%",
+            scrub: true,
+          }
+        }
+      );
+    }
+
+    // Scroll-triggered dots (for other sections if any)
+    gsap.utils.toArray('.progress-dot:not(.education-container .progress-dot)').forEach((dot: any) => {
       const parent = dot.parentElement;
       gsap.fromTo(dot,
         { top: "0%" },
@@ -270,7 +335,7 @@ export default function AboutPage() {
                 <span className="hero-reveal block mb-2">Hi, I&apos;m</span>
               </div>
               <div className="hero-reveal flex items-center justify-start gap-3 sm:gap-5 overflow-hidden py-2 -my-2">
-                <span className="text-brand-ink dark:text-brand-white">Gabrielle<span className="text-brand-accent">.</span></span>
+                <span className="text-brand-ink dark:text-brand-white">Gabrielle</span>
                 <span className="inline-flex items-center justify-center w-10 h-10 sm:w-14 sm:h-14 md:w-20 md:h-20 bg-brand-accent rounded-[0.75rem] sm:rounded-[1rem] md:rounded-[1.25rem] shrink-0">
                   <Smile className="w-5 h-5 sm:w-7 sm:h-7 md:w-10 md:h-10 text-brand-dark" strokeWidth={2.5} />
                 </span>
@@ -300,7 +365,7 @@ export default function AboutPage() {
 
       {/* ─── EDUCATION (ALTERNATE BG) ── */}
       <section className="relative py-16 sm:py-24 md:py-40 bg-black/[0.02] dark:bg-white/[0.01] border-y border-brand-ink/5 dark:border-brand-white/5">
-        <div className="bg-icon-parallax absolute top-1/2 left-[-15vw] sm:left-[-5vw] lg:left-10 -translate-y-1/2 w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] lg:w-[500px] lg:h-[500px] bg-brand-ink/[0.03] dark:bg-brand-white/[0.02] rounded-[3rem] sm:rounded-[4rem] lg:rounded-[5rem] rotate-12 flex items-center justify-center pointer-events-none z-0 will-change-transform">
+        <div className="bg-icon-parallax absolute top-1/2 right-[-15vw] sm:right-[-5vw] lg:right-10 -translate-y-1/2 w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] lg:w-[500px] lg:h-[500px] bg-brand-ink/[0.03] dark:bg-brand-white/[0.02] rounded-[3rem] sm:rounded-[4rem] lg:rounded-[5rem] rotate-12 flex items-center justify-center pointer-events-none z-0 will-change-transform">
           <FaGraduationCap className="w-[100px] h-[100px] sm:w-[150px] sm:h-[150px] lg:w-[200px] lg:h-[200px] text-brand-ink/[0.08] dark:text-brand-white/[0.07]" />
         </div>
 
@@ -316,35 +381,45 @@ export default function AboutPage() {
           </div>
 
           <div className="w-full lg:w-8/12 lg:pt-6">
-            <div className="relative ml-2 md:ml-4 space-y-16 md:space-y-24 pb-8 md:pb-12">
+            <div className="relative ml-2 md:ml-4 pb-8 md:pb-12 education-container">
               {/* Static timeline line */}
               <div ref={timelineLineRef2} className="absolute top-0 bottom-0 left-0 w-[2px] md:w-[3px] bg-brand-ink/10 dark:bg-brand-white/10" />
-              {/* Scrubbing dot */}
-              <div className="progress-dot absolute -left-[7px] md:-left-[9px] w-4 h-4 md:w-5 md:h-5 rounded-full bg-brand-accent shadow-[0_0_15px_rgba(var(--brand-accent),0.4)] z-10" />
 
-              {EDUCATION.map((edu, i) => (
-                <div key={i} className="timeline-item relative pl-6 sm:pl-10 md:pl-16 pt-2">
+              {/* Reverted Scroll Dot */}
+              <div className="progress-dot absolute -left-[7px] md:-left-[9px] w-4 h-4 md:w-5 md:h-5 rounded-full bg-brand-accent shadow-[0_0_15px_rgba(var(--brand-accent),0.4)] z-30" />
 
-                  <div className="flex flex-col gap-2 md:gap-3 mb-6 md:mb-8">
-                    <span className="font-mono text-[10px] sm:text-xs md:text-sm text-brand-ink/80 dark:text-brand-white/70">{edu.period}</span>
-                    <h3 className="font-mori font-semibold text-3xl sm:text-4xl md:text-5xl tracking-tighter text-brand-ink dark:text-brand-white leading-none">
-                      {edu.degree}
-                    </h3>
-                    <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-brand-ink/80 dark:text-brand-white/70 mt-1 md:mt-2">
-                      <span className="text-brand-ink dark:text-brand-accent">{edu.school}</span>
+              <div className="relative w-full space-y-24 md:space-y-40 pt-12">
+                {EDUCATION.map((edu, i) => (
+                  <div
+                    key={i}
+                    className="education-card relative w-full pl-6 sm:pl-10 md:pl-20 pt-2"
+                  >
+                    <div className="relative">
+                      <div className="flex flex-col gap-2 md:gap-4 mb-6 md:mb-10">
+                        <span className="font-mono text-xs md:text-sm font-medium tracking-[0.1em] text-brand-ink/40 dark:text-brand-white/30">
+                          {edu.period}
+                        </span>
+                        <h3 className="font-mori font-bold text-3xl sm:text-4xl md:text-6xl tracking-tighter text-brand-ink dark:text-brand-white leading-[1] -ml-0.5">
+                          {edu.degree}
+                        </h3>
+                        <div className="flex items-center gap-3 text-sm md:text-base font-medium text-brand-ink/50 dark:text-brand-white/40">
+                          <span className="w-5 h-[1px] bg-brand-ink/20 dark:bg-brand-white/20" />
+                          {edu.school}
+                        </div>
+                      </div>
+
+                      <ul className="flex flex-col gap-5 md:gap-7 max-w-2xl">
+                        {edu.points.map((point, j) => (
+                          <li key={j} className="group/item flex items-start gap-4 text-sm sm:text-base md:text-lg text-brand-ink/70 dark:text-brand-white/60 font-medium leading-relaxed">
+                            <span className="text-brand-ink/30 dark:text-brand-white/20 font-mono text-xs mt-1.5 group-hover/item:text-brand-ink/60 dark:group-hover/item:text-brand-accent transition-colors">0{j + 1}</span>
+                            <p className="flex-1">{point}</p>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
-
-                  <ul className="flex flex-col gap-4 md:gap-6">
-                    {edu.points.map((point, j) => (
-                      <li key={j} className="flex items-start gap-3 sm:gap-4 md:gap-5 text-sm sm:text-base md:text-lg text-brand-ink/80 dark:text-brand-white/70 font-medium leading-relaxed">
-                        <ArrowRight className="w-4 h-4 md:w-5 md:h-5 text-brand-ink dark:text-brand-accent shrink-0 mt-0.5 md:mt-1" strokeWidth={2.5} />
-                        {point}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -355,14 +430,17 @@ export default function AboutPage() {
       {/* ─── CORE STACK (WHITE/DEFAULT) ── */}
       <section className="relative py-20 sm:py-24 md:py-40 border-b border-brand-ink/5 dark:border-brand-white/5 bg-brand-light dark:bg-brand-dark">
 
-        <div className="bg-icon-parallax absolute top-1/2 right-[-15vw] sm:right-[-5vw] lg:right-10 -translate-y-1/2 w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] lg:w-[500px] lg:h-[500px] bg-brand-ink/[0.03] dark:bg-brand-white/[0.02] rounded-[3rem] sm:rounded-[4rem] lg:rounded-[5rem] -rotate-12 flex items-center justify-center pointer-events-none z-0 will-change-transform">
+        <div className="bg-icon-parallax absolute top-1/2 left-[-15vw] sm:left-[-5vw] lg:left-10 -translate-y-1/2 w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] lg:w-[500px] lg:h-[500px] bg-brand-ink/[0.03] dark:bg-brand-white/[0.02] rounded-[3rem] sm:rounded-[4rem] lg:rounded-[5rem] -rotate-12 hidden lg:flex items-center justify-center pointer-events-none z-0 will-change-transform">
           <ComputerSolidIcon className="w-[100px] h-[100px] sm:w-[150px] sm:h-[150px] lg:w-[200px] lg:h-[200px] text-brand-ink/[0.08] dark:text-brand-white/[0.07]" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 relative z-10">
 
           <div className="mb-10 sm:mb-14 md:mb-16 flex flex-col md:flex-row md:items-end gap-3 md:gap-16">
-            <SectionTitle>Core <br />Stack</SectionTitle>
+            <div className="flex flex-col gap-4">
+              <SectionTag>Technical Skills</SectionTag>
+              <SectionTitle>Core <br />Stack</SectionTitle>
+            </div>
             <p className="text-sm md:text-base text-brand-ink/80 dark:text-brand-white/70 font-medium max-w-xs pb-1">
               Primary frameworks and systems used in my development cycles.
             </p>
@@ -452,7 +530,7 @@ export default function AboutPage() {
 
       {/* ─── BEYOND THE CODE (ALTERNATE BG) ── */}
       <section className="toggle-section relative py-20 sm:py-24 md:py-40 bg-black/[0.02] dark:bg-white/[0.01] border-b border-brand-ink/5 dark:border-brand-white/5">
-        <div className="bg-icon-parallax absolute top-1/2 left-[-15vw] sm:left-[-5vw] lg:left-10 -translate-y-1/2 w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] lg:w-[500px] lg:h-[500px] bg-brand-ink/[0.03] dark:bg-brand-white/[0.02] rounded-[3rem] sm:rounded-[4rem] lg:rounded-[5rem] rotate-12 flex items-center justify-center pointer-events-none z-0 will-change-transform">
+        <div className="bg-icon-parallax absolute top-1/2 right-[-15vw] sm:right-[-5vw] lg:right-10 -translate-y-1/2 w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] lg:w-[500px] lg:h-[500px] bg-brand-ink/[0.03] dark:bg-brand-white/[0.02] rounded-[3rem] sm:rounded-[4rem] lg:rounded-[5rem] rotate-12 flex items-center justify-center pointer-events-none z-0 will-change-transform">
           <FaHeadphones className="w-[100px] h-[100px] sm:w-[150px] sm:h-[150px] lg:w-[200px] lg:h-[200px] text-brand-ink/[0.08] dark:text-brand-white/[0.07]" />
         </div>
 
@@ -496,40 +574,39 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* Cards */}
+          {/* Image 2 Inspired 4-Column Grid */}
           <div className="-mx-4 sm:-mx-6 md:-mx-12">
             <SmoothHeightWrapper>
               <div className="px-4 sm:px-6 md:px-12 py-4 sm:py-6 md:py-8">
-                <div ref={toggleGridRef} className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6 pb-1">
+                <div ref={toggleGridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-6 pb-1">
                   {(showSoftSkills ? SOFT_SKILLS : INTERESTS).map((item, i) => {
                     const Icon = item.icon;
                     return (
                       <div
                         key={item.title}
-                        className="toggle-card group relative flex flex-col gap-5 sm:gap-6 p-6 sm:p-7 md:p-8 rounded-[1.75rem] sm:rounded-[2rem] border border-brand-ink/15 dark:border-brand-white/10 shadow-xl shadow-brand-ink/[0.04] dark:shadow-none bg-white/40 dark:bg-[#111]/40 backdrop-blur-md hover:border-brand-ink/20 dark:hover:border-brand-white/15 transition-all duration-300 overflow-hidden"
+                        className="toggle-card group relative flex flex-col gap-8 p-8 border-t border-brand-ink/10 dark:border-brand-white/10 hover:bg-brand-ink/[0.03] dark:hover:bg-brand-white/[0.03] transition-all duration-500"
                       >
-                        <div className="flex items-start justify-between">
-                          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-[#eff9d9] dark:bg-[#202812] flex items-center justify-center shrink-0 group-hover:bg-brand-accent group-hover:scale-110 transition-all duration-300">
+                        <div className="flex items-center justify-between relative z-10">
+                          <div className="w-10 h-10 rounded-xl bg-brand-accent/15 dark:bg-brand-white/5 flex items-center justify-center shrink-0 group-hover:bg-brand-accent dark:group-hover:bg-brand-accent transition-all duration-500">
                             <Icon
-                              className="w-5 h-5 sm:w-6 sm:h-6 text-brand-ink dark:text-brand-accent group-hover:text-brand-dark transition-colors duration-300"
-                              strokeWidth={2}
+                              className="w-5 h-5 text-brand-ink dark:text-brand-accent group-hover:text-brand-dark dark:group-hover:text-black transition-colors duration-500"
+                              strokeWidth={1.5}
                             />
                           </div>
+                          {/* Number: Neutral in light, Accent in dark hover */}
+                          <span className="font-mori font-bold text-xs tabular-nums text-brand-ink/20 dark:text-brand-white/20 group-hover:text-brand-ink/30 dark:group-hover:text-brand-accent/60 transition-colors">
+                            0{i + 1}
+                          </span>
                         </div>
 
-                        <div className="flex flex-col gap-2 sm:gap-2.5 relative z-10">
-                          <h3 className="font-mori font-semibold text-lg sm:text-xl tracking-tight text-brand-ink dark:text-brand-white leading-tight">
+                        <div className="flex flex-col gap-4 relative z-10">
+                          <h3 className="font-mori font-bold text-2xl tracking-tight text-brand-ink dark:text-brand-white transition-colors duration-500">
                             {item.title}
                           </h3>
-                          <p className="text-xs sm:text-sm text-brand-ink/80 dark:text-brand-white/70 font-medium leading-relaxed">
+                          <p className="text-base text-brand-ink/50 dark:text-brand-white/40 font-medium leading-relaxed group-hover:text-brand-ink/70 dark:group-hover:text-brand-white/60 transition-colors duration-500">
                             {item.desc}
                           </p>
                         </div>
-
-                        {/* Large Background Number */}
-                        <span className="absolute -bottom-4 -right-2 text-[8rem] sm:text-[10rem] font-mori font-semibold leading-none tracking-tighter text-brand-ink/[0.03] dark:text-brand-white/[0.02] select-none pointer-events-none group-hover:text-brand-ink/[0.05] dark:group-hover:text-brand-white/[0.05] transition-colors duration-500">
-                          {String(i + 1).padStart(2, "0")}
-                        </span>
                       </div>
                     );
                   })}
@@ -540,52 +617,65 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ─── CAREER GOALS & SPECIALIZATION (WHITE/DEFAULT) ── */}
-      <section className="relative py-16 sm:py-24 md:py-32 border-b border-brand-ink/5 dark:border-brand-white/5 bg-brand-light dark:bg-brand-dark">
-        <div className="bg-icon-parallax absolute top-1/2 right-[-15vw] sm:right-[-5vw] lg:right-10 -translate-y-1/2 w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] lg:w-[500px] lg:h-[500px] bg-brand-ink/[0.03] dark:bg-brand-white/[0.02] rounded-[3rem] sm:rounded-[4rem] lg:rounded-[5rem] -rotate-12 flex items-center justify-center pointer-events-none z-0 will-change-transform">
-          <FaArrowUp className="w-[100px] h-[100px] sm:w-[150px] sm:h-[150px] lg:w-[200px] lg:h-[200px] text-brand-ink/[0.08] dark:text-brand-white/[0.07]" />
-        </div>
+      {/* ─── CAREER GOALS — IMAGE 1 BESPOKE LAYOUT ── */}
+      <section className="relative py-24 sm:py-32 md:py-48 border-b border-brand-ink/5 dark:border-brand-white/5 bg-brand-light dark:bg-brand-dark">
+        {/* SVG removed as requested */}
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 relative z-10 flex flex-col gap-10 sm:gap-12 md:gap-16">
-          <div className="flex flex-col md:flex-row md:items-end gap-6 md:gap-16">
-            <div>
-              <SectionTag className="mb-4 sm:mb-6">Objectives</SectionTag>
-              <SectionTitle>
-                My Career <br />Goals
-              </SectionTitle>
-            </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 relative z-10 flex flex-col lg:flex-row gap-10 sm:gap-16 lg:gap-32">
+
+          <div className="w-full lg:w-4/12 lg:sticky lg:top-40 h-fit">
+            <SectionTag className="mb-6">Objectives</SectionTag>
+            <SectionTitle className="mb-8">
+              My Career <br />Goals
+            </SectionTitle>
+            <p className="text-base md:text-lg text-brand-ink/60 dark:text-brand-white/50 font-medium leading-relaxed max-w-xs">
+              My mission is to build digital products that combine technical depth with human-centered design.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-            {GOALS.map((goal, i) => (
-              <div key={i} className={`group relative flex flex-col p-8 sm:p-10 md:p-12 rounded-[2rem] border border-brand-ink/15 dark:border-brand-white/10 overflow-hidden bg-white/40 dark:bg-[#111]/40 backdrop-blur-md hover:border-brand-ink/20 dark:hover:border-brand-white/15 transition-all duration-300 shadow-xl shadow-brand-ink/[0.04] dark:shadow-none`}>
-                {/* Background number */}
-                <span className="absolute -bottom-6 -right-4 text-[10rem] md:text-[14rem] font-mori font-semibold leading-none tracking-tighter text-brand-ink/[0.03] dark:text-brand-white/[0.02] select-none pointer-events-none group-hover:text-brand-ink/[0.05] dark:group-hover:text-brand-white/[0.05] transition-colors duration-500">
-                  {goal.num}
-                </span>
-                {/* Icon Container */}
-                <div className="relative z-10 w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-[#eff9d9] dark:bg-[#202812] group-hover:bg-brand-accent group-hover:scale-110 flex items-center justify-center mb-10 md:mb-14 transition-all duration-300">
-                  <goal.icon className="w-6 h-6 md:w-7 md:h-7 text-brand-ink dark:text-brand-accent group-hover:text-brand-dark transition-colors duration-300" strokeWidth={2.5} />
-                </div>
-                {/* Content */}
-                <div className="relative z-10 w-full mt-auto">
-                  <h3 className="font-mori font-semibold text-2xl sm:text-[1.75rem] md:text-4xl tracking-tighter text-brand-ink dark:text-brand-white mb-4 leading-[1.05]">
-                    {/* Splitting the title into two lines based on words if possible, or just letting it wrap */}
-                    {goal.title.split(' ').map((word, idx) => <span key={idx} className="block">{word}</span>)}
-                  </h3>
-                  <p className="text-sm md:text-base text-brand-ink/80 dark:text-brand-white/70 font-medium leading-relaxed max-w-[90%] lg:max-w-none xl:max-w-[90%]">
-                    {goal.desc}
-                  </p>
-                </div>
+          <div className="w-full lg:w-8/12 lg:pt-6">
+            <div className="relative ml-2 md:ml-4 pb-8 md:pb-12 goals-container">
+              {/* GSAP Scroll Timeline */}
+              <div ref={timelineLineRef3} className="absolute top-0 bottom-0 left-0 w-[2px] md:w-[3px] bg-brand-ink/10 dark:bg-brand-white/10" />
+              <div className="goal-progress-dot absolute -left-[7px] md:-left-[9px] w-4 h-4 md:w-5 md:h-5 rounded-full bg-brand-accent z-30" />
+
+              <div className="relative w-full space-y-32 md:space-y-48 pt-12">
+                {GOALS.map((goal, i) => (
+                  <div key={i} className="group relative w-full pl-6 sm:pl-10 md:pl-20">
+                    {/* Large Number Background (Image 1 Style) */}
+                    <span className="absolute -left-4 -top-12 text-[12rem] md:text-[18rem] font-mori font-black text-brand-ink/[0.03] dark:text-brand-white/[0.02] select-none pointer-events-none group-hover:text-brand-ink/[0.05] dark:group-hover:text-brand-accent/10 transition-colors duration-700 leading-none">
+                      {goal.num}
+                    </span>
+
+                    <div className="relative z-10 w-full">
+                      <div className="flex items-center gap-6 mb-8">
+                        {/* Icon Container next to title */}
+                        <div className="w-12 h-12 md:w-16 md:h-16 rounded-[1.25rem] border border-brand-ink/10 dark:border-brand-white/10 flex items-center justify-center bg-white/50 dark:bg-white/[0.02] backdrop-blur-sm group-hover:border-brand-accent group-hover:bg-brand-accent transition-all duration-500 shrink-0">
+                          <goal.icon className="w-6 h-6 md:w-8 md:h-8 text-brand-ink/30 dark:text-brand-white/30 group-hover:text-brand-dark transition-colors duration-500" strokeWidth={1.5} />
+                        </div>
+                        <h3 className="font-mori font-bold text-3xl sm:text-5xl md:text-7xl tracking-tighter text-brand-ink dark:text-brand-white leading-[0.95]">
+                          {goal.title}
+                        </h3>
+                      </div>
+
+                      {/* Divider logic */}
+                      <div className="w-full h-[1px] bg-brand-ink/10 dark:bg-brand-white/10 mb-10 group-hover:bg-brand-ink/20 dark:group-hover:bg-brand-accent transition-all duration-700" />
+
+                      <p className="text-base md:text-xl text-brand-ink/65 dark:text-brand-white/50 font-medium leading-relaxed max-w-xl group-hover:text-brand-ink/80 dark:group-hover:text-brand-white/70 transition-colors">
+                        {goal.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* ─── CERTIFICATIONS (ALTERNATE BG) ── */}
       <section className="relative py-20 sm:py-24 md:py-40 border-t border-brand-ink/5 dark:border-brand-white/5 bg-black/[0.02] dark:bg-white/[0.01]">
-        <div className="bg-icon-parallax absolute top-1/2 left-[-15vw] sm:left-[-5vw] lg:left-10 -translate-y-1/2 w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] lg:w-[500px] lg:h-[500px] bg-brand-ink/[0.03] dark:bg-brand-white/[0.02] rounded-[3rem] sm:rounded-[4rem] lg:rounded-[5rem] rotate-12 flex items-center justify-center pointer-events-none z-0 will-change-transform">
+        <div className="bg-icon-parallax absolute top-1/2 right-[-15vw] sm:right-[-5vw] lg:right-10 -translate-y-1/2 w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] lg:w-[500px] lg:h-[500px] bg-brand-ink/[0.03] dark:bg-brand-white/[0.02] rounded-[3rem] sm:rounded-[4rem] lg:rounded-[5rem] rotate-12 flex items-center justify-center pointer-events-none z-0 will-change-transform">
           <FaFileAlt className="w-[100px] h-[100px] sm:w-[150px] sm:h-[150px] lg:w-[200px] lg:h-[200px] text-brand-ink/[0.08] dark:text-brand-white/[0.07]" />
         </div>
 
@@ -628,6 +718,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-    </main>
+    </main >
   );
 }

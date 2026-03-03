@@ -12,7 +12,8 @@ import {
   Github,
   Layers,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Code2
 } from "lucide-react";
 import Button from "@/components/ui/Button";
 import SectionTag from "@/components/ui/SectionTag";
@@ -107,24 +108,28 @@ export default function ProjectsPage() {
             SECTION 1 — HERO
             ═══════════════════════════════════════════════════════ */}
         <section className="hero-section mb-24 md:mb-40 relative">
-          <div className="hero-bg-icon absolute top-[-5vh] right-[-10vw] lg:right-10 w-[300px] h-[300px] md:w-[400px] md:h-[400px] lg:w-[600px] lg:h-[600px] pointer-events-none z-0 opacity-[0.04] dark:opacity-[0.02]">
+          {/* Scroll-triggered SVG background — line-style folder icon like blog */}
+          <div className="hero-bg-icon absolute top-[-5vh] right-[-10vw] lg:right-10 w-[300px] h-[300px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] pointer-events-none z-0 opacity-[0.04] dark:opacity-[0.02]">
             <Layers className="w-full h-full text-brand-ink dark:text-brand-white" strokeWidth={1} />
           </div>
 
           <div className="relative z-10">
-            <SectionTag className="hero-reveal mb-6 md:mb-8">Portfolio</SectionTag>
+            <SectionTag className="hero-reveal mb-6 md:mb-8">Selected Projects</SectionTag>
 
             <HeroHeading>
-              <div className="overflow-hidden py-4 -my-4 pr-8 -mr-8">
-                <span className="hero-reveal inline-block pr-4">Selected</span>
+              <div className="overflow-hidden py-3 -my-3 pr-4 -mr-4">
+                <span className="hero-reveal inline-block pr-4 font-mori font-semibold">Project</span>
               </div>
               <div className="hero-reveal flex items-center justify-start gap-3 sm:gap-5 overflow-hidden py-2 -my-2">
-                <span className="text-brand-ink dark:text-brand-white">Projects<span className="text-brand-accent">.</span></span>
+                <span className="text-brand-ink dark:text-brand-white font-mori font-semibold">Archive</span>
+                <span className="inline-flex items-center justify-center w-10 h-10 sm:w-14 sm:h-14 md:w-20 md:h-20 bg-brand-accent rounded-[0.75rem] sm:rounded-[1rem] md:rounded-[1.25rem] shrink-0">
+                  <Code2 className="w-5 h-5 sm:w-7 sm:h-7 md:w-10 md:h-10 text-brand-dark" strokeWidth={2.5} />
+                </span>
               </div>
             </HeroHeading>
 
-            <p className="hero-desc text-base md:text-xl text-brand-ink/80 dark:text-brand-white/70 leading-relaxed font-medium max-w-3xl">
-              A curated selection of projects that showcase my approach to full-stack development, systems design, and brand engineering. From luxury e-commerce to gamified ecology.
+            <p className="hero-desc text-base md:text-xl text-brand-ink/80 dark:text-brand-white/70 leading-relaxed font-medium max-w-2xl">
+              A curated collection of full-stack systems and digital experiences, built with technical precision and a focus on long-term scalability.
             </p>
 
             <div className="hero-divider w-full h-[1px] bg-brand-ink/20 dark:bg-brand-white/20 mt-16 md:mt-24 origin-left" />
