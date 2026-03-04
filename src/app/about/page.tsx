@@ -341,7 +341,7 @@ export default function AboutPage() {
                 </span>
               </div>
             </HeroHeading>
-            <div className="flex flex-col gap-4 sm:gap-6 text-sm md:text-[1.05rem] text-brand-ink/80 dark:text-brand-white/70 leading-relaxed font-medium max-w-xl fade-in-element">
+            <div className="flex flex-col gap-4 sm:gap-6 text-sm md:text-lg text-brand-ink/80 dark:text-brand-white/70 leading-relaxed font-medium max-w-xl fade-in-element">
               <p>I am a full-stack developer based in the Philippines 🇵🇭, specializing in building modern web applications that are both structurally robust and visually compelling. My work focuses on creating digital solutions that are purposeful, scalable, and thoughtfully designed.</p>
 
               <p>I am currently a third-year BS Information Technology student at Holy Angel University. With a strong foundation in both development and design, I bring a balanced and strategic perspective to every project I take on.</p>
@@ -410,7 +410,7 @@ export default function AboutPage() {
 
                       <ul className="flex flex-col gap-5 md:gap-7 max-w-2xl">
                         {edu.points.map((point, j) => (
-                          <li key={j} className="group/item flex items-start gap-4 text-sm sm:text-base md:text-lg text-brand-ink/70 dark:text-brand-white/60 font-medium leading-relaxed">
+                          <li key={j} className="group/item flex items-start gap-4 text-sm md:text-base lg:text-lg text-brand-ink/70 dark:text-brand-white/60 font-medium leading-relaxed">
                             <span className="text-brand-ink/30 dark:text-brand-white/20 font-mono text-xs mt-1.5 group-hover/item:text-brand-ink/60 dark:group-hover/item:text-brand-accent transition-colors">0{j + 1}</span>
                             <p className="flex-1">{point}</p>
                           </li>
@@ -447,7 +447,7 @@ export default function AboutPage() {
           </div>
 
           {/* Filter tabs */}
-          <div className="filter-row flex items-end border-b border-brand-ink/10 dark:border-brand-white/10 mb-10 sm:mb-14 md:mb-16 gap-0">
+          <div className="filter-row flex items-end border-b border-brand-ink/10 dark:border-brand-white/10 mb-10 sm:mb-14 md:mb-16 gap-0 overflow-x-auto hide-scrollbar">
             {FILTER_TABS.map((tab, idx) => {
               const isActive = activeFilter === tab.value;
               const count = SKILLS.filter((s) => s.category === tab.value).length;
@@ -462,14 +462,14 @@ export default function AboutPage() {
                 >
                   <span className={`text-[10px] md:text-xs font-black tabular-nums transition-colors duration-300 ${isActive
                     ? "text-brand-ink dark:text-brand-accent"
-                    : "text-brand-ink/20 dark:text-brand-white/20 group-hover:text-brand-ink/35 dark:group-hover:text-brand-white/35"
+                    : "text-brand-ink/40 dark:text-brand-white/40 group-hover:text-brand-ink/55 dark:group-hover:text-brand-white/55"
                     }`}>
                     {String(idx + 1).padStart(2, "0")}
                   </span>
                   {tab.label}
                   <span className={`text-[10px] md:text-xs font-medium normal-case tracking-normal transition-colors duration-300 ${isActive
-                    ? "text-brand-ink/45 dark:text-brand-white/45"
-                    : "text-brand-ink/15 dark:text-brand-white/15"
+                    ? "text-brand-ink/50 dark:text-brand-white/45"
+                    : "text-brand-ink/50 dark:text-brand-white/15"
                     }`}>
                     {count} skills
                   </span>
@@ -506,7 +506,7 @@ export default function AboutPage() {
                                 </span>
                               )}
                             </div>
-                            <span className="font-mono text-[10px] md:text-xs text-brand-ink/35 dark:text-brand-white/35 shrink-0 ml-3">
+                            <span className="font-mono text-[10px] md:text-xs text-brand-ink/50 dark:text-brand-white/35 shrink-0 ml-3">
                               {skill.level}%
                             </span>
                           </div>
@@ -545,7 +545,7 @@ export default function AboutPage() {
 
             {/* Toggle */}
             <div className="flex flex-col gap-1">
-              <p className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.25em] text-brand-ink/35 dark:text-brand-white/35 mb-1">
+              <p className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.25em] text-brand-ink/40 dark:text-brand-white/35 mb-1">
                 Toggle view
               </p>
               <div className="flex items-end border-b border-brand-ink/10 dark:border-brand-white/10 gap-0">
@@ -563,7 +563,7 @@ export default function AboutPage() {
                   >
                     <span className={`text-[10px] font-black tabular-nums transition-colors duration-300 ${tab.active
                       ? "text-brand-ink dark:text-brand-accent"
-                      : "text-brand-ink/20 dark:text-brand-white/20"
+                      : "text-brand-ink/40 dark:text-brand-white/20"
                       }`}>
                       {String(tab.idx).padStart(2, "0")}
                     </span>
@@ -600,10 +600,10 @@ export default function AboutPage() {
                         </div>
 
                         <div className="flex flex-col gap-4 relative z-10">
-                          <h3 className="font-mori font-bold text-2xl tracking-tight text-brand-ink dark:text-brand-white transition-colors duration-500">
+                          <h3 className="font-mori font-bold text-xl md:text-2xl lg:text-3xl tracking-tight text-brand-ink dark:text-brand-white transition-colors duration-500">
                             {item.title}
                           </h3>
-                          <p className="text-base text-brand-ink/50 dark:text-brand-white/40 font-medium leading-relaxed group-hover:text-brand-ink/70 dark:group-hover:text-brand-white/60 transition-colors duration-500">
+                          <p className="text-sm md:text-base lg:text-lg text-brand-ink/70 dark:text-brand-white/40 font-medium leading-relaxed group-hover:text-brand-ink/80 dark:group-hover:text-brand-white/60 transition-colors duration-500">
                             {item.desc}
                           </p>
                         </div>
@@ -628,7 +628,7 @@ export default function AboutPage() {
             <SectionTitle className="mb-8">
               My Career <br />Goals
             </SectionTitle>
-            <p className="text-base md:text-lg text-brand-ink/60 dark:text-brand-white/50 font-medium leading-relaxed max-w-xs">
+            <p className="text-sm md:text-base lg:text-lg text-brand-ink/70 dark:text-brand-white/50 font-medium leading-relaxed max-w-xs">
               My mission is to build digital products that combine technical depth with human-centered design.
             </p>
           </div>
@@ -643,7 +643,7 @@ export default function AboutPage() {
                 {GOALS.map((goal, i) => (
                   <div key={i} className="group relative w-full pl-6 sm:pl-10 md:pl-20">
                     {/* Large Number Background (Image 1 Style) */}
-                    <span className="absolute -left-4 -top-12 text-[12rem] md:text-[18rem] font-mori font-black text-brand-ink/[0.03] dark:text-brand-white/[0.02] select-none pointer-events-none group-hover:text-brand-ink/[0.05] dark:group-hover:text-brand-accent/10 transition-colors duration-700 leading-none">
+                    <span className="absolute -left-4 -top-8 sm:-top-12 text-[8rem] sm:text-[12rem] md:text-[18rem] font-mori font-black text-brand-ink/[0.03] dark:text-brand-white/[0.02] select-none pointer-events-none group-hover:text-brand-ink/[0.05] dark:group-hover:text-brand-accent/10 transition-colors duration-700 leading-none">
                       {goal.num}
                     </span>
 
@@ -661,7 +661,7 @@ export default function AboutPage() {
                       {/* Divider logic */}
                       <div className="w-full h-[1px] bg-brand-ink/10 dark:bg-brand-white/10 mb-10 group-hover:bg-brand-ink/20 dark:group-hover:bg-brand-accent transition-all duration-700" />
 
-                      <p className="text-base md:text-xl text-brand-ink/65 dark:text-brand-white/50 font-medium leading-relaxed max-w-xl group-hover:text-brand-ink/80 dark:group-hover:text-brand-white/70 transition-colors">
+                      <p className="text-sm md:text-lg lg:text-xl text-brand-ink/80 dark:text-brand-white/50 font-medium leading-relaxed max-w-xl group-hover:text-brand-ink/90 dark:group-hover:text-brand-white/70 transition-colors">
                         {goal.desc}
                       </p>
                     </div>
@@ -694,7 +694,7 @@ export default function AboutPage() {
                   <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] px-2.5 py-1 rounded-full border border-brand-ink/20 bg-brand-ink/[0.06] text-brand-ink dark:border-brand-accent dark:bg-brand-accent dark:text-brand-dark transition-colors duration-300">
                     {group.issuer}
                   </span>
-                  <span className="text-[10px] font-medium text-brand-ink/30 dark:text-brand-white/30">{group.year}</span>
+                  <span className="text-[10px] font-medium text-brand-ink/50 dark:text-brand-white/30">{group.year}</span>
                 </div>
 
                 <div className="flex flex-col gap-2 sm:gap-3">

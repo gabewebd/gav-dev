@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, FC, ReactNode } from 'react';
+import { useEffect, useRef, useState, FC, ReactNode } from 'react';
 import { gsap } from 'gsap';
 
 interface GridMotionProps {
@@ -12,23 +12,37 @@ const GridMotion: FC<GridMotionProps> = ({ items = [], gradientColor = 'black' }
     const gridRef = useRef<HTMLDivElement>(null);
     const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
 
+    // State for responsive rows/cols
+    const [gridConfig, setGridConfig] = useState({ rows: 3, cols: 4 });
+
     // Initialize to 0 instead of window.innerWidth to prevent SSR errors
     const mouseXRef = useRef<number>(0);
 
-    // Fewer, larger cells: 3 rows × 4 columns = 12 items
-    const totalItems = 12;
-    const defaultItems = Array.from({ length: totalItems }, (_, index) => `Item ${index + 1}`);
+    useEffect(() => {
+        const updateConfig = () => {
+            const width = window.innerWidth;
+            if (width < 640) {
+                setGridConfig({ rows: 2, cols: 2 });
+            } else if (width < 1024) {
+                setGridConfig({ rows: 3, cols: 3 });
+            } else {
+                setGridConfig({ rows: 3, cols: 4 });
+            }
+        };
+
+        updateConfig();
+        window.addEventListener('resize', updateConfig);
+        return () => window.removeEventListener('resize', updateConfig);
+    }, []);
+
+    const { rows, cols } = gridConfig;
+    const totalItems = rows * cols;
     const combinedItems = items.length > 0
         ? Array.from({ length: totalItems }, (_, i) => items[i % items.length])
-        : defaultItems;
-
-    const rows = 3;
-    const cols = 4;
+        : Array.from({ length: totalItems }, (_, index) => `Item ${index + 1}`);
 
     useEffect(() => {
-        // Only access window once mounted on the client
         mouseXRef.current = window.innerWidth / 2;
-
         gsap.ticker.lagSmoothing(0);
 
         const handleMouseMove = (e: MouseEvent): void => {
@@ -47,7 +61,7 @@ const GridMotion: FC<GridMotionProps> = ({ items = [], gradientColor = 'black' }
 
                     gsap.to(row, {
                         x: moveAmount,
-                        duration: baseDuration + inertiaFactors[index % inertiaFactors.length],
+                        duration: baseDuration + inertiaFactors[index % inertiaFactors.length] || 0.5,
                         ease: 'power3.out',
                         overwrite: 'auto'
                     });
@@ -62,7 +76,7 @@ const GridMotion: FC<GridMotionProps> = ({ items = [], gradientColor = 'black' }
             window.removeEventListener('mousemove', handleMouseMove);
             removeAnimationLoop();
         };
-    }, []);
+    }, [rows]); // Re-run if rows change to ensure refs are handled
 
     return (
         <div ref={gridRef} className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
@@ -72,13 +86,13 @@ const GridMotion: FC<GridMotionProps> = ({ items = [], gradientColor = 'black' }
                     background: `radial-gradient(circle, ${gradientColor} 0%, transparent 100%)`
                 }}
             >
-                <div className="gap-6 flex-none relative w-[200vw] h-[200vh] grid grid-cols-1 rotate-[-15deg] origin-center z-[2]"
+                <div className="gap-4 md:gap-6 flex-none relative w-[150vw] sm:w-[200vw] h-[150vh] sm:h-[200vh] grid grid-cols-1 rotate-[-15deg] origin-center z-[2]"
                     style={{ gridTemplateRows: `repeat(${rows}, 1fr)` }}
                 >
                     {Array.from({ length: rows }, (_, rowIndex) => (
                         <div
-                            key={rowIndex}
-                            className="grid gap-6"
+                            key={`${rowIndex}-${rows}`} // Unique key when rows change
+                            className="grid gap-4 md:gap-6"
                             style={{ willChange: 'transform, filter', gridTemplateColumns: `repeat(${cols}, 1fr)` }}
                             ref={el => {
                                 if (el) rowRefs.current[rowIndex] = el;
@@ -88,7 +102,7 @@ const GridMotion: FC<GridMotionProps> = ({ items = [], gradientColor = 'black' }
                                 const content = combinedItems[rowIndex * cols + itemIndex];
                                 return (
                                     <div key={itemIndex} className="relative aspect-[16/10]">
-                                        <div className="relative w-full h-full overflow-hidden rounded-2xl bg-[#e8e8e8] dark:bg-[#111] shadow-lg shadow-brand-ink/10 dark:shadow-black/30 border border-brand-ink/10 dark:border-white/5 flex items-center justify-center text-white text-[1.5rem]">
+                                        <div className="relative w-full h-full overflow-hidden rounded-xl md:rounded-2xl bg-[#e8e8e8] dark:bg-[#111] shadow-lg shadow-brand-ink/10 dark:shadow-black/30 border border-brand-ink/10 dark:border-white/5 flex items-center justify-center text-white text-[1rem] md:text-[1.5rem]">
                                             {typeof content === 'string' && (content.startsWith('http') || content.startsWith('/')) ? (
                                                 <div
                                                     className="w-full h-full bg-cover bg-center absolute top-0 left-0"

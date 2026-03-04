@@ -10,6 +10,7 @@ import { useGSAP } from "@gsap/react";
 import { ArrowLeft, ExternalLink, Github, ArrowRight, ChevronLeft, ChevronRight, X } from "lucide-react";
 import PreviewLink from "@/components/ui/PreviewLink";
 import Button from "@/components/ui/Button";
+import GridMotion from "@/components/ui/GridMotion";
 
 import { PROJECTS_DATA, type ContentBlock, type ProjectImage } from "@/data/projects";
 
@@ -177,6 +178,12 @@ export default function ProjectDetail() {
 
     if (!project) return <div className="min-h-screen flex items-center justify-center font-outfit font-black text-2xl uppercase bg-brand-light dark:bg-brand-dark text-brand-ink dark:text-brand-white">System Error: Project Not Found.</div>;
 
+    const gridItems = [
+        ...(project.gallery?.map(img => img.src) || []),
+        project.slugImg,
+        project.heroImg
+    ].filter(Boolean) as string[];
+
     return (
         <main ref={containerRef} className="relative min-h-screen bg-brand-light dark:bg-brand-dark selection:bg-brand-accent selection:text-brand-dark transition-colors duration-500 overflow-x-clip">
 
@@ -187,9 +194,8 @@ export default function ProjectDetail() {
 
             {/* ── 1. 100VH HERO IMAGE ── */}
             <section className="relative w-full h-[80vh] md:h-screen flex items-end pb-16 md:pb-24 px-6 md:px-12 bg-brand-dark">
-                <div className="absolute inset-0 bg-brand-dark z-0 flex items-center justify-center overflow-hidden">
-                    {/* Max quality for the primary 100vh hero image */}
-                    <Image src={project.slugImg || project.heroImg} alt={project.title} fill className="object-cover object-center opacity-40 dark:opacity-50 scale-105" priority quality={100} sizes="100vw" />
+                <div className="absolute inset-0 z-0 opacity-25">
+                    <GridMotion items={gridItems} gradientColor="transparent" />
                 </div>
 
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/80 to-transparent z-10" />
@@ -378,7 +384,7 @@ export default function ProjectDetail() {
                                         <ArrowLeft className="w-3.5 h-3.5 text-brand-accent group-hover:-translate-x-1.5 transition-transform" />
                                         <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/70">Previous</span>
                                     </div>
-                                    <h4 className="font-mori font-semibold text-3xl md:text-5xl tracking-tighter text-white drop-shadow-md">{prevProject.title}</h4>
+                                    <h4 className="font-outfit font-black text-2xl md:text-4xl tracking-tighter text-white leading-[1.1] drop-shadow-md">{prevProject.title}</h4>
                                 </div>
                             </Link>
                         )}
@@ -392,7 +398,7 @@ export default function ProjectDetail() {
                                         <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/70">Next Project</span>
                                         <ArrowRight className="w-3.5 h-3.5 text-brand-accent group-hover:translate-x-1.5 transition-transform" />
                                     </div>
-                                    <h4 className="font-mori font-semibold text-3xl md:text-5xl tracking-tighter text-white drop-shadow-md">{nextProject.title}</h4>
+                                    <h4 className="font-outfit font-black text-2xl md:text-4xl tracking-tighter text-white leading-[1.1] drop-shadow-md">{nextProject.title}</h4>
                                 </div>
                             </Link>
                         )}
