@@ -86,10 +86,28 @@ export default function ProjectsPage() {
       scrollTrigger: { trigger: ".hero-section", start: "top top", end: "bottom top", scrub: true }
     });
 
+    // CTA Scroll Reveal
+    gsap.fromTo(".cta-section > div > *",
+      { y: 60, opacity: 0 },
+      {
+        y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: "power4.out",
+        scrollTrigger: { trigger: ".cta-section", start: "top 80%" }
+      }
+    );
+
     if (epicHighlightRef.current) {
       gsap.fromTo(epicHighlightRef.current,
         { scaleX: 0, transformOrigin: "left center" },
-        { scaleX: 1, ease: "none", scrollTrigger: { trigger: ".cta-section", start: "top 75%", end: "center center", scrub: 1 } }
+        {
+          scaleX: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".cta-section",
+            start: "top 70%",
+            end: "center center",
+            scrub: 1
+          }
+        }
       );
     }
 
@@ -201,7 +219,7 @@ export default function ProjectsPage() {
 
                     <div className="lg:hidden mt-2 flex justify-center w-full">
                       <Link href={`/projects/${project.slug}`} className="group text-brand-ink dark:text-brand-white text-xs font-outfit font-bold uppercase tracking-widest inline-flex items-center gap-2 transition-colors py-2">
-                        Project Details <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
+                        View Project Details <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
                       </Link>
                     </div>
 
@@ -217,7 +235,7 @@ export default function ProjectsPage() {
 
                           <div className="absolute inset-0 bg-brand-ink/20 dark:bg-brand-dark/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-white text-brand-dark px-8 py-4 rounded-full font-outfit font-bold uppercase tracking-widest text-xs flex items-center gap-3 opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 shadow-2xl z-20">
-                            Project Details <ArrowRight className="w-4 h-4" />
+                            View Project Details <ArrowRight className="w-4 h-4" />
                           </div>
                         </Link>
                       ))}
@@ -234,32 +252,33 @@ export default function ProjectsPage() {
       {/* ═══════════════════════════════════════════════════════
           SECTION 4 — CTA REDIRECT 
           ═══════════════════════════════════════════════════════ */}
-      <section className="cta-section relative py-20 sm:py-24 md:py-32 border-t border-brand-ink/5 dark:border-brand-white/5 bg-black/[0.02] dark:bg-white/[0.01] overflow-hidden flex flex-col items-center justify-center text-center px-4">
+      <section className="cta-section relative py-32 md:py-48 border-t border-brand-ink/5 dark:border-brand-white/5 bg-black/[0.02] dark:bg-white/[0.01] overflow-hidden flex flex-col items-center justify-center text-center px-4">
         <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center w-full">
-          <h3 className="font-mori font-semibold text-3xl sm:text-4xl md:text-5xl tracking-tighter text-brand-ink dark:text-brand-white mb-4 md:mb-6">
-            Want to Work With{" "}
+          <h2 className="cta-heading font-mori font-semibold text-[clamp(2.2rem,6vw,5rem)] tracking-tight text-brand-ink dark:text-brand-white mb-10 md:mb-14 leading-[1.2] max-w-4xl">
+            Ready to build <br className="hidden md:block" /> something{" "}
             <span className="relative inline-block">
-              <span ref={epicHighlightRef} className="absolute -bottom-1 md:-bottom-2 left-0 w-full h-2 md:h-3 bg-brand-accent -rotate-1 z-0 opacity-80 rounded-full" style={{ transform: "scaleX(0)" }} />
-              <span className="relative z-10">Me</span>
-            </span>?
-          </h3>
-          <p className="text-sm sm:text-base md:text-lg text-brand-ink/80 dark:text-brand-white/70 mb-8 md:mb-10 max-w-xl font-medium leading-relaxed px-4">
-            I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+              <span
+                ref={epicHighlightRef}
+                className="absolute -bottom-1 md:-bottom-2 left-0 w-full h-2 md:h-4 bg-brand-accent -rotate-1 z-0 opacity-80 rounded-full"
+                style={{ transform: "scaleX(0)" }}
+              />
+              <span className="relative z-10 italic">remarkable?</span>
+            </span>
+          </h2>
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 relative z-20">
             <Button
               href="/contact"
               icon={ArrowRight}
-              className="!px-6 sm:!px-8 md:!px-10 !py-3 sm:!py-4 md:!py-5 !text-[11px] sm:!text-xs md:!text-sm"
+              className="!px-6 sm:!px-8 md:!px-10 !py-3.5 sm:!py-4.5 md:!py-5 !text-[11px] sm:!text-xs md:!text-sm"
             >
               Contact Me
             </Button>
             <Button
               href="/blog"
               variant="secondary"
-              className="!px-6 sm:!px-8 md:!px-10 !py-3 sm:!py-4 md:!py-5 !text-[11px] sm:!text-xs md:!text-sm"
+              className="!px-6 sm:!px-8 md:!px-10 !py-3.5 sm:!py-4.5 md:!py-5 !text-[11px] sm:!text-xs md:!text-sm"
             >
-              Read Blogs
+              Read Journals
             </Button>
           </div>
         </div>

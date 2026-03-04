@@ -31,6 +31,7 @@ import {
   EDUCATION,
   GOALS,
 } from "@/data/about";
+import { PROJECTS_DATA } from "@/data/projects";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -101,6 +102,7 @@ export default function AboutPage() {
   const timelineLineRef2 = useRef<HTMLDivElement>(null);
   const timelineLineRef3 = useRef<HTMLDivElement>(null);
   const goalProgressDotRef = useRef<HTMLDivElement>(null);
+  const ctaHighlightRef = useRef<HTMLSpanElement>(null);
 
   const [activeFilter, setActiveFilter] = useState<SkillCategory>("frontend");
   const [showSoftSkills, setShowSoftSkills] = useState(true);
@@ -121,7 +123,7 @@ export default function AboutPage() {
   const handleFilterChange = useCallback((val: SkillCategory) => {
     if (!skillGridRef.current) { setActiveFilter(val); return; }
     gsap.to(Array.from(skillGridRef.current.children), {
-      opacity: 0, y: 10, duration: 0.15, stagger: 0.02, ease: "power2.in",
+      opacity: 0, y: 12, duration: 0.18, stagger: 0.03, ease: "power2.in",
       onComplete: () => setActiveFilter(val),
     });
   }, []);
@@ -299,6 +301,32 @@ export default function AboutPage() {
       );
     });
 
+    // CTA Scroll Reveal
+    gsap.fromTo(".cta-section > div > *",
+      { y: 60, opacity: 0 },
+      {
+        y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: "power4.out",
+        scrollTrigger: { trigger: ".cta-section", start: "top 80%" }
+      }
+    );
+
+    // CTA Highlight scrub
+    if (ctaHighlightRef.current) {
+      gsap.fromTo(ctaHighlightRef.current,
+        { scaleX: 0, transformOrigin: "left center" },
+        {
+          scaleX: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".cta-section",
+            start: "top 70%",
+            end: "center center",
+            scrub: 1
+          }
+        }
+      );
+    }
+
   }, { scope: containerRef });
 
   return (
@@ -325,6 +353,19 @@ export default function AboutPage() {
             <div className="relative w-full max-h-[480px] sm:max-h-[500px] lg:max-h-none rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden border border-brand-ink/15 dark:border-brand-white/10 bg-brand-ink/5 dark:bg-brand-white/5 profile-pic">
               <Image src="/assets/hero-photo.png" alt="Gabrielle Ainshley Velasquez - Full-Stack Developer Profile Portrait" width={800} height={1000} className="hidden lg:block w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-1000 ease-out" priority sizes="480px" />
               <Image src="/assets/mobile-photo.png" alt="Gabrielle Ainshley Velasquez - Full-Stack Developer Profile Portrait" width={800} height={1000} className="block lg:hidden w-full h-auto object-cover grayscale-0 transition-all duration-1000 ease-out" priority sizes="(max-width: 640px) 240px, (max-width: 1024px) 380px" />
+            </div>
+
+            {/* Stats Summary */}
+            <div className="mt-8 sm:mt-10 flex w-full gap-8 sm:gap-12 fade-in-element">
+              <div className="flex flex-col gap-1">
+                <span className="font-mori font-bold text-3xl sm:text-4xl text-brand-ink dark:text-brand-white tracking-tighter">3+</span>
+                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-brand-ink/50 dark:text-brand-white/40">Years Learning</span>
+              </div>
+              <div className="w-[1px] h-10 bg-brand-ink/10 dark:bg-brand-white/10 mt-2" />
+              <div className="flex flex-col gap-1">
+                <span className="font-mori font-bold text-3xl sm:text-4xl text-brand-ink dark:text-brand-white tracking-tighter">{PROJECTS_DATA.length}</span>
+                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-brand-ink/50 dark:text-brand-white/40">Projects Built</span>
+              </div>
             </div>
           </div>
 
@@ -455,24 +496,18 @@ export default function AboutPage() {
                 <button
                   key={tab.value}
                   onClick={() => handleFilterChange(tab.value)}
-                  className={`filter-tab group relative flex flex-col items-start gap-1.5 px-6 sm:px-8 md:px-10 lg:px-12 pb-5 md:pb-6 pt-3 md:pt-4 font-mori font-semibold uppercase tracking-[0.1em] text-sm md:text-base lg:text-lg whitespace-nowrap transition-all duration-300 cursor-pointer border-b-2 -mb-[2px] ${isActive
+                  className={`filter-tab group relative flex flex-col items-start gap-1.5 px-6 sm:px-8 pb-4 md:pb-5 pt-3 font-mori font-semibold uppercase tracking-[0.1em] text-sm md:text-base whitespace-nowrap transition-all duration-300 cursor-pointer border-b-2 -mb-[2px] ${isActive
                     ? "border-brand-ink dark:border-brand-white text-brand-ink dark:text-brand-white"
                     : "border-transparent text-brand-ink/30 dark:text-brand-white/30 hover:text-brand-ink/55 dark:hover:text-brand-white/55"
                     }`}
                 >
-                  <span className={`text-[10px] md:text-xs font-black tabular-nums transition-colors duration-300 ${isActive
+                  <span className={`text-[10px] font-black tabular-nums transition-colors duration-300 ${isActive
                     ? "text-brand-ink dark:text-brand-accent"
-                    : "text-brand-ink/40 dark:text-brand-white/40 group-hover:text-brand-ink/55 dark:group-hover:text-brand-white/55"
+                    : "text-brand-ink/40 dark:text-brand-white/20 group-hover:text-brand-ink/55 dark:group-hover:text-brand-white/55"
                     }`}>
                     {String(idx + 1).padStart(2, "0")}
                   </span>
                   {tab.label}
-                  <span className={`text-[10px] md:text-xs font-medium normal-case tracking-normal transition-colors duration-300 ${isActive
-                    ? "text-brand-ink/50 dark:text-brand-white/45"
-                    : "text-brand-ink/50 dark:text-brand-white/15"
-                    }`}>
-                    {count} skills
-                  </span>
                 </button>
               );
             })}
@@ -643,7 +678,7 @@ export default function AboutPage() {
                 {GOALS.map((goal, i) => (
                   <div key={i} className="group relative w-full pl-6 sm:pl-10 md:pl-20">
                     {/* Large Number Background (Image 1 Style) */}
-                    <span className="absolute -left-4 -top-8 sm:-top-12 text-[8rem] sm:text-[12rem] md:text-[18rem] font-mori font-black text-brand-ink/[0.03] dark:text-brand-white/[0.02] select-none pointer-events-none group-hover:text-brand-ink/[0.05] dark:group-hover:text-brand-accent/10 transition-colors duration-700 leading-none">
+                    <span className="absolute left-8 sm:left-12 -top-6 sm:-top-10 text-[4rem] sm:text-[6rem] md:text-[8rem] font-mori font-black text-brand-ink/[0.03] dark:text-brand-white/[0.02] select-none pointer-events-none group-hover:text-brand-ink/[0.06] dark:group-hover:text-brand-accent/10 transition-colors duration-700 leading-none">
                       {goal.num}
                     </span>
 
@@ -718,6 +753,29 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-    </main >
+      <section className="cta-section relative py-32 md:py-48 border-t border-brand-ink/5 dark:border-brand-white/5 overflow-hidden flex flex-col items-center justify-center text-center px-4">
+        <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center w-full">
+          <h2 className="cta-heading font-mori font-semibold text-[clamp(2.2rem,6vw,5rem)] tracking-tight text-brand-ink dark:text-brand-white mb-10 md:mb-14 leading-[1.2] max-w-4xl">
+            Have a project you&apos;d like to discuss?
+          </h2>
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 relative z-20">
+            <Button
+              href="/contact"
+              icon={ArrowRight}
+              className="!px-6 sm:!px-8 md:!px-10 !py-3.5 sm:!py-4.5 md:!py-5 !text-[11px] sm:!text-xs md:!text-sm"
+            >
+              Get In Touch
+            </Button>
+            <Button
+              href="/projects"
+              variant="secondary"
+              className="!px-6 sm:!px-8 md:!px-10 !py-3.5 sm:!py-4.5 md:!py-5 !text-[11px] sm:!text-xs md:!text-sm"
+            >
+              Explore Work
+            </Button>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }

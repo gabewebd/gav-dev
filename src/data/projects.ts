@@ -67,7 +67,7 @@ export const PROJECTS_DATA: ProjectData[] = [
             { type: 'p', text: "To solve this problem, we selected Angeles City as our primary digital launchpad to target the highly tech-savvy demographic of students and young professionals. The main objective was to transition the brand into a highly scalable and centralized digital platform." }
         ],
         role: [
-            { type: 'p', text: "Project Manager & Full-Stack Developer. I architected the entire project using PHP and MySQL. I integrated a custom mini-CMS into the backend admin folder to handle dynamic menu updates and blog publications." },
+            { type: 'p', text: "Project Lead & Full-Stack Developer. I architected the entire project using PHP and MySQL. I integrated a custom mini-CMS into the backend admin folder to handle dynamic menu updates and blog publications." },
             { type: 'p', text: "Furthermore, I ensured strict mobile responsiveness across all devices, managed the deployment process using Hostinger, implemented a robust local SEO strategy, and integrated Google Analytics to monitor traffic, user behavior, and overall performance insights." }
         ],
         stack: ["PHP", "MySQL", "CSS", "Hostinger", "SEO", "Custom CMS"],
@@ -237,7 +237,7 @@ export const PROJECTS_DATA: ProjectData[] = [
         slug: "wellness-apparel",
         title: "Wellness Apparel",
         tagline: "Full-Stack E-Commerce",
-        desc: "A full-stack e-commerce simulation showcasing secure authentication, scalable catalog management, and a simulated order processing pipeline that models real transactional workflows.",
+        desc: "A full-stack e-commerce simulation showcasing user authentication, scalable catalog management, and a simulated order processing pipeline that models real transactional workflows.",
         overview: [
             { type: 'p', text: "Wellness Apparel is a comprehensive e-commerce simulation that provides users with the ability to browse and purchase clothing online while offering store owners powerful administrative management tools." },
             { type: 'p', text: "The platform supports a complete digital retail workflow. It handles everything from digital catalog browsing and dynamic shipping address management to complex order fulfillment and an internal notification system between customers and admins. As a conceptual prototype, it is designed to strictly simulate the e-commerce architecture and does not process real monetary transactions." }
@@ -265,7 +265,7 @@ export const PROJECTS_DATA: ProjectData[] = [
                 title: "System Efficiency & Architecture",
                 blocks: [
                     { type: 'p', text: "A critical phase of this project was the backend structure. We implemented a highly efficient, interconnected relational system for the MySQL tables to optimize data handling." },
-                    { type: 'img', src: '/assets/projects/wellness-apparel/wellness-admin.png', alt: 'Admin Management Panel', caption: 'Administrative dashboard interacting securely with relational database tables.' },
+                    { type: 'img', src: '/assets/projects/wellness-apparel/wellness-admin.png', alt: 'Admin Management Panel', caption: 'Administrative dashboard interacting with relational database tables.' },
                     { type: 'p', text: "We successfully isolated user data, multiple shipping addresses, user authentication tokens for persistent logins, product inventory, and nested order lines. This structure ensured data integrity and optimized server retrieval times." }
                 ]
             },

@@ -623,7 +623,7 @@ export default function Home() {
 
         <div className="max-w-5xl mx-auto relative z-10">
           <h2 className="cta-heading font-mori font-semibold text-[clamp(2.8rem,8vw,8rem)] tracking-[-0.04em] leading-[0.95]">
-            LET&apos;S BUILD SOMETHING{" "}
+            Let&apos;s build something{" "}
             <span className="relative inline-block mx-3 md:mx-4 mt-2 md:mt-0">
               <span
                 ref={epicHighlightRef}
@@ -631,7 +631,7 @@ export default function Home() {
                 style={{ transform: "scaleX(0)" }}
                 aria-hidden="true"
               />
-              <span className="relative z-10 text-brand-ink dark:text-brand-white font-black">TOGETHER</span>
+              <span className="relative z-10 text-brand-ink dark:text-brand-white font-black">together</span>
             </span>
 
           </h2>

@@ -11,6 +11,7 @@ import SectionTag from "@/components/ui/SectionTag";
 import SectionTitle from "@/components/ui/SectionTitle";
 import HeroHeading from "@/components/ui/HeroHeading";
 import PreviewLink from "@/components/ui/PreviewLink";
+import Button from "@/components/ui/Button";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -43,6 +44,15 @@ export default function BlogPage() {
         { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", scrollTrigger: { trigger: card, start: "top 85%" } }
       );
     });
+
+    // CTA Scroll Reveal
+    gsap.fromTo(".cta-section > div > *",
+      { y: 60, opacity: 0 },
+      {
+        y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: "power4.out",
+        scrollTrigger: { trigger: ".cta-section", start: "top 80%" }
+      }
+    );
   }, { scope: containerRef });
 
   return (
@@ -122,8 +132,32 @@ export default function BlogPage() {
             ))}
           </div>
         </section>
-
       </div>
+
+      {/* ─── CTA SECTION ── */}
+      <section className="cta-section relative py-32 md:py-48 border-t border-brand-ink/5 dark:border-brand-white/5 bg-black/[0.02] dark:bg-white/[0.01] overflow-hidden flex flex-col items-center justify-center text-center px-4">
+        <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center w-full">
+          <h2 className="cta-heading font-mori font-semibold text-[clamp(2.2rem,6vw,5rem)] tracking-tight text-brand-ink dark:text-brand-white mb-10 md:mb-14 leading-[1.2] max-w-4xl">
+            Like what you read? <br className="hidden md:block" /> Let&apos;s build together.
+          </h2>
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 relative z-20">
+            <Button
+              href="/contact"
+              icon={ArrowRight}
+              className="!px-6 sm:!px-8 md:!px-10 !py-3.5 sm:!py-4.5 md:!py-5 !text-[11px] sm:!text-xs md:!text-sm"
+            >
+              Get In Touch
+            </Button>
+            <Button
+              href="/projects"
+              variant="secondary"
+              className="!px-6 sm:!px-8 md:!px-10 !py-3.5 sm:!py-4.5 md:!py-5 !text-[11px] sm:!text-xs md:!text-sm"
+            >
+              Explore Work
+            </Button>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
