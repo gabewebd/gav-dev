@@ -120,6 +120,7 @@ export default function ProjectsPage() {
   const epicHighlightRef = useRef<HTMLSpanElement>(null);
   const mobileNavRef = useRef<HTMLDivElement>(null);
   const mobileNavContainerRef = useRef<HTMLDivElement>(null);
+  const desktopSidebarListRef = useRef<HTMLDivElement>(null);
 
   const { setActive } = useCursorStore();
 
@@ -146,6 +147,17 @@ export default function ProjectsPage() {
     if (activeItem) {
       const scrollLeft = activeItem.offsetLeft - (container.clientWidth / 2) + (activeItem.clientWidth / 2);
       container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+    }
+  }, [activeIndex]);
+
+  useEffect(() => {
+    if (!desktopSidebarListRef.current) return;
+    const container = desktopSidebarListRef.current;
+    const activeItem = container.children[activeIndex] as HTMLElement;
+
+    if (activeItem) {
+      const scrollPos = activeItem.offsetTop - (container.clientHeight / 2) + (activeItem.clientHeight / 2);
+      container.scrollTo({ top: scrollPos, behavior: 'smooth' });
     }
   }, [activeIndex]);
 
@@ -320,26 +332,31 @@ export default function ProjectsPage() {
                 </div>
               </div>
 
-              <div className="flex flex-col gap-8 relative pb-10">
+              <div className="flex flex-col gap-8 relative pb-10 flex-1 overflow-visible">
                 <div className="absolute left-0 top-0 bottom-0 w-px bg-white/10" />
 
-                {PROJECTS.map((p, i) => (
-                  <div
-                    key={i}
-                    className={`nav-project-item relative pl-10 py-2 cursor-pointer transition-all duration-500 text-white will-change-transform ${activeIndex === i ? 'opacity-100 translate-x-4' : 'opacity-40 translate-x-0 scale-[0.85] origin-left'}`}
-                    onMouseEnter={() => setActive(false)}
-                    onClick={(e) => handleScrollTo(e, p.slug)}
-                  >
-                    <div className={`nav-dot absolute left-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#BFFF00] transition-all duration-500 shadow-[0_0_10px_rgba(191,255,0,0.8)] ${activeIndex === i ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
+                <div
+                  ref={desktopSidebarListRef}
+                  className="hide-nav-scroll flex flex-col gap-8 overflow-y-auto max-h-[calc(100vh-20rem)] py-4"
+                >
+                  {PROJECTS.map((p, i) => (
+                    <div
+                      key={i}
+                      className={`nav-project-item relative pl-10 py-2 cursor-pointer transition-all duration-500 text-white will-change-transform ${activeIndex === i ? 'opacity-100 translate-x-4' : 'opacity-40 translate-x-0 scale-[0.85] origin-left'}`}
+                      onMouseEnter={() => setActive(false)}
+                      onClick={(e) => handleScrollTo(e, p.slug)}
+                    >
+                      <div className={`nav-dot absolute left-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#BFFF00] transition-all duration-500 shadow-[0_0_10px_rgba(191,255,0,0.8)] ${activeIndex === i ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
 
-                    <div className={`font-mori uppercase tracking-[0.25em] font-bold text-muted mb-2 transition-all duration-500 ${activeIndex === i ? 'text-xs' : 'text-[10px]'}`}>
-                      {p.tagline}
+                      <div className={`font-mori uppercase tracking-[0.25em] font-bold text-muted mb-2 transition-all duration-500 ${activeIndex === i ? 'text-xs' : 'text-[10px]'}`}>
+                        {p.tagline}
+                      </div>
+                      <div className={`font-mori font-bold tracking-tighter transition-all duration-500 ${activeIndex === i ? 'text-3xl xl:text-4xl' : 'text-xl xl:text-2xl'}`}>
+                        {p.title}
+                      </div>
                     </div>
-                    <div className={`font-mori font-bold tracking-tighter transition-all duration-500 ${activeIndex === i ? 'text-3xl xl:text-4xl' : 'text-xl xl:text-2xl'}`}>
-                      {p.title}
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
 
