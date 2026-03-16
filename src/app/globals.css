@@ -14,8 +14,8 @@
   /* Alternate Section Backgrounds */
   --color-brand-dark-alt: #111111;
 
-  --font-display: "PPMori", sans-serif;
-  --font-body: "Inter", sans-serif;
+  --font-display: var(--font-mori);
+  --font-body: var(--font-inter);
   --font-outfit: var(--font-outfit);
   --font-mori: var(--font-mori);
 

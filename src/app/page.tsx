@@ -855,7 +855,7 @@ export default function Home() {
             <motion.span
               whileHover={{ scale: 1.08, rotateZ: -2, y: -8 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className="inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-3 sm:py-6 rounded-full bg-brand-ink dark:bg-brand-white shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2)] hover:bg-amber-500 transition-colors duration-300 font-mori font-bold text-[clamp(3.5rem,9vw,8rem)] text-white dark:text-brand-ink cursor-default leading-[0.9] tracking-tighter hover:text-white"
+              className="inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-3 sm:py-6 rounded-full bg-brand-ink dark:bg-brand-white shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2)] hover:bg-brand-accent transition-colors duration-300 font-mori font-bold text-[clamp(3.5rem,9vw,8rem)] text-white dark:text-brand-ink cursor-default leading-[0.9] tracking-tighter hover:text-brand-dark"
             >
               something
             </motion.span>
