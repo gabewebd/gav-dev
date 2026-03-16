@@ -19,7 +19,6 @@ import SectionTitle from "@/components/ui/SectionTitle";
 import HeroHeading from "@/components/ui/HeroHeading";
 import PreviewLink from "@/components/ui/PreviewLink";
 import Magnetic from "@/components/ui/Magnetic";
-import OptimizedImage from "@/components/ui/OptimizedImage";
 
 
 import { FaFileAlt, FaGraduationCap } from "react-icons/fa";
@@ -328,8 +327,8 @@ export default function AboutPage() {
 
             <div className="w-full max-w-[240px] sm:max-w-[300px] md:max-w-[380px] lg:max-w-[420px] mx-auto lg:mx-0 shrink-0 flex flex-col items-start">
               <div className="relative w-full max-h-[480px] sm:max-h-[500px] lg:max-h-none rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden border border-white/10 bg-brand-white/5 profile-pic">
-                <OptimizedImage src="/assets/hero-photo.png" alt="Gabrielle Ainshley Velasquez - Full-Stack Developer Profile Portrait" width={800} height={1000} className="hidden lg:block w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-1000 ease-out" priority sizes="480px" />
-                <OptimizedImage src="/assets/mobile-photo.png" alt="Gabrielle Ainshley Velasquez - Full-Stack Developer Profile Portrait" width={800} height={1000} className="block lg:hidden w-full h-auto object-cover grayscale-0 transition-all duration-1000 ease-out" priority sizes="(max-width: 640px) 240px, (max-width: 1024px) 380px" />
+                <Image src="/assets/hero-photo.png" alt="Gabrielle Ainshley Velasquez - Full-Stack Developer Profile Portrait" width={800} height={1000} className="hidden lg:block w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-1000 ease-out" priority sizes="480px" />
+                <Image src="/assets/mobile-photo.png" alt="Gabrielle Ainshley Velasquez - Full-Stack Developer Profile Portrait" width={800} height={1000} className="block lg:hidden w-full h-auto object-cover grayscale-0 transition-all duration-1000 ease-out" priority sizes="(max-width: 640px) 240px, (max-width: 1024px) 380px" />
               </div>
 
               <div className="mt-8 sm:mt-10 flex w-full gap-8 sm:gap-12 fade-in-element">
@@ -631,7 +630,7 @@ export default function AboutPage() {
                       transition={{ type: "spring", stiffness: 260, damping: 25 }}
                     >
                       <div className={`w-[160px] h-[220px] sm:w-[240px] sm:h-[320px] lg:w-[300px] lg:h-[400px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/20 shadow-2xl relative transition-shadow duration-300 ${isActive ? "ring-2 ring-brand-accent shadow-[0_20px_50px_rgba(0,0,0,0.5)]" : "hover:shadow-[0_12px_32px_rgba(0,0,0,0.4)]"}`}>
-                        <OptimizedImage
+                        <Image
                           src={item.image}
                           alt={item.title}
                           fill

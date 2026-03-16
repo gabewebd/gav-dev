@@ -14,7 +14,6 @@ import Magnetic from "@/components/ui/Magnetic";
 import { create } from "zustand";
 
 import { MAJOR_PROJECTS as PROJECTS } from "@/data/projects";
-import OptimizedImage from "@/components/ui/OptimizedImage";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -301,14 +300,13 @@ export default function ProjectsPage() {
                       />
 
                       <div className="absolute inset-[-10%] w-[120%] h-[120%]">
-                        <OptimizedImage
+                        <Image
                           src={targetVisual}
                           alt={project.title}
                           fill
                           className="project-img-parallax object-cover object-center transition-transform duration-1000 group-hover:scale-[1.1]"
                           sizes="(max-width: 1024px) 100vw, 70vw"
                           quality={100}
-                          priority={index === 0}
                         />
                       </div>
 

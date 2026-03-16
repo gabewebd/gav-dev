@@ -3,7 +3,6 @@
 import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import OptimizedImage from "@/components/ui/OptimizedImage";
 import { useParams } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -163,7 +162,7 @@ export default function BlogPost() {
                             className="hero-reveal hero-image-container relative w-full aspect-[4/3] md:aspect-[16/10] rounded-[2rem] md:rounded-[3rem] overflow-hidden bg-white/5 cursor-zoom-in group shadow-2xl"
                             onClick={() => setLightboxImg(post.featuredImage)}
                         >
-                            <OptimizedImage
+                            <Image
                                 src={post.featuredImage}
                                 alt={post.title}
                                 fill
@@ -217,7 +216,7 @@ export default function BlogPost() {
                                             className="relative w-full rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden bg-white/5 border border-brand-white/10 cursor-zoom-in group shadow-xl"
                                             onClick={() => setLightboxImg(block.src)}
                                         >
-                                            <OptimizedImage src={block.src} alt={block.alt} width={1200} height={800} className="w-full h-auto object-contain group-hover:scale-[1.02] transition-transform duration-700 ease-out" sizes="(max-width: 768px) 100vw, 900px" quality={95} />
+                                            <Image src={block.src} alt={block.alt} width={1200} height={800} className="w-full h-auto object-contain group-hover:scale-[1.02] transition-transform duration-700 ease-out" sizes="(max-width: 768px) 100vw, 900px" quality={95} />
                                             <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                                         </div>
                                         {block.caption && (
@@ -300,7 +299,7 @@ export default function BlogPost() {
                         {/* PREVIOUS BLOG CARD WITH FEATURED IMAGE BACKGROUND */}
                         {prevPost ? (
                             <Link href={`/blog/${prevPost.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/10] rounded-[2rem] overflow-hidden border border-white/10 block cursor-pointer shadow-lg hover:-translate-y-2 transition-all duration-500 hover:shadow-2xl">
-                                <OptimizedImage src={prevPost.featuredImage} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" alt={prevPost.title} sizes="(max-width: 768px) 100vw, 50vw" quality={90} />
+                                <Image src={prevPost.featuredImage} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" alt={prevPost.title} sizes="(max-width: 768px) 100vw, 50vw" quality={90} />
                                 <div className="absolute inset-0 bg-[#0A0A0A]/70 group-hover:bg-[#0A0A0A]/50 transition-colors duration-500" />
                                 <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-12">
                                     <div className="inline-flex items-center gap-2 mb-4">
@@ -317,7 +316,7 @@ export default function BlogPost() {
                         {/* NEXT BLOG CARD WITH FEATURED IMAGE BACKGROUND */}
                         {nextPost ? (
                             <Link href={`/blog/${nextPost.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/10] rounded-[2rem] overflow-hidden border border-white/10 block cursor-pointer shadow-lg hover:-translate-y-2 transition-all duration-500 hover:shadow-2xl">
-                                <OptimizedImage src={nextPost.featuredImage} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" alt={nextPost.title} sizes="(max-width: 768px) 100vw, 50vw" quality={90} />
+                                <Image src={nextPost.featuredImage} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" alt={nextPost.title} sizes="(max-width: 768px) 100vw, 50vw" quality={90} />
                                 <div className="absolute inset-0 bg-[#0A0A0A]/70 group-hover:bg-[#0A0A0A]/50 transition-colors duration-500" />
                                 <div className="absolute inset-0 flex flex-col items-end justify-end p-8 md:p-12 text-right">
                                     <div className="inline-flex items-center gap-2 mb-4">
@@ -338,7 +337,7 @@ export default function BlogPost() {
             {lightboxImg && (
                 <div className="fixed inset-0 z-[110] flex items-center justify-center bg-[#050505]/95 backdrop-blur-xl p-4 md:p-12 cursor-zoom-out" onClick={() => setLightboxImg(null)}>
                     <div className="relative w-full h-full max-w-[100rem] max-h-[90vh] rounded-[1rem] md:rounded-[2rem] overflow-hidden flex flex-col items-center justify-center" onClick={(e) => e.stopPropagation()}>
-                        <OptimizedImage src={lightboxImg} alt="Fullscreen View" fill className="object-contain" quality={100} />
+                        <Image src={lightboxImg} alt="Fullscreen View" fill className="object-contain" quality={100} />
                     </div>
                     <button className="absolute top-6 right-6 md:top-10 md:right-10 text-white bg-white/10 hover:bg-brand-accent hover:text-brand-dark p-3 md:p-4 rounded-full backdrop-blur-md transition-all hover:scale-110 z-20" onClick={() => setLightboxImg(null)}>
                         <X size={24} strokeWidth={2.5} />
