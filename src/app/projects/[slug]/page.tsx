@@ -51,7 +51,7 @@ function ContentBlockRenderer({ block, onImageClick }: { block: ContentBlock, on
             return (
                 <blockquote className="my-10 pl-6 sm:pl-8 border-l-4 border-brand-accent italic flex flex-col gap-4">
                     <p className="text-xl sm:text-2xl md:text-3xl font-medium text-brand-white/70 leading-relaxed">"{block.text}"</p>
-                    {block.author && <footer className="font-outfit font-bold uppercase tracking-widest text-brand-white/70 text-[10px] sm:text-xs md:text-sm">— {block.author}</footer>}
+                    {block.author && <footer className="font-mori font-bold uppercase tracking-widest text-brand-white/70 text-[10px] sm:text-xs md:text-sm">— {block.author}</footer>}
                 </blockquote>
             );
         case 'video':
@@ -97,7 +97,7 @@ function ContentBlockRenderer({ block, onImageClick }: { block: ContentBlock, on
                             href={link.url}
                             label="Project Link"
                             description={link.url}
-                            className="font-outfit font-bold text-sm md:text-base text-brand-white uppercase tracking-widest underline decoration-brand-white/20 underline-offset-[6px] hover:decoration-brand-accent transition-colors duration-300"
+                            className="font-mori font-bold text-sm md:text-base text-brand-white uppercase tracking-widest underline decoration-brand-white/20 underline-offset-[6px] hover:decoration-brand-accent transition-colors duration-300"
                         >
                             {link.label} ↗
                         </PreviewLink>
@@ -184,7 +184,7 @@ export default function ProjectDetail() {
         });
     }, { scope: containerRef, dependencies: [project] });
 
-    if (!project) return <div className="min-h-screen flex items-center justify-center font-outfit font-black text-2xl uppercase bg-brand-dark text-brand-white">System Error: Project Not Found.</div>;
+    if (!project) return <div className="min-h-screen flex items-center justify-center font-mori font-black text-2xl uppercase bg-brand-dark text-brand-white">System Error: Project Not Found.</div>;
 
     const gridItems = [
         ...(project.gallery?.map(img => img.src) || []),
@@ -220,14 +220,14 @@ export default function ProjectDetail() {
                     <div className="hero-title flex flex-row flex-wrap items-center gap-3 md:gap-4 mt-4 md:mt-0">
                         {project.live !== "#" && (
                             <PreviewLink href={project.live} label="External Link" description={project.live} className="hero-title">
-                                <div className="group bg-brand-white text-brand-dark px-6 md:px-8 py-3.5 md:py-4 rounded-full font-outfit font-bold uppercase tracking-widest text-[10px] md:text-xs flex items-center gap-2 hover:opacity-85 transition-opacity shadow-lg">
+                                <div className="group bg-brand-white text-brand-dark px-6 md:px-8 py-3.5 md:py-4 rounded-full font-mori font-bold uppercase tracking-widest text-[10px] md:text-xs flex items-center gap-2 hover:opacity-85 transition-opacity shadow-lg">
                                     <ExternalLink size={16} /> Live Link
                                 </div>
                             </PreviewLink>
                         )}
                         {project.github !== "#" && (
                             <PreviewLink href={project.github} label="Repository" description={project.github} className="hero-title">
-                                <div className="group border border-white/30 text-white backdrop-blur-md px-6 md:px-8 py-3.5 md:py-4 rounded-full font-outfit font-bold uppercase tracking-widest text-[10px] md:text-xs flex items-center gap-2 hover:bg-white/10 transition-colors shadow-lg">
+                                <div className="group border border-white/30 text-white backdrop-blur-md px-6 md:px-8 py-3.5 md:py-4 rounded-full font-mori font-bold uppercase tracking-widest text-[10px] md:text-xs flex items-center gap-2 hover:bg-white/10 transition-colors shadow-lg">
                                     <Github size={16} /> Source Code
                                 </div>
                             </PreviewLink>
@@ -299,7 +299,7 @@ export default function ProjectDetail() {
                         <ArrowLeft size={14} className="group-hover:-translate-x-1.5 transition-transform" /> Back to projects
                     </Link>
                     <span className="w-6 h-[2px] bg-brand-accent -mt-2" />
-                    <nav className="flex flex-col gap-6 font-outfit font-bold uppercase tracking-widest text-xs">
+                    <nav className="flex flex-col gap-6 font-mori font-bold uppercase tracking-widest text-xs">
                         <a href="#overview" onClick={(e) => handleScrollTo(e, "overview")} className="text-brand-white/70 hover:text-brand-white transition-colors">01. Overview</a>
                         <a href="#role" onClick={(e) => handleScrollTo(e, "role")} className="text-brand-white/70 hover:text-brand-white transition-colors">02. Role & Impact</a>
                         <a href="#tech" onClick={(e) => handleScrollTo(e, "tech")} className="text-brand-white/70 hover:text-brand-white transition-colors">03. Technology</a>

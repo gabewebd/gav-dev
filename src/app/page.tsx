@@ -349,7 +349,7 @@ const StatusTooltip = ({ icon: Icon, label, value }: { icon: any; label: string;
       <div className={`absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:-translate-x-1 transition-all duration-300 pointer-events-none z-50 ${isTouch ? "group-focus:opacity-100 group-focus:-translate-x-1" : ""}`}>
         <div className="bg-white text-[#111111] px-4 py-2.5 rounded-xl border border-black/5 shadow-xl">
           <span className="text-[10px] font-bold uppercase tracking-widest opacity-60 mb-0.5 block">{label}</span>
-          <span className="text-xs md:text-sm font-outfit font-bold whitespace-nowrap block">{value}</span>
+          <span className="text-xs md:text-sm font-mori font-bold whitespace-nowrap block">{value}</span>
         </div>
         <div className="absolute right-[-4px] top-1/2 -translate-y-1/2 border-[6px] border-transparent border-l-white" />
       </div>
@@ -855,7 +855,7 @@ export default function Home() {
             <motion.span
               whileHover={{ scale: 1.08, rotateZ: -2, y: -8 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className="inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-3 sm:py-6 rounded-full bg-brand-ink dark:bg-brand-white shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2)] hover:bg-brand-accent transition-colors duration-300 font-mori font-bold text-[clamp(3.5rem,9vw,8rem)] text-white dark:text-brand-ink cursor-default leading-[0.9] tracking-tighter hover:text-brand-dark"
+              className="inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-3 sm:py-6 rounded-full bg-brand-ink dark:bg-brand-white shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2)] hover:bg-blue-600 transition-colors duration-300 font-mori font-bold text-[clamp(3.5rem,9vw,8rem)] text-white dark:text-brand-ink cursor-default leading-[0.9] tracking-tighter hover:text-white"
             >
               something
             </motion.span>

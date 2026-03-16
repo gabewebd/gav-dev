@@ -107,7 +107,7 @@ export default function BlogPost() {
 
     }, { scope: containerRef, dependencies: [post] });
 
-    if (!post) return <div className="min-h-screen flex items-center justify-center font-outfit font-black text-2xl uppercase bg-brand-dark text-brand-white">Error: Article Not Found.</div>;
+    if (!post) return <div className="min-h-screen flex items-center justify-center font-mori font-black text-2xl uppercase bg-brand-dark text-brand-white">Error: Article Not Found.</div>;
 
     return (
         <main ref={containerRef} className="relative transition-colors duration-500 overflow-x-clip min-h-screen">

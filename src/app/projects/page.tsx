@@ -63,7 +63,7 @@ function CustomCursor() {
         <ArrowUpRight className="w-10 h-10 md:w-12 md:h-12 text-black stroke-[1.5]" />
       </div>
 
-      <span className="absolute top-full mt-6 text-[11px] md:text-xs font-outfit font-black uppercase tracking-[0.3em] text-white whitespace-nowrap drop-shadow-[0_2px_10px_rgba(0,0,0,1)]">
+      <span className="absolute top-full mt-6 text-[11px] md:text-xs font-mori font-black uppercase tracking-[0.3em] text-white whitespace-nowrap drop-shadow-[0_2px_10px_rgba(0,0,0,1)]">
         View Project Details
       </span>
     </div>
@@ -270,7 +270,7 @@ export default function ProjectsPage() {
                   >
                     <div className={`nav-dot absolute left-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#BFFF00] transition-all duration-500 shadow-[0_0_10px_rgba(191,255,0,0.8)] ${activeIndex === i ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
 
-                    <div className={`font-outfit uppercase tracking-[0.25em] font-bold text-white/60 mb-2 transition-all duration-500 ${activeIndex === i ? 'text-xs' : 'text-[10px]'}`}>
+                    <div className={`font-mori uppercase tracking-[0.25em] font-bold text-white/60 mb-2 transition-all duration-500 ${activeIndex === i ? 'text-xs' : 'text-[10px]'}`}>
                       {p.tagline}
                     </div>
                     <div className={`font-mori font-bold tracking-tighter transition-all duration-500 ${activeIndex === i ? 'text-3xl xl:text-4xl' : 'text-xl xl:text-2xl'}`}>
@@ -345,7 +345,7 @@ export default function ProjectsPage() {
                           href={`/projects/${project.slug}`}
                           className="lg:hidden flex items-center justify-center gap-2 group/details py-2 border-t border-white/5 pt-6"
                         >
-                          <span className="text-[11px] font-outfit font-bold uppercase tracking-[0.2em] text-white/80 group-hover/details:text-white transition-colors">View Project Details</span>
+                          <span className="text-[11px] font-mori font-bold uppercase tracking-[0.2em] text-white/80 group-hover/details:text-white transition-colors">View Project Details</span>
                           <ArrowRight className="w-4 h-4 text-white/60 group-hover/details:text-white group-hover/details:translate-x-1 transition-all" />
                         </Link>
                       </div>

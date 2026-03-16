@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
@@ -36,12 +36,6 @@ const inter = Inter({
   weight: ["300", "400", "500", "600", "700", "800"],
 });
 
-const outfit = Outfit({
-  variable: "--font-outfit",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["400", "500", "600", "700", "800", "900"],
-});
 
 /* --- SEO Metadata (Rubric Requirement) --- */
 export const metadata: Metadata = {
@@ -78,7 +72,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${ppMori.variable} ${inter.variable} ${outfit.variable}`}>
+    <html lang="en" className={`${ppMori.variable} ${inter.variable}`}>
       <meta name="apple-mobile-web-app-title" content="MyWebSite" />
       <body className="bg-[#050505] text-[#EDEDED] antialiased transition-colors duration-300 overflow-x-hidden">
         <AmbientBackground />
