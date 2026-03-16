@@ -42,8 +42,7 @@ export default function SmoothScroll({
 
         gsap.ticker.lagSmoothing(0);
 
-        // Debug log
-        console.log("Lenis Initialized");
+        // gsap.ticker.lagSmoothing(0);
 
         return () => {
             lenis.destroy();

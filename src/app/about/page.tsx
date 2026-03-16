@@ -11,9 +11,6 @@ import {
   Download,
   Smile,
   ArrowRight,
-  MapPin,
-  User,
-  Plus,
 } from "lucide-react";
 
 import Button from "@/components/ui/Button";

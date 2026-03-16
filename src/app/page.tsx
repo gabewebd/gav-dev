@@ -18,14 +18,9 @@ import {
 import {
   ArrowRight,
   Lightbulb,
-  Eye,
-  PenTool,
   Box,
-  Network,
   Code2,
   Server,
-  Palette,
-  Sparkles,
   ChevronLeft,
   ChevronRight,
   Headphones,
@@ -33,7 +28,6 @@ import {
   Laptop,
   Smile,
   Plus,
-  MessageSquare,
   User,
 } from "lucide-react";
 import {

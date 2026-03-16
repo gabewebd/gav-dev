@@ -5,8 +5,7 @@ import Link from "next/link";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import {
-    Github, Linkedin, Mail, ArrowUpRight, FileDown, CheckCircle2,
-    Loader2, ArrowUp
+    Github, Linkedin, Mail, ArrowUpRight, FileDown
 } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Logo from "@/components/Logo";
@@ -73,7 +72,7 @@ function MagneticSocial({
             href={href}
             label={label}
             description={href}
-            className="magnetic-btn"
+            className="group"
         >
             <SocialButton
                 icon={Icon}
