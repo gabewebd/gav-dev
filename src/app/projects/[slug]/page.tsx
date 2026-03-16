@@ -39,6 +39,7 @@ function ContentBlockRenderer({ block, onImageClick }: { block: ContentBlock, on
                     >
                         {/* High Quality & Sizes added to inline images */}
                         <Image src={block.src} alt={block.alt || "Project visual"} width={1200} height={800} className="w-full h-auto object-contain group-hover:scale-[1.02] transition-transform duration-700" quality={95} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 60vw" />
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.45)_100%)] pointer-events-none" />
                     </div>
                     {block.caption && (
                         <p className="text-sm md:text-base font-medium text-brand-white/90 text-center px-4">
@@ -228,7 +229,7 @@ export default function ProjectDetail() {
                                 </div>
                             </PreviewLink>
                         )}
-                        {project.github !== "#" && (
+                        {project.github && project.github !== "#" && (
                             <PreviewLink href={project.github} label="Repository" description={project.github} className="hero-title" disableMagnetic={true}>
                                 <div className="group border border-white/30 text-white backdrop-blur-md px-6 md:px-8 py-3.5 md:py-4 rounded-full font-mori font-bold uppercase tracking-widest text-[10px] md:text-xs flex items-center gap-2 hover:bg-white/10 transition-colors shadow-lg">
                                     <Github size={16} /> Source Code
@@ -252,6 +253,7 @@ export default function ProjectDetail() {
                                 >
                                     {/* High quality enabled for Gallery Slider with fixed aspect ratio */}
                                     <Image src={img.src} alt={img.alt} fill className="object-cover cursor-zoom-in transition-transform duration-700 hover:scale-[1.01]" onClick={() => setLightboxIndex(idx)} priority={idx === 0} quality={95} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw" />
+                                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.35)_100%)] pointer-events-none" />
                                 </div>
                             ))}
 

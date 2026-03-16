@@ -362,6 +362,9 @@ export default function ProjectsPage() {
                         />
                       </div>
 
+                      {/* Feathered Vignette Overlay - Increased intensity */}
+                      <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.45)_100%)] pointer-events-none" />
+
                       <div className="absolute inset-0 bg-black/0 lg:group-hover:bg-black/50 transition-colors duration-700 pointer-events-none z-10" />
                     </div>
 
@@ -391,9 +394,11 @@ export default function ProjectsPage() {
                           <Button href={project.live} target="_blank" icon={ExternalLink} iconPosition="left" className="flex-1 xl:flex-none w-full !px-0 !py-4 md:!py-5 !text-[11px] md:!text-xs !bg-white !text-black !border-transparent hover:scale-[1.02] transition-transform shadow-xl" disableMagnetic={true}>
                             Live Link
                           </Button>
-                          <Button href={project.github} target="_blank" variant="secondary" icon={Github} iconPosition="left" className="flex-1 xl:flex-none w-full !px-0 !py-4 md:!py-5 !text-[11px] md:!text-xs !border-white/20 !text-white hover:!bg-white/10 hover:!border-white transition-all shadow-xl" disableMagnetic={true}>
-                            Source
-                          </Button>
+                          {project.github && project.github !== "#" && (
+                            <Button href={project.github} target="_blank" variant="secondary" icon={Github} iconPosition="left" className="flex-1 xl:flex-none w-full !px-0 !py-4 md:!py-5 !text-[11px] md:!text-xs !border-white/20 !text-white hover:!bg-white/10 hover:!border-white transition-all shadow-xl" disableMagnetic={true}>
+                              Source
+                            </Button>
+                          )}
                         </div>
                         
                         <Link 

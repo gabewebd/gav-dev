@@ -4,8 +4,8 @@ import { FaFigma, FaWordpress } from "react-icons/fa";
 
 export type ContentBlock =
     | { type: 'p'; text: string }
-    | { type: 'italic'; text: string } // Added this for your timestamps
-    | { type: 'role-title'; text: string } // NEW: For underlined project roles
+    | { type: 'italic'; text: string }
+    | { type: 'role-title'; text: string }
     | { type: 'h2'; text: string }
     | { type: 'img'; src: string; alt: string; caption?: string }
     | { type: 'quote'; text: string; author?: string }
@@ -36,11 +36,11 @@ export interface ProjectData {
     techLabel: string;
     live: string;
     github: string;
-    heroImg: string;   // Used for Square/Portrait Showcase Cards
-    slugImg: string;   // NEW: Used for 100vh Landscape Hero on Project Details
-    featuredImg: string; // NEW: Used for Projects Listing Page
+    heroImg: string;
+    slugImg: string;
+    featuredImg: string;
     showcaseImg: string;
-    projectRole: string; // NEW: Displayed in hero section
+    projectRole: string;
     images: string[];
     gallery: ProjectImage[];
     customSections?: ProjectSection[];
@@ -370,6 +370,74 @@ export const PROJECTS_DATA: ProjectData[] = [
                 ]
             }
         ]
+    },
+    {
+        id: "06",
+        slug: "mr-yogurt",
+        title: "Mr. Yogurt",
+        tagline: "Brand Engineering & System Prototype",
+        desc: "A massive UI/UX undertaking to rebrand and architect a comprehensive digital ecosystem for Mr. Yogurt. I mapped out the entire user journey, crafted a playful visual identity, and developed high-fidelity prototypes.",
+        overview: [
+            { type: 'p', text: "Mr. Yogurt, a popular localized dessert spot known for its DIY froyo experience, needed a digital identity that captured its fun, customizable nature. The challenge was to translate the physical experience of building your own dessert into an intuitive digital interface." },
+            { type: 'p', text: "This project was heavily focused on UI/UX research, wireframing, and interactive prototyping. We needed a comprehensive system that could handle everything from standard menus to event packages and an administrative backend, all while maintaining a highly cohesive and energetic brand identity." }
+        ],
+        role: [
+            { type: 'role-title', text: "Lead UI/UX Designer & Brand Strategist" },
+            { type: 'p', text: "I constructed the brand engineering process, establishing the color palettes, typography, and core visual motifs (like the signature 'swirls') that would define Mr. Yogurt's digital presence." },
+            { type: 'p', text: "Using Figma, I constructed an extensive, fully mapped prototype encompassing the consumer-facing website, a dynamic product catalog, event package flows, and the foundational screens for the administrative portal." }
+        ],
+        stack: ["Figma", "Adobe CC", "Brand Strategy", "Wireframing", "Prototyping"],
+        techLabel: "UI/UX · Figma",
+        live: "https://www.figma.com/proto/4MnMOyglVSYztfRAIQivU6/Mr.-Yogurt?page-id=222802%3A2158&node-id=222811-7750&viewport=-120%2C1017%2C0.2&t=bwUhkeiYd99Jy1u7-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=222900%3A4023&show-proto-sidebar=1",
+        github: "", // Left blank intentionally as it's a design project
+        heroImg: "/assets/projects/mr-yogurt/mryogurt-featured.png",
+        slugImg: "/assets/projects/mr-yogurt/mryogurt-featured.png",
+        featuredImg: "/assets/projects/mr-yogurt/mryogurt-featured.png",
+        showcaseImg: "/assets/projects/mr-yogurt/mryogurt-featured.png",
+        projectRole: "UI/UX Designer & Brand Architect",
+        images: [
+            "/assets/projects/mr-yogurt/mryogurt-featured.png",
+            "/assets/projects/mr-yogurt/mryogurt-menu.png",
+            "/assets/projects/mr-yogurt/mryogurt-diy.png"
+        ],
+        gallery: [
+            { src: "/assets/projects/mr-yogurt/mryogurt-menu.png", alt: "Digital Menu Interface", caption: "The playful, categorized digital menu featuring soft curves and vibrant imagery." },
+            { src: "/assets/projects/mr-yogurt/mryogurt-diy.png", alt: "DIY Process Illustration", caption: "Visual diagrams translating the physical DIY experience for digital users." },
+            { src: "/assets/projects/mr-yogurt/mryogurt-customers.png", alt: "Customer Interaction", caption: "Integrating real community photos to build trust and brand authenticity." }
+        ],
+        customSections: [
+            {
+                id: "brand-identity",
+                title: "Crafting the Visual Language",
+                blocks: [
+                    { type: 'p', text: "The core of Mr. Yogurt is fun and customization. I developed a visual language built around soft pastels (pinks, blues, and purples) to evoke sweetness, paired with bold, rounded typography to feel approachable and energetic." },
+                    { type: 'img', src: '/assets/projects/mr-yogurt/mryogurt-values.png', alt: 'Core Values & Typography', caption: 'Establishing the brand\'s core values through consistent typography and iconography.' },
+                    { type: 'p', text: "Every button, modal, and section divider was designed with organic, sweeping curves to mimic the visual of a yogurt swirl, creating a highly cohesive and memorable brand experience." }
+                ]
+            },
+            {
+                id: "system-mapping",
+                title: "Extensive Prototype Mapping",
+                blocks: [
+                    { type: 'p', text: "To ensure a seamless user experience, I mapped out the entire digital ecosystem. This wasn't just a few screens; it involved intricate routing for product selections, event package inquiries, customer testimonials, and an administrative portal concept." },
+                    { type: 'img', src: '/assets/projects/mr-yogurt/mryogurt-prototype.png', alt: 'Figma Prototype Architecture', caption: 'The complex routing and interactive web architecture built entirely within Figma.' },
+                    { type: 'p', text: "This extensive mapping allowed stakeholders to navigate a high-fidelity representation of the final product, testing user flows like event bookings and modal interactions before a single line of code was written." },
+                    { type: 'img', src: '/assets/projects/mr-yogurt/mryogurt-events.png', alt: 'Event Packages Screen', caption: 'Clean, tiered pricing tables designed for easy comparison and immediate call-to-action.' }
+                ]
+            },
+            {
+                id: "project-links",
+                title: "Interactive Prototype",
+                blocks: [
+                    { type: 'p', text: "You can explore the full interactive prototype directly in Figma to experience the user flows, modal popups, and micro-interactions firsthand." },
+                    {
+                        type: 'link-group', links: [
+                            { url: 'https://www.figma.com/proto/4MnMOyglVSYztfRAIQivU6/Mr.-Yogurt?page-id=222802%3A2158&node-id=222811-7750&viewport=-120%2C1017%2C0.2&t=bwUhkeiYd99Jy1u7-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=222900%3A4023&show-proto-sidebar=1', label: 'View Figma Prototype' }
+                        ]
+                    }
+                ]
+            }
+        ]
     }
 ];
 
@@ -393,24 +461,15 @@ export const SHOWCASE_PROJECTS = PROJECTS_DATA
         };
     });
 
-// ─── MAJOR PROJECTS (first 4 for the projects listing page) ───────────────────
+// ─── MAJOR PROJECTS (first 6 for the projects listing page) ───────────────────
 
 export const MAJOR_PROJECTS = PROJECTS_DATA.filter((p) =>
-    ["danonos", "chanel-showcase", "hau-ecoquest", "wellness-apparel", "vrc-designs"].includes(p.slug)
+    ["danonos", "chanel-showcase", "hau-ecoquest", "wellness-apparel", "vrc-designs", "mr-yogurt"].includes(p.slug)
 );
 
 // ─── MINOR PROJECTS ───────────────────────────────────────────────────────────
 
 export const MINOR_PROJECTS: MinorProject[] = [
-    {
-        title: "Mr. Yogurt",
-        tagline: "Brand Engineering & System UI",
-        stack: ["Figma", "Adobe CC", "Brand Strategy"],
-        live: "https://figma.com/proto/...",
-        slug: "mr-yogurt",
-        icon: FaFigma,
-        image: "/assets/projects/mryogurt-1.png",
-    },
     {
         title: "Japan Chronicles",
         tagline: "Editorial CMS Platform",

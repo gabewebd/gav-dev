@@ -152,7 +152,6 @@ export default function Footer() {
                         <Button 
                             href="/contact" 
                             className="w-full !py-3.5 !text-[11px] mb-8 shadow-xl"
-                            icon={ArrowUpRight}
                         >
                             Contact Me
                         </Button>
