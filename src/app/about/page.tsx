@@ -21,7 +21,7 @@ import PreviewLink from "@/components/ui/PreviewLink";
 import Magnetic from "@/components/ui/Magnetic";
 
 
-import { FaHeadphones, FaFileAlt, FaGraduationCap } from "react-icons/fa";
+import { FaFileAlt, FaGraduationCap } from "react-icons/fa";
 
 import {
   SKILLS,
@@ -592,9 +592,6 @@ export default function AboutPage() {
       {/* ─── INTERESTS (INTERACTIVE FANNED DECK) ── */}
       <section ref={interestsSectionRef} className="relative py-24 md:py-40 bg-transparent border-b border-brand-ink/5 dark:border-brand-white/5 overflow-hidden">
 
-        <div className="bg-icon-parallax absolute top-1/2 right-[-15vw] sm:right-[-5vw] lg:right-10 -translate-y-1/2 w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] lg:w-[500px] lg:h-[500px] bg-brand-white/[0.02] rounded-[3rem] sm:rounded-[4rem] lg:rounded-[5rem] rotate-12 flex items-center justify-center pointer-events-none z-0 will-change-transform">
-          <FaHeadphones className="w-[100px] h-[100px] sm:w-[150px] sm:h-[150px] lg:w-[200px] lg:h-[200px] text-brand-white/[0.07]" />
-        </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 relative z-10">
 
