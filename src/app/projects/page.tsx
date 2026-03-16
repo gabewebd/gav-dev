@@ -72,7 +72,7 @@ function CustomCursor() {
 
   useEffect(() => {
     if (!cursorRef.current) return;
-    
+
     if (active) {
       gsap.to(cursorRef.current, {
         opacity: 1,
@@ -94,7 +94,7 @@ function CustomCursor() {
   useEffect(() => {
     setActive(false);
     if (cursorRef.current) {
-        gsap.set(cursorRef.current, { opacity: 0, scale: 0.5 });
+      gsap.set(cursorRef.current, { opacity: 0, scale: 0.5 });
     }
     return () => setActive(false);
   }, [setActive]);
@@ -124,6 +124,19 @@ export default function ProjectsPage() {
   const { setActive } = useCursorStore();
 
   const [activeIndex, setActiveIndex] = useState(0);
+
+  const handleScrollTo = (e: React.MouseEvent, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 100; // Adjust for sticky header
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({
+        top: elementPosition - offset,
+        behavior: "smooth"
+      });
+    }
+  };
 
   useEffect(() => {
     if (!mobileNavContainerRef.current) return;
@@ -158,6 +171,7 @@ export default function ProjectsPage() {
       { y: 0, opacity: 1, clipPath: "inset(0% 0% 0% 0%)", duration: 1.1, stagger: 0.12, ease: "power4.out" }
     );
     tl.fromTo(".hero-desc", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 1, ease: "power2.out" }, "-=0.5");
+
     tl.fromTo(".hero-divider", { scaleX: 0 }, { scaleX: 1, duration: 1.5, ease: "power4.inOut" }, "-=0.8");
 
     gsap.to('.hero-bg-icon', {
@@ -266,7 +280,7 @@ export default function ProjectsPage() {
         <div className="max-w-[100rem] mx-auto px-4 sm:px-6 md:px-12 relative z-10">
 
           <section className="hero-section mb-20 md:mb-32 relative max-w-7xl mx-auto">
-            <div 
+            <div
               className="hero-bg-icon absolute top-[-5vh] right-[-5vw] lg:right-5 w-[300px] h-[300px] md:w-[450px] md:h-[450px] pointer-events-none z-0 opacity-[0.05]"
               onMouseEnter={() => setActive(false)}
             >
@@ -312,8 +326,9 @@ export default function ProjectsPage() {
                 {PROJECTS.map((p, i) => (
                   <div
                     key={i}
-                    className={`nav-project-item relative pl-10 py-2 cursor-default transition-all duration-500 text-white will-change-transform ${activeIndex === i ? 'opacity-100 translate-x-4' : 'opacity-40 translate-x-0 scale-[0.85] origin-left'}`}
+                    className={`nav-project-item relative pl-10 py-2 cursor-pointer transition-all duration-500 text-white will-change-transform ${activeIndex === i ? 'opacity-100 translate-x-4' : 'opacity-40 translate-x-0 scale-[0.85] origin-left'}`}
                     onMouseEnter={() => setActive(false)}
+                    onClick={(e) => handleScrollTo(e, p.slug)}
                   >
                     <div className={`nav-dot absolute left-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#BFFF00] transition-all duration-500 shadow-[0_0_10px_rgba(191,255,0,0.8)] ${activeIndex === i ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
 
@@ -334,11 +349,11 @@ export default function ProjectsPage() {
                 const targetVisual = project.featuredImg || project.gallery?.[1]?.src || project.images?.[1] || project.showcaseImg || project.images?.[0] || '';
 
                 return (
-                  <div key={project.id} className="project-content-section w-full flex flex-col gap-8 md:gap-14">
+                  <div key={project.id} id={project.slug} className="project-content-section w-full flex flex-col gap-8 md:gap-14 scroll-mt-32">
 
 
 
-                    <div 
+                    <div
                       data-cursor-project="true"
                       className="relative w-full aspect-[4/3] md:aspect-[16/10] bg-[#0A0A0A] rounded-2xl md:rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.6)] cursor-pointer lg:cursor-none group"
                       onMouseEnter={() => setActive(true)}
@@ -368,7 +383,7 @@ export default function ProjectsPage() {
                       <div className="absolute inset-0 bg-black/0 lg:group-hover:bg-black/50 transition-colors duration-700 pointer-events-none z-10" />
                     </div>
 
-                    <div 
+                    <div
                       className="project-details-reveal flex flex-col xl:flex-row gap-8 xl:gap-16 justify-between items-start"
                       onMouseEnter={() => setActive(false)}
                     >
@@ -380,7 +395,7 @@ export default function ProjectsPage() {
 
                         <div className="flex flex-wrap items-center gap-2 pt-2">
                           {project.stack.map((tech, idx) => (
-                            <div key={idx} className="px-3 md:px-3 text-center py-1.5 md:py-1.5 rounded-full bg-white/5 border border-white/10">
+                            <div key={idx} className="px-3 md:px-3 text-center pt-1 pb-1.5 md:pt-1 md:pb-1.5 rounded-full bg-white/5 border border-white/10">
                               <span className="font-mori font-bold text-[10px] md:text-[11px] uppercase tracking-[0.1em] text-white/90">
                                 {tech}
                               </span>
@@ -400,8 +415,8 @@ export default function ProjectsPage() {
                             </Button>
                           )}
                         </div>
-                        
-                        <Link 
+
+                        <Link
                           href={`/projects/${project.slug}`}
                           className="lg:hidden flex items-center justify-center gap-2 group/details py-2 border-t border-white/5 pt-6"
                         >
@@ -420,29 +435,29 @@ export default function ProjectsPage() {
           </section>
         </div>
 
-      <section 
-        className="cta-section py-20 px-6 max-w-7xl mx-auto border-t border-brand-white/10 relative z-10"
-        onMouseEnter={() => setActive(false)}
-      >
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 text-left">
-          <div className="flex-1">
-            <h2 className="font-mori font-semibold text-3xl md:text-5xl uppercase tracking-tighter leading-tight text-brand-white">
-              Curious to read some <span className="text-brand-accent">insights</span>?
-            </h2>
-            <p className="mt-4 text-brand-white/85 max-w-xl font-light">
-              Visit my blog where I share my thoughts on development, design, and technical deep dives into building modern systems.
-            </p>
+        <section
+          className="cta-section py-20 px-6 max-w-7xl mx-auto border-t border-brand-white/10 relative z-10"
+          onMouseEnter={() => setActive(false)}
+        >
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 text-left">
+            <div className="flex-1">
+              <h2 className="font-mori font-semibold text-3xl md:text-5xl uppercase tracking-tighter leading-tight text-brand-white">
+                Curious to read some <span className="text-brand-accent">insights</span>?
+              </h2>
+              <p className="mt-4 text-brand-white/85 max-w-xl font-light">
+                Visit my blog where I share my thoughts on development, design, and technical deep dives into building modern systems.
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center lg:justify-end gap-4 w-full lg:w-auto">
+              <Button href="/blog" icon={ArrowRight}>
+                Read Blogs
+              </Button>
+              <Button href="/contact" variant="secondary">
+                Get in Touch
+              </Button>
+            </div>
           </div>
-          <div className="flex flex-wrap items-center lg:justify-end gap-4 w-full lg:w-auto">
-            <Button href="/blog" icon={ArrowRight}>
-              Read Blogs
-            </Button>
-            <Button href="/contact" variant="secondary">
-              Get in Touch
-            </Button>
-          </div>
-        </div>
-      </section>
+        </section>
       </main>
     </>
   );

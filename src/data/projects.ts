@@ -186,7 +186,7 @@ export const PROJECTS_DATA: ProjectData[] = [
             { type: 'p', text: "By transforming routine eco-friendly activities into entertaining quests, the platform promotes community involvement through digital badges, point systems, and friendly rivalry via dynamic leaderboards." }
         ],
         role: [
-            { type: 'role-title', text: "Lead Full-Stack Developer and UI/UX Designer" },
+            { type: 'role-title', text: "Full-Stack Developer Lead & UI/UX Designer" },
             { type: 'p', text: "I built out nearly all the core pages. This included the Quest page, Community feed, Login and Signup flows, Dashboard data visualizations, and Role Management architecture." },
             { type: 'p', text: "I successfully integrated Cloudinary for secure image proof uploads, managed our weekly Agile sprint planning in Notion, and executed the dual-deployment strategy using Vercel for the frontend and Render for the backend." }
         ],
@@ -255,7 +255,7 @@ export const PROJECTS_DATA: ProjectData[] = [
             { type: 'p', text: "The platform supports a complete digital retail workflow. It handles everything from digital catalog browsing and dynamic shipping address management to complex order fulfillment and an internal notification system between customers and admins. As a conceptual prototype, it is designed to strictly simulate the e-commerce architecture and does not process real monetary transactions." }
         ],
         role: [
-            { type: 'role-title', text: "Lead Full-Stack Developer and UI/UX Designer" },
+            { type: 'role-title', text: "Full-Stack Developer & UI/UX Designer" },
             { type: 'p', text: "I contributed heavily across the entire application ecosystem, initializing the branding assets, building out the login and registration systems, role management protocols, and the user-facing frontend architecture like Home Page, Shop Page, Dashboard data visualizations, Login and Register Pages." },
             { type: 'p', text: "On the backend, I successfully handled the live production deployment of the platform using AwardSpace." }
         ],
@@ -382,7 +382,7 @@ export const PROJECTS_DATA: ProjectData[] = [
             { type: 'p', text: "This project was heavily focused on UI/UX research, wireframing, and interactive prototyping. We needed a comprehensive system that could handle everything from standard menus to event packages and an administrative backend, all while maintaining a highly cohesive and energetic brand identity." }
         ],
         role: [
-            { type: 'role-title', text: "Lead UI/UX Designer & Brand Strategist" },
+            { type: 'role-title', text: "UI/UX Designer & Brand Architect" },
             { type: 'p', text: "I constructed the brand engineering process, establishing the color palettes, typography, and core visual motifs (like the signature 'swirls') that would define Mr. Yogurt's digital presence." },
             { type: 'p', text: "Using Figma, I constructed an extensive, fully mapped prototype encompassing the consumer-facing website, a dynamic product catalog, event package flows, and the foundational screens for the administrative portal." }
         ],
