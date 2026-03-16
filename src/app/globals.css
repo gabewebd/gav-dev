@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@config "../../tailwind.config.ts";
 @source "../components/**/*.{ts,tsx}";
 
 /* ─────────────────────────────────────────────────────────────
@@ -11,8 +10,10 @@
   --color-brand-accent-muted: #b8e600;
   --color-brand-white: #EDEDED;
 
-  /* Alternate Section Backgrounds */
   --color-brand-dark-alt: #111111;
+  --color-brand-light: #FAFAFA;
+  --color-brand-light-alt: #F0F0F0;
+  --color-brand-ink: #111111;
 
   --font-display: var(--font-mori);
   --font-body: var(--font-inter);
