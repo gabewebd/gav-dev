@@ -547,7 +547,7 @@ export default function Home() {
               <h1 className="font-mori font-semibold text-[clamp(3rem,8vw,7rem)] leading-none tracking-tighter text-brand-white mb-7 sm:mb-10 lg:mb-12">
                 <span className="hero-line block text-brand-white pt-4 pb-2 -mb-6 md:-mb-8 lg:-mb-10">Building</span>
 
-                <span className="hero-line block text-muted pt-4 pb-2 -mb-4 md:-mb-6 lg:-mb-8">your</span>
+                <span className="hero-line block text-brand-white pt-4 pb-2 -mb-4 md:-mb-6 lg:-mb-8">your</span>
 
                 <span className="hero-line flex items-center gap-3 md:gap-4 overflow-visible py-4 -my-4">
 
