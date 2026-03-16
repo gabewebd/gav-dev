@@ -119,33 +119,11 @@ export default function Footer() {
     };
 
     return (
-        /* FIX: solid bg-brand-dark (no transparency), top border added */
-        <footer className="dark bg-brand-dark text-brand-white border-t border-brand-white/10">
+        <footer className="relative bg-[#0A0A0A]/80 backdrop-blur-xl text-white border-t border-white/10 overflow-hidden">
+            {/* Subtle top glow to separate from main content */}
+            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-accent/20 to-transparent shadow-[0_-20px_40px_rgba(207,249,73,0.05)]" />
 
-            {/* ── Resume CTA Banner ──────────────────────────────── */}
-            <div className="border-b border-brand-white/5">
-                <div className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-28 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8 md:gap-10">
-                    <div>
-                        <p className="text-xs font-bold uppercase tracking-[0.3em] text-brand-white/70 mb-3">
-                            Want the full picture?
-                        </p>
-                        <h3 className="font-mori font-semibold text-2xl sm:text-3xl md:text-5xl uppercase tracking-tighter leading-[0.95]">
-                            Download My Resume
-                        </h3>
-                    </div>
-                    <Button
-                        ref={ctaBtnRef}
-                        href="/assets/gav-resume.pdf"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        ariaLabel="View Gabrielle's Resume PDF in new tab"
-                        className="magnetic-btn !bg-brand-white !text-brand-dark !px-7 sm:!px-10 !py-4 sm:!py-5"
-                    >
-                        <FileDown className="w-4 h-4 sm:w-5 sm:h-5" />
-                        Get Resume PDF
-                    </Button>
-                </div>
-            </div>
+
 
             {/* ── Main Footer Grid ───────────────────────────────── */}
             <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-20">
@@ -153,11 +131,11 @@ export default function Footer() {
 
                     {/* Brand Column */}
                     <div className="sm:col-span-2 md:col-span-5">
-                        <Link href="/" className="inline-block hover:-translate-y-1 transition-transform">
-                            <Logo className="h-10 w-auto text-brand-white" />
+                        <Link href="/" className="inline-block hover:opacity-80 transition-opacity">
+                            <Logo className="h-10 w-auto text-white" />
                         </Link>
 
-                        <p className="mt-5 text-sm text-brand-white/70 leading-relaxed max-w-sm">
+                        <p className="mt-5 text-sm text-white/60 leading-relaxed max-w-sm">
                             I’m a Full-Stack Developer who enjoys turning ideas into thoughtful, well-crafted digital experiences.
                             I work across the stack with modern web technologies, always aiming for clarity, performance, and a little bit of polish.
                         </p>
@@ -172,7 +150,7 @@ export default function Footer() {
 
                     {/* Quick Links */}
                     <div className="md:col-span-3 md:col-start-7">
-                        <h4 className="text-xs font-bold uppercase tracking-[0.25em] text-brand-white/85 mb-6">
+                        <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/40 mb-6">
                             Navigation
                         </h4>
                         <ul className="space-y-3.5">
@@ -182,12 +160,12 @@ export default function Footer() {
                                         href={link.href}
                                         label="Navigate"
                                         description={link.label}
-                                        className="text-sm text-brand-white/70 hover:text-brand-accent
+                                        className="text-sm text-white/70 hover:text-brand-accent
                                             transition-colors duration-200
-                                            flex items-center gap-1.5 group"
+                                            flex items-center gap-1.5 group/link"
                                     >
                                         {link.label}
-                                        <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                        <ArrowUpRight className="w-3 h-3 opacity-0 group-hover/link:opacity-100 transition-opacity" />
                                     </PreviewLink>
                                 </li>
                             ))}
@@ -196,20 +174,20 @@ export default function Footer() {
 
                     {/* Contact Column */}
                     <div className="md:col-span-3">
-                        <h4 className="text-xs font-bold uppercase tracking-[0.25em] text-brand-white/85 mb-6">
+                        <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/40 mb-6">
                             Get In Touch
                         </h4>
                         <PreviewLink
                             href="mailto:vlsqz.gabrielle@gmail.com"
                             label="Send Email"
                             description="vlsqz.gabrielle@gmail.com"
-                            className="text-sm text-brand-white/70 hover:text-brand-accent
+                            className="text-sm text-white/70 hover:text-brand-accent
                                 transition-colors duration-200 break-all"
                         >
                             vlsqz.gabrielle@gmail.com
                         </PreviewLink>
 
-                        <p className="mt-6 text-xs text-brand-white/70 leading-relaxed">
+                        <p className="mt-6 text-[11px] text-white/40 leading-relaxed">
                             Holy Angel University<br />
                             BSIT 2023–2027<br />
                             Angeles City, Philippines
@@ -219,13 +197,13 @@ export default function Footer() {
             </div>
 
             {/* ── Bottom Bar ─────────────────────────────────────── */}
-            <div className="border-t border-brand-white/5">
-                <div className="max-w-7xl mx-auto px-6 md:px-12 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-3 text-center sm:text-left">
-                    <p className="text-xs text-brand-white/85">
-                        &copy; {new Date().getFullYear()} Gabrielle Ainshley Velasquez. All rights reserved.
+            <div className="border-t border-white/5">
+                <div className="max-w-7xl mx-auto px-6 md:px-12 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4 text-center sm:text-left opacity-30">
+                    <p className="text-[10px] uppercase tracking-widest">
+                        &copy; {new Date().getFullYear()} Gabrielle Ainshley Velasquez.
                     </p>
-                    <p className="text-xs text-brand-white/85">
-                        Designed and developed with care, curiosity, and an eye for detail.
+                    <p className="text-[10px] uppercase tracking-widest hidden sm:block">
+                        Designed & Developed with care
                     </p>
                 </div>
             </div>

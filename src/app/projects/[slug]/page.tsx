@@ -20,6 +20,14 @@ function ContentBlockRenderer({ block, onImageClick }: { block: ContentBlock, on
     switch (block.type) {
         case 'p':
             return <p className="text-base md:text-xl text-brand-ink/80 dark:text-brand-white/70 leading-relaxed font-medium mb-6">{block.text}</p>;
+        case 'role-title':
+            return (
+                <div className="mb-8">
+                    <h3 className="font-bold text-brand-ink dark:text-brand-white text-xl md:text-2xl underline decoration-brand-accent decoration-[3px] underline-offset-[12px] inline-block">
+                        {block.text}
+                    </h3>
+                </div>
+            );
         case 'h2':
             return <h2 className="font-mori font-semibold text-2xl md:text-3xl tracking-tighter text-brand-ink dark:text-brand-white mt-12 mb-6">{block.text}</h2>;
         case 'img':
@@ -185,20 +193,16 @@ export default function ProjectDetail() {
     ].filter(Boolean) as string[];
 
     return (
-        <main ref={containerRef} className="relative min-h-screen bg-brand-light dark:bg-brand-dark selection:bg-brand-accent selection:text-brand-dark transition-colors duration-500 overflow-x-clip">
+        <main ref={containerRef} className="relative overflow-x-clip pb-32 transition-colors duration-500 min-h-screen">
 
-            {/* ── STATIC NOISE ── */}
-            <div className="fixed inset-0 pointer-events-none z-0 opacity-[0.08] md:opacity-[0.12] dark:opacity-[0.03] dark:md:opacity-[0.05]">
-                <svg className="w-full h-full"><filter id="noise-slug"><feTurbulence type="fractalNoise" baseFrequency="3.5" numOctaves="3" stitchTiles="stitch" /><feColorMatrix type="matrix" values="1 0 0 0 0, 1 0 0 0 0, 1 0 0 0 0, 0 0 0 1 0" /></filter><rect width="100%" height="100%" filter="url(#noise-slug)" /></svg>
-            </div>
 
             {/* ── 1. 100VH HERO IMAGE ── */}
-            <section className="relative w-full h-[80vh] md:h-screen flex items-end pb-16 md:pb-24 px-6 md:px-12 bg-brand-dark">
+            <section className="relative w-full h-[80vh] md:h-screen flex items-end pb-16 md:pb-24 px-6 md:px-12">
                 <div className="absolute inset-0 z-0 opacity-25">
                     <GridMotion items={gridItems} gradientColor="transparent" />
                 </div>
 
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/80 to-transparent z-10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/80 to-transparent z-10" />
 
                 <div className="relative z-20 w-full max-w-7xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-8">
                     <div className="flex flex-col">
@@ -362,43 +366,39 @@ export default function ProjectDetail() {
             </section>
 
             {/* ── 3. PREV / NEXT NAVIGATION GRID ── */}
-            <section className="relative border-t border-brand-ink/10 dark:border-brand-white/10 py-20 md:py-32 bg-brand-light-alt dark:bg-brand-dark-alt">
-                {/* Section Static Noise Overlay */}
-                <div className="absolute inset-0 pointer-events-none z-0 opacity-[0.08] md:opacity-[0.12] dark:opacity-[0.03] dark:md:opacity-[0.05]">
-                    <svg className="w-full h-full"><filter id="noise-proj-nav"><feTurbulence type="fractalNoise" baseFrequency="3.5" numOctaves="3" stitchTiles="stitch" /><feColorMatrix type="matrix" values="1 0 0 0 0, 1 0 0 0 0, 1 0 0 0 0, 0 0 0 1 0" /></filter><rect width="100%" height="100%" filter="url(#noise-proj-nav)" /></svg>
-                </div>
+            <section className="relative border-t border-brand-ink/10 dark:border-brand-white/10 py-20 md:py-32">
                 <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col relative z-10">
                     <div className="flex justify-center mb-12 md:mb-16">
-                        <Link href="/projects" className="group inline-flex items-center gap-3 border border-brand-ink/20 dark:border-brand-white/20 text-brand-ink dark:text-brand-white px-8 md:px-10 py-4 rounded-full font-outfit font-bold uppercase tracking-widest text-xs hover:bg-brand-ink/5 dark:hover:bg-brand-white/5 transition-colors">
-                            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1.5 transition-transform" /> Return to Projects
+                        <Link href="/projects" className="group inline-flex items-center gap-3 bg-brand-ink dark:bg-brand-white text-white dark:text-brand-ink px-8 md:px-12 py-4 md:py-5 rounded-full font-mori font-bold uppercase tracking-[0.2em] text-[10px] md:text-xs hover:scale-105 hover:bg-brand-accent hover:text-brand-dark transition-all duration-300 shadow-xl">
+                            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1.5 transition-transform" strokeWidth={2.5} /> Return to Projects
                         </Link>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
                         {prevProject && (
-                            <Link href={`/projects/${prevProject.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/9] rounded-[2rem] overflow-hidden border border-brand-ink/10 dark:border-brand-white/10 block cursor-pointer shadow-lg dark:shadow-xl hover:-translate-y-2 transition-all duration-500 hover:shadow-brand-ink/20 dark:hover:shadow-brand-accent/10">
-                                <Image src={prevProject.slugImg || prevProject.heroImg} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" alt={prevProject.title} sizes="(max-width: 768px) 100vw, 50vw" quality={90} />
-                                <div className="absolute inset-0 bg-brand-ink/60 dark:bg-brand-dark/70 transition-colors group-hover:bg-brand-ink/40 dark:group-hover:bg-brand-dark/50" />
+                            <Link href={`/projects/${prevProject.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/10] rounded-[2rem] overflow-hidden border border-brand-ink/10 dark:border-brand-white/10 block cursor-pointer shadow-lg hover:-translate-y-2 transition-all duration-500 hover:shadow-2xl">
+                                <Image src={prevProject.featuredImg || prevProject.heroImg} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" alt={prevProject.title} sizes="(max-width: 768px) 100vw, 50vw" quality={90} />
+                                <div className="absolute inset-0 bg-[#0A0A0A]/70 group-hover:bg-[#0A0A0A]/50 transition-colors duration-500" />
                                 <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
                                     <div className="inline-flex items-center gap-2 mb-4">
-                                        <ArrowLeft className="w-3.5 h-3.5 text-brand-accent group-hover:-translate-x-1.5 transition-transform" />
+                                        <ArrowLeft className="w-3.5 h-3.5 text-brand-accent group-hover:-translate-x-1.5 transition-transform" strokeWidth={3} />
                                         <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/70">Previous</span>
                                     </div>
-                                    <h4 className="font-outfit font-black text-2xl md:text-4xl tracking-tighter text-white leading-[1.1] drop-shadow-md">{prevProject.title}</h4>
+                                    <h4 className="font-mori font-bold text-2xl md:text-5xl tracking-tighter text-white leading-[1.1] drop-shadow-md">{prevProject.title}</h4>
                                 </div>
                             </Link>
                         )}
 
                         {nextProject && (
-                            <Link href={`/projects/${nextProject.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/9] rounded-[2rem] overflow-hidden border border-brand-ink/10 dark:border-brand-white/10 block cursor-pointer shadow-lg dark:shadow-xl hover:-translate-y-2 transition-all duration-500 hover:shadow-brand-ink/20 dark:hover:shadow-brand-accent/10">
-                                <Image src={nextProject.slugImg || nextProject.heroImg} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" alt={nextProject.title} sizes="(max-width: 768px) 100vw, 50vw" quality={90} />
-                                <div className="absolute inset-0 bg-brand-ink/60 dark:bg-brand-dark/70 transition-colors group-hover:bg-brand-ink/40 dark:group-hover:bg-brand-dark/50" />
+                            <Link href={`/projects/${nextProject.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/10] rounded-[2rem] overflow-hidden border border-brand-ink/10 dark:border-brand-white/10 block cursor-pointer shadow-lg hover:-translate-y-2 transition-all duration-500 hover:shadow-2xl">
+                                <Image src={nextProject.featuredImg || nextProject.heroImg} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" alt={nextProject.title} sizes="(max-width: 768px) 100vw, 50vw" quality={90} />
+                                <div className="absolute inset-0 bg-[#0A0A0A]/70 group-hover:bg-[#0A0A0A]/50 transition-colors duration-500" />
                                 <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
                                     <div className="inline-flex items-center gap-2 mb-4">
                                         <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/70">Next Project</span>
-                                        <ArrowRight className="w-3.5 h-3.5 text-brand-accent group-hover:translate-x-1.5 transition-transform" />
+                                        <ArrowRight className="w-3.5 h-3.5 text-brand-accent group-hover:translate-x-1.5 transition-transform" strokeWidth={3} />
                                     </div>
-                                    <h4 className="font-outfit font-black text-2xl md:text-4xl tracking-tighter text-white leading-[1.1] drop-shadow-md">{nextProject.title}</h4>
+                                    <h4 className="font-mori font-bold text-2xl md:text-5xl tracking-tighter text-white leading-[1.1] drop-shadow-md">{nextProject.title}</h4>
                                 </div>
                             </Link>
                         )}

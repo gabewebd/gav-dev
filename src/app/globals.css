@@ -25,12 +25,12 @@
    DARK MODE (next-themes class strategy)
    ───────────────────────────────────────────────────────────── */
 :root {
-  --background: #f7f7f7;
-  --foreground: #111111;
+  --background: #050505;
+  --foreground: #EDEDED;
 }
 
 .dark {
-  --background: #0A0A0A;
+  --background: #050505;
   --foreground: #EDEDED;
 }
 
@@ -70,6 +70,10 @@ body {
 /* ─────────────────────────────────────────────────────────────
    SCROLLBAR
    ───────────────────────────────────────────────────────────── */
+.perspective-2000 {
+  perspective: 2000px;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
 }

@@ -35,7 +35,7 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, ButtonProps>(({
     type = "button",
     iconClassName = "",
 }, ref) => {
-    const baseStyles = "group inline-flex items-center justify-center gap-2 md:gap-3 rounded-full font-outfit font-bold uppercase tracking-[0.15em] text-xs md:text-sm transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed";
+    const baseStyles = "group inline-flex items-center justify-center gap-2 md:gap-3 rounded-full font-outfit font-bold uppercase tracking-[0.15em] text-xs md:text-sm transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap";
 
     const variants = {
         primary: "bg-brand-ink dark:bg-brand-white text-brand-white dark:text-brand-dark px-6 md:px-14 py-3.5 md:py-6 hover:opacity-85",

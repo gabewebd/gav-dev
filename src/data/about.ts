@@ -3,9 +3,7 @@ import {
     Code2,
     Database,
     Palette,
-    Focus,
     ShieldCheck,
-    Zap,
     Workflow,
     Tv,
     Gamepad2,
@@ -14,6 +12,10 @@ import {
     Cpu,
     Fingerprint,
     Music,
+    Lightbulb,
+    Users,
+    Shield,
+    User,
 } from "lucide-react";
 
 import {
@@ -65,7 +67,7 @@ export interface FilterTab {
 
 export interface SoftSkill {
     title: string;
-    desc: string;
+    description: string;
     icon: React.ElementType;
 }
 
@@ -73,6 +75,7 @@ export interface Interest {
     title: string;
     desc: string;
     icon: React.ElementType;
+    image: string; // Added image
 }
 
 export interface CertItem {
@@ -84,6 +87,29 @@ export interface Certification {
     issuer: string;
     year: string;
     items: CertItem[];
+}
+
+export interface ExperienceItem {
+    role: string;
+    company: string;
+    location: string;
+    period: string;
+    points: string[];
+}
+
+export interface EducationItem {
+    degree: string;
+    school: string;
+    period: string;
+    points: string[];
+}
+
+export interface Goal {
+    title: string;
+    desc: string;
+    icon: React.ElementType;
+    num: string;
+    span: string;
 }
 
 // ─── DATA ─────────────────────────────────────────────────────────────────────
@@ -122,17 +148,63 @@ export const FILTER_TABS: FilterTab[] = [
 ];
 
 export const SOFT_SKILLS: SoftSkill[] = [
-    { title: "Analytical Thinking", desc: "I naturally break down complex problems into smaller, manageable parts to find clear and practical solutions.", icon: Focus },
-    { title: "Attention to Detail", desc: "I pay close attention to the small details, from visual polish to backend logic, ensuring everything works smoothly together.", icon: ShieldCheck },
-    { title: "Time Management", desc: "I organize my tasks effectively, set clear priorities, and make sure deadlines are consistently met.", icon: Zap },
-    { title: "Adaptability", desc: "I’m comfortable adjusting to different roles and challenges, whether working on design concepts or backend implementation.", icon: Workflow },
+    {
+        title: "Attention to Detail",
+        description: "Focusing on the finer points of development and design to ensure precision and prevent oversight.",
+        icon: ShieldCheck
+    },
+    {
+        title: "Adaptability",
+        description: "Quickly adjusting to new technologies, environments, and shifting project requirements with ease.",
+        icon: Workflow
+    },
+    {
+        title: "Problem Solver",
+        description: "Approaching technical roadblocks with a creative and strategic mindset to find effective resolutions.",
+        icon: Lightbulb
+    },
+    {
+        title: "Leadership",
+        description: "Guiding projects with clarity and purpose while fostering a collaborative and productive atmosphere.",
+        icon: Users
+    },
+    {
+        title: "Resilience",
+        description: "Maintaining focus and composure under pressure, treating challenges as opportunities for growth.",
+        icon: Shield
+    },
+    {
+        title: "Independence",
+        description: "Effectively managing individual responsibilities with strong self-discipline and minimal supervision.",
+        icon: User
+    },
 ];
 
 export const INTERESTS: Interest[] = [
-    { title: "Reading & Watching Stories", desc: "I enjoy reading and watching story-driven content that explores meaningful themes and different perspectives.", icon: Tv },
-    { title: "Visual Design", desc: "I like exploring interface ideas and motion trends, always thinking about how visuals shape user experience.", icon: Palette },
-    { title: "Listening to Music", desc: "Music helps me focus, reset, and stay creative, especially when working on deep technical tasks.", icon: Music },
-    { title: "Motion Graphics", desc: "I experiment with keyframes, transitions, and visual storytelling using After Effects.", icon: Video },
+    {
+        title: "Reading & Watching Stories",
+        desc: "I love consuming stories in any form—books, shows, or movies. I'm especially drawn to ones that make me think and completely immerse me in their world.",
+        icon: Tv,
+        image: "/assets/interests/stories.png"
+    },
+    {
+        title: "Visual Design",
+        desc: "I enjoy exploring graphic design and UI ideas, experimenting with ways to make things look cleaner, more engaging, and visually appealing.",
+        icon: Palette,
+        image: "/assets/interests/design.png"
+    },
+    {
+        title: "Listening to Music",
+        desc: "My music taste is pretty diverse. I enjoy a wide range of genres depending on my mood, and music helps me stay focused or recharge while working.",
+        icon: Music,
+        image: "/assets/interests/music.png"
+    },
+    {
+        title: "Video Editing",
+        desc: "I enjoy editing videos and putting clips together to create something engaging, whether it’s storytelling, pacing, or experimenting with transitions.",
+        icon: Video,
+        image: "/assets/interests/motion.png"
+    },
 ];
 
 export const CERTIFICATIONS: Certification[] = [
@@ -149,36 +221,13 @@ export const CERTIFICATIONS: Certification[] = [
         issuer: "HubSpot Academy",
         year: "2025-2026",
         items: [
-            { title: "SEO", url: "https://app-na2.hubspot.com/academy/achievements/65nrkw8z/en/1/gabrielle-velasquez/seo " },
+            { title: "SEO", url: "https://app-na2.hubspot.com/academy/achievements/65nrkw8z/en/1/gabrielle-velasquez/seo" },
             { title: "Digital Marketing", url: "https://app-na2.hubspot.com/academy/achievements/g9gt7wzz/en/1/gabrielle-velasquez/digital-marketing" },
             { title: "Advertising", url: "https://app-na2.hubspot.com/academy/achievements/68wvz9w4/en/1/gabrielle-velasquez/digital-advertising" },
             { title: "Content Marketing", url: "https://app-na2.hubspot.com/academy/achievements/dthq3hr0/en/1/gabrielle-velasquez/content-marketing" },
         ],
     },
 ];
-
-export interface ExperienceItem {
-    role: string;
-    company: string;
-    location: string;
-    period: string;
-    points: string[];
-}
-
-export interface EducationItem {
-    degree: string;
-    school: string;
-    period: string;
-    points: string[];
-}
-
-export interface Goal {
-    title: string;
-    desc: string;
-    icon: React.ElementType;
-    num: string;
-    span: string;
-}
 
 export const EXPERIENCE: ExperienceItem[] = [
     {
@@ -212,7 +261,7 @@ export const EDUCATION: EducationItem[] = [
         period: "2017 – 2023",
         points: [
             "Developed a versatile foundational understanding across technical and creative disciplines.",
-            "Conducted and defended a comprehensive senior research thesis, refining skills in structured analysis and systematic documentation.",
+            "Conducted and defended a comprehensive senior research thesis as a leader and team player, refining skills in structured analysis and systematic documentation.",
             "Maintained a high standard of academic performance while fostering core competencies in logical problem-solving and critical thinking.",
         ],
     },

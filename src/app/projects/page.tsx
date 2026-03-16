@@ -1,54 +1,63 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import {
-  ArrowRight,
-  ExternalLink,
-  Github,
-  Layers,
-  ChevronLeft,
-  ChevronRight,
-  Code2
-} from "lucide-react";
+import { ArrowRight, ExternalLink, Github, ArrowUpRight, Mail, User, Layers, Code2 } from "lucide-react";
 import Button from "@/components/ui/Button";
 import SectionTag from "@/components/ui/SectionTag";
-import SectionTitle from "@/components/ui/SectionTitle";
 import HeroHeading from "@/components/ui/HeroHeading";
-import { MAJOR_PROJECTS } from "@/data/projects";
+import Magnetic from "@/components/ui/Magnetic";
+import { create } from "zustand";
+
+import { MAJOR_PROJECTS as PROJECTS } from "@/data/projects";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-function MobileGallery({ images }: { images: string[] }) {
-  const [idx, setIdx] = useState(0);
-  const next = () => setIdx((p) => (p + 1) % images.length);
-  const prev = () => setIdx((p) => (p - 1 + images.length) % images.length);
+interface CursorState {
+  active: boolean;
+  setActive: (active: boolean) => void;
+}
+
+const useCursorStore = create<CursorState>((set) => ({
+  active: false,
+  setActive: (active) => set({ active }),
+}));
+
+function CustomCursor() {
+  const { active } = useCursorStore();
+  const cursorRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    if (!cursorRef.current) return;
+
+    const xTo = gsap.quickTo(cursorRef.current, "x", { duration: 0.15, ease: "power3.out" });
+    const yTo = gsap.quickTo(cursorRef.current, "y", { duration: 0.15, ease: "power3.out" });
+
+    const onMouseMove = (e: MouseEvent) => {
+      xTo(e.clientX);
+      yTo(e.clientY);
+    };
+
+    window.addEventListener("mousemove", onMouseMove);
+    return () => window.removeEventListener("mousemove", onMouseMove);
+  });
 
   return (
-    <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] rounded-[1.5rem] overflow-hidden lg:hidden border border-brand-ink/15 dark:border-brand-white/10 shadow-lg shadow-brand-ink/[0.04] dark:shadow-none bg-brand-light-alt dark:bg-brand-dark-alt">
-      {images.map((imgSrc, i) => (
-        <div
-          key={i}
-          className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${i === idx ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-        >
-          <Image src={imgSrc} alt={`Project visual ${i + 1}`} fill className="object-cover object-center" sizes="(max-width: 1024px) 100vw, 0vw" priority={i === 0} quality={95} />
-        </div>
-      ))}
+    <div
+      ref={cursorRef}
+      className={`hidden lg:flex fixed top-0 left-0 z-[100] pointer-events-none flex-col items-center justify-center -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ease-out will-change-transform ${active ? 'opacity-100 scale-100' : 'opacity-0 scale-50'}`}
+    >
+      <div className="w-28 h-28 md:w-32 md:h-32 rounded-full bg-white flex items-center justify-center shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+        <ArrowUpRight className="w-10 h-10 md:w-12 md:h-12 text-black stroke-[1.5]" />
+      </div>
 
-      {images.length > 1 && (
-        <div className="absolute bottom-4 right-4 flex gap-2 z-20">
-          <button onClick={prev} className="w-10 h-10 rounded-full bg-brand-white/60 dark:bg-brand-dark-alt/60 backdrop-blur-md border border-brand-white/20 dark:border-brand-white/10 flex items-center justify-center text-brand-ink dark:text-brand-white hover:bg-brand-ink/10 transition-colors">
-            <ChevronLeft size={18} strokeWidth={2.5} />
-          </button>
-          <button onClick={next} className="w-10 h-10 rounded-full bg-brand-white/60 dark:bg-brand-dark-alt/60 backdrop-blur-md border border-brand-white/20 dark:border-brand-white/10 flex items-center justify-center text-brand-ink dark:text-brand-white hover:bg-brand-ink/10 transition-colors">
-            <ChevronRight size={18} strokeWidth={2.5} />
-          </button>
-        </div>
-      )}
+      <span className="absolute top-full mt-6 text-[11px] md:text-xs font-outfit font-black uppercase tracking-[0.3em] text-white whitespace-nowrap drop-shadow-[0_2px_10px_rgba(0,0,0,1)]">
+        View Project Details
+      </span>
     </div>
   );
 }
@@ -56,8 +65,39 @@ function MobileGallery({ images }: { images: string[] }) {
 export default function ProjectsPage() {
   const containerRef = useRef<HTMLElement>(null);
   const epicHighlightRef = useRef<HTMLSpanElement>(null);
+  const mobileNavRef = useRef<HTMLDivElement>(null);
+  const mobileNavContainerRef = useRef<HTMLDivElement>(null);
+
+  const { setActive } = useCursorStore();
+
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    if (!mobileNavContainerRef.current) return;
+    const container = mobileNavContainerRef.current;
+    const activeItem = container.children[activeIndex] as HTMLElement;
+
+    if (activeItem) {
+      const scrollLeft = activeItem.offsetLeft - (container.clientWidth / 2) + (activeItem.clientWidth / 2);
+      container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+    }
+  }, [activeIndex]);
 
   useGSAP(() => {
+    const blobs = gsap.utils.toArray('.aurora-blob');
+    blobs.forEach((blob: any) => {
+      gsap.to(blob, {
+        x: () => gsap.utils.random(-150, 150),
+        y: () => gsap.utils.random(-150, 150),
+        scale: () => gsap.utils.random(0.8, 1.3),
+        rotation: () => gsap.utils.random(-30, 30),
+        duration: () => gsap.utils.random(8, 15),
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+    });
+
     const tl = gsap.timeline();
 
     tl.fromTo(".hero-reveal",
@@ -67,223 +107,269 @@ export default function ProjectsPage() {
     tl.fromTo(".hero-desc", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 1, ease: "power2.out" }, "-=0.5");
     tl.fromTo(".hero-divider", { scaleX: 0 }, { scaleX: 1, duration: 1.5, ease: "power4.inOut" }, "-=0.8");
 
-    gsap.utils.toArray('.desktop-img-wrapper').forEach((wrapper: any) => {
-      gsap.fromTo(wrapper,
-        { clipPath: "inset(20% 0% 20% 0%)", scale: 0.95, opacity: 0 },
-        { clipPath: "inset(0% 0% 0% 0%)", scale: 1, opacity: 1, duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: wrapper, start: "top 85%" } }
-      );
-    });
-
-    gsap.utils.toArray('.project-meta').forEach((meta: any) => {
-      gsap.fromTo(meta.querySelectorAll('.meta-item'),
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: "power3.out", scrollTrigger: { trigger: meta, start: "top 85%" } }
-      );
-    });
-
     gsap.to('.hero-bg-icon', {
-      y: 200, rotation: 15, ease: "none",
-      scrollTrigger: { trigger: ".hero-section", start: "top top", end: "bottom top", scrub: true }
+      y: "80vh",
+      rotation: 25,
+      scale: 1.4,
+      ease: "none",
+      scrollTrigger: { trigger: ".hero-section", start: "top top", end: "bottom -80%", scrub: 1 }
     });
 
-    // CTA Scroll Reveal
+
+
+    gsap.to(mobileNavRef.current, {
+      opacity: 1,
+      y: 0,
+      pointerEvents: "auto",
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".exhibition-section",
+        start: "top 100px",
+        endTrigger: ".cta-section",
+        end: "top bottom",
+        toggleActions: "play reverse play reverse"
+      }
+    });
+
+    gsap.utils.toArray('.project-content-section').forEach((section: any, i) => {
+
+
+      const details = section.querySelector('.project-details-reveal');
+      if (details) {
+        gsap.fromTo(details,
+          { opacity: 0, y: 40 },
+          { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", scrollTrigger: { trigger: section, start: "top 75%" } }
+        );
+      }
+
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top 50%",
+        end: "bottom 50%",
+        onToggle: (self) => {
+          if (self.isActive) {
+            setActiveIndex(i);
+
+            const counter = document.querySelector('.dynamic-counter');
+            if (counter) counter.textContent = `0${i + 1}`;
+
+
+          }
+        }
+      });
+    });
+
     gsap.fromTo(".cta-section > div > *",
       { y: 60, opacity: 0 },
-      {
-        y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: "power4.out",
-        scrollTrigger: { trigger: ".cta-section", start: "top 80%" }
-      }
+      { y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: "power4.out", scrollTrigger: { trigger: ".cta-section", start: "top 80%" } }
     );
 
     if (epicHighlightRef.current) {
       gsap.fromTo(epicHighlightRef.current,
         { scaleX: 0, transformOrigin: "left center" },
-        {
-          scaleX: 1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".cta-section",
-            start: "top 70%",
-            end: "center center",
-            scrub: 1
-          }
-        }
+        { scaleX: 1, ease: "none", scrollTrigger: { trigger: ".cta-section", start: "top 70%", end: "center center", scrub: 1 } }
       );
     }
-
   }, { scope: containerRef });
 
   return (
-    <main ref={containerRef} className="relative min-h-screen bg-brand-light dark:bg-brand-dark overflow-x-clip pt-28 md:pt-40 transition-colors duration-500">
+    <>
+      <CustomCursor />
 
-      <div className="fixed inset-0 pointer-events-none z-50 opacity-[0.08] md:opacity-[0.12] dark:opacity-[0.03] dark:md:opacity-[0.05]">
-        <svg className="w-full h-full"><filter id="noise-projects"><feTurbulence type="fractalNoise" baseFrequency="3.5" numOctaves="3" stitchTiles="stitch" /><feColorMatrix type="matrix" values="1 0 0 0 0, 1 0 0 0 0, 1 0 0 0 0, 0 0 0 1 0" /></filter><rect width="100%" height="100%" filter="url(#noise-projects)" /></svg>
-      </div>
+      <main ref={containerRef} className="relative overflow-x-clip pt-28 md:pt-40 pb-32 transition-colors duration-500">
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
 
-        {/* ═══════════════════════════════════════════════════════
-            SECTION 1 — HERO
-            ═══════════════════════════════════════════════════════ */}
-        <section className="hero-section mb-24 md:mb-40 relative">
-          {/* Scroll-triggered SVG background — line-style folder icon like blog */}
-          <div className="hero-bg-icon absolute top-[-5vh] right-[-10vw] lg:right-10 w-[300px] h-[300px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] pointer-events-none z-0 opacity-[0.04] dark:opacity-[0.02]">
-            <Layers className="w-full h-full text-brand-ink dark:text-brand-white" strokeWidth={1} />
-          </div>
 
-          <div className="relative z-10">
-            <SectionTag className="hero-reveal mb-6 md:mb-8">Selected Projects</SectionTag>
+        <div
+          ref={mobileNavRef}
+          className="lg:hidden fixed top-[75px] sm:top-[85px] left-0 right-0 z-40 bg-[#050505] border-b border-t border-white/10 py-5 opacity-0 pointer-events-none -translate-y-2"
+        >
+          <div className="absolute bottom-full left-0 w-full h-[150px] bg-[#050505]" />
 
-            <HeroHeading>
-              <div className="overflow-hidden py-3 -my-3 pr-4 -mr-4">
-                <span className="hero-reveal inline-block pr-4 font-mori font-semibold">Project</span>
-              </div>
-              <div className="hero-reveal flex items-center justify-start gap-3 sm:gap-5 overflow-hidden py-2 -my-2">
-                <span className="text-brand-ink dark:text-brand-white font-mori font-semibold">Archive</span>
-                <span className="inline-flex items-center justify-center w-10 h-10 sm:w-14 sm:h-14 md:w-20 md:h-20 bg-brand-accent rounded-[0.75rem] sm:rounded-[1rem] md:rounded-[1.25rem] shrink-0">
-                  <Code2 className="w-5 h-5 sm:w-7 sm:h-7 md:w-10 md:h-10 text-brand-dark" strokeWidth={2.5} />
+          <style>{`
+                        .hide-nav-scroll::-webkit-scrollbar { display: none; }
+                        .hide-nav-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+                    `}</style>
+
+          <div
+            ref={mobileNavContainerRef}
+            className="hide-nav-scroll flex items-center overflow-x-auto px-6 gap-8 md:gap-12 scroll-smooth relative z-10"
+          >
+            {PROJECTS.map((p, i) => (
+              <div
+                key={i}
+                className={`flex items-center gap-4 whitespace-nowrap transition-all duration-500 will-change-transform ${activeIndex === i ? 'opacity-100 scale-100' : 'opacity-40 scale-95'}`}
+              >
+                <span className={`text-base sm:text-lg font-mori font-black ${activeIndex === i ? 'text-white' : 'text-white'}`}>
+                  0{i + 1}
+                </span>
+                <div className={`w-2 h-2 rounded-full transition-colors duration-500 ${activeIndex === i ? 'bg-[#BFFF00] shadow-[0_0_8px_rgba(191,255,0,0.8)]' : 'bg-white/30'}`} />
+                <span className={`text-4xl sm:text-5xl font-mori font-bold tracking-tight transition-colors duration-500 ${activeIndex === i ? 'text-white' : 'text-white'}`}>
+                  {p.title}
                 </span>
               </div>
-            </HeroHeading>
-
-            <p className="hero-desc text-base md:text-xl text-brand-ink/80 dark:text-brand-white/70 leading-relaxed font-medium max-w-2xl">
-              A curated collection of full-stack systems and digital experiences, built with technical precision and a focus on long-term scalability.
-            </p>
-
-            <div className="hero-divider w-full h-[1px] bg-brand-ink/20 dark:bg-brand-white/20 mt-16 md:mt-24 origin-left" />
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════════════
-            SECTION 2 — THE EXHIBITION 
-            ═══════════════════════════════════════════════════════ */}
-        <section className="relative w-full pb-32 md:pb-40">
-          <div className="flex flex-col gap-32 md:gap-48 lg:gap-64 relative z-10">
-            {MAJOR_PROJECTS.map((project, index) => {
-              const projectVisuals = project.images.slice(0, 2);
-
-              return (
-                <div key={project.id} className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
-
-                  {/* LEFT: Meta Data */}
-                  <div className="w-full lg:w-5/12 lg:sticky lg:top-40 project-meta flex flex-col pt-4 relative">
-
-                    <div className="absolute -top-12 -left-4 md:-top-20 md:-left-12 text-[100px] md:text-[160px] font-outfit font-black tracking-tighter text-brand-ink/[0.04] dark:text-brand-white/[0.03] pointer-events-none select-none z-0 leading-none">
-                      {project.id}
-                    </div>
-
-                    <div className="relative z-10 mt-6 md:mt-0">
-                      <span className="meta-item inline-block text-sm md:text-base text-brand-ink/80 dark:text-brand-white/70 mb-3 md:mb-4 uppercase tracking-widest font-bold">
-                        {project.tagline}
-                      </span>
-
-                      <SectionTitle className="meta-item !text-4xl md:!text-6xl mb-6 pr-2 md:pr-4">
-                        {project.title}
-                      </SectionTitle>
-
-                      <p className="meta-item text-sm md:text-base text-brand-ink/80 dark:text-brand-white/70 leading-relaxed font-medium mb-8 max-w-md">
-                        {project.desc}
-                      </p>
-
-                      {/* Tech Stack Pills Update */}
-                      <div className="meta-item flex flex-wrap items-center gap-x-2 gap-y-2 md:gap-x-3 mb-10">
-                        {project.stack.map((tech, idx) => (
-                          <div key={idx} className="px-4 py-2 rounded-full border border-brand-ink/10 dark:border-brand-white/10 bg-brand-light-alt dark:bg-brand-dark-alt flex items-center justify-center transition-colors">
-                            <span className="font-bold text-[10px] md:text-[11px] uppercase tracking-[0.2em] text-brand-ink dark:text-brand-white">
-                              {tech}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-
-                      <div className="meta-item flex flex-wrap items-center gap-3 md:gap-4 mt-2">
-                        {project.live !== "#" && (
-                          <Button href={project.live} target="_blank" icon={ExternalLink} className="!px-6 md:!px-8 !py-3.5 md:!py-4 !text-[10px] md:!text-xs">
-                            Live Link
-                          </Button>
-                        )}
-
-                        {project.github !== "#" && (
-                          <Button href={project.github} target="_blank" variant="secondary" icon={Github} className="!px-6 md:!px-8 !py-3.5 md:!py-4 !text-[10px] md:!text-xs">
-                            Source Code
-                          </Button>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* RIGHT: Visuals Container */}
-                  <div className="w-full lg:w-7/12 flex flex-col gap-6 md:gap-12 lg:gap-16 lg:mt-24">
-
-                    <MobileGallery images={projectVisuals} />
-
-                    <div className="lg:hidden mt-2 flex justify-center w-full">
-                      <Link href={`/projects/${project.slug}`} className="group text-brand-ink dark:text-brand-white text-xs font-outfit font-bold uppercase tracking-widest inline-flex items-center gap-2 transition-colors py-2">
-                        View Project Details <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
-                      </Link>
-                    </div>
-
-                    <div className="hidden lg:flex flex-col gap-16 w-full">
-                      {projectVisuals.map((imgSrc, imgIdx) => (
-                        <Link
-                          href={`/projects/${project.slug}`}
-                          key={imgIdx}
-                          className="desktop-img-wrapper relative w-full aspect-[16/10] rounded-[2.5rem] overflow-hidden border border-brand-ink/15 dark:border-brand-white/10 shadow-lg shadow-brand-ink/[0.04] dark:shadow-none bg-brand-light-alt dark:bg-brand-dark-alt group block cursor-pointer"
-                        >
-                          {/* Changed object-top to object-center and added quality={95} */}
-                          <Image src={imgSrc} alt={`${project.title} Visual ${imgIdx + 1}`} fill className="object-cover object-center group-hover:scale-105 transition-transform duration-1000 ease-out" sizes="60vw" quality={95} />
-
-                          <div className="absolute inset-0 bg-brand-ink/20 dark:bg-brand-dark/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-white text-brand-dark px-8 py-4 rounded-full font-outfit font-bold uppercase tracking-widest text-xs flex items-center gap-3 opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 shadow-2xl z-20">
-                            View Project Details <ArrowRight className="w-4 h-4" />
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </section>
-
-      </div>
-
-      {/* ═══════════════════════════════════════════════════════
-          SECTION 4 — CTA REDIRECT 
-          ═══════════════════════════════════════════════════════ */}
-      <section className="cta-section relative py-32 md:py-48 border-t border-brand-ink/5 dark:border-brand-white/5 bg-black/[0.02] dark:bg-white/[0.01] overflow-hidden flex flex-col items-center justify-center text-center px-4">
-        <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center w-full">
-          <h2 className="cta-heading font-mori font-semibold text-[clamp(2.2rem,6vw,5rem)] tracking-tight text-brand-ink dark:text-brand-white mb-10 md:mb-14 leading-[1.2] max-w-4xl">
-            Ready to build <br className="hidden md:block" /> something{" "}
-            <span className="relative inline-block">
-              <span
-                ref={epicHighlightRef}
-                className="absolute -bottom-1 md:-bottom-2 left-0 w-full h-2 md:h-4 bg-brand-accent -rotate-1 z-0 opacity-80 rounded-full"
-                style={{ transform: "scaleX(0)" }}
-              />
-              <span className="relative z-10 italic">remarkable?</span>
-            </span>
-          </h2>
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 relative z-20">
-            <Button
-              href="/contact"
-              icon={ArrowRight}
-              className="!px-6 sm:!px-8 md:!px-10 !py-3.5 sm:!py-4.5 md:!py-5 !text-[11px] sm:!text-xs md:!text-sm"
-            >
-              Contact Me
-            </Button>
-            <Button
-              href="/blog"
-              variant="secondary"
-              className="!px-6 sm:!px-8 md:!px-10 !py-3.5 sm:!py-4.5 md:!py-5 !text-[11px] sm:!text-xs md:!text-sm"
-            >
-              Read Journals
-            </Button>
+            ))}
           </div>
         </div>
-      </section>
 
-    </main>
+        <div className="max-w-[100rem] mx-auto px-4 sm:px-6 md:px-12 relative z-10">
+
+          <section className="hero-section mb-20 md:mb-32 relative max-w-7xl mx-auto">
+            <div className="hero-bg-icon absolute top-[-5vh] right-[-5vw] lg:right-5 w-[300px] h-[300px] md:w-[450px] md:h-[450px] pointer-events-none z-0 opacity-[0.05]">
+              <Layers className="w-full h-full text-white" strokeWidth={1} />
+            </div>
+
+            <div className="relative z-10">
+              <SectionTag className="hero-reveal mb-6 md:mb-8 !border-white/10 !bg-transparent !text-white">Selected Projects</SectionTag>
+
+              <HeroHeading>
+                <div className="overflow-hidden py-3 -my-3 pr-4 -mr-4">
+                  <span className="hero-reveal inline-block pr-4 font-mori font-semibold text-white">Project</span>
+                </div>
+                <div className="hero-reveal flex items-center justify-start gap-4 overflow-hidden py-2 -my-2">
+                  <span className="text-brand-white font-mori font-semibold">Archive</span>
+                  <span className="inline-flex items-center justify-center w-10 h-10 sm:w-14 sm:h-14 md:w-20 md:h-20 bg-brand-accent rounded-[0.75rem] sm:rounded-[1rem] md:rounded-[1.25rem] shrink-0">
+                    <Code2 className="w-5 h-5 sm:w-7 sm:h-7 md:w-10 md:h-10 text-brand-dark" strokeWidth={2.5} />
+                  </span>
+                </div>
+              </HeroHeading>
+
+              <p className="hero-desc text-base md:text-xl text-white/70 leading-relaxed font-medium max-w-2xl mt-6">
+                A curated collection of full-stack systems and digital experiences, built with technical precision and a focus on long-term scalability.
+              </p>
+
+              <div className="hero-divider w-full h-[1px] bg-white/10 mt-16 md:mt-24 origin-left" />
+            </div>
+          </section>
+
+          <section className="exhibition-section relative w-full pb-32 md:pb-40 max-w-[95rem] mx-auto flex flex-col lg:flex-row gap-12 lg:gap-20">
+
+            <div className="hidden lg:flex w-[25%] xl:w-[30%] sticky top-32 h-[calc(100vh-10rem)] flex-col justify-between z-30">
+
+              <div className="flex items-start">
+                <div className="text-[60px] xl:text-[70px] font-mori font-black leading-[0.8] text-white drop-shadow-2xl flex items-end">
+                  <span className="dynamic-counter text-white">01</span>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-8 relative pb-10">
+                <div className="absolute left-0 top-0 bottom-0 w-px bg-white/10" />
+
+                {PROJECTS.map((p, i) => (
+                  <div
+                    key={i}
+                    className={`nav-project-item relative pl-10 py-2 cursor-default transition-all duration-500 text-white will-change-transform ${activeIndex === i ? 'opacity-100 translate-x-4' : 'opacity-40 translate-x-0 scale-[0.85] origin-left'}`}
+                  >
+                    <div className={`nav-dot absolute left-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#BFFF00] transition-all duration-500 shadow-[0_0_10px_rgba(191,255,0,0.8)] ${activeIndex === i ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
+
+                    <div className={`font-outfit uppercase tracking-[0.25em] font-bold text-white/60 mb-2 transition-all duration-500 ${activeIndex === i ? 'text-xs' : 'text-[10px]'}`}>
+                      {p.tagline}
+                    </div>
+                    <div className={`font-mori font-bold tracking-tighter transition-all duration-500 ${activeIndex === i ? 'text-3xl xl:text-4xl' : 'text-xl xl:text-2xl'}`}>
+                      {p.title}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="w-full lg:w-[75%] xl:w-[70%] flex flex-col gap-32 md:gap-48 relative z-20 mt-16 lg:mt-0">
+              {PROJECTS.map((project, index) => {
+
+                const targetVisual = project.featuredImg || project.gallery?.[1]?.src || project.images?.[1] || project.showcaseImg || project.images?.[0] || '';
+
+                return (
+                  <div key={project.id} className="project-content-section w-full flex flex-col gap-8 md:gap-14">
+
+
+
+                    <div className="relative w-full aspect-[4/3] md:aspect-[16/10] bg-[#0A0A0A] rounded-2xl md:rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.6)] cursor-pointer lg:cursor-none group">
+                      <Link
+                        href={`/projects/${project.slug}`}
+                        className="hidden lg:block absolute inset-0 z-20"
+                        onMouseEnter={() => setActive(true)}
+                        onMouseLeave={() => setActive(false)}
+                      />
+
+                      <div className="absolute inset-[-10%] w-[120%] h-[120%]">
+                        <Image
+                          src={targetVisual}
+                          alt={project.title}
+                          fill
+                          className="project-img-parallax object-cover object-center transition-transform duration-1000 group-hover:scale-[1.1]"
+                          sizes="(max-width: 1024px) 100vw, 70vw"
+                          quality={100}
+                        />
+                      </div>
+
+                      <div className="absolute inset-0 bg-black/0 lg:group-hover:bg-black/50 transition-colors duration-700 pointer-events-none z-10" />
+                    </div>
+
+                    <div className="project-details-reveal flex flex-col xl:flex-row gap-8 xl:gap-16 justify-between items-start">
+
+                      <div className="w-full xl:w-[60%] flex flex-col gap-6">
+                        <p className="text-base md:text-lg text-white/70 leading-relaxed font-medium">
+                          {project.desc}
+                        </p>
+
+                        <div className="flex flex-wrap items-center gap-2 pt-2">
+                          {project.stack.map((tech, idx) => (
+                            <div key={idx} className="px-3 md:px-3 text-center py-1.5 md:py-1.5 rounded-full bg-white/5 border border-white/10">
+                              <span className="font-mori font-bold text-[10px] md:text-[11px] uppercase tracking-[0.1em] text-white/90">
+                                {tech}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="w-full xl:w-[35%] flex flex-col gap-6">
+                        <div className="flex flex-row xl:flex-col gap-4">
+                          <Button href={project.live} target="_blank" icon={ExternalLink} iconPosition="left" className="flex-1 xl:flex-none w-full !px-0 !py-4 md:!py-5 !text-[11px] md:!text-xs !bg-white !text-black !border-transparent hover:scale-[1.02] transition-transform shadow-xl">
+                            Live Link
+                          </Button>
+                          <Button href={project.github} target="_blank" variant="secondary" icon={Github} iconPosition="left" className="flex-1 xl:flex-none w-full !px-0 !py-4 md:!py-5 !text-[11px] md:!text-xs !border-white/20 !text-white hover:!bg-white/10 hover:!border-white transition-all shadow-xl">
+                            Source
+                          </Button>
+                        </div>
+                        
+                        <Link 
+                          href={`/projects/${project.slug}`}
+                          className="lg:hidden flex items-center justify-center gap-2 group/details py-2 border-t border-white/5 pt-6"
+                        >
+                          <span className="text-[11px] font-outfit font-bold uppercase tracking-[0.2em] text-white/80 group-hover/details:text-white transition-colors">View Project Details</span>
+                          <ArrowRight className="w-4 h-4 text-white/60 group-hover/details:text-white group-hover/details:translate-x-1 transition-all" />
+                        </Link>
+                      </div>
+
+                    </div>
+
+                  </div>
+                );
+              })}
+            </div>
+
+          </section>
+        </div>
+
+      <section className="cta-section py-20 px-6 max-w-7xl mx-auto border-t border-brand-white/10 relative z-10">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8 text-left">
+          <div>
+            <h2 className="font-mori font-semibold text-3xl md:text-5xl uppercase tracking-tighter leading-tight text-brand-ink dark:text-brand-white">
+              Curious to read some <span className="text-brand-accent">insights</span>?
+            </h2>
+            <p className="mt-4 text-brand-ink/70 dark:text-brand-white/50 max-w-xl font-medium">
+              Visit my blog where I share my thoughts on development, design, and technical deep dives into building modern systems.
+            </p>
+          </div>
+          <Magnetic>
+            <Button href="/blog" icon={ArrowRight}>
+              Visit Blog
+            </Button>
+          </Magnetic>
+        </div>
+      </section>
+      </main>
+    </>
   );
 }

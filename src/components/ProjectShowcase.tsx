@@ -12,12 +12,11 @@ import SectionTag from "@/components/ui/SectionTag";
 import SectionTitle from "@/components/ui/SectionTitle";
 import PreviewLink from "@/components/ui/PreviewLink";
 import { SHOWCASE_PROJECTS as PROJECTS } from "@/data/projects";
-import GridMotion from "@/components/ui/GridMotion";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 // ─────────────────────────────────────────────
-// Shared card content — always dark, solid
+// Shared card content — transparent background
 // ─────────────────────────────────────────────
 function CardInner({ project, index }: { project: typeof PROJECTS[0]; index: number }) {
 
@@ -32,8 +31,8 @@ function CardInner({ project, index }: { project: typeof PROJECTS[0]; index: num
 
     return (
         <div className="relative flex flex-col h-full rounded-2xl group/card cursor-default overflow-visible">
-            {/* ── MAIN SOLID CONTAINER (always dark) ── */}
-            <div className="relative z-10 flex flex-col h-full bg-[#111] border border-white/10 rounded-2xl overflow-visible">
+            {/* ── MAIN CONTAINER (transparent background) ── */}
+            <div className="relative z-10 flex flex-col h-full bg-transparent border border-white/10 rounded-2xl overflow-visible backdrop-blur-sm">
 
                 {/* ── DEFAULT AMBIENT GLOW (Subtle light for mockups) ── */}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.05)_0%,transparent_60%)] dark:bg-[radial-gradient(circle_at_bottom_right,rgba(191,255,0,0.03)_0%,transparent_60%)] z-[1] rounded-2xl pointer-events-none" />
@@ -43,7 +42,7 @@ function CardInner({ project, index }: { project: typeof PROJECTS[0]; index: num
 
                 {/* ── TOP BAR (Allowed to overflow for tooltips) ── */}
                 <div className="relative z-20 flex flex-row items-center justify-between gap-4 px-5 py-4 md:px-8 md:py-5 border-b border-white/10 shrink-0">
-                    <SectionTitle className="!text-xl md:!text-2xl lg:!text-3xl !text-white transition-colors duration-500">
+                    <SectionTitle className="!text-xl md:!text-2xl lg:!text-3xl !text-white transition-colors duration-500 drop-shadow-md">
                         {project.title}
                     </SectionTitle>
                     <PreviewLink
@@ -51,7 +50,7 @@ function CardInner({ project, index }: { project: typeof PROJECTS[0]; index: num
                         label="Project Details"
                         description={project.title}
                         target="_self"
-                        className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full border border-brand-white/20 flex items-center justify-center text-brand-white hover:bg-brand-accent hover:border-brand-accent hover:text-brand-dark group-hover/card:border-white/30 group-hover/card:text-white transition-all group/link shrink-0 relative"
+                        className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full border border-brand-white/20 flex items-center justify-center text-brand-white hover:bg-brand-accent hover:border-brand-accent hover:text-brand-dark group-hover/card:border-white/30 group-hover/card:text-white transition-all group/link shrink-0 relative shadow-lg"
                     >
                         <ArrowRight className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 group-hover/link:-rotate-45 transition-transform" />
                     </PreviewLink>
@@ -60,16 +59,16 @@ function CardInner({ project, index }: { project: typeof PROJECTS[0]; index: num
                 {/* ── MIDDLE SECTION (Clips mockups) ── */}
                 <div className="relative flex-1 flex flex-col justify-between overflow-hidden rounded-b-2xl">
                     {/* ── CONTENT TOP ── */}
-                    <div className="relative z-30 px-6 pt-6 md:px-8 md:pt-8 flex flex-col gap-4">
-                        <p className="text-xs md:text-sm text-brand-white/90 leading-relaxed font-medium group-hover/card:text-white transition-colors duration-500">
+                    <div className="relative z-30 px-6 pt-6 md:px-8 pt-8 flex flex-col gap-4">
+                        <p className="text-xs md:text-sm text-brand-white/90 leading-relaxed font-medium group-hover/card:text-white transition-colors duration-500 drop-shadow-md">
                             {project.desc}
                         </p>
 
                         {/* TECH STACK PILLS */}
                         <div className="flex flex-wrap items-center gap-x-2 gap-y-2">
                             {project.stack.map((tech, idx) => (
-                                <div key={idx} className="px-3 py-1.5 rounded-full border border-brand-white/10 bg-brand-dark-alt flex items-center justify-center group-hover/card:border-white/30 group-hover/card:bg-white/10 transition-colors duration-500">
-                                    <span className="font-mori font-semibold text-[9px] md:text-[10px] uppercase tracking-[0.15em] text-brand-white group-hover/card:text-white transition-colors duration-500">
+                                <div key={idx} className="px-3 py-1.5 rounded-full border border-brand-white/20 bg-black/40 backdrop-blur-sm flex items-center justify-center group-hover/card:border-white/40 group-hover/card:bg-black/20 transition-all duration-500">
+                                    <span className="font-mori font-bold text-[10px] md:text-[11px] uppercase tracking-[0.1em] text-brand-white group-hover/card:text-white transition-colors duration-500 drop-shadow-sm">
                                         {tech}
                                     </span>
                                 </div>
@@ -93,7 +92,7 @@ function CardInner({ project, index }: { project: typeof PROJECTS[0]; index: num
                                 variant="secondary"
                                 icon={Github}
                                 iconPosition="left"
-                                className="flex-1 !px-0 !py-3 md:!py-3.5 !text-[10px] md:!text-xs !border-brand-white/20 !text-brand-white group-hover/card:!bg-white/10 group-hover/card:!border-white/30 group-hover/card:!text-white transition-colors shadow-lg"
+                                className="flex-1 !px-0 !py-3 md:!py-3.5 !text-[10px] md:!text-xs !border-brand-white/30 !text-brand-white group-hover/card:!bg-white/10 group-hover/card:!border-white/50 group-hover/card:!text-white transition-colors shadow-lg backdrop-blur-md"
                             >
                                 Source
                             </Button>
@@ -102,7 +101,7 @@ function CardInner({ project, index }: { project: typeof PROJECTS[0]; index: num
 
                     {/* ── IMAGE MOCKUP ── */}
                     <div className="absolute -bottom-4 -right-4 md:-bottom-8 md:-right-8 w-[110%] md:w-[95%] lg:w-[110%] xl:w-[95%] aspect-[16/10] z-10 pointer-events-none origin-bottom-right transition-transform duration-[800ms] ease-out group-hover/card:scale-105 group-hover/card:-translate-y-2 group-hover/card:-translate-x-2">
-                        <div className="relative w-full h-full drop-shadow-2xl">
+                        <div className="relative w-full h-full drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)]">
                             <Image
                                 src={project.image}
                                 alt={`${project.title} mockup preview`}
@@ -121,41 +120,114 @@ function CardInner({ project, index }: { project: typeof PROJECTS[0]; index: num
 }
 
 // ─────────────────────────────────────────────
-// Main Component — always dark
+// Main Component — transparent backgrounds
 // ─────────────────────────────────────────────
 export default function ProjectShowcase() {
     const sectionRef = useRef<HTMLElement>(null);
     const desktopGridRef = useRef<HTMLDivElement>(null);
+    const mobileContainerRef = useRef<HTMLDivElement>(null);
     const btnRef = useRef<HTMLDivElement>(null);
-    const overlayRef = useRef<HTMLDivElement>(null);
-
-    const projectBackgrounds = PROJECTS.map(p => p.bgImage);
-    const gridItems = Array(12).fill(null).map((_, i) => projectBackgrounds[i % projectBackgrounds.length]);
 
     useGSAP(() => {
         const mm = gsap.matchMedia();
 
+        // ── DESKTOP (≥1024px): pinned scroll with 3-card flip-in ──
         mm.add("(min-width: 1024px)", () => {
-            if (!sectionRef.current || !desktopGridRef.current || !overlayRef.current) return;
+            if (!sectionRef.current || !desktopGridRef.current) return;
             const cards = gsap.utils.toArray<HTMLElement>(".desktop-card");
-            const vh = window.innerHeight;
 
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: sectionRef.current,
                     start: "top top",
-                    end: "+=2500",
+                    // Tightened from +=2500 → +=1400 so the pin releases
+                    // right after the last card finishes animating in,
+                    // eliminating the dead-scroll pause at the end.
+                    end: "+=1400",
                     pin: true,
-                    scrub: 1,
+                    // Reduced scrub lag (was 1) so the animation tracks
+                    // scroll more closely and doesn't "hang" at the end.
+                    scrub: 0.6,
                 },
             });
 
+            // Set a strong perspective to give the flip genuine 3D depth
+            gsap.set(desktopGridRef.current, { perspective: 2000 });
 
-            tl.fromTo(cards[0], { y: vh, opacity: 0, rotation: 5, scale: 0.9 }, { y: 0, opacity: 1, rotation: 0, scale: 1, duration: 1.2, ease: "expo.out" }, 0.4);
-            tl.fromTo(cards[1], { y: vh, opacity: 0, rotation: 5, scale: 0.9 }, { y: 0, opacity: 1, rotation: 0, scale: 1, duration: 1.2, ease: "expo.out" }, 0.6);
-            tl.fromTo(cards[2], { y: vh, opacity: 0, rotation: 5, scale: 0.9 }, { y: 0, opacity: 1, rotation: 0, scale: 1, duration: 1.2, ease: "expo.out" }, 0.8);
+            // Card 1: Flips in like a trading card
+            tl.fromTo(cards[0],
+                { opacity: 0, rotationY: 100, z: -300, scale: 0.8 },
+                { opacity: 1, rotationY: 0, z: 0, scale: 1, duration: 1.4, ease: "expo.out" },
+                0.2
+            );
+
+            // Card 2: Flips in like a trading card
+            tl.fromTo(cards[1],
+                { opacity: 0, rotationY: 100, z: -300, scale: 0.8 },
+                { opacity: 1, rotationY: 0, z: 0, scale: 1, duration: 1.4, ease: "expo.out" },
+                0.4
+            );
+
+            // Card 3: Flips in like a trading card
+            tl.fromTo(cards[2],
+                { opacity: 0, rotationY: 100, z: -300, scale: 0.8 },
+                { opacity: 1, rotationY: 0, z: 0, scale: 1, duration: 1.4, ease: "expo.out" },
+                0.6
+            );
 
             tl.fromTo(btnRef.current, { y: 40, opacity: 0, scale: 0.95 }, { y: 0, opacity: 1, scale: 1, duration: 0.4 }, 1.0);
+        });
+
+        // ── MOBILE / TABLET (<1024px): vertical stack, per-card ScrollTrigger flip-in ──
+        mm.add("(max-width: 1023px)", () => {
+            if (!mobileContainerRef.current) return;
+
+            // Perspective on the container for true 3D depth on each card
+            gsap.set(mobileContainerRef.current, { perspective: 2000 });
+
+            const cards = gsap.utils.toArray<HTMLElement>(".mobile-card");
+
+            cards.forEach((card) => {
+                gsap.fromTo(
+                    card,
+                    { opacity: 0, rotationY: 90, z: -250, scale: 0.85 },
+                    {
+                        opacity: 1,
+                        rotationY: 0,
+                        z: 0,
+                        scale: 1,
+                        ease: "expo.out",
+                        scrollTrigger: {
+                            trigger: card,
+                            // Starts flipping as soon as the card's top edge
+                            // crosses 88% down the viewport
+                            start: "top 88%",
+                            // Fully settled by the time the top edge hits 30%
+                            end: "top 30%",
+                            scrub: 0.6,
+                        },
+                    }
+                );
+            });
+
+            // Button fades up after last card
+            if (btnRef.current) {
+                gsap.fromTo(
+                    btnRef.current,
+                    { y: 40, opacity: 0, scale: 0.95 },
+                    {
+                        y: 0,
+                        opacity: 1,
+                        scale: 1,
+                        scrollTrigger: {
+                            trigger: btnRef.current,
+                            start: "top 90%",
+                            end: "top 60%",
+                            scrub: 0.6,
+                        },
+                    }
+                );
+            }
         });
     }, { scope: sectionRef });
 
@@ -163,26 +235,14 @@ export default function ProjectShowcase() {
         <div className="dark">
             <section
                 ref={sectionRef}
-                className="relative z-[60] w-full min-h-screen flex flex-col py-24 md:py-32 bg-[#0A0A0A] border-t border-white/5 overflow-hidden"
+                className="relative z-[60] w-full min-h-screen flex flex-col py-24 md:py-32 bg-transparent border-t border-white/5 overflow-hidden"
             >
-
 
                 {/* ── HEADER ── */}
                 <div className="w-full px-6 md:px-12 text-center z-20 mb-8 lg:mb-12 relative pointer-events-none">
-                    <SectionTag className="justify-center mb-4 pointer-events-auto">Selected Work</SectionTag>
-                    <SectionTitle className="drop-shadow-sm">Featured Projects</SectionTitle>
+                    <SectionTag className="justify-center mb-4 pointer-events-auto backdrop-blur-sm bg-black/20 border-white/20 text-white">Selected Work</SectionTag>
+                    <SectionTitle className="drop-shadow-lg text-white">Featured Projects</SectionTitle>
                 </div>
-
-                {/* ── BACKGROUND: GridMotion ── */}
-                <div className="absolute inset-0 z-0 opacity-20 w-full h-full pointer-events-none">
-                    <GridMotion items={gridItems} gradientColor="transparent" />
-                </div>
-
-                {/* ── OVERLAY ── */}
-                <div
-                    ref={overlayRef}
-                    className="absolute inset-0 z-10 w-full h-full bg-[#0A0A0A]/60 pointer-events-none"
-                />
 
                 {/* ── CARDS ── */}
                 <div className="relative z-30 w-full flex-1 flex flex-col justify-center">
@@ -193,7 +253,7 @@ export default function ProjectShowcase() {
                             {PROJECTS.map((project, i) => (
                                 <div
                                     key={i}
-                                    className="desktop-card relative flex flex-col h-[67vh] min-h-[540px] shadow-2xl shadow-black/40 overflow-visible rounded-2xl"
+                                    className="desktop-card relative flex flex-col h-[67vh] min-h-[540px] shadow-[0_30px_60px_rgba(0,0,0,0.6)] overflow-visible rounded-2xl"
                                 >
                                     <CardInner project={project} index={i} />
                                 </div>
@@ -201,29 +261,31 @@ export default function ProjectShowcase() {
                         </div>
                     </div>
 
-                    {/* Mobile / Tablet */}
-                    <div className="lg:hidden w-full py-4 -my-4">
-                        <div className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar gap-6 px-6 sm:px-12 md:px-20 pb-8">
-                            {PROJECTS.map((project, i) => (
-                                <div key={i} className="w-[85vw] sm:w-[60vw] md:w-[45vw] shrink-0 snap-center">
-                                    <div className="relative flex flex-col h-[60vh] min-h-[500px] shadow-2xl shadow-black/40 overflow-visible rounded-2xl">
-                                        <CardInner project={project} index={i} />
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+                    {/* Mobile / Tablet — vertical, scroll-triggered flip (no carousel) */}
+                    <div
+                        ref={mobileContainerRef}
+                        className="lg:hidden w-full flex flex-col gap-8 px-6 sm:px-12 md:px-20 py-4"
+                    >
+                        {PROJECTS.map((project, i) => (
+                            <div
+                                key={i}
+                                className="mobile-card relative flex flex-col h-[60vh] min-h-[500px] shadow-[0_30px_60px_rgba(0,0,0,0.6)] overflow-visible rounded-2xl"
+                            >
+                                <CardInner project={project} index={i} />
+                            </div>
+                        ))}
                     </div>
                 </div>
 
                 {/* ── EXPLORE BUTTON ── */}
                 <div ref={btnRef} className="w-full flex flex-col items-center gap-4 mt-6 lg:mt-8 z-30 relative text-center">
-                    <p className="text-xs md:text-sm font-medium tracking-[0.2em] uppercase text-brand-white/70">
+                    <p className="text-xs md:text-sm font-medium tracking-[0.2em] uppercase text-white/90 drop-shadow-md">
                         Want to see more of my work?
                     </p>
                     <Button
                         href="/projects"
                         icon={ArrowRight}
-                        className="!px-6 sm:!px-8 md:!px-10 !py-3 sm:!py-4 md:!py-5 !text-[11px] sm:!text-xs md:!text-sm shadow-xl !bg-brand-white !text-brand-ink hover:!opacity-85"
+                        className="!px-6 sm:!px-8 md:!px-10 !py-3 sm:!py-4 md:!py-5 !text-[11px] sm:!text-xs md:!text-sm shadow-[0_20px_40px_rgba(0,0,0,0.4)] !bg-white !text-black hover:!opacity-85 transition-all"
                     >
                         Explore Projects
                     </Button>

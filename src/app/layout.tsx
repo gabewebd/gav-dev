@@ -63,6 +63,9 @@ export const metadata: Metadata = {
   manifest: "/favicons/manifest.json",
 };
 
+import SmoothScroll from "@/components/SmoothScroll";
+import AmbientBackground from "@/components/ui/AmbientBackground";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -71,21 +74,23 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${ppMori.variable} ${inter.variable}`}>
       <meta name="apple-mobile-web-app-title" content="MyWebSite" />
-      <body className="bg-brand-light dark:bg-brand-dark text-brand-ink dark:text-brand-white antialiased transition-colors duration-300 overflow-x-hidden">
+      <body className="bg-[#050505] text-[#EDEDED] antialiased transition-colors duration-300 overflow-x-hidden">
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="dark"
+          enableSystem={false}
           disableTransitionOnChange={false}
         >
-          {/* Glassmorphic Shell */}
-          <Navbar />
-          <main className="relative min-h-screen">
-            {children}
-          </main>
-          <Footer />
-          <BackToTop />
-
+          <AmbientBackground />
+          <SmoothScroll>
+            {/* Glassmorphic Shell */}
+            <Navbar />
+            <main className="relative min-h-screen">
+              {children}
+            </main>
+            <Footer />
+            <BackToTop />
+          </SmoothScroll>
         </ThemeProvider>
       </body>
     </html>

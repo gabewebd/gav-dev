@@ -7,14 +7,13 @@ import { useParams } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { ArrowLeft, ArrowRight, Calendar, Clock, X } from "lucide-react";
-import { BLOG_POSTS, BLOG_CONTENT, type ContentBlock } from "@/data/blog";
+import { ArrowLeft, ArrowRight, X } from "lucide-react";
+import { BLOG_POSTS, BLOG_CONTENT } from "@/data/blog";
 import PreviewLink from "@/components/ui/PreviewLink";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 // ─── HELPER: PARSE MARKDOWN LINKS IN TEXT ───
-// Converts "[Link Text](/url)" into inline Next.js <Link> components
 function renderTextWithLinks(text: string) {
     const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
     const parts = [];
@@ -65,96 +64,145 @@ export default function BlogPost() {
     useGSAP(() => {
         if (!post) return;
 
+        // 1. Reading Progress Bar
+        gsap.to(".reading-progress", {
+            scaleX: 1,
+            ease: "none",
+            scrollTrigger: {
+                trigger: containerRef.current,
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 0.2,
+            }
+        });
+
+        // 2. Staggered Hero Reveal
         gsap.fromTo(".hero-reveal",
-            { y: 80, opacity: 0, clipPath: "inset(0% 0% 100% 0%)" },
-            { y: 0, opacity: 1, clipPath: "inset(0% 0% 0% 0%)", duration: 1.1, ease: "power4.out", stagger: 0.12 }
+            { y: 60, opacity: 0 },
+            { y: 0, opacity: 1, duration: 1.2, ease: "power4.out", stagger: 0.1 }
         );
 
+        // 3. Image Parallax inside Hero
+        gsap.fromTo(".hero-image-parallax",
+            { y: -30, scale: 1.05 },
+            {
+                y: 30,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: ".hero-image-container",
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: true
+                }
+            }
+        );
+
+        // 4. Content Block Fade-ups
         gsap.utils.toArray('.content-block').forEach((block: any) => {
             gsap.fromTo(block,
-                { opacity: 0, y: 30 },
-                { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", scrollTrigger: { trigger: block, start: "top 85%" } }
+                { opacity: 0, y: 40 },
+                { opacity: 1, y: 0, duration: 1, ease: "power3.out", scrollTrigger: { trigger: block, start: "top 85%" } }
             );
         });
+
     }, { scope: containerRef, dependencies: [post] });
 
     if (!post) return <div className="min-h-screen flex items-center justify-center font-outfit font-black text-2xl uppercase bg-brand-light dark:bg-brand-dark text-brand-ink dark:text-brand-white">Error: Article Not Found.</div>;
 
     return (
-        <main ref={containerRef} className="relative min-h-screen bg-brand-light dark:bg-brand-dark selection:bg-brand-accent selection:text-brand-dark transition-colors duration-500 overflow-x-clip pt-28 md:pt-40">
+        <main ref={containerRef} className="relative transition-colors duration-500 overflow-x-clip min-h-screen">
 
-            {/* ── STATIC NOISE ── */}
-            <div className="fixed inset-0 pointer-events-none z-0 opacity-[0.08] md:opacity-[0.12] dark:opacity-[0.03] dark:md:opacity-[0.05]">
-                <svg className="w-full h-full">
-                    <filter id="noise-blog-slug">
-                        <feTurbulence type="fractalNoise" baseFrequency="3.5" numOctaves="3" stitchTiles="stitch" />
-                        <feColorMatrix type="matrix" values="1 0 0 0 0, 1 0 0 0 0, 1 0 0 0 0, 0 0 0 1 0" />
-                    </filter>
-                    <rect width="100%" height="100%" filter="url(#noise-blog-slug)" />
-                </svg>
+            {/* ── 0. READING PROGRESS BAR ── */}
+            <div className="fixed top-0 left-0 w-full h-[3px] z-[100] bg-transparent pointer-events-none">
+                <div className="reading-progress w-full h-full bg-brand-accent origin-left scale-x-0" />
             </div>
 
-            <article className="relative z-10 w-full max-w-4xl mx-auto px-6 md:px-12 pb-32">
+            {/* ── 1. ASYMMETRICAL EDITORIAL HERO ── */}
+            <header className="relative w-full pt-28 md:pt-40 mb-16 md:mb-24">
 
-                {/* ── 1. ARTICLE HEADER ── */}
-                <header className="mb-16 flex flex-col items-center text-center">
-                    <Link href="/blog" className="hero-reveal group inline-flex items-center gap-2 text-brand-ink/80 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white text-[10px] md:text-xs font-bold uppercase tracking-widest mb-10 transition-colors">
+                {/* Top Section: Back Link & Massive Title */}
+                <div className="max-w-[100rem] mx-auto px-6 md:px-12 flex flex-col items-start mb-12 md:mb-20">
+                    <Link href="/blog" className="hero-reveal group inline-flex items-center gap-2 text-brand-ink/50 dark:text-white/50 hover:text-brand-ink dark:hover:text-white text-[10px] md:text-xs font-bold uppercase tracking-widest mb-10 transition-colors">
                         <ArrowLeft size={16} className="group-hover:-translate-x-1.5 transition-transform" /> Back to Blogs
                     </Link>
 
-                    <div className="hero-reveal flex flex-wrap justify-center items-center gap-3 md:gap-4 mb-6 md:mb-8 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-brand-ink/80 dark:text-brand-white/70">
-                        {/* STRICTLY INK ON LIGHT, ACCENT ON DARK */}
-                        <span className="text-brand-ink dark:text-brand-accent">{post.category}</span>
-                        <span className="w-1 h-1 rounded-full bg-brand-ink/20 dark:bg-brand-white/20" />
-                        <time dateTime={post.date} className="flex items-center gap-2"><Calendar size={14} /> {post.displayDate}</time>
-                        <span className="w-1 h-1 rounded-full bg-brand-ink/20 dark:bg-brand-white/20" />
-                        <span className="flex items-center gap-2"><Clock size={14} /> {post.readTime}</span>
-                    </div>
-
-                    {/* Adjusted text-[clamp()] to be slightly smaller */}
-                    <h1 className="hero-reveal font-mori font-semibold text-[clamp(2.5rem,6vw,5.5rem)] leading-[0.9] tracking-tighter text-brand-ink dark:text-brand-white mb-6 md:mb-8">
+                    <h1 className="hero-reveal font-mori font-black text-[clamp(3rem,8vw,7.5rem)] leading-[0.85] tracking-tighter text-brand-ink dark:text-white max-w-6xl">
                         {post.title}
                     </h1>
+                </div>
 
-                    <p className="hero-reveal text-base md:text-xl text-brand-ink/80 dark:text-brand-white/70 leading-relaxed font-medium max-w-3xl">
-                        {post.excerpt}
-                    </p>
+                {/* Split Layout: Meta/Excerpt (Sticky) + Hero Image */}
+                <div className="max-w-[100rem] mx-auto px-6 md:px-12 flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
 
-                    {/* DYNAMIC FEATURED HERO IMAGE */}
-                    <div
-                        className="hero-reveal relative w-full mt-12 md:mt-16 rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden border border-brand-ink/10 dark:border-brand-white/10 bg-brand-light-alt dark:bg-brand-dark-alt cursor-zoom-in group"
-                        onClick={() => setLightboxImg(post.featuredImage)}
-                    >
-                        <Image src={post.featuredImage} alt={post.title} width={1200} height={800} className="w-full h-auto object-contain group-hover:scale-[1.02] transition-transform duration-700 ease-out" priority sizes="100vw" quality={100} />
-                        <div className="absolute inset-0 bg-brand-ink/20 dark:bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                    {/* Left Column: Sticky Meta & Excerpt */}
+                    <div className="w-full lg:w-1/3 lg:sticky lg:top-32 flex flex-col gap-8 order-2 lg:order-1">
+                        <div className="hero-reveal flex flex-col gap-4 border-l-2 border-brand-ink/10 dark:border-white/10 pl-6 py-2">
+                            <div className="flex flex-col gap-1">
+                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-ink/40 dark:text-white/40">Category</span>
+                                <span className="text-sm font-semibold tracking-wider text-brand-accent uppercase">{post.category}</span>
+                            </div>
+                            <div className="flex flex-col gap-1 mt-2">
+                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-ink/40 dark:text-white/40">Published</span>
+                                <time dateTime={post.date} className="text-sm font-medium text-brand-ink/80 dark:text-white/80">{post.displayDate}</time>
+                            </div>
+                            <div className="flex flex-col gap-1 mt-2">
+                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-ink/40 dark:text-white/40">Read Time</span>
+                                <span className="text-sm font-medium text-brand-ink/80 dark:text-white/80">{post.readTime}</span>
+                            </div>
+                        </div>
+
+                        <p className="hero-reveal text-lg md:text-xl lg:text-2xl text-brand-ink/70 dark:text-white/60 leading-relaxed font-medium">
+                            {post.excerpt}
+                        </p>
                     </div>
-                </header>
 
-                {/* ── 2. DYNAMIC CONTENT ENGINE ── */}
+                    {/* Right Column: Parallax Hero Image */}
+                    <div className="w-full lg:w-2/3 order-1 lg:order-2">
+                        <div
+                            className="hero-reveal hero-image-container relative w-full aspect-[4/3] md:aspect-[16/10] rounded-[2rem] md:rounded-[3rem] overflow-hidden bg-brand-ink/5 dark:bg-white/5 cursor-zoom-in group shadow-2xl"
+                            onClick={() => setLightboxImg(post.featuredImage)}
+                        >
+                            <Image
+                                src={post.featuredImage}
+                                alt={post.title}
+                                fill
+                                className="hero-image-parallax object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+                                priority
+                                sizes="(max-width: 1024px) 100vw, 66vw"
+                                quality={100}
+                            />
+                            <div className="absolute inset-0 bg-brand-ink/10 dark:bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            {/* ── 2. DYNAMIC CONTENT ENGINE ── */}
+            <article className="relative z-10 w-full max-w-3xl mx-auto px-6 md:px-12 pb-24 md:pb-40">
                 <div className="flex flex-col gap-8 md:gap-12">
                     {content.map((block, i) => {
                         switch (block.type) {
                             case 'p':
                                 return (
-                                    <div key={i} className="content-block text-base md:text-lg text-brand-ink/80 dark:text-brand-white/70 leading-[1.8] font-medium">
-                                        {/* Applying the inline link parser here */}
+                                    <div key={i} className="content-block text-lg md:text-xl text-brand-ink/80 dark:text-brand-white/70 leading-[1.8] font-medium">
                                         {renderTextWithLinks(block.text)}
                                     </div>
                                 );
                             case 'h2':
                                 return (
-                                    <h2 key={i} className="content-block font-mori font-semibold text-2xl md:text-4xl tracking-tighter text-brand-ink dark:text-brand-white mt-8 mb-2">
+                                    <h2 key={i} className="content-block font-mori font-bold text-3xl md:text-5xl tracking-tighter text-brand-ink dark:text-brand-white mt-12 md:mt-16 mb-4">
                                         {block.text}
                                     </h2>
                                 );
                             case 'quote':
                                 return (
-                                    <blockquote key={i} className="content-block my-8 pl-6 md:pl-8 border-l-4 border-brand-accent">
-                                        <p className="font-mori font-semibold text-xl md:text-3xl tracking-tight text-brand-ink dark:text-brand-white leading-snug mb-4">
+                                    // Breakout Blockquote
+                                    <blockquote key={i} className="content-block relative w-full md:w-[120%] md:-ml-[10%] my-12 md:my-16 p-8 md:p-16 bg-brand-ink/[0.03] dark:bg-white/[0.03] rounded-[2rem] border border-brand-ink/5 dark:border-white/5">
+                                        <p className="font-mori font-bold text-2xl md:text-4xl tracking-tight text-brand-ink dark:text-brand-white leading-[1.2] mb-6">
                                             "{block.text}"
                                         </p>
                                         {block.author && (
-                                            <footer className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-brand-ink/80 dark:text-brand-white/70">
+                                            <footer className="text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-brand-accent">
                                                 — {block.author}
                                             </footer>
                                         )}
@@ -162,16 +210,17 @@ export default function BlogPost() {
                                 );
                             case 'img':
                                 return (
-                                    <figure key={i} className="content-block my-8 md:my-12 flex flex-col gap-4">
+                                    // Breakout Image Container
+                                    <figure key={i} className="content-block my-12 md:my-16 w-full md:w-[110%] md:-ml-[5%] flex flex-col gap-4">
                                         <div
-                                            className="relative w-full rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden bg-brand-light-alt dark:bg-brand-dark-alt border border-brand-ink/10 dark:border-brand-white/10 cursor-zoom-in group"
+                                            className="relative w-full rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden bg-brand-ink/5 dark:bg-white/5 border border-brand-ink/10 dark:border-brand-white/10 cursor-zoom-in group shadow-xl"
                                             onClick={() => setLightboxImg(block.src)}
                                         >
-                                            <Image src={block.src} alt={block.alt} width={1200} height={800} className="w-full h-auto object-contain group-hover:scale-[1.02] transition-transform duration-700 ease-out" sizes="(max-width: 768px) 100vw, 800px" quality={95} />
-                                            <div className="absolute inset-0 bg-brand-ink/20 dark:bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                                            <Image src={block.src} alt={block.alt} width={1200} height={800} className="w-full h-auto object-contain group-hover:scale-[1.02] transition-transform duration-700 ease-out" sizes="(max-width: 768px) 100vw, 900px" quality={95} />
+                                            <div className="absolute inset-0 bg-brand-ink/10 dark:bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                                         </div>
                                         {block.caption && (
-                                            <figcaption className="text-center text-[10px] md:text-xs font-bold uppercase tracking-widest text-brand-ink/90 dark:text-brand-white/90">
+                                            <figcaption className="text-center text-[10px] md:text-xs font-bold uppercase tracking-widest text-brand-ink/50 dark:text-brand-white/50">
                                                 {block.caption}
                                             </figcaption>
                                         )}
@@ -181,8 +230,8 @@ export default function BlogPost() {
                                 // @ts-ignore
                                 const isEmbed = block.url.includes('drive.google.com') || block.url.includes('youtube.com');
                                 return (
-                                    <figure key={i} className="content-block my-8 md:my-12 flex flex-col gap-4">
-                                        <div className="relative w-full aspect-video rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden bg-brand-light-alt dark:bg-brand-dark-alt border border-brand-ink/10 dark:border-brand-white/10 shadow-xl">
+                                    <figure key={i} className="content-block my-12 md:my-16 w-full md:w-[110%] md:-ml-[5%] flex flex-col gap-4">
+                                        <div className="relative w-full aspect-video rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden bg-brand-ink/5 dark:bg-white/5 border border-brand-ink/10 dark:border-brand-white/10 shadow-2xl">
                                             {isEmbed ? (
                                                 <iframe
                                                     // @ts-ignore
@@ -201,7 +250,7 @@ export default function BlogPost() {
                                         </div>
                                         {/* @ts-ignore */}
                                         {block.caption && (
-                                            <figcaption className="text-center text-[10px] md:text-xs font-bold uppercase tracking-widest text-brand-ink/90 dark:text-brand-white/90">
+                                            <figcaption className="text-center text-[10px] md:text-xs font-bold uppercase tracking-widest text-brand-ink/50 dark:text-brand-white/50">
                                                 {/* @ts-ignore */}
                                                 {block.caption}
                                             </figcaption>
@@ -210,7 +259,8 @@ export default function BlogPost() {
                                 );
                             case 'link-group':
                                 return (
-                                    <div key={i} className="content-block flex flex-wrap items-center gap-6 mt-6 mb-8">
+                                    <div key={i} className="content-block flex flex-wrap items-center gap-4 md:gap-6 mt-8 mb-12 p-6 md:p-8 bg-brand-ink/[0.02] dark:bg-white/[0.02] rounded-2xl border border-brand-ink/5 dark:border-white/5">
+                                        <span className="w-full text-[10px] md:text-xs font-bold uppercase tracking-widest text-brand-ink/40 dark:text-white/40 mb-2">Project Resources</span>
                                         {/* @ts-ignore */}
                                         {block.links.map((link: any, idx: number) => {
                                             const isInternal = link.url.startsWith('/');
@@ -220,7 +270,7 @@ export default function BlogPost() {
                                                     href={link.url}
                                                     label={isInternal ? "Internal Link" : "External Link"}
                                                     description={link.label}
-                                                    className="font-outfit font-bold text-sm md:text-base text-brand-ink dark:text-brand-white uppercase tracking-widest underline decoration-brand-ink/20 dark:decoration-brand-white/20 underline-offset-[6px] hover:decoration-brand-ink dark:hover:decoration-brand-accent transition-colors duration-300"
+                                                    className="font-mori font-bold text-sm md:text-base text-brand-ink dark:text-brand-white uppercase tracking-[0.1em] underline decoration-brand-accent/50 underline-offset-[6px] hover:decoration-brand-accent hover:text-brand-accent transition-colors duration-300"
                                                 >
                                                     {link.label} {isInternal ? '→' : '↗'}
                                                 </PreviewLink>
@@ -233,34 +283,30 @@ export default function BlogPost() {
                         }
                     })}
                 </div>
-
             </article>
 
             {/* ── 3. PREV / NEXT NAVIGATION GRID ── */}
-            <section aria-label="Blog Navigation" className="relative border-t border-brand-ink/10 dark:border-brand-white/10 py-20 md:py-32 bg-brand-light-alt dark:bg-brand-dark-alt">
-                {/* Section Static Noise Overlay */}
-                <div className="absolute inset-0 pointer-events-none z-0 opacity-[0.08] md:opacity-[0.12] dark:opacity-[0.03] dark:md:opacity-[0.05]">
-                    <svg className="w-full h-full"><filter id="noise-blog-nav"><feTurbulence type="fractalNoise" baseFrequency="3.5" numOctaves="3" stitchTiles="stitch" /><feColorMatrix type="matrix" values="1 0 0 0 0, 1 0 0 0 0, 1 0 0 0 0, 0 0 0 1 0" /></filter><rect width="100%" height="100%" filter="url(#noise-blog-nav)" /></svg>
-                </div>
-                <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col relative z-10">
+            <section aria-label="Blog Navigation" className="relative border-t border-brand-ink/10 dark:border-brand-white/10 py-20 md:py-32">
+                <div className="max-w-[100rem] mx-auto px-6 md:px-12 flex flex-col relative z-10">
 
-                    <div className="flex justify-center mb-12 md:mb-16">
-                        <Link href="/blog" className="group inline-flex items-center gap-3 border border-brand-ink/20 dark:border-brand-white/20 text-brand-ink dark:text-brand-white px-8 md:px-10 py-4 rounded-full font-outfit font-bold uppercase tracking-widest text-xs hover:bg-brand-ink/5 dark:hover:bg-brand-white/5 transition-colors">
-                            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1.5 transition-transform" /> Return to Blogs
+                    <div className="flex justify-center mb-12 md:mb-20">
+                        <Link href="/blog" className="group inline-flex items-center gap-3 bg-brand-ink dark:bg-brand-white text-white dark:text-brand-ink px-8 md:px-12 py-4 md:py-5 rounded-full font-mori font-bold uppercase tracking-[0.2em] text-[10px] md:text-xs hover:scale-105 hover:bg-brand-accent hover:text-brand-dark transition-all duration-300 shadow-xl">
+                            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1.5 transition-transform" strokeWidth={2.5} /> View All Journals
                         </Link>
                     </div>
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
                         {/* PREVIOUS BLOG CARD WITH FEATURED IMAGE BACKGROUND */}
                         {prevPost ? (
-                            <Link href={`/blog/${prevPost.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/9] rounded-[2rem] overflow-hidden border border-brand-ink/10 dark:border-brand-white/10 block cursor-pointer shadow-xl dark:shadow-2xl hover:-translate-y-2 transition-all duration-500 hover:shadow-brand-ink/20 dark:hover:shadow-brand-accent/10">
+                            <Link href={`/blog/${prevPost.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/10] rounded-[2rem] overflow-hidden border border-brand-ink/10 dark:border-brand-white/10 block cursor-pointer shadow-lg hover:-translate-y-2 transition-all duration-500 hover:shadow-2xl">
                                 <Image src={prevPost.featuredImage} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" alt={prevPost.title} sizes="(max-width: 768px) 100vw, 50vw" quality={90} />
-                                <div className="absolute inset-0 bg-[#111111]/70 dark:bg-[#0A0A0A]/70 transition-colors group-hover:bg-[#111111]/50 dark:group-hover:bg-[#0A0A0A]/50" />
-                                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                                <div className="absolute inset-0 bg-[#0A0A0A]/70 group-hover:bg-[#0A0A0A]/50 transition-colors duration-500" />
+                                <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-12">
                                     <div className="inline-flex items-center gap-2 mb-4">
-                                        <ArrowLeft className="w-3.5 h-3.5 text-brand-accent group-hover:-translate-x-1.5 transition-transform" />
+                                        <ArrowLeft className="w-4 h-4 text-brand-accent group-hover:-translate-x-1.5 transition-transform" strokeWidth={3} />
                                         <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/70">Previous Post</span>
                                     </div>
-                                    <h4 className="font-outfit font-black text-2xl md:text-4xl tracking-tighter text-white leading-[1.1] drop-shadow-md">
+                                    <h4 className="font-mori font-bold text-3xl md:text-5xl tracking-tighter text-white leading-[1.1] drop-shadow-md line-clamp-2">
                                         {prevPost.title}
                                     </h4>
                                 </div>
@@ -269,33 +315,31 @@ export default function BlogPost() {
 
                         {/* NEXT BLOG CARD WITH FEATURED IMAGE BACKGROUND */}
                         {nextPost ? (
-                            <Link href={`/blog/${nextPost.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/9] rounded-[2rem] overflow-hidden border border-brand-ink/10 dark:border-brand-white/10 block cursor-pointer shadow-xl dark:shadow-2xl hover:-translate-y-2 transition-all duration-500 hover:shadow-brand-ink/20 dark:hover:shadow-brand-accent/10">
+                            <Link href={`/blog/${nextPost.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/10] rounded-[2rem] overflow-hidden border border-brand-ink/10 dark:border-brand-white/10 block cursor-pointer shadow-lg hover:-translate-y-2 transition-all duration-500 hover:shadow-2xl">
                                 <Image src={nextPost.featuredImage} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" alt={nextPost.title} sizes="(max-width: 768px) 100vw, 50vw" quality={90} />
-                                <div className="absolute inset-0 bg-[#111111]/70 dark:bg-[#0A0A0A]/70 transition-colors group-hover:bg-[#111111]/50 dark:group-hover:bg-[#0A0A0A]/50" />
-                                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                                <div className="absolute inset-0 bg-[#0A0A0A]/70 group-hover:bg-[#0A0A0A]/50 transition-colors duration-500" />
+                                <div className="absolute inset-0 flex flex-col items-end justify-end p-8 md:p-12 text-right">
                                     <div className="inline-flex items-center gap-2 mb-4">
                                         <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/70">Next Post</span>
-                                        <ArrowRight className="w-3.5 h-3.5 text-brand-accent group-hover:translate-x-1.5 transition-transform" />
+                                        <ArrowRight className="w-4 h-4 text-brand-accent group-hover:translate-x-1.5 transition-transform" strokeWidth={3} />
                                     </div>
-                                    <h4 className="font-outfit font-black text-2xl md:text-4xl tracking-tighter text-white leading-[1.1] drop-shadow-md">
+                                    <h4 className="font-mori font-bold text-3xl md:text-5xl tracking-tighter text-white leading-[1.1] drop-shadow-md line-clamp-2">
                                         {nextPost.title}
                                     </h4>
                                 </div>
                             </Link>
                         ) : <div className="hidden md:block" />}
                     </div>
-
-
                 </div>
             </section>
 
-            {/* ── 4. SINGLE IMAGE LIGHTBOX (Elevated z-index to overlay noise) ── */}
+            {/* ── 4. SINGLE IMAGE LIGHTBOX ── */}
             {lightboxImg && (
-                <div className="fixed inset-0 z-[110] flex items-center justify-center bg-brand-ink/95 dark:bg-black/95 backdrop-blur-md p-4 md:p-12 cursor-zoom-out" onClick={() => setLightboxImg(null)}>
-                    <div className="relative w-full h-full max-w-7xl max-h-[90vh] rounded-[1rem] md:rounded-[2rem] overflow-hidden flex flex-col items-center justify-center" onClick={(e) => e.stopPropagation()}>
+                <div className="fixed inset-0 z-[110] flex items-center justify-center bg-[#050505]/95 backdrop-blur-xl p-4 md:p-12 cursor-zoom-out" onClick={() => setLightboxImg(null)}>
+                    <div className="relative w-full h-full max-w-[100rem] max-h-[90vh] rounded-[1rem] md:rounded-[2rem] overflow-hidden flex flex-col items-center justify-center" onClick={(e) => e.stopPropagation()}>
                         <Image src={lightboxImg} alt="Fullscreen View" fill className="object-contain" quality={100} />
                     </div>
-                    <button className="absolute top-6 right-6 md:top-10 md:right-10 text-brand-white bg-white/10 hover:bg-brand-accent hover:text-brand-dark p-3 rounded-full backdrop-blur-md transition-colors z-20" onClick={() => setLightboxImg(null)}>
+                    <button className="absolute top-6 right-6 md:top-10 md:right-10 text-white bg-white/10 hover:bg-brand-accent hover:text-brand-dark p-3 md:p-4 rounded-full backdrop-blur-md transition-all hover:scale-110 z-20" onClick={() => setLightboxImg(null)}>
                         <X size={24} strokeWidth={2.5} />
                     </button>
                 </div>

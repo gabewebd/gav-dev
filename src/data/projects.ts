@@ -5,6 +5,7 @@ import { FaFigma, FaWordpress } from "react-icons/fa";
 export type ContentBlock =
     | { type: 'p'; text: string }
     | { type: 'italic'; text: string } // Added this for your timestamps
+    | { type: 'role-title'; text: string } // NEW: For underlined project roles
     | { type: 'h2'; text: string }
     | { type: 'img'; src: string; alt: string; caption?: string }
     | { type: 'quote'; text: string; author?: string }
@@ -37,6 +38,7 @@ export interface ProjectData {
     github: string;
     heroImg: string;   // Used for Square/Portrait Showcase Cards
     slugImg: string;   // NEW: Used for 100vh Landscape Hero on Project Details
+    featuredImg: string; // NEW: Used for Projects Listing Page
     showcaseImg: string;
     images: string[];
     gallery: ProjectImage[];
@@ -67,7 +69,8 @@ export const PROJECTS_DATA: ProjectData[] = [
             { type: 'p', text: "To solve this problem, we selected Angeles City as our primary digital launchpad to target the highly tech-savvy demographic of students and young professionals. The main objective was to transition the brand into a highly scalable and centralized digital platform." }
         ],
         role: [
-            { type: 'p', text: "Project Lead & Full-Stack Developer. I architected the entire project using PHP and MySQL. I integrated a custom mini-CMS into the backend admin folder to handle dynamic menu updates and blog publications." },
+            { type: 'role-title', text: "Project Lead & Full-Stack Developer" },
+            { type: 'p', text: "I architected the entire project using PHP and MySQL. I integrated a custom mini-CMS into the backend admin folder to handle dynamic menu updates and blog publications." },
             { type: 'p', text: "Furthermore, I ensured strict mobile responsiveness across all devices, managed the deployment process using Hostinger, implemented a robust local SEO strategy, and integrated Google Analytics to monitor traffic, user behavior, and overall performance insights." }
         ],
         stack: ["PHP", "MySQL", "CSS", "Hostinger", "SEO", "Custom CMS"],
@@ -76,6 +79,7 @@ export const PROJECTS_DATA: ProjectData[] = [
         github: "https://github.com/gabewebd/WSEA",
         heroImg: "/assets/projects/danonos/danonos.png",
         slugImg: "/assets/projects/danonos/danonos-slug.png",
+        featuredImg: "/assets/projects/danonos/danonos-featured.png",
         showcaseImg: "/assets/projects/danonos/danonos-showcase.png",
         images: ["/assets/projects/danonos/danonos.png", "/assets/projects/danonos/danonos-favorites.png", "/assets/projects/danonos/danonos-blogs.png", "/assets/projects/danonos/danonos-locations.png"],
         gallery: [
@@ -127,7 +131,8 @@ export const PROJECTS_DATA: ProjectData[] = [
             { type: 'p', text: "The platform functions as a high-end digital catalog where users can seamlessly browse collections, sort items by category or price, and explore the corporate structure of the brand through a dedicated employee directory." }
         ],
         role: [
-            { type: 'p', text: "UI/UX Designer & Developer. I constructed the initial project architecture and established the structural foundation of the Angular application." },
+            { type: 'role-title', text: "UI/UX Designer & Developer" },
+            { type: 'p', text: "I constructed the initial project architecture and established the structural foundation of the Angular application." },
             { type: 'p', text: "I took complete ownership of designing and developing the Employee Directory page. I also rigorously tested and ensured mobile responsiveness across the entire application to guarantee the luxury feel translated perfectly to smaller viewports." }
         ],
         stack: ["Angular", "Tailwind CSS", "TypeScript", "Netlify"],
@@ -136,6 +141,7 @@ export const PROJECTS_DATA: ProjectData[] = [
         github: "https://github.com/gabewebd/6AWEB-TheFourWhoAdore",
         heroImg: "/assets/projects/chanel/chanel.png",
         slugImg: "/assets/projects/chanel/chanel-slug.png",
+        featuredImg: "/assets/projects/chanel/chanel-featured.png",
         showcaseImg: "/assets/projects/chanel/chanel-showcase.png",
         images: ["/assets/projects/chanel/chanel.png", "/assets/projects/chanel/chanel-products.png", "/assets/projects/chanel/chanel-directory.png"],
         gallery: [
@@ -177,7 +183,8 @@ export const PROJECTS_DATA: ProjectData[] = [
             { type: 'p', text: "By transforming routine eco-friendly activities into entertaining quests, the platform promotes community involvement through digital badges, point systems, and friendly rivalry via dynamic leaderboards." }
         ],
         role: [
-            { type: 'p', text: "Full-Stack Developer and UI/UX Designer. I built out nearly all the core pages. This included the Quest page, Community feed, Login and Signup flows, Dashboard data visualizations, and Role Management architecture." },
+            { type: 'role-title', text: "Lead Full-Stack Developer Lead and UI/UX Designer" },
+            { type: 'p', text: "I built out nearly all the core pages. This included the Quest page, Community feed, Login and Signup flows, Dashboard data visualizations, and Role Management architecture." },
             { type: 'p', text: "I successfully integrated Cloudinary for secure image proof uploads, managed our weekly Agile sprint planning in Notion, and executed the dual-deployment strategy using Vercel for the frontend and Render for the backend." }
         ],
         stack: ["MongoDB", "Express.js", "React", "Node.js", "Cloudinary"],
@@ -186,6 +193,7 @@ export const PROJECTS_DATA: ProjectData[] = [
         github: "https://github.com/Josh-Aguiluz/6WCSERVER-Final-Project",
         heroImg: "/assets/projects/hau-ecoquest/hau-ecoquest.png",
         slugImg: "/assets/projects/hau-ecoquest/ecoquest-slug.png",
+        featuredImg: "/assets/projects/hau-ecoquest/ecoquest-featured.png",
         showcaseImg: "/assets/projects/hau-ecoquest/ecoquest-showcase.png",
         images: ["/assets/projects/hau-ecoquest/hau-ecoquest.png", "/assets/projects/hau-ecoquest/ecoquest-quests.png", "/assets/projects/hau-ecoquest/ecoquest-community.png", "/assets/projects/hau-ecoquest/ecoquest-leaderboard.png"],
         gallery: [
@@ -243,7 +251,8 @@ export const PROJECTS_DATA: ProjectData[] = [
             { type: 'p', text: "The platform supports a complete digital retail workflow. It handles everything from digital catalog browsing and dynamic shipping address management to complex order fulfillment and an internal notification system between customers and admins. As a conceptual prototype, it is designed to strictly simulate the e-commerce architecture and does not process real monetary transactions." }
         ],
         role: [
-            { type: 'p', text: "Full-Stack Developer and UI/UX Designer. I contributed heavily across the entire application ecosystem, initializing the branding assets, building out the login and registration systems, role management protocols, and the user-facing frontend architecture like Home Page, Shop Page, Dashboard data visualizations, Login and Register Pages." },
+            { type: 'role-title', text: "Lead Full-Stack Developer and UI/UX Designer" },
+            { type: 'p', text: "I contributed heavily across the entire application ecosystem, initializing the branding assets, building out the login and registration systems, role management protocols, and the user-facing frontend architecture like Home Page, Shop Page, Dashboard data visualizations, Login and Register Pages." },
             { type: 'p', text: "On the backend, I successfully handled the live production deployment of the platform using AwardSpace." }
         ],
         stack: ["PHP", "MySQL", "CSS", "AwardSpace"],
@@ -252,6 +261,7 @@ export const PROJECTS_DATA: ProjectData[] = [
         github: "https://github.com/gabewebd/the-wellness-apparel",
         heroImg: "/assets/projects/wellness-apparel/wellness-apparel.png",
         slugImg: "/assets/projects/wellness-apparel/wellness-apparel-slug.png",
+        featuredImg: "/assets/projects/wellness-apparel/wellness-featured.png",
         showcaseImg: "/assets/projects/wellness-apparel/wellness-showcase.png",
         images: ["/assets/projects/wellness-apparel/wellness-apparel.png", "/assets/projects/wellness-apparel/wellness-shop.png", "/assets/projects/wellness-apparel/wellness-cart.png", "/assets/projects/wellness-apparel/wellness-checkout.png"],
         gallery: [
@@ -297,6 +307,64 @@ export const PROJECTS_DATA: ProjectData[] = [
             }
         ]
     },
+
+    {
+        id: "05",
+        slug: "vrc-designs",
+        title: "VRC Designs",
+        tagline: "Immersive Digital Portfolio",
+        desc: "A highly interactive, visually driven web presence. I leveraged Next.js for blazing-fast performance and GSAP for fluid, complex scroll animations to create a memorable user experience.",
+        overview: [
+            { type: 'p', text: "VRC Designs needed a digital platform that matched the high caliber of its creative output. The goal wasn't just to build a static brochure, but to craft an engaging digital experience that grabs attention from the very first scroll." },
+            { type: 'p', text: "To achieve this, I focused heavily on fluid motion and modern UI aesthetics, ensuring the site feels alive and responsive while maintaining strict performance and SEO standards." }
+        ],
+        role: [
+            { type: 'role-title', text: "Lead Developer & UI Designer" },
+            { type: 'p', text: "I architected the frontend utilizing Next.js for its robust routing and server-side rendering capabilities, pairing it with Tailwind CSS for rapid, highly customized styling." },
+            { type: 'p', text: "For the interactive elements, I integrated GSAP to build custom timeline animations and scroll-triggered effects, ensuring every micro-interaction felt premium and deliberate." }
+        ],
+        stack: ["Next.js", "Tailwind CSS", "GSAP", "TypeScript", "Vercel"],
+        techLabel: "Next.js · GSAP · Tailwind",
+        live: "https://vrc-designs.vercel.app",
+        github: "https://github.com/gabewebd/vrc-designs",
+        heroImg: "/assets/projects/vrc-designs/vrc-hero.png",
+        slugImg: "/assets/projects/vrc-designs/vrc-slug.png",
+        featuredImg: "/assets/projects/vrc-designs/vrc-featured.png",
+        showcaseImg: "/assets/projects/vrc-designs/vrc-showcase.png",
+        images: [
+            "/assets/projects/vrc-designs/vrc-hero.png",
+            "/assets/projects/vrc-designs/vrc-about.png",
+            "/assets/projects/vrc-designs/vrc-work.png"
+        ],
+        gallery: [
+            { src: "/assets/projects/vrc-designs/vrc-hero.png", alt: "VRC Designs Hero Section", caption: "The immersive hero section featuring dynamic GSAP entrance animations." },
+            { src: "/assets/projects/vrc-designs/vrc-about.png", alt: "VRC Designs About Page", caption: "Clean, elegant about page layout with smooth transitions." },
+            { src: "/assets/projects/vrc-designs/vrc-work.png", alt: "Selected Works Gallery", caption: "A sleek, interactive portfolio grid showcasing the best projects." }
+        ],
+        customSections: [
+            {
+                id: "fluid-interactivity",
+                title: "Fluid Interactivity with GSAP",
+                blocks: [
+                    { type: 'p', text: "To make the portfolio truly stand out, static CSS transitions weren't going to cut it. I heavily utilized GSAP (GreenSock Animation Platform) to orchestrate complex sequence animations." },
+                    { type: 'p', text: "By tying animations to user scroll events, the content reveals itself naturally as the user navigates down the page. This creates a compelling storytelling effect that keeps visitors engaged longer." },
+                    { type: 'img', src: '/assets/projects/vrc-designs/vrc-work.png', alt: 'Interactive Portfolio Grid', caption: 'Scroll-triggered animations built with GSAP bring the project grid to life.' }
+                ]
+            },
+            {
+                id: "project-links",
+                title: "Project Assets",
+                blocks: [
+                    {
+                        type: 'link-group', links: [
+                            { url: 'https://vrc-designs.vercel.app', label: 'Live Link' },
+                            { url: 'https://github.com/gabewebd/vrc-designs', label: 'Source Code' }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
 ];
 
 // ─── SHOWCASE PROJECTS (derived for homepage ProjectShowcase component) ────────
@@ -322,7 +390,7 @@ export const SHOWCASE_PROJECTS = PROJECTS_DATA
 // ─── MAJOR PROJECTS (first 4 for the projects listing page) ───────────────────
 
 export const MAJOR_PROJECTS = PROJECTS_DATA.filter((p) =>
-    ["danonos", "chanel-showcase", "hau-ecoquest", "wellness-apparel"].includes(p.slug)
+    ["danonos", "chanel-showcase", "hau-ecoquest", "wellness-apparel", "vrc-designs"].includes(p.slug)
 );
 
 // ─── MINOR PROJECTS ───────────────────────────────────────────────────────────

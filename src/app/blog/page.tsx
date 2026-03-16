@@ -6,12 +6,13 @@ import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { ArrowRight, FolderOpen, Calendar, Book } from "lucide-react";
+import { ArrowRight, FolderOpen, Calendar, User, PenTool } from "lucide-react";
 import SectionTag from "@/components/ui/SectionTag";
 import SectionTitle from "@/components/ui/SectionTitle";
 import HeroHeading from "@/components/ui/HeroHeading";
 import PreviewLink from "@/components/ui/PreviewLink";
 import Button from "@/components/ui/Button";
+import Magnetic from "@/components/ui/Magnetic";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -33,8 +34,11 @@ export default function BlogPage() {
 
     // Parallax on hero background icon
     gsap.to('.hero-bg-icon', {
-      y: 200, rotation: 15, ease: "none",
-      scrollTrigger: { trigger: ".hero-section", start: "top top", end: "bottom top", scrub: true }
+      y: "80vh",
+      rotation: 25,
+      scale: 1.4,
+      ease: "none",
+      scrollTrigger: { trigger: ".hero-section", start: "top top", end: "bottom -80%", scrub: 1 }
     });
 
     // Blog cards fade in
@@ -56,43 +60,36 @@ export default function BlogPage() {
   }, { scope: containerRef });
 
   return (
-    <main ref={containerRef} className="relative min-h-screen bg-brand-light dark:bg-brand-dark overflow-x-clip pt-28 md:pt-40 transition-colors duration-500">
-      {/* Grain */}
-      <div className="fixed inset-0 pointer-events-none z-0 opacity-[0.08] md:opacity-[0.12] dark:opacity-[0.03] dark:md:opacity-[0.05]">
-        <svg className="w-full h-full">
-          <filter id="noise-blog"><feTurbulence type="fractalNoise" baseFrequency="3.5" numOctaves="3" stitchTiles="stitch" /><feColorMatrix type="matrix" values="1 0 0 0 0, 1 0 0 0 0, 1 0 0 0 0, 0 0 0 1 0" /></filter>
-          <rect width="100%" height="100%" filter="url(#noise-blog)" />
-        </svg>
-      </div>
+    <main ref={containerRef} className="relative overflow-x-clip pt-28 md:pt-40 pb-32 transition-colors duration-500">
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+      <div className="max-w-[100rem] mx-auto px-4 sm:px-6 md:px-12 relative z-10">
 
         {/* ─── HERO ── */}
-        <section className="hero-section mb-24 md:mb-40 relative">
-          {/* Line-style FolderOpen SVG background */}
-          <div className="hero-bg-icon absolute top-[-5vh] right-[-10vw] lg:right-10 w-[300px] h-[300px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] pointer-events-none z-0 opacity-[0.04] dark:opacity-[0.02]">
-            <FolderOpen className="w-full h-full text-brand-ink dark:text-brand-white" strokeWidth={1} />
+        <section className="hero-section mb-24 md:mb-40 relative max-w-7xl mx-auto">
+          {/* Scroll-triggered SVG background — line-style file icon like blog/projects */}
+          <div className="hero-bg-icon absolute top-[-5vh] right-[-5vw] lg:right-5 w-[300px] h-[300px] md:w-[450px] md:h-[450px] pointer-events-none z-0 opacity-[0.05]">
+            <FolderOpen className="w-full h-full text-white" strokeWidth={1} />
           </div>
 
           <div className="relative z-10">
-            <SectionTag className="hero-reveal mb-6 md:mb-8">Dev Journal</SectionTag>
+            <SectionTag className="hero-reveal mb-6 md:mb-8 !border-white/10 !bg-transparent !text-white">Dev Journal</SectionTag>
             <HeroHeading>
               <div className="overflow-hidden py-3 -my-3 pr-4 -mr-4">
-                <span className="hero-reveal inline-block pr-4 font-mori font-semibold">Dev Notes</span>
+                <span className="hero-reveal inline-block pr-4 font-mori font-semibold text-white">Dev Notes</span>
               </div>
               <div className="hero-reveal flex items-center justify-start gap-3 sm:gap-5 overflow-hidden py-2 -my-2">
-                <span className="text-brand-ink dark:text-brand-white font-mori font-semibold">& Insights</span>
+                <span className="text-white font-mori font-semibold">& Insights</span>
                 <span className="inline-flex items-center justify-center w-10 h-10 sm:w-14 sm:h-14 md:w-20 md:h-20 bg-brand-accent rounded-[0.75rem] sm:rounded-[1rem] md:rounded-[1.25rem] shrink-0">
-                  <Book className="w-5 h-5 sm:w-7 sm:h-7 md:w-10 md:h-10 text-brand-dark" strokeWidth={2.5} />
+                  <PenTool className="w-5 h-5 sm:w-7 sm:h-7 md:w-10 md:h-10 text-brand-dark" strokeWidth={2.5} />
                 </span>
               </div>
             </HeroHeading>
 
-            <p className="hero-desc text-base md:text-xl text-brand-ink/80 dark:text-brand-white/70 leading-relaxed font-medium max-w-3xl">
-              Thoughts on development, design systems, and lessons learned while building full-stack applications and shaping brand identities.
+            <p className="hero-desc text-base md:text-xl text-white/70 leading-relaxed font-medium max-w-2xl mt-6">
+              A collection of thoughts, technical explorations, and design reflections from the intersection of code and creativity.
             </p>
 
-            <div className="hero-divider w-full h-[1px] bg-brand-ink/20 dark:bg-brand-white/20 mt-16 md:mt-24 origin-left" />
+            <div className="hero-divider w-full h-[1px] bg-white/10 mt-16 md:mt-24 origin-left" />
           </div>
         </section>
 
@@ -112,8 +109,8 @@ export default function BlogPage() {
                     </div>
                   )}
                   <div className={`flex flex-col justify-center gap-4 lg:gap-6 w-full ${i % 2 === 0 ? "" : "lg:items-end"}`}>
-                    <div className={`flex items-center gap-3 text-[10px] md:text-xs text-brand-ink/80 dark:text-brand-white/70 font-medium uppercase tracking-widest ${i % 2 === 0 ? "" : "lg:flex-row-reverse"}`}>
-                      <Calendar className="w-3.5 h-3.5" />{post.date}
+                    <div className={`flex items-center gap-3 text-[10px] md:text-xs text-white/70 font-medium uppercase tracking-widest ${i % 2 === 0 ? "" : "lg:flex-row-reverse"}`}>
+                      <span className="text-brand-accent">{post.date}</span>
                       <span className="w-1.5 h-1.5 rounded-full bg-brand-ink/20 dark:bg-brand-white/20" />
                       <span>{post.readTime}</span>
                     </div>
@@ -123,7 +120,7 @@ export default function BlogPage() {
                     <p className="text-sm md:text-base text-brand-ink/80 dark:text-brand-white/70 font-medium leading-relaxed line-clamp-3">
                       {post.excerpt}
                     </p>
-                    <div className={`flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand-ink dark:text-brand-white mt-2 mb-2 ${i % 2 === 0 ? "" : "lg:flex-row-reverse"}`}>
+                    <div className={`flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand-ink dark:text-brand-white mt-2 mb-2 hover:text-brand-accent transition-colors duration-300 ${i % 2 === 0 ? "" : "lg:flex-row-reverse"}`}>
                       Read Article <ArrowRight className={`w-4 h-4 transition-transform ${i % 2 === 0 ? "group-hover:translate-x-1.5" : "lg:rotate-180 group-hover:translate-x-1.5 lg:group-hover:-translate-x-1.5"}`} />
                     </div>
                   </div>
@@ -134,28 +131,21 @@ export default function BlogPage() {
         </section>
       </div>
 
-      {/* ─── CTA SECTION ── */}
-      <section className="cta-section relative py-32 md:py-48 border-t border-brand-ink/5 dark:border-brand-white/5 bg-black/[0.02] dark:bg-white/[0.01] overflow-hidden flex flex-col items-center justify-center text-center px-4">
-        <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center w-full">
-          <h2 className="cta-heading font-mori font-semibold text-[clamp(2.2rem,6vw,5rem)] tracking-tight text-brand-ink dark:text-brand-white mb-10 md:mb-14 leading-[1.2] max-w-4xl">
-            Like what you read? <br className="hidden md:block" /> Let&apos;s build together.
-          </h2>
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 relative z-20">
-            <Button
-              href="/contact"
-              icon={ArrowRight}
-              className="!px-6 sm:!px-8 md:!px-10 !py-3.5 sm:!py-4.5 md:!py-5 !text-[11px] sm:!text-xs md:!text-sm"
-            >
-              Get In Touch
-            </Button>
-            <Button
-              href="/projects"
-              variant="secondary"
-              className="!px-6 sm:!px-8 md:!px-10 !py-3.5 sm:!py-4.5 md:!py-5 !text-[11px] sm:!text-xs md:!text-sm"
-            >
-              Explore Work
-            </Button>
+      <section className="cta-section py-20 px-6 max-w-7xl mx-auto border-t border-brand-white/10 relative z-10">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8 text-left">
+          <div>
+            <h2 className="font-mori font-semibold text-3xl md:text-5xl uppercase tracking-tighter leading-tight text-brand-ink dark:text-brand-white">
+              Ready to build something <span className="text-brand-accent">remarkable</span>?
+            </h2>
+            <p className="mt-4 text-brand-ink/70 dark:text-brand-white/50 max-w-xl font-medium">
+              I’m always open to new opportunities, collaborations, and building meaningful digital solutions.
+            </p>
           </div>
+          <Magnetic>
+            <Button href="/contact" icon={ArrowRight}>
+              Let&apos;s Talk
+            </Button>
+          </Magnetic>
         </div>
       </section>
     </main>
