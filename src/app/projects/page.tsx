@@ -363,7 +363,7 @@ export default function ProjectsPage() {
                       </div>
 
                       {/* Feathered Vignette Overlay */}
-                      <div className="feather-overlay bg-black/40 group-hover:bg-black/20 transition-colors duration-700" />
+                      <div className="feather-overlay" />
 
                       <div className="absolute inset-0 bg-black/0 lg:group-hover:bg-black/50 transition-colors duration-700 pointer-events-none z-10" />
                     </div>

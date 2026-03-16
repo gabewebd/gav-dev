@@ -39,7 +39,7 @@ function ContentBlockRenderer({ block, onImageClick }: { block: ContentBlock, on
                     >
                         {/* High Quality & Sizes added to inline images */}
                         <Image src={block.src} alt={block.alt || "Project visual"} width={1200} height={800} className="w-full h-auto object-contain group-hover:scale-[1.02] transition-transform duration-700" quality={95} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 60vw" />
-                        <div className="feather-overlay bg-black/30 group-hover:bg-black/10 transition-opacity duration-500 pointer-events-none" />
+                        <div className="feather-overlay" />
                     </div>
                     {block.caption && (
                         <p className="text-sm md:text-base font-light text-body text-center px-4">
@@ -216,8 +216,8 @@ export default function ProjectDetail() {
                         <h1 className="hero-title font-mori font-semibold text-5xl md:text-7xl lg:text-[8rem] tracking-tighter leading-none text-white drop-shadow-lg">
                             {project.title}
                         </h1>
-                        <div className="hero-title mt-6 md:mt-8">
-                            <span className="bg-brand-white/10 backdrop-blur-md text-brand-white px-5 py-2.5 rounded-full font-mori font-bold uppercase tracking-[0.2em] text-[10px] md:text-xs leading-none inline-block border border-brand-white/20 shadow-xl">
+                        <div className="hero-title mt-4 md:mt-6">
+                            <span className="font-mori font-bold text-brand-white text-xl md:text-2xl inline-block lowercase italic opacity-80">
                                 {project.projectRole}
                             </span>
                         </div>
@@ -255,7 +255,7 @@ export default function ProjectDetail() {
                                 >
                                     {/* High quality enabled for Gallery Slider with fixed aspect ratio */}
                                     <Image src={img.src} alt={img.alt} fill className="object-cover cursor-zoom-in transition-transform duration-700 hover:scale-[1.01]" onClick={() => setLightboxIndex(idx)} priority={idx === 0} quality={95} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw" />
-                                    <div className="feather-overlay bg-black/20 group-hover:bg-black/10 transition-opacity duration-500 pointer-events-none" />
+                                    <div className="feather-overlay" />
                                 </div>
                             ))}
 
