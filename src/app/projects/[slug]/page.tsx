@@ -370,8 +370,8 @@ export default function ProjectDetail() {
 
             {/* ── 3. PREV / NEXT NAVIGATION GRID ── */}
             <section className="relative border-t border-brand-white/10 py-20 md:py-32">
-                <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col relative z-10">
-                    <div className="flex justify-center mb-12 md:mb-16">
+                <div className="max-w-[100rem] mx-auto px-6 md:px-12 flex flex-col relative z-10">
+                    <div className="flex justify-center mb-12 md:mb-20">
                         <Link href="/projects" className="group inline-flex items-center gap-3 bg-brand-white text-brand-dark px-8 md:px-12 py-4 md:py-5 rounded-full font-mori font-bold uppercase tracking-[0.2em] text-[10px] md:text-xs hover:scale-105 hover:bg-brand-accent hover:text-brand-dark transition-all duration-300 shadow-xl">
                             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1.5 transition-transform" strokeWidth={2.5} /> Return to Projects
                         </Link>
