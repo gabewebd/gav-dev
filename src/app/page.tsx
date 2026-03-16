@@ -348,7 +348,7 @@ const StatusTooltip = ({ icon: Icon, label, value }: { icon: any; label: string;
       <Icon className={`w-5 h-5 md:w-6 md:h-6 text-brand-dark transition-transform duration-300 group-hover:scale-110 ${isTouch ? "group-focus:scale-110" : ""}`} strokeWidth={2.5} />
       <div className={`absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:-translate-x-1 transition-all duration-300 pointer-events-none z-50 ${isTouch ? "group-focus:opacity-100 group-focus:-translate-x-1" : ""}`}>
         <div className="bg-white text-[#111111] px-4 py-2.5 rounded-xl border border-black/5 shadow-xl">
-          <span className="text-[10px] font-bold uppercase tracking-widest opacity-60 mb-0.5 block">{label}</span>
+          <span className="text-[10px] font-bold uppercase tracking-widest text-muted mb-0.5 block">{label}</span>
           <span className="text-xs md:text-sm font-mori font-bold whitespace-nowrap block">{value}</span>
         </div>
         <div className="absolute right-[-4px] top-1/2 -translate-y-1/2 border-[6px] border-transparent border-l-white" />
@@ -545,13 +545,9 @@ export default function Home() {
           <div className="flex-1 w-full relative z-10">
             <div className="overflow-hidden">
               <h1 className="font-mori font-semibold text-[clamp(3rem,8vw,7rem)] leading-none tracking-tighter text-brand-white mb-7 sm:mb-10 lg:mb-12">
-                <span className="hero-line block text-brand-white pt-4 pb-2 -mb-6 md:-mb-8 lg:-mb-10">
-                  Building
-                </span>
+                <span className="hero-line block text-brand-white pt-4 pb-2 -mb-6 md:-mb-8 lg:-mb-10">Building</span>
 
-                <span className="hero-line block text-brand-white pt-4 pb-2 -mb-4 md:-mb-6 lg:-mb-8">
-                  your
-                </span>
+                <span className="hero-line block text-muted pt-4 pb-2 -mb-4 md:-mb-6 lg:-mb-8">your</span>
 
                 <span className="hero-line flex items-center gap-3 md:gap-4 overflow-visible py-4 -my-4">
 
@@ -579,8 +575,8 @@ export default function Home() {
             </div>
 
             <div className="hero-bio mt-4 md:mt-5 max-w-lg md:max-w-2xl lg:max-w-lg">
-              <p className="text-sm md:text-lg text-brand-white/70 leading-relaxed font-medium">
-                I&apos;m <strong className="text-brand-white">Gabrielle Ainshley Velasquez</strong>,
+              <p className="text-sm md:text-lg text-body leading-relaxed font-light">
+                I&apos;m <strong className="text-brand-white font-semibold">Gabrielle Ainshley Velasquez</strong>,
                 a third-year BS Information Technology student with hands-on experience across the full stack. I enjoy turning complex ideas into structured,
                 well-designed solutions. I approach every project with clarity, intention, and strong attention to detail.
               </p>
@@ -634,7 +630,7 @@ export default function Home() {
             <div key={setIdx} className="flex items-center shrink-0">
               {MARQUEE_WORDS.map((word, wi) => (
                 <span key={`${setIdx}-${wi}`} className="flex items-center shrink-0">
-                  <span className="font-mori font-semibold text-[clamp(1.5rem,4vw,5rem)] uppercase tracking-[-0.02em] text-brand-white/70 md:text-brand-white/20 hover:!text-brand-white px-3 md:px-8 py-2 transition-colors duration-300 whitespace-nowrap cursor-pointer">
+                  <span className="font-mori font-semibold text-[clamp(1.5rem,4vw,5rem)] uppercase tracking-[-0.02em] text-muted hover:!text-brand-white px-3 md:px-8 py-2 transition-colors duration-300 whitespace-nowrap cursor-pointer">
                     {word}
                   </span>
                   <span className="w-2 h-2 md:w-4 md:h-4 rounded-full bg-brand-accent shrink-0 mx-6 md:mx-10" />
@@ -661,7 +657,7 @@ export default function Home() {
             <SectionTitle className="service-header-element mb-6">
               What I <br /> Bring To <br /> The Table
             </SectionTitle>
-            <p className="service-header-element text-sm md:text-base text-brand-white/70 leading-relaxed max-w-xs font-medium">
+            <p className="service-header-element text-sm md:text-base text-muted leading-relaxed max-w-xs font-light">
               I don&apos;t just write code, I build scalable, well-structured systems by combining analytical thinking with refined frontend development.
             </p>
 
@@ -689,15 +685,15 @@ export default function Home() {
                   onMouseLeave={() => {
                     if (window.matchMedia("(hover: hover)").matches) setHoveredService(null);
                   }}
-                  className="service-item group border-b border-brand-white/10 py-8 md:py-10 cursor-pointer"
+                  className="service-item group border-b border-brand-ink/10 dark:border-brand-white/10 py-8 md:py-10 cursor-pointer"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex items-start gap-4 md:gap-8">
-                      <span className={`font-mono text-sm md:text-base transition-colors duration-500 mt-1 md:mt-2 ${isActive ? "text-brand-white" : "text-brand-white/30"}`}>
+                      <span className={`font-mono text-sm md:text-base transition-colors duration-500 mt-1 md:mt-2 ${isActive ? "text-brand-white" : "text-muted"}`}>
                         0{i + 1}
                       </span>
                       <div className="flex flex-col gap-3 md:gap-4">
-                        <h3 className={`font-mori font-semibold text-2xl md:text-4xl lg:text-5xl tracking-tight transition-colors duration-500 ${isActive ? "text-brand-white" : "text-brand-white/30"}`}>
+                        <h3 className={`font-mori font-semibold text-2xl md:text-4xl lg:text-5xl tracking-tight transition-colors duration-500 ${isActive ? "text-brand-white" : "text-muted"}`}>
                           {service.title}
                         </h3>
 
@@ -707,7 +703,7 @@ export default function Home() {
                               key={idx}
                               className={`inline-flex items-center px-3 py-1 rounded-full border text-[10px] md:text-[11px] font-bold uppercase tracking-[0.15em] transition-all duration-300 ${isActive
                                 ? "border-brand-white/25 text-brand-white bg-brand-white/5"
-                                : "border-brand-white/10 text-brand-white/90 bg-transparent"
+                                : "border-brand-white/10 text-body bg-transparent"
                                 }`}
                             >
                               {tech}
@@ -743,7 +739,7 @@ export default function Home() {
                       <div className="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-brand-accent flex items-center justify-center shrink-0 mt-1">
                         <Icon className="w-6 h-6 md:w-8 md:h-8 text-brand-dark" strokeWidth={2} />
                       </div>
-                      <p className="text-sm md:text-base lg:text-lg text-brand-white/70 leading-relaxed max-w-lg font-medium pt-2">
+                      <p className="text-sm md:text-base lg:text-lg text-body leading-relaxed max-w-lg font-light pt-2">
                         {service.desc}
                       </p>
                     </div>
@@ -802,7 +798,7 @@ export default function Home() {
                     </div>
                     <div>
                       <h4 className="font-mori font-bold text-sm md:text-base text-brand-white leading-tight mb-0.5">{TESTIMONIALS[tIndex].author}</h4>
-                      <p className="text-[10px] md:text-sm text-brand-white/50">{TESTIMONIALS[tIndex].role}</p>
+                      <p className="text-[10px] md:text-sm text-muted">{TESTIMONIALS[tIndex].role}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
@@ -840,7 +836,7 @@ export default function Home() {
             <motion.span
               whileHover={{ scale: 1.08, rotateZ: -4, y: -8 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className="inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-3 sm:py-6 rounded-full bg-white dark:bg-[#111] border border-brand-ink/10 dark:border-brand-white/10 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-colors duration-300 font-mori font-bold text-[clamp(3.5rem,9vw,8rem)] text-brand-ink dark:text-brand-white cursor-default leading-[0.9] tracking-tighter"
+              className="inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-3 sm:py-6 rounded-full bg-white/[0.05] border border-white/10 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-colors duration-300 font-mori font-bold text-[clamp(3.5rem,9vw,8rem)] text-white cursor-default leading-[0.9] tracking-tighter"
             >
               Let&apos;s
             </motion.span>
@@ -864,7 +860,7 @@ export default function Home() {
             <motion.span
               whileHover={{ scale: 1.08, rotateZ: 5, y: -8 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className="inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-3 sm:py-6 rounded-[2rem] sm:rounded-[4rem] border-2 border-brand-ink dark:border-brand-white hover:bg-blue-600 hover:border-blue-600 hover:text-white transition-colors duration-300 font-mori font-bold text-[clamp(3.5rem,9vw,8rem)] text-brand-ink dark:text-brand-white cursor-default leading-[0.9] tracking-tighter"
+              className="inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-3 sm:py-6 rounded-[2rem] sm:rounded-[4rem] border-2 border-white hover:bg-blue-600 hover:border-blue-600 hover:text-white transition-colors duration-300 font-mori font-bold text-[clamp(3.5rem,9vw,8rem)] text-white cursor-default leading-[0.9] tracking-tighter"
             >
               together.
             </motion.span>
@@ -893,7 +889,7 @@ export default function Home() {
             </Magnetic>
           </div>
 
-          <p className="mt-12 md:mt-16 text-xs md:text-sm font-medium uppercase tracking-widest text-brand-ink/80 dark:text-brand-white/70 max-w-md mx-auto px-4">
+          <p className="mt-12 md:mt-16 text-xs md:text-sm font-light uppercase tracking-widest text-brand-ink/80 dark:text-brand-white/85 max-w-md mx-auto px-4">
             Always open to new opportunities, collaborations, and building something meaningful.
           </p>
         </div>

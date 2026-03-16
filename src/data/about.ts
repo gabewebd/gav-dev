@@ -78,7 +78,8 @@ export interface Interest {
 
 export interface CertItem {
     title: string;
-    url: string;
+    url?: string;
+    image: string;
 }
 
 export interface Certification {
@@ -210,19 +211,26 @@ export const CERTIFICATIONS: Certification[] = [
         issuer: "freeCodeCamp",
         year: "2024-2025",
         items: [
-            { title: "Responsive Web Design", url: "https://www.freecodecamp.org/certification/fcc29b5be29-0382-4cbc-ac6a-7697d65d3777/responsive-web-design" },
-            { title: "JS Algorithms & Data Structures", url: "https://www.freecodecamp.org/certification/fcc29b5be29-0382-4cbc-ac6a-7697d65d3777/javascript-algorithms-and-data-structures" },
-            { title: "Back End Development & APIs", url: "https://www.freecodecamp.org/certification/fcc29b5be29-0382-4cbc-ac6a-7697d65d3777/back-end-development-and-apis" },
+            { title: "Responsive Web Design", url: "https://www.freecodecamp.org/certification/fcc29b5be29-0382-4cbc-ac6a-7697d65d3777/responsive-web-design", image: "/assets/certs/fcc-responsive.png" },
+            { title: "JS Algorithms & Data Structures", url: "https://www.freecodecamp.org/certification/fcc29b5be29-0382-4cbc-ac6a-7697d65d3777/javascript-algorithms-and-data-structures", image: "/assets/certs/fcc-js.png" },
+            { title: "Back End Development & APIs", url: "https://www.freecodecamp.org/certification/fcc29b5be29-0382-4cbc-ac6a-7697d65d3777/back-end-development-and-apis", image: "/assets/certs/fcc-backend.png" },
         ],
     },
     {
         issuer: "HubSpot Academy",
         year: "2025-2026",
         items: [
-            { title: "SEO", url: "https://app-na2.hubspot.com/academy/achievements/65nrkw8z/en/1/gabrielle-velasquez/seo" },
-            { title: "Digital Marketing", url: "https://app-na2.hubspot.com/academy/achievements/g9gt7wzz/en/1/gabrielle-velasquez/digital-marketing" },
-            { title: "Advertising", url: "https://app-na2.hubspot.com/academy/achievements/68wvz9w4/en/1/gabrielle-velasquez/digital-advertising" },
-            { title: "Content Marketing", url: "https://app-na2.hubspot.com/academy/achievements/dthq3hr0/en/1/gabrielle-velasquez/content-marketing" },
+            { title: "Search Engine Optimization", url: "https://app-na2.hubspot.com/academy/achievements/65nrkw8z/en/1/gabrielle-velasquez/seo", image: "/assets/certs/hubspot-seo.png" },
+            { title: "Digital Marketing", url: "https://app-na2.hubspot.com/academy/achievements/g9gt7wzz/en/1/gabrielle-velasquez/digital-marketing", image: "/assets/certs/hubspot-marketing.png" },
+            { title: "Advertising", url: "https://app-na2.hubspot.com/academy/achievements/68wvz9w4/en/1/gabrielle-velasquez/digital-advertising", image: "/assets/certs/hubspot-advertising.png" },
+            { title: "Content Marketing", url: "https://app-na2.hubspot.com/academy/achievements/dthq3hr0/en/1/gabrielle-velasquez/content-marketing", image: "/assets/certs/hubspot-content.png" },
+        ],
+    },
+    {
+        issuer: "CompTIA",
+        year: "2023",
+        items: [
+            { title: "IT Fundamentals+ (ITF+)", url: "/comptia-itf.pdf", image: "/assets/certs/comptia-itf.png" },
         ],
     },
 ];
@@ -248,6 +256,7 @@ export const EDUCATION: EducationItem[] = [
         school: "Holy Angel University",
         period: "2023 – 2027",
         points: [
+            "Dean's Lister & President's Lister.",
             "Focused on software engineering principles, database management systems, system architecture, best design practices, and full-stack development.",
             "Consistently demonstrating strong analytical skills in practical laboratory environments.",
             "Relevant Coursework: Web Development, UI/UX Design, Database Systems, Software Engineering, Mobile Development (Flutter).",
@@ -258,6 +267,7 @@ export const EDUCATION: EducationItem[] = [
         school: "Holy Family Academy",
         period: "2017 – 2023",
         points: [
+            "With High Honors.",
             "Developed a versatile foundational understanding across technical and creative disciplines.",
             "Conducted and defended a comprehensive senior research thesis as a leader and team player, refining skills in structured analysis and systematic documentation.",
             "Maintained a high standard of academic performance while fostering core competencies in logical problem-solving and critical thinking.",

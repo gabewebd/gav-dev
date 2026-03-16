@@ -156,7 +156,7 @@ export default function Navbar() {
                                     href={link.href}
                                     className="relative flex flex-col items-center justify-center px-4 py-2 text-sm font-mori font-semibold transition-colors duration-300 group"
                                 >
-                                    <span className={`transition-colors duration-300 ${isActive ? 'text-white' : 'text-white/40 group-hover:text-white/80'}`}>
+                                    <span className={`transition-colors duration-300 ${isActive ? 'text-brand-white' : 'text-muted group-hover:text-brand-white'}`}>
                                         {link.label}
                                     </span>
                                     {/* Premium Active Indicator: Subtle dot below text */}
@@ -174,10 +174,10 @@ export default function Navbar() {
                                 href="/assets/gav-resume.pdf"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center gap-1.5 px-4 py-2 text-sm font-mori font-semibold text-white/40 hover:text-white transition-colors group"
+                                className="flex items-center gap-1.5 px-4 py-2 text-sm font-mori font-semibold text-white/60 hover:text-white transition-colors group"
                             >
                                 Resume
-                                <ArrowUpRight className="w-4 h-4 opacity-40 group-hover:opacity-100 transition-opacity" />
+                                <ArrowUpRight className="w-4 h-4 text-muted group-hover:text-brand-white transition-opacity" />
                             </a>
                         </div>
                         <Link
@@ -243,7 +243,7 @@ export default function Navbar() {
                                         className="mobile-link group relative flex items-baseline justify-between py-4 border-b border-white/5 transition-all duration-300"
                                     >
                                         <div className="flex items-center gap-6">
-                                            <span className="text-sm font-mono text-white/20">
+                                            <span className="text-sm font-mono text-white/40">
                                                 0{i + 1}
                                             </span>
                                             <span className="text-4xl xs:text-5xl sm:text-6xl lg:text-7xl font-mori font-bold tracking-tighter text-white hover:text-brand-accent transition-all duration-300">
@@ -263,7 +263,7 @@ export default function Navbar() {
                                     className={`mobile-link group relative flex items-baseline justify-between py-3 border-b border-white/5 transition-all duration-300`}
                                 >
                                     <div className="flex items-center gap-6">
-                                        <span className={`text-sm font-mono transition-colors duration-500 ${isActive ? 'text-brand-accent' : 'text-white/20'}`}>
+                                        <span className={`text-sm font-mono transition-colors duration-500 ${isActive ? 'text-brand-accent' : 'text-muted'}`}>
                                             0{i + 1}
                                         </span>
                                         <span className={`text-4xl xs:text-5xl sm:text-6xl lg:text-7xl font-mori font-bold tracking-tighter transition-all duration-500 ${isActive ? 'text-brand-accent italic translate-x-2' : 'text-white hover:text-brand-accent'}`}>
@@ -287,7 +287,7 @@ export default function Navbar() {
                                     key={idx}
                                     href={social.href}
                                     target="_blank"
-                                    className="mobile-social-icon text-white/40 hover:text-brand-accent transition-colors duration-300"
+                                    className="mobile-social-icon text-white/60 hover:text-brand-accent transition-colors duration-300"
                                 >
                                     <social.icon className="w-6 h-6" />
                                 </a>
@@ -295,8 +295,8 @@ export default function Navbar() {
                         </div>
 
                         <div className="mobile-menu-footer flex flex-col gap-2 border-t border-white/5 pt-8">
-                            <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-white/30">Based in Philippines</p>
-                            <p className="text-sm font-medium text-white/60">Ready to build something <span className="text-white italic">extraordinary</span>?</p>
+                            <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-muted">Based in Philippines</p>
+                            <p className="text-sm font-light text-body">Ready to build something <span className="text-brand-white italic font-medium">extraordinary</span>?</p>
                         </div>
                     </div>
                 </div>

@@ -126,7 +126,7 @@ export default function BlogPost() {
                         <ArrowLeft size={16} className="group-hover:-translate-x-1.5 transition-transform" /> Back to Blogs
                     </Link>
 
-                    <h1 className="hero-reveal font-mori font-black text-[clamp(3rem,8vw,7.5rem)] leading-[0.85] tracking-tighter text-white max-w-6xl">
+                    <h1 className="hero-reveal font-mori font-black text-[clamp(2.5rem,7vw,6.5rem)] leading-[0.9] tracking-tighter text-white max-w-6xl">
                         {post.title}
                     </h1>
                 </div>
@@ -151,7 +151,7 @@ export default function BlogPost() {
                             </div>
                         </div>
 
-                        <p className="hero-reveal text-lg md:text-xl lg:text-2xl text-white/60 leading-relaxed font-medium">
+                        <p className="hero-reveal text-base md:text-lg lg:text-xl text-body leading-relaxed font-light">
                             {post.excerpt}
                         </p>
                     </div>
@@ -171,7 +171,7 @@ export default function BlogPost() {
                                 sizes="(max-width: 1024px) 100vw, 66vw"
                                 quality={100}
                             />
-                            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                            <div className="feather-overlay bg-black/20 group-hover:bg-black/10 transition-opacity duration-500 pointer-events-none" />
                         </div>
                     </div>
                 </div>
@@ -184,7 +184,7 @@ export default function BlogPost() {
                         switch (block.type) {
                             case 'p':
                                 return (
-                                    <div key={i} className="content-block text-lg md:text-xl text-brand-white/70 leading-[1.8] font-medium">
+                                    <div key={i} className="content-block text-lg md:text-xl text-body leading-[1.8] font-light">
                                         {renderTextWithLinks(block.text)}
                                     </div>
                                 );
@@ -217,7 +217,7 @@ export default function BlogPost() {
                                             onClick={() => setLightboxImg(block.src)}
                                         >
                                             <Image src={block.src} alt={block.alt} width={1200} height={800} className="w-full h-auto object-contain group-hover:scale-[1.02] transition-transform duration-700 ease-out" sizes="(max-width: 768px) 100vw, 900px" quality={95} />
-                                            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                                            <div className="feather-overlay bg-black/20 group-hover:bg-black/10 transition-opacity duration-500 pointer-events-none" />
                                         </div>
                                         {block.caption && (
                                             <figcaption className="text-center text-[10px] md:text-xs font-bold uppercase tracking-widest text-brand-white/50">

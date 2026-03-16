@@ -19,11 +19,11 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 function ContentBlockRenderer({ block, onImageClick }: { block: ContentBlock, onImageClick?: (src: string) => void }) {
     switch (block.type) {
         case 'p':
-            return <p className="text-base md:text-xl text-brand-white/70 leading-relaxed font-medium mb-6">{block.text}</p>;
+            return <p className="text-base md:text-xl text-body leading-relaxed font-light mb-6">{block.text}</p>;
         case 'role-title':
             return (
                 <div className="mb-8">
-                    <h3 className="font-bold text-brand-white text-xl md:text-2xl inline-block">
+                    <h3 className="font-bold text-brand-white text-xl md:text-2xl inline-block lowercase italic opacity-80">
                         {block.text}
                     </h3>
                 </div>
@@ -39,10 +39,10 @@ function ContentBlockRenderer({ block, onImageClick }: { block: ContentBlock, on
                     >
                         {/* High Quality & Sizes added to inline images */}
                         <Image src={block.src} alt={block.alt || "Project visual"} width={1200} height={800} className="w-full h-auto object-contain group-hover:scale-[1.02] transition-transform duration-700" quality={95} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 60vw" />
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.45)_100%)] pointer-events-none" />
+                        <div className="feather-overlay bg-black/30 group-hover:bg-black/10 transition-opacity duration-500 pointer-events-none" />
                     </div>
                     {block.caption && (
-                        <p className="text-sm md:text-base font-medium text-brand-white/90 text-center px-4">
+                        <p className="text-sm md:text-base font-light text-body text-center px-4">
                             {block.caption}
                         </p>
                     )}
@@ -51,8 +51,8 @@ function ContentBlockRenderer({ block, onImageClick }: { block: ContentBlock, on
         case 'quote':
             return (
                 <blockquote className="my-10 pl-6 sm:pl-8 border-l-4 border-brand-accent italic flex flex-col gap-4">
-                    <p className="text-xl sm:text-2xl md:text-3xl font-medium text-brand-white/70 leading-relaxed">"{block.text}"</p>
-                    {block.author && <footer className="font-mori font-bold uppercase tracking-widest text-brand-white/70 text-[10px] sm:text-xs md:text-sm">— {block.author}</footer>}
+                    <p className="text-xl sm:text-2xl md:text-3xl font-light text-body leading-relaxed">"{block.text}"</p>
+                    {block.author && <footer className="font-mori font-bold uppercase tracking-widest text-brand-white/60 text-[10px] sm:text-xs md:text-sm">— {block.author}</footer>}
                 </blockquote>
             );
         case 'video':
@@ -81,7 +81,7 @@ function ContentBlockRenderer({ block, onImageClick }: { block: ContentBlock, on
                     </div>
                     {/* @ts-ignore */}
                     {block.caption && (
-                        <p className="text-sm md:text-base font-medium text-brand-white/90 text-center px-4">
+                        <p className="text-sm md:text-base font-light text-brand-white/60 text-center px-4">
                             {/* @ts-ignore */}
                             {block.caption}
                         </p>
@@ -207,7 +207,7 @@ export default function ProjectDetail() {
 
                 <div className="relative z-20 w-full max-w-7xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-8">
                     <div className="flex flex-col">
-                        <Link href="/projects" className="hero-title group inline-flex items-center gap-2 text-white/70 hover:text-white text-[10px] md:text-xs font-bold uppercase tracking-widest mb-6 transition-colors w-fit drop-shadow-md">
+                        <Link href="/projects" className="hero-title group inline-flex items-center gap-2 text-muted hover:text-brand-white text-[10px] md:text-xs font-bold uppercase tracking-widest mb-6 transition-colors w-fit drop-shadow-md">
                             <ArrowLeft size={16} className="group-hover:-translate-x-1.5 transition-transform" /> Back to Projects
                         </Link>
                         <p className="hero-title text-brand-accent font-bold uppercase tracking-[0.3em] text-[10px] md:text-xs mb-4 drop-shadow-md">
@@ -216,9 +216,11 @@ export default function ProjectDetail() {
                         <h1 className="hero-title font-mori font-semibold text-5xl md:text-7xl lg:text-[8rem] tracking-tighter leading-none text-white drop-shadow-lg">
                             {project.title}
                         </h1>
-                        <p className="hero-title text-brand-white/70 font-mori font-bold uppercase tracking-[0.2em] text-[11px] md:text-sm mt-4 md:mt-6 drop-shadow-md">
-                            {project.projectRole}
-                        </p>
+                        <div className="hero-title mt-6 md:mt-8">
+                            <span className="bg-brand-white/10 backdrop-blur-md text-brand-white px-5 py-2.5 rounded-full font-mori font-bold uppercase tracking-[0.2em] text-[10px] md:text-xs leading-none inline-block border border-brand-white/20 shadow-xl">
+                                {project.projectRole}
+                            </span>
+                        </div>
                     </div>
 
                     <div className="hero-title flex flex-row flex-wrap items-center gap-3 md:gap-4 mt-4 md:mt-0">
@@ -253,7 +255,7 @@ export default function ProjectDetail() {
                                 >
                                     {/* High quality enabled for Gallery Slider with fixed aspect ratio */}
                                     <Image src={img.src} alt={img.alt} fill className="object-cover cursor-zoom-in transition-transform duration-700 hover:scale-[1.01]" onClick={() => setLightboxIndex(idx)} priority={idx === 0} quality={95} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw" />
-                                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.35)_100%)] pointer-events-none" />
+                                    <div className="feather-overlay bg-black/20 group-hover:bg-black/10 transition-opacity duration-500 pointer-events-none" />
                                 </div>
                             ))}
 
@@ -287,7 +289,7 @@ export default function ProjectDetail() {
                         {/* Unified Gallery Captions - Below the gallery for all devices */}
                         {project.gallery[activeGalleryIndex]?.caption && (
                             <div className="px-2 text-center md:text-left">
-                                <p className="text-brand-white/50 text-xs sm:text-sm font-medium italic leading-relaxed tracking-wide">
+                                <p className="text-body text-xs sm:text-sm font-light italic leading-relaxed tracking-wide">
                                     {project.gallery[activeGalleryIndex].caption}
                                 </p>
                             </div>
@@ -305,11 +307,11 @@ export default function ProjectDetail() {
                     </Link>
                     <span className="w-6 h-[2px] bg-brand-accent -mt-2" />
                     <nav className="flex flex-col gap-6 font-mori font-bold uppercase tracking-widest text-xs">
-                        <a href="#overview" onClick={(e) => handleScrollTo(e, "overview")} className="text-brand-white/70 hover:text-brand-white transition-colors">01. Overview</a>
-                        <a href="#role" onClick={(e) => handleScrollTo(e, "role")} className="text-brand-white/70 hover:text-brand-white transition-colors">02. Role & Impact</a>
-                        <a href="#tech" onClick={(e) => handleScrollTo(e, "tech")} className="text-brand-white/70 hover:text-brand-white transition-colors">03. Technology</a>
+                        <a href="#overview" onClick={(e) => handleScrollTo(e, "overview")} className="text-muted hover:text-brand-white transition-colors">01. Overview</a>
+                        <a href="#role" onClick={(e) => handleScrollTo(e, "role")} className="text-muted hover:text-brand-white transition-colors">02. Role & Impact</a>
+                        <a href="#tech" onClick={(e) => handleScrollTo(e, "tech")} className="text-muted hover:text-brand-white transition-colors">03. Technology</a>
                         {project.customSections?.map((section, index) => (
-                            <a key={section.id} href={`#${section.id}`} onClick={(e) => handleScrollTo(e, section.id)} className="text-brand-white/70 hover:text-brand-white transition-colors">
+                            <a key={section.id} href={`#${section.id}`} onClick={(e) => handleScrollTo(e, section.id)} className="text-muted hover:text-brand-white transition-colors">
                                 {String(index + 4).padStart(2, '0')}. {section.title}
                             </a>
                         ))}
@@ -356,7 +358,7 @@ export default function ProjectDetail() {
                                     // HANDLE THE NEW ITALIC BLOCK TYPE HERE
                                     if (block.type === 'italic') {
                                         return (
-                                            <p key={i} className="text-brand-white/50 italic text-sm md:text-base leading-relaxed">
+                                            <p key={i} className="text-brand-white/75 italic text-sm md:text-base leading-relaxed">
                                                 {block.text}
                                             </p>
                                         );

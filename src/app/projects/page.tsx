@@ -288,7 +288,7 @@ export default function ProjectsPage() {
                 </div>
               </HeroHeading>
 
-              <p className="hero-desc text-base md:text-xl text-white/70 leading-relaxed font-medium max-w-2xl mt-6">
+              <p className="hero-desc text-base md:text-xl text-body leading-relaxed font-light max-w-2xl mt-6">
                 A curated collection of full-stack systems and digital experiences, built with technical precision and a focus on long-term scalability.
               </p>
 
@@ -317,7 +317,7 @@ export default function ProjectsPage() {
                   >
                     <div className={`nav-dot absolute left-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#BFFF00] transition-all duration-500 shadow-[0_0_10px_rgba(191,255,0,0.8)] ${activeIndex === i ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
 
-                    <div className={`font-mori uppercase tracking-[0.25em] font-bold text-white/60 mb-2 transition-all duration-500 ${activeIndex === i ? 'text-xs' : 'text-[10px]'}`}>
+                    <div className={`font-mori uppercase tracking-[0.25em] font-bold text-muted mb-2 transition-all duration-500 ${activeIndex === i ? 'text-xs' : 'text-[10px]'}`}>
                       {p.tagline}
                     </div>
                     <div className={`font-mori font-bold tracking-tighter transition-all duration-500 ${activeIndex === i ? 'text-3xl xl:text-4xl' : 'text-xl xl:text-2xl'}`}>
@@ -362,8 +362,8 @@ export default function ProjectsPage() {
                         />
                       </div>
 
-                      {/* Feathered Vignette Overlay - Increased intensity */}
-                      <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.45)_100%)] pointer-events-none" />
+                      {/* Feathered Vignette Overlay */}
+                      <div className="feather-overlay bg-black/40 group-hover:bg-black/20 transition-colors duration-700" />
 
                       <div className="absolute inset-0 bg-black/0 lg:group-hover:bg-black/50 transition-colors duration-700 pointer-events-none z-10" />
                     </div>
@@ -374,7 +374,7 @@ export default function ProjectsPage() {
                     >
 
                       <div className="w-full xl:w-[60%] flex flex-col gap-6">
-                        <p className="text-base md:text-lg text-white/70 leading-relaxed font-medium">
+                        <p className="text-base md:text-lg text-body leading-relaxed font-light">
                           {project.desc}
                         </p>
 
@@ -429,7 +429,7 @@ export default function ProjectsPage() {
             <h2 className="font-mori font-semibold text-3xl md:text-5xl uppercase tracking-tighter leading-tight text-brand-white">
               Curious to read some <span className="text-brand-accent">insights</span>?
             </h2>
-            <p className="mt-4 text-brand-white/50 max-w-xl font-medium">
+            <p className="mt-4 text-brand-white/85 max-w-xl font-light">
               Visit my blog where I share my thoughts on development, design, and technical deep dives into building modern systems.
             </p>
           </div>

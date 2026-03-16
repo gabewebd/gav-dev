@@ -20,7 +20,7 @@ const SocialButton = ({
             className={`w-12 h-12 rounded-full
             border border-brand-white/10
             grid place-items-center
-            text-brand-white/70
+            text-brand-white/85
             hover:text-brand-accent hover:border-brand-accent
             transition-all duration-300 ${className}`}
             aria-label={label}

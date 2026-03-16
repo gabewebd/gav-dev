@@ -145,7 +145,7 @@ export default function ContactPage() {
                                 </span>
                             </div>
                         </HeroHeading>
-                        <p className="contact-hero-sub text-base md:text-xl text-white/70 leading-relaxed font-medium max-w-2xl mt-6">
+                        <p className="contact-hero-sub text-base md:text-xl text-body leading-relaxed font-light max-w-2xl mt-6">
                         Have a project in mind, or just want to say hello? I&apos;d love to hear
                         from you. Fill out the form below or reach out directly.
                     </p>
@@ -173,7 +173,7 @@ export default function ContactPage() {
                                 <h3 className="font-mori font-semibold text-2xl tracking-tight mb-3 text-white">
                                     Message Sent!
                                 </h3>
-                                <p className="text-sm text-white/70 mb-6 font-medium">
+                                <p className="text-sm text-body mb-6 font-light">
                                     Thank you for reaching out. I&apos;ll get back to you as soon as possible.
                                 </p>
                                 <Button
@@ -201,7 +201,7 @@ export default function ContactPage() {
                                 <div>
                                     <label
                                         htmlFor="contact-name"
-                                        className="block text-xs font-bold uppercase tracking-widest text-white/50 mb-3"
+                                        className="block text-xs font-bold uppercase tracking-widest text-muted mb-3"
                                     >
                                         Name <span className="text-brand-accent">*</span>
                                     </label>
@@ -299,7 +299,7 @@ export default function ContactPage() {
                                 href="mailto:vlsqz.gabrielle@gmail.com"
                                 label="Send Email"
                                 description="vlsqz.gabrielle@gmail.com"
-                                className="text-lg md:text-xl text-white hover:text-brand-accent transition-colors duration-300 font-medium break-all"
+                                className="text-lg md:text-xl text-white hover:text-brand-accent transition-colors duration-300 font-light break-all"
                             >
                                 vlsqz.gabrielle@gmail.com
                             </PreviewLink>
@@ -310,7 +310,7 @@ export default function ContactPage() {
                             <h3 className="text-xs font-bold uppercase tracking-[0.25em] text-white/30 mb-5">
                                 Location
                             </h3>
-                            <p className="text-base text-white/80 flex items-center gap-2 font-medium">
+                            <p className="text-base text-body flex items-center gap-2 font-light">
                                 <MapPin className="w-5 h-5 text-brand-accent" />
                                 Angeles City, Philippines
                             </p>
@@ -344,8 +344,8 @@ export default function ContactPage() {
                                 border border-white/5 shadow-2xl shadow-black/10
                                 bg-white/5 backdrop-blur-sm"
                         >
-                            <p className="text-sm text-white/70 leading-relaxed font-medium">
-                                <strong className="text-white">
+                            <p className="text-sm text-body leading-relaxed font-light">
+                                <strong className="text-white font-semibold">
                                     Currently open
                                 </strong>{" "}
                                 to internship opportunities, freelance projects, and collaborations. I typically respond within 24 hours.
@@ -362,7 +362,7 @@ export default function ContactPage() {
                         <h2 className="font-mori font-semibold text-3xl md:text-5xl uppercase tracking-tighter leading-tight text-white">
                             Want a formal <span className="text-brand-accent">overview</span>?
                         </h2>
-                        <p className="mt-4 text-white/50 max-w-xl font-medium">
+                        <p className="mt-4 text-body max-w-xl font-light">
                             Download my resume for a detailed look at my professional journey, technical skills, and educational background.
                         </p>
                     </div>

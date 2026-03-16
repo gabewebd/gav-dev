@@ -77,7 +77,7 @@ function MagneticSocial({
             <SocialButton
                 icon={Icon}
                 label={label}
-                className="w-12 h-12 sm:w-14 sm:h-14 border-brand-white/10 hover:border-brand-accent text-brand-white/70 hover:text-brand-accent"
+                className="w-12 h-12 sm:w-14 sm:h-14 border-brand-white/10 hover:border-brand-accent text-brand-white/85 hover:text-brand-accent"
             />
         </PreviewLink>
     );
@@ -106,7 +106,7 @@ export default function Footer() {
                             <Logo className="h-10 w-auto text-white" />
                         </Link>
 
-                        <p className="mt-5 text-sm text-white/60 leading-relaxed max-w-sm">
+                        <p className="mt-5 text-sm text-body leading-relaxed max-w-sm font-light">
                             I’m a Full-Stack Developer who enjoys turning ideas into thoughtful, well-crafted digital experiences.
                             I work across the stack with modern web technologies, always aiming for clarity, performance, and a little bit of polish.
                         </p>
@@ -121,7 +121,7 @@ export default function Footer() {
 
                     {/* Quick Links */}
                     <div className="md:col-span-3 md:col-start-7">
-                        <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/40 mb-6">
+                        <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted mb-6">
                             Navigation
                         </h4>
                         <ul className="space-y-3.5">
@@ -131,9 +131,9 @@ export default function Footer() {
                                         href={link.href}
                                         label="Navigate"
                                         description={link.label}
-                                        className="text-sm text-white/70 hover:text-brand-accent
+                                        className="text-sm text-body hover:text-brand-accent
                                             transition-colors duration-200
-                                            flex items-center gap-1.5 group/link"
+                                            flex items-center gap-1.5 group/link font-light"
                                     >
                                         {link.label}
                                         <ArrowUpRight className="w-3 h-3 opacity-0 group-hover/link:opacity-100 transition-opacity" />
@@ -145,7 +145,7 @@ export default function Footer() {
 
                     {/* Contact Column */}
                     <div className="md:col-span-3">
-                        <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/40 mb-6">
+                        <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted mb-6">
                             Get In Touch
                         </h4>
                         
@@ -160,13 +160,13 @@ export default function Footer() {
                             href="mailto:vlsqz.gabrielle@gmail.com"
                             label="Send Email"
                             description="vlsqz.gabrielle@gmail.com"
-                            className="text-sm text-white/70 hover:text-brand-accent
-                                transition-colors duration-200 break-all"
+                            className="text-sm text-body hover:text-brand-accent
+                                transition-colors duration-200 break-all font-light"
                         >
                             vlsqz.gabrielle@gmail.com
                         </PreviewLink>
 
-                        <p className="mt-6 text-[11px] text-white/40 leading-relaxed">
+                        <p className="mt-6 text-[11px] text-muted leading-relaxed font-light">
                             Holy Angel University<br />
                             BSIT 2023–2027<br />
                             Angeles City, Philippines

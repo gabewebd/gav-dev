@@ -85,7 +85,7 @@ export default function BlogPage() {
               </div>
             </HeroHeading>
 
-            <p className="hero-desc text-base md:text-xl text-white/70 leading-relaxed font-medium max-w-2xl mt-6">
+            <p className="hero-desc text-base md:text-xl text-white/60 leading-relaxed font-light max-w-2xl mt-6">
               A collection of thoughts, technical explorations, and design reflections from the intersection of code and creativity.
             </p>
 
@@ -105,19 +105,29 @@ export default function BlogPage() {
                 <article className={`flex flex-col ${i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse lg:text-right lg:justify-end"} gap-6 lg:gap-10 p-6 md:p-8 rounded-[2.5rem] border border-brand-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.01] backdrop-blur-md shadow-black/20 hover:-translate-y-2 hover:border-brand-white/15 transition-all duration-500 w-full`}>
                   {post.featuredImage && (
                     <div className="relative w-full lg:w-[480px] xl:w-[560px] aspect-[16/10] sm:aspect-[2/1] lg:aspect-[4/3] rounded-[2rem] overflow-hidden shrink-0 border border-brand-white/10 bg-brand-dark-alt">
-                      <Image src={post.featuredImage} alt={post.title} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" sizes="(max-width: 1024px) 100vw, 560px" />
+                      <div className="absolute inset-x-0 bottom-0 top-1/4 bg-gradient-to-t from-brand-dark via-brand-dark/40 to-transparent opacity-100 group-hover:opacity-90 transition-opacity duration-700 z-10" />
+
+                      {/* Feathered Overlay */}
+                      <div className="feather-overlay bg-black/40 group-hover:bg-black/20 transition-colors duration-700" />
+
+                      <Image
+                        src={post.featuredImage}
+                        alt={post.title}
+                        fill
+                        className="object-cover group-hover:scale-[1.05] transition-transform duration-1000 ease-out"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
                     </div>
                   )}
                   <div className={`flex flex-col justify-center gap-4 lg:gap-6 w-full ${i % 2 === 0 ? "" : "lg:items-end"}`}>
                     <div className={`flex items-center gap-3 text-[10px] md:text-xs text-white/70 font-medium uppercase tracking-widest ${i % 2 === 0 ? "" : "lg:flex-row-reverse"}`}>
-                      <span className="text-brand-accent">{post.date}</span>
-                      <span className="w-1.5 h-1.5 rounded-full bg-brand-white/20" />
-                      <span>{post.readTime}</span>
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-brand-accent">{post.category}</span>
+                      <span className="text-[10px] font-medium uppercase tracking-widest text-muted">{post.readTime}</span>
                     </div>
-                    <h2 className="font-mori font-semibold text-3xl md:text-4xl lg:text-5xl tracking-tight text-brand-white leading-[1.1] transition-colors">
+                    <h3 className="font-mori font-bold text-3xl md:text-5xl lg:text-6xl tracking-tighter text-brand-white leading-[1] mb-6">
                       {post.title}
-                    </h2>
-                    <p className="text-sm md:text-base text-brand-white/70 font-medium leading-relaxed line-clamp-3">
+                    </h3>
+                    <p className="text-sm md:text-base text-body line-clamp-2 mb-6">
                       {post.excerpt}
                     </p>
                     <div className={`flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand-white mt-2 mb-2 hover:text-brand-accent transition-colors duration-300 ${i % 2 === 0 ? "" : "lg:flex-row-reverse"}`}>
@@ -137,7 +147,7 @@ export default function BlogPage() {
             <h2 className="font-mori font-semibold text-3xl md:text-5xl uppercase tracking-tighter leading-tight text-brand-white">
               Ready to build something <span className="text-brand-accent">remarkable</span>?
             </h2>
-            <p className="mt-4 text-brand-white/50 max-w-xl font-medium">
+            <p className="mt-4 text-muted max-w-xl font-light">
               I’m always open to new opportunities, collaborations, and building meaningful digital solutions.
             </p>
           </div>

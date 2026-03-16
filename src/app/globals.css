@@ -10,10 +10,11 @@
   --color-brand-accent-muted: #b8e600;
   --color-brand-white: #EDEDED;
 
+  --color-brand-dark: #0A0A0A;
   --color-brand-dark-alt: #111111;
   --color-brand-light: #FAFAFA;
   --color-brand-light-alt: #F0F0F0;
-  --color-brand-ink: #111111;
+  --color-brand-ink: #1A1A1A;
 
   --font-display: var(--font-mori);
   --font-body: var(--font-inter);
@@ -32,7 +33,7 @@
   --foreground: #EDEDED;
   --brand-accent: #CFF949;
   --brand-white: #EDEDED;
-  --brand-dark: #1a1919;
+  --brand-dark: #0A0A0A;
   --brand-dark-alt: #111111;
 }
 
@@ -82,5 +83,31 @@ body {
    UTILITIES
    ───────────────────────────────────────────────────────────── */
 @layer utilities {
-  /* Utility classes can be added here if needed */
+  .text-brand-white {
+    color: var(--color-brand-white);
+  }
+  
+  .text-brand-ink {
+    color: var(--color-brand-ink);
+  }
+
+  /* Standardized body text with ~80% opacity for better eye comfort */
+  .text-body {
+    color: rgba(237, 237, 237, 0.8);
+    font-weight: 300;
+  }
+
+  /* Muted text with ~60% opacity */
+  .text-muted {
+    color: rgba(237, 237, 237, 0.6);
+  }
+
+  /* Black Feather Overlay (Radial Vignette) */
+  .feather-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.65) 100%);
+    pointer-events: none;
+  }
 }

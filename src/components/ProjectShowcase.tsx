@@ -61,7 +61,7 @@ function CardInner({ project, index }: { project: typeof PROJECTS[0]; index: num
                 <div className="relative flex-1 flex flex-col justify-between overflow-hidden rounded-b-2xl">
                     {/* ── CONTENT TOP ── */}
                     <div className="relative z-30 px-6 pt-6 md:px-8 pt-8 flex flex-col gap-4">
-                        <p className="text-xs md:text-sm text-brand-white/90 leading-relaxed font-medium group-hover/card:text-white transition-colors duration-500 drop-shadow-md">
+                        <p className="text-xs md:text-sm text-brand-white/85 leading-relaxed font-light group-hover/card:text-white transition-colors duration-500 drop-shadow-md">
                             {project.desc}
                         </p>
 
@@ -281,7 +281,7 @@ export default function ProjectShowcase() {
 
                 {/* ── EXPLORE BUTTON ── */}
                 <div ref={btnRef} className="w-full flex flex-col items-center gap-4 mt-6 lg:mt-8 z-30 relative text-center">
-                    <p className="text-xs md:text-sm font-medium tracking-[0.2em] uppercase text-white/90 drop-shadow-md">
+                    <p className="text-xs md:text-sm font-light tracking-[0.2em] uppercase text-white/85 drop-shadow-md">
                         Want to see more of my work?
                     </p>
                     <Button
