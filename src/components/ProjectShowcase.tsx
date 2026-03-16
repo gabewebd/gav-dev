@@ -35,7 +35,7 @@ function CardInner({ project, index }: { project: typeof PROJECTS[0]; index: num
             <div className="relative z-10 flex flex-col h-full bg-transparent border border-white/10 rounded-2xl overflow-visible backdrop-blur-sm">
 
                 {/* ── DEFAULT AMBIENT GLOW (Subtle light for mockups) ── */}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.05)_0%,transparent_60%)] dark:bg-[radial-gradient(circle_at_bottom_right,rgba(191,255,0,0.03)_0%,transparent_60%)] z-[1] rounded-2xl pointer-events-none" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(191,255,0,0.03)_0%,transparent_60%)] z-[1] rounded-2xl pointer-events-none" />
 
                 {/* ── FULL CARD HOVER GRADIENT ( sweeps entire card background ) ── */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${getHoverGradient(index)} opacity-0 group-hover/card:opacity-100 transition-opacity duration-700 ease-out z-[2] rounded-2xl`} />
@@ -232,11 +232,10 @@ export default function ProjectShowcase() {
     }, { scope: sectionRef });
 
     return (
-        <div className="dark">
-            <section
-                ref={sectionRef}
-                className="relative z-[60] w-full min-h-screen flex flex-col py-24 md:py-32 bg-transparent border-t border-white/5 overflow-hidden"
-            >
+        <section
+            ref={sectionRef}
+            className="relative z-[60] w-full min-h-screen flex flex-col py-24 md:py-32 bg-transparent border-t border-white/5 overflow-hidden"
+        >
 
                 {/* ── HEADER ── */}
                 <div className="w-full px-6 md:px-12 text-center z-20 mb-8 lg:mb-12 relative pointer-events-none">
@@ -291,6 +290,5 @@ export default function ProjectShowcase() {
                     </Button>
                 </div>
             </section>
-        </div>
-    );
+        );
 }

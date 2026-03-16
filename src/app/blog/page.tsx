@@ -102,25 +102,25 @@ export default function BlogPage() {
                 href={`/blog/${post.slug}`}
                 className="blog-card group block w-full"
               >
-                <article className={`flex flex-col ${i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse lg:text-right lg:justify-end"} gap-6 lg:gap-10 p-6 md:p-8 rounded-[2.5rem] border border-brand-ink/10 dark:border-brand-white/10 bg-gradient-to-br from-white/40 to-white/10 dark:from-white/[0.04] dark:to-white/[0.01] backdrop-blur-md shadow-xl shadow-brand-ink/[0.02] dark:shadow-black/20 hover:-translate-y-2 hover:border-brand-ink/20 dark:hover:border-brand-white/15 transition-all duration-500 w-full`}>
+                <article className={`flex flex-col ${i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse lg:text-right lg:justify-end"} gap-6 lg:gap-10 p-6 md:p-8 rounded-[2.5rem] border border-brand-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.01] backdrop-blur-md shadow-black/20 hover:-translate-y-2 hover:border-brand-white/15 transition-all duration-500 w-full`}>
                   {post.featuredImage && (
-                    <div className="relative w-full lg:w-[480px] xl:w-[560px] aspect-[16/10] sm:aspect-[2/1] lg:aspect-[4/3] rounded-[2rem] overflow-hidden shrink-0 border border-brand-ink/10 dark:border-brand-white/10 bg-brand-light-alt dark:bg-brand-dark-alt">
+                    <div className="relative w-full lg:w-[480px] xl:w-[560px] aspect-[16/10] sm:aspect-[2/1] lg:aspect-[4/3] rounded-[2rem] overflow-hidden shrink-0 border border-brand-white/10 bg-brand-dark-alt">
                       <Image src={post.featuredImage} alt={post.title} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" sizes="(max-width: 1024px) 100vw, 560px" />
                     </div>
                   )}
                   <div className={`flex flex-col justify-center gap-4 lg:gap-6 w-full ${i % 2 === 0 ? "" : "lg:items-end"}`}>
                     <div className={`flex items-center gap-3 text-[10px] md:text-xs text-white/70 font-medium uppercase tracking-widest ${i % 2 === 0 ? "" : "lg:flex-row-reverse"}`}>
                       <span className="text-brand-accent">{post.date}</span>
-                      <span className="w-1.5 h-1.5 rounded-full bg-brand-ink/20 dark:bg-brand-white/20" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-brand-white/20" />
                       <span>{post.readTime}</span>
                     </div>
-                    <h2 className="font-mori font-semibold text-3xl md:text-4xl lg:text-5xl tracking-tight text-brand-ink dark:text-brand-white leading-[1.1] transition-colors">
+                    <h2 className="font-mori font-semibold text-3xl md:text-4xl lg:text-5xl tracking-tight text-brand-white leading-[1.1] transition-colors">
                       {post.title}
                     </h2>
-                    <p className="text-sm md:text-base text-brand-ink/80 dark:text-brand-white/70 font-medium leading-relaxed line-clamp-3">
+                    <p className="text-sm md:text-base text-brand-white/70 font-medium leading-relaxed line-clamp-3">
                       {post.excerpt}
                     </p>
-                    <div className={`flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand-ink dark:text-brand-white mt-2 mb-2 hover:text-brand-accent transition-colors duration-300 ${i % 2 === 0 ? "" : "lg:flex-row-reverse"}`}>
+                    <div className={`flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand-white mt-2 mb-2 hover:text-brand-accent transition-colors duration-300 ${i % 2 === 0 ? "" : "lg:flex-row-reverse"}`}>
                       Read Article <ArrowRight className={`w-4 h-4 transition-transform ${i % 2 === 0 ? "group-hover:translate-x-1.5" : "lg:rotate-180 group-hover:translate-x-1.5 lg:group-hover:-translate-x-1.5"}`} />
                     </div>
                   </div>
@@ -134,10 +134,10 @@ export default function BlogPage() {
       <section className="cta-section py-20 px-6 max-w-7xl mx-auto border-t border-brand-white/10 relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 text-left">
           <div>
-            <h2 className="font-mori font-semibold text-3xl md:text-5xl uppercase tracking-tighter leading-tight text-brand-ink dark:text-brand-white">
+            <h2 className="font-mori font-semibold text-3xl md:text-5xl uppercase tracking-tighter leading-tight text-brand-white">
               Ready to build something <span className="text-brand-accent">remarkable</span>?
             </h2>
-            <p className="mt-4 text-brand-ink/70 dark:text-brand-white/50 max-w-xl font-medium">
+            <p className="mt-4 text-brand-white/50 max-w-xl font-medium">
               I’m always open to new opportunities, collaborations, and building meaningful digital solutions.
             </p>
           </div>

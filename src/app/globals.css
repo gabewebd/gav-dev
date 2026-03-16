@@ -6,32 +6,34 @@
    TAILWIND v4 THEME TOKENS
    ───────────────────────────────────────────────────────────── */
 @theme inline {
-  --color-brand-light: #f7f7f7;
   --color-brand-dark: #0A0A0A;
   --color-brand-accent: #CFF949;
   --color-brand-accent-muted: #b8e600;
-  --color-brand-ink: #111111;
   --color-brand-white: #EDEDED;
 
   /* Alternate Section Backgrounds */
-  --color-brand-light-alt: #F0F0F0;
   --color-brand-dark-alt: #111111;
 
   --font-display: "PPMori", sans-serif;
   --font-body: "Inter", sans-serif;
+  --font-outfit: var(--font-outfit);
+  --font-mori: var(--font-mori);
+
+  --breakpoint-xs: 375px;
+  --breakpoint-2xl: 1440px;
+  --breakpoint-3xl: 1920px;
 }
 
 /* ─────────────────────────────────────────────────────────────
-   DARK MODE (next-themes class strategy)
+   THEME VARIABLES
    ───────────────────────────────────────────────────────────── */
 :root {
   --background: #050505;
   --foreground: #EDEDED;
-}
-
-.dark {
-  --background: #050505;
-  --foreground: #EDEDED;
+  --brand-accent: #CFF949;
+  --brand-white: #EDEDED;
+  --brand-dark: #0A0A0A;
+  --brand-dark-alt: #111111;
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -72,12 +74,8 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #111111;
-  border-radius: 99px;
-}
-
-.dark ::-webkit-scrollbar-thumb {
   background: #333333;
+  border-radius: 99px;
 }
 
 /* ─────────────────────────────────────────────────────────────

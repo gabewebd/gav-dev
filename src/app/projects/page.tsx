@@ -28,7 +28,7 @@ const useCursorStore = create<CursorState>((set) => ({
 }));
 
 function CustomCursor() {
-  const { active } = useCursorStore();
+  const { active, setActive } = useCursorStore();
   const cursorRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
@@ -43,8 +43,16 @@ function CustomCursor() {
     };
 
     window.addEventListener("mousemove", onMouseMove);
-    return () => window.removeEventListener("mousemove", onMouseMove);
+    return () => {
+      window.removeEventListener("mousemove", onMouseMove);
+    };
   });
+
+  // Ensure cursor is hidden on mount and when navigating away
+  useEffect(() => {
+    setActive(false);
+    return () => setActive(false);
+  }, [setActive]);
 
   return (
     <div
@@ -355,10 +363,10 @@ export default function ProjectsPage() {
       <section className="cta-section py-20 px-6 max-w-7xl mx-auto border-t border-brand-white/10 relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 text-left">
           <div>
-            <h2 className="font-mori font-semibold text-3xl md:text-5xl uppercase tracking-tighter leading-tight text-brand-ink dark:text-brand-white">
+            <h2 className="font-mori font-semibold text-3xl md:text-5xl uppercase tracking-tighter leading-tight text-brand-white">
               Curious to read some <span className="text-brand-accent">insights</span>?
             </h2>
-            <p className="mt-4 text-brand-ink/70 dark:text-brand-white/50 max-w-xl font-medium">
+            <p className="mt-4 text-brand-white/50 max-w-xl font-medium">
               Visit my blog where I share my thoughts on development, design, and technical deep dives into building modern systems.
             </p>
           </div>

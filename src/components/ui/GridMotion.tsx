@@ -102,7 +102,7 @@ const GridMotion: FC<GridMotionProps> = ({ items = [], gradientColor = 'black' }
                                 const content = combinedItems[rowIndex * cols + itemIndex];
                                 return (
                                     <div key={itemIndex} className="relative aspect-[16/10]">
-                                        <div className="relative w-full h-full overflow-hidden rounded-xl md:rounded-2xl bg-[#e8e8e8] dark:bg-[#111] shadow-lg shadow-brand-ink/10 dark:shadow-black/30 border border-brand-ink/10 dark:border-white/5 flex items-center justify-center text-white text-[1rem] md:text-[1.5rem]">
+                                        <div className="relative w-full h-full overflow-hidden rounded-xl md:rounded-2xl bg-[#111] shadow-lg shadow-black/30 border border-white/5 flex items-center justify-center text-white text-[1rem] md:text-[1.5rem]">
                                             {typeof content === 'string' && (content.startsWith('http') || content.startsWith('/')) ? (
                                                 <div
                                                     className="w-full h-full bg-cover bg-center absolute top-0 left-0"

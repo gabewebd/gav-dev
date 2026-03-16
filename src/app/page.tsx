@@ -529,7 +529,7 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════
           HERO MASONRY INFINITE BACKGROUND
           ═══════════════════════════════════════════════════════ */}
-      <div className="absolute top-0 left-0 w-full h-[120vh] overflow-hidden z-0 pointer-events-none opacity-[0.10] dark:opacity-[0.06] [mask-image:linear-gradient(to_bottom,black_30%,transparent_90%)]">
+      <div className="absolute top-0 left-0 w-full h-[120vh] overflow-hidden z-0 pointer-events-none opacity-[0.06] [mask-image:linear-gradient(to_bottom,black_30%,transparent_90%)]">
         <div className="masonry-scroller flex flex-col w-[110%] -ml-[5%]">
           {/* Render two exact copies so GSAP can loop them seamlessly */}
           <Masonry items={masonryItems} blurToFocus={true} animateFrom="bottom" scaleOnHover={false} colorShiftOnHover={false} />
@@ -544,19 +544,19 @@ export default function Home() {
         <section className="hero-section min-h-[90vh] pt-28 md:pt-40 pb-16 md:pb-20 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20 relative z-10">
           <div className="flex-1 w-full relative z-10">
             <div className="overflow-hidden">
-              <h1 className="font-mori font-semibold text-[clamp(3rem,8vw,7rem)] leading-none tracking-tighter text-brand-ink dark:text-brand-white mb-7 sm:mb-10 lg:mb-12">
-                <span className="hero-line block text-brand-ink dark:text-brand-white pt-4 pb-2 -mb-6 md:-mb-8 lg:-mb-10">
+              <h1 className="font-mori font-semibold text-[clamp(3rem,8vw,7rem)] leading-none tracking-tighter text-brand-white mb-7 sm:mb-10 lg:mb-12">
+                <span className="hero-line block text-brand-white pt-4 pb-2 -mb-6 md:-mb-8 lg:-mb-10">
                   Building
                 </span>
 
-                <span className="hero-line block text-brand-ink dark:text-brand-white pt-4 pb-2 -mb-4 md:-mb-6 lg:-mb-8">
+                <span className="hero-line block text-brand-white pt-4 pb-2 -mb-4 md:-mb-6 lg:-mb-8">
                   your
                 </span>
 
                 <span className="hero-line flex items-center gap-3 md:gap-4 overflow-visible py-4 -my-4">
 
                   {/* ── ROTATING WORD ── */}
-                  <span ref={rotatingWordRef} className="text-brand-ink dark:text-brand-white block pt-2">
+                  <span ref={rotatingWordRef} className="text-brand-white block pt-2">
                     {ROTATING_PAIRS[rotatingIndex].word}
                   </span>
 
@@ -573,14 +573,14 @@ export default function Home() {
             </div>
 
             <div className="hero-sub mt-4 md:mt-6">
-              <h2 className="font-mori font-semibold text-2xl md:text-4xl tracking-normal text-brand-ink dark:text-brand-white">
+              <h2 className="font-mori font-semibold text-2xl md:text-4xl tracking-normal text-brand-white">
                 Full Stack Developer
               </h2>
             </div>
 
             <div className="hero-bio mt-4 md:mt-5 max-w-lg md:max-w-2xl lg:max-w-lg">
-              <p className="text-sm md:text-lg text-brand-ink/80 dark:text-brand-white/70 leading-relaxed font-medium">
-                I&apos;m <strong className="text-brand-ink dark:text-brand-white">Gabrielle Ainshley Velasquez</strong>,
+              <p className="text-sm md:text-lg text-brand-white/70 leading-relaxed font-medium">
+                I&apos;m <strong className="text-brand-white">Gabrielle Ainshley Velasquez</strong>,
                 a third-year BS Information Technology student with hands-on experience across the full stack. I enjoy turning complex ideas into structured,
                 well-designed solutions. I approach every project with clarity, intention, and strong attention to detail.
               </p>
@@ -606,10 +606,10 @@ export default function Home() {
 
           {/* Added max-w bounds and mx-auto so it stays properly sized on Mobile/Tablet */}
           <div className="hero-portrait-wrapper w-full max-w-[360px] sm:max-w-[400px] md:max-w-[440px] lg:max-w-none lg:w-[480px] xl:w-[520px] mx-auto lg:mx-0 aspect-[4/5] relative z-20 mt-8 lg:mt-0">
-            <div className="w-full h-full relative rounded-[2rem] overflow-visible border border-brand-ink/15 dark:border-brand-white/10 flex bg-brand-light-alt dark:bg-brand-dark-alt">
+            <div className="w-full h-full relative rounded-[2rem] overflow-visible border border-brand-white/10 flex bg-brand-dark-alt">
               <div className="flex-1 relative overflow-hidden group rounded-l-[2rem]">
                 <Image src="/assets/hero-photo.png" alt="Gabrielle Ainshley Velasquez" fill className="object-cover scale-[1.02] grayscale-0 lg:grayscale group-hover:grayscale-0 group-hover:scale-[1.06] transition-all duration-700" priority sizes="(max-width: 768px) 100vw, 540px" />
-                <div className="absolute bottom-3 left-3 right-3 md:bottom-4 md:left-4 md:right-4 bg-white/15 dark:bg-black/30 backdrop-blur-xl border border-white/20 rounded-xl p-3 md:p-4 flex items-center justify-between">
+                <div className="absolute bottom-3 left-3 right-3 md:bottom-4 md:left-4 md:right-4 bg-black/30 backdrop-blur-xl border border-white/20 rounded-xl p-3 md:p-4 flex items-center justify-between">
                   <span className="font-mori font-semibold text-white tracking-[0.15em] text-[10px] md:text-xs uppercase">GAV.DEV</span>
                   <div className="w-2 h-2 rounded-full bg-brand-accent animate-pulse" />
                 </div>
@@ -628,13 +628,13 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════
           SECTION 2 — MARQUEE TAPE
           ═══════════════════════════════════════════════════════ */}
-      <section ref={marqueeRef} className="bg-brand-ink/5 dark:bg-brand-white/5 py-8 md:py-20 overflow-hidden overflow-x-clip cursor-default select-none relative z-10 md:-rotate-2 md:scale-105 my-8 md:my-24 border-y border-brand-ink/10 dark:border-brand-white/10 backdrop-blur-sm">
+      <section ref={marqueeRef} className="bg-brand-white/5 py-8 md:py-20 overflow-hidden overflow-x-clip cursor-default select-none relative z-10 md:-rotate-2 md:scale-105 my-8 md:my-24 border-y border-brand-white/10 backdrop-blur-sm">
         <div ref={marqueeTrackRef} className="marquee-track flex items-center">
           {[...Array(4)].map((_, setIdx) => (
             <div key={setIdx} className="flex items-center shrink-0">
               {MARQUEE_WORDS.map((word, wi) => (
                 <span key={`${setIdx}-${wi}`} className="flex items-center shrink-0">
-                  <span className="font-mori font-semibold text-[clamp(1.5rem,4vw,5rem)] uppercase tracking-[-0.02em] text-brand-ink/70 md:text-brand-ink/20 dark:text-brand-white/70 md:dark:text-brand-white/20 hover:!text-brand-ink dark:hover:!text-brand-white px-3 md:px-8 py-2 transition-colors duration-300 whitespace-nowrap cursor-pointer">
+                  <span className="font-mori font-semibold text-[clamp(1.5rem,4vw,5rem)] uppercase tracking-[-0.02em] text-brand-white/70 md:text-brand-white/20 hover:!text-brand-white px-3 md:px-8 py-2 transition-colors duration-300 whitespace-nowrap cursor-pointer">
                     {word}
                   </span>
                   <span className="w-2 h-2 md:w-4 md:h-4 rounded-full bg-brand-accent shrink-0 mx-6 md:mx-10" />
@@ -650,8 +650,8 @@ export default function Home() {
           ═══════════════════════════════════════════════════════ */}
       <section className="services-section py-20 md:py-40 px-6 md:px-12 max-w-7xl mx-auto relative z-10">
 
-        <div className="absolute top-1/2 right-[-15vw] lg:right-[-5vw] -translate-y-1/2 w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] lg:w-[500px] lg:h-[500px] bg-brand-ink/[0.03] dark:bg-brand-white/[0.02] rounded-[3rem] sm:rounded-[4rem] lg:rounded-[5rem] rotate-12 flex items-center justify-center pointer-events-none z-0 bg-icon-parallax will-change-transform">
-          <CodeSolid className="w-[100px] h-[100px] sm:w-[150px] sm:h-[150px] lg:w-[200px] lg:h-[200px] text-brand-ink/[0.08] dark:text-brand-white/[0.07]" />
+        <div className="absolute top-1/2 right-[-15vw] lg:right-[-5vw] -translate-y-1/2 w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] lg:w-[500px] lg:h-[500px] bg-brand-white/[0.02] rounded-[3rem] sm:rounded-[4rem] lg:rounded-[5rem] rotate-12 flex items-center justify-center pointer-events-none z-0 bg-icon-parallax will-change-transform">
+          <CodeSolid className="w-[100px] h-[100px] sm:w-[150px] sm:h-[150px] lg:w-[200px] lg:h-[200px] text-brand-white/[0.07]" />
         </div>
 
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-start relative z-10">
@@ -661,7 +661,7 @@ export default function Home() {
             <SectionTitle className="service-header-element mb-6">
               What I <br /> Bring To <br /> The Table
             </SectionTitle>
-            <p className="service-header-element text-sm md:text-base text-brand-ink/70 dark:text-brand-white/70 leading-relaxed max-w-xs font-medium">
+            <p className="service-header-element text-sm md:text-base text-brand-white/70 leading-relaxed max-w-xs font-medium">
               I don&apos;t just write code, I build scalable, well-structured systems by combining analytical thinking with refined frontend development.
             </p>
 
@@ -675,7 +675,7 @@ export default function Home() {
             </Button>
           </div>
 
-          <div className="lg:w-2/3 flex flex-col w-full mt-10 lg:mt-0 relative z-10 border-t border-brand-ink/10 dark:border-brand-white/10">
+          <div className="lg:w-2/3 flex flex-col w-full mt-10 lg:mt-0 relative z-10 border-t border-brand-white/10">
             {SERVICES.map((service, i) => {
               const isActive = expandedServices.includes(i) || hoveredService === i;
               const Icon = service.icon;
@@ -689,15 +689,15 @@ export default function Home() {
                   onMouseLeave={() => {
                     if (window.matchMedia("(hover: hover)").matches) setHoveredService(null);
                   }}
-                  className="service-item group border-b border-brand-ink/10 dark:border-brand-white/10 py-8 md:py-10 cursor-pointer"
+                  className="service-item group border-b border-brand-white/10 py-8 md:py-10 cursor-pointer"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex items-start gap-4 md:gap-8">
-                      <span className={`font-mono text-sm md:text-base transition-colors duration-500 mt-1 md:mt-2 ${isActive ? "text-brand-ink dark:text-brand-white" : "text-brand-ink/30 dark:text-brand-white/30"}`}>
+                      <span className={`font-mono text-sm md:text-base transition-colors duration-500 mt-1 md:mt-2 ${isActive ? "text-brand-white" : "text-brand-white/30"}`}>
                         0{i + 1}
                       </span>
                       <div className="flex flex-col gap-3 md:gap-4">
-                        <h3 className={`font-mori font-semibold text-2xl md:text-4xl lg:text-5xl tracking-tight transition-colors duration-500 ${isActive ? "text-brand-ink dark:text-brand-white" : "text-brand-ink/30 dark:text-brand-white/30"}`}>
+                        <h3 className={`font-mori font-semibold text-2xl md:text-4xl lg:text-5xl tracking-tight transition-colors duration-500 ${isActive ? "text-brand-white" : "text-brand-white/30"}`}>
                           {service.title}
                         </h3>
 
@@ -706,8 +706,8 @@ export default function Home() {
                             <span
                               key={idx}
                               className={`inline-flex items-center px-3 py-1 rounded-full border text-[10px] md:text-[11px] font-bold uppercase tracking-[0.15em] transition-all duration-300 ${isActive
-                                ? "border-brand-ink/25 dark:border-brand-white/25 text-brand-ink dark:text-brand-white bg-brand-ink/5 dark:bg-brand-white/5"
-                                : "border-brand-ink/10 dark:border-brand-white/10 text-brand-ink/90 dark:text-brand-white/90 bg-transparent"
+                                ? "border-brand-white/25 text-brand-white bg-brand-white/5"
+                                : "border-brand-white/10 text-brand-white/90 bg-transparent"
                                 }`}
                             >
                               {tech}
@@ -730,8 +730,8 @@ export default function Home() {
                         }
                       }}
                       className={`w-10 h-10 md:w-14 md:h-14 rounded-full border flex items-center justify-center transition-all duration-500 shrink-0 ${isActive
-                        ? "bg-brand-ink border-brand-ink text-brand-white dark:bg-brand-white dark:border-brand-white dark:text-brand-ink rotate-45"
-                        : "border-brand-ink/20 text-brand-ink/90 dark:border-brand-white/20 dark:text-brand-white/90"
+                        ? "bg-brand-white border-brand-white text-brand-ink rotate-45"
+                        : "border-brand-white/20 text-brand-white/90"
                         }`}
                     >
                       <Plus className="w-5 h-5 md:w-6 md:h-6" strokeWidth={2} />
@@ -743,7 +743,7 @@ export default function Home() {
                       <div className="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-brand-accent flex items-center justify-center shrink-0 mt-1">
                         <Icon className="w-6 h-6 md:w-8 md:h-8 text-brand-dark" strokeWidth={2} />
                       </div>
-                      <p className="text-sm md:text-base lg:text-lg text-brand-ink/80 dark:text-brand-white/70 leading-relaxed max-w-lg font-medium pt-2">
+                      <p className="text-sm md:text-base lg:text-lg text-brand-white/70 leading-relaxed max-w-lg font-medium pt-2">
                         {service.desc}
                       </p>
                     </div>
@@ -763,9 +763,9 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════
           SECTION 5 — TESTIMONIALS
           ═══════════════════════════════════════════════════════ */}
-      <section className="testimonials-section w-full relative z-10 border-t border-brand-ink/10 dark:border-brand-white/10 fade-primary-to-alt overflow-hidden">
+      <section className="testimonials-section w-full relative z-10 border-t border-brand-white/10 fade-primary-to-alt overflow-hidden">
 
-        <div className="absolute inset-0 pointer-events-none z-0 opacity-[0.08] md:opacity-[0.12] dark:opacity-[0.03] dark:md:opacity-[0.05]">
+        <div className="absolute inset-0 pointer-events-none z-0 opacity-[0.03] md:opacity-[0.05]">
           <svg className="w-full h-full">
             <filter id="static-noise-testi">
               <feTurbulence type="fractalNoise" baseFrequency="3.5" numOctaves="3" stitchTiles="stitch" />
@@ -786,22 +786,21 @@ export default function Home() {
           </div>
 
           <div className="w-full max-w-4xl relative">
-            <div className="absolute -top-10 left-0 md:-left-6 md:-top-20 md:-left-12 opacity-5 dark:opacity-10 pointer-events-none">
-              <span className="font-serif font-black text-[120px] md:text-[200px] leading-none text-brand-ink dark:text-brand-white">&ldquo;</span>
+            <div className="absolute -top-10 left-0 md:-left-6 md:-top-20 md:-left-12 opacity-10 pointer-events-none">
+              <span className="font-serif font-black text-[120px] md:text-[200px] leading-none text-brand-white">&ldquo;</span>
             </div>
 
             <div ref={testimonialWrapperRef} className="relative z-10 overflow-hidden transition-all duration-500">
               <div className="flex flex-col justify-center px-4 md:px-12" ref={testimonialContentRef}>
-                <blockquote className="testimonial-quote text-2xl md:text-4xl lg:text-5xl leading-[1.3] text-brand-ink dark:text-brand-white font-mori font-normal mb-10 md:mb-16">
+                <blockquote className="testimonial-quote text-2xl md:text-4xl lg:text-5xl leading-[1.3] text-brand-white font-mori font-normal mb-10 md:mb-16">
                   {TESTIMONIALS[tIndex].quote}
                 </blockquote>
-                <div className="testimonial-author-block flex items-center justify-between border-t border-brand-ink/10 dark:border-brand-white/10 pt-6 md:pt-8">
+                <div className="testimonial-author-block flex items-center justify-between border-t border-brand-white/10 pt-6 md:pt-8">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-brand-ink/10 dark:bg-brand-white/10 flex items-center justify-center">
-                      <span className="font-mori font-semibold text-lg text-brand-ink dark:text-brand-white">{TESTIMONIALS[tIndex].author[0]}</span>
+                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-brand-white/10 flex items-center justify-center">
+                      <span className="font-mori font-semibold text-lg text-brand-white">{TESTIMONIALS[tIndex].author[0]}</span>
                     </div>
                     <div>
-                      <p className="font-mori font-semibold text-sm md:text-lg uppercase tracking-wider text-brand-ink dark:text-brand-white">{TESTIMONIALS[tIndex].author}</p>
                       <p className="text-xs md:text-sm text-brand-ink/70 dark:text-brand-white/70">{TESTIMONIALS[tIndex].role}</p>
                     </div>
                   </div>

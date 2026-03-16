@@ -66,7 +66,7 @@ export default function AmbientBackground() {
       </div>
 
       {/* ── STATIC NOISE GRAIN ── */}
-      <div className="absolute inset-0 opacity-[0.08] md:opacity-[0.12] dark:opacity-[0.03] dark:md:opacity-[0.05]">
+      <div className="absolute inset-0 opacity-[0.03] md:opacity-[0.05]">
         <svg className="w-full h-full">
           <filter id="global-static-noise">
             <feTurbulence type="fractalNoise" baseFrequency="3.5" numOctaves="3" stitchTiles="stitch" />

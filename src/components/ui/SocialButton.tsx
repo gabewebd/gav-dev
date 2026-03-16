@@ -18,11 +18,10 @@ const SocialButton = ({
     return (
         <div
             className={`w-12 h-12 rounded-full
-            border border-brand-ink/10 dark:border-brand-white/10
+            border border-brand-white/10
             grid place-items-center
-            text-brand-ink/80 dark:text-brand-white/70
-            hover:text-brand-ink hover:border-brand-ink 
-            dark:hover:text-brand-accent dark:hover:border-brand-accent
+            text-brand-white/70
+            hover:text-brand-accent hover:border-brand-accent
             transition-all duration-300 ${className}`}
             aria-label={label}
         >

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
-import { ThemeProvider } from "@/components/ThemeProvider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
@@ -72,26 +71,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${ppMori.variable} ${inter.variable}`}>
+    <html lang="en" className={`${ppMori.variable} ${inter.variable}`}>
       <meta name="apple-mobile-web-app-title" content="MyWebSite" />
       <body className="bg-[#050505] text-[#EDEDED] antialiased transition-colors duration-300 overflow-x-hidden">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-          disableTransitionOnChange={false}
-        >
-          <AmbientBackground />
-          <SmoothScroll>
-            {/* Glassmorphic Shell */}
-            <Navbar />
-            <main className="relative min-h-screen">
-              {children}
-            </main>
-            <Footer />
-            <BackToTop />
-          </SmoothScroll>
-        </ThemeProvider>
+        <AmbientBackground />
+        <SmoothScroll>
+          {/* Glassmorphic Shell */}
+          <Navbar />
+          <main className="relative min-h-screen">
+            {children}
+          </main>
+          <Footer />
+          <BackToTop />
+        </SmoothScroll>
       </body>
     </html>
   );

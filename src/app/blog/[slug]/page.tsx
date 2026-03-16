@@ -34,7 +34,7 @@ function renderTextWithLinks(text: string) {
                 href={url}
                 label={isInternal ? "Internal Link" : "External Link"}
                 description={label}
-                className="font-bold underline decoration-brand-ink/30 dark:decoration-brand-white/30 underline-offset-4 hover:decoration-brand-ink hover:text-brand-ink/80 dark:hover:decoration-brand-accent dark:hover:text-brand-accent transition-colors"
+                className="font-bold underline decoration-brand-white/30 underline-offset-4 hover:decoration-brand-accent hover:text-brand-accent transition-colors"
             >
                 {label}
             </PreviewLink>
@@ -107,7 +107,7 @@ export default function BlogPost() {
 
     }, { scope: containerRef, dependencies: [post] });
 
-    if (!post) return <div className="min-h-screen flex items-center justify-center font-outfit font-black text-2xl uppercase bg-brand-light dark:bg-brand-dark text-brand-ink dark:text-brand-white">Error: Article Not Found.</div>;
+    if (!post) return <div className="min-h-screen flex items-center justify-center font-outfit font-black text-2xl uppercase bg-brand-dark text-brand-white">Error: Article Not Found.</div>;
 
     return (
         <main ref={containerRef} className="relative transition-colors duration-500 overflow-x-clip min-h-screen">
@@ -122,11 +122,11 @@ export default function BlogPost() {
 
                 {/* Top Section: Back Link & Massive Title */}
                 <div className="max-w-[100rem] mx-auto px-6 md:px-12 flex flex-col items-start mb-12 md:mb-20">
-                    <Link href="/blog" className="hero-reveal group inline-flex items-center gap-2 text-brand-ink/50 dark:text-white/50 hover:text-brand-ink dark:hover:text-white text-[10px] md:text-xs font-bold uppercase tracking-widest mb-10 transition-colors">
+                    <Link href="/blog" className="hero-reveal group inline-flex items-center gap-2 text-white/50 hover:text-white text-[10px] md:text-xs font-bold uppercase tracking-widest mb-10 transition-colors">
                         <ArrowLeft size={16} className="group-hover:-translate-x-1.5 transition-transform" /> Back to Blogs
                     </Link>
 
-                    <h1 className="hero-reveal font-mori font-black text-[clamp(3rem,8vw,7.5rem)] leading-[0.85] tracking-tighter text-brand-ink dark:text-white max-w-6xl">
+                    <h1 className="hero-reveal font-mori font-black text-[clamp(3rem,8vw,7.5rem)] leading-[0.85] tracking-tighter text-white max-w-6xl">
                         {post.title}
                     </h1>
                 </div>
@@ -136,22 +136,22 @@ export default function BlogPost() {
 
                     {/* Left Column: Sticky Meta & Excerpt */}
                     <div className="w-full lg:w-1/3 lg:sticky lg:top-32 flex flex-col gap-8 order-2 lg:order-1">
-                        <div className="hero-reveal flex flex-col gap-4 border-l-2 border-brand-ink/10 dark:border-white/10 pl-6 py-2">
+                        <div className="hero-reveal flex flex-col gap-4 border-l-2 border-white/10 pl-6 py-2">
                             <div className="flex flex-col gap-1">
-                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-ink/40 dark:text-white/40">Category</span>
+                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">Category</span>
                                 <span className="text-sm font-semibold tracking-wider text-brand-accent uppercase">{post.category}</span>
                             </div>
                             <div className="flex flex-col gap-1 mt-2">
-                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-ink/40 dark:text-white/40">Published</span>
-                                <time dateTime={post.date} className="text-sm font-medium text-brand-ink/80 dark:text-white/80">{post.displayDate}</time>
+                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">Published</span>
+                                <time dateTime={post.date} className="text-sm font-medium text-white/80">{post.displayDate}</time>
                             </div>
                             <div className="flex flex-col gap-1 mt-2">
-                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-ink/40 dark:text-white/40">Read Time</span>
-                                <span className="text-sm font-medium text-brand-ink/80 dark:text-white/80">{post.readTime}</span>
+                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">Read Time</span>
+                                <span className="text-sm font-medium text-white/80">{post.readTime}</span>
                             </div>
                         </div>
 
-                        <p className="hero-reveal text-lg md:text-xl lg:text-2xl text-brand-ink/70 dark:text-white/60 leading-relaxed font-medium">
+                        <p className="hero-reveal text-lg md:text-xl lg:text-2xl text-white/60 leading-relaxed font-medium">
                             {post.excerpt}
                         </p>
                     </div>
@@ -159,7 +159,7 @@ export default function BlogPost() {
                     {/* Right Column: Parallax Hero Image */}
                     <div className="w-full lg:w-2/3 order-1 lg:order-2">
                         <div
-                            className="hero-reveal hero-image-container relative w-full aspect-[4/3] md:aspect-[16/10] rounded-[2rem] md:rounded-[3rem] overflow-hidden bg-brand-ink/5 dark:bg-white/5 cursor-zoom-in group shadow-2xl"
+                            className="hero-reveal hero-image-container relative w-full aspect-[4/3] md:aspect-[16/10] rounded-[2rem] md:rounded-[3rem] overflow-hidden bg-white/5 cursor-zoom-in group shadow-2xl"
                             onClick={() => setLightboxImg(post.featuredImage)}
                         >
                             <Image
@@ -171,7 +171,7 @@ export default function BlogPost() {
                                 sizes="(max-width: 1024px) 100vw, 66vw"
                                 quality={100}
                             />
-                            <div className="absolute inset-0 bg-brand-ink/10 dark:bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                         </div>
                     </div>
                 </div>
@@ -184,21 +184,21 @@ export default function BlogPost() {
                         switch (block.type) {
                             case 'p':
                                 return (
-                                    <div key={i} className="content-block text-lg md:text-xl text-brand-ink/80 dark:text-brand-white/70 leading-[1.8] font-medium">
+                                    <div key={i} className="content-block text-lg md:text-xl text-brand-white/70 leading-[1.8] font-medium">
                                         {renderTextWithLinks(block.text)}
                                     </div>
                                 );
                             case 'h2':
                                 return (
-                                    <h2 key={i} className="content-block font-mori font-bold text-3xl md:text-5xl tracking-tighter text-brand-ink dark:text-brand-white mt-12 md:mt-16 mb-4">
+                                    <h2 key={i} className="content-block font-mori font-bold text-3xl md:text-5xl tracking-tighter text-brand-white mt-12 md:mt-16 mb-4">
                                         {block.text}
                                     </h2>
                                 );
                             case 'quote':
                                 return (
                                     // Breakout Blockquote
-                                    <blockquote key={i} className="content-block relative w-full md:w-[120%] md:-ml-[10%] my-12 md:my-16 p-8 md:p-16 bg-brand-ink/[0.03] dark:bg-white/[0.03] rounded-[2rem] border border-brand-ink/5 dark:border-white/5">
-                                        <p className="font-mori font-bold text-2xl md:text-4xl tracking-tight text-brand-ink dark:text-brand-white leading-[1.2] mb-6">
+                                    <blockquote key={i} className="content-block relative w-full md:w-[120%] md:-ml-[10%] my-12 md:my-16 p-8 md:p-16 bg-white/[0.03] rounded-[2rem] border border-white/5">
+                                        <p className="font-mori font-bold text-2xl md:text-4xl tracking-tight text-brand-white leading-[1.2] mb-6">
                                             "{block.text}"
                                         </p>
                                         {block.author && (
@@ -213,14 +213,14 @@ export default function BlogPost() {
                                     // Breakout Image Container
                                     <figure key={i} className="content-block my-12 md:my-16 w-full md:w-[110%] md:-ml-[5%] flex flex-col gap-4">
                                         <div
-                                            className="relative w-full rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden bg-brand-ink/5 dark:bg-white/5 border border-brand-ink/10 dark:border-brand-white/10 cursor-zoom-in group shadow-xl"
+                                            className="relative w-full rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden bg-white/5 border border-brand-white/10 cursor-zoom-in group shadow-xl"
                                             onClick={() => setLightboxImg(block.src)}
                                         >
                                             <Image src={block.src} alt={block.alt} width={1200} height={800} className="w-full h-auto object-contain group-hover:scale-[1.02] transition-transform duration-700 ease-out" sizes="(max-width: 768px) 100vw, 900px" quality={95} />
-                                            <div className="absolute inset-0 bg-brand-ink/10 dark:bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                                            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                                         </div>
                                         {block.caption && (
-                                            <figcaption className="text-center text-[10px] md:text-xs font-bold uppercase tracking-widest text-brand-ink/50 dark:text-brand-white/50">
+                                            <figcaption className="text-center text-[10px] md:text-xs font-bold uppercase tracking-widest text-brand-white/50">
                                                 {block.caption}
                                             </figcaption>
                                         )}
@@ -231,7 +231,7 @@ export default function BlogPost() {
                                 const isEmbed = block.url.includes('drive.google.com') || block.url.includes('youtube.com');
                                 return (
                                     <figure key={i} className="content-block my-12 md:my-16 w-full md:w-[110%] md:-ml-[5%] flex flex-col gap-4">
-                                        <div className="relative w-full aspect-video rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden bg-brand-ink/5 dark:bg-white/5 border border-brand-ink/10 dark:border-brand-white/10 shadow-2xl">
+                                        <div className="relative w-full aspect-video rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden bg-white/5 border border-brand-white/10 shadow-2xl">
                                             {isEmbed ? (
                                                 <iframe
                                                     // @ts-ignore
@@ -250,7 +250,7 @@ export default function BlogPost() {
                                         </div>
                                         {/* @ts-ignore */}
                                         {block.caption && (
-                                            <figcaption className="text-center text-[10px] md:text-xs font-bold uppercase tracking-widest text-brand-ink/50 dark:text-brand-white/50">
+                                            <figcaption className="text-center text-[10px] md:text-xs font-bold uppercase tracking-widest text-brand-white/50">
                                                 {/* @ts-ignore */}
                                                 {block.caption}
                                             </figcaption>
@@ -259,8 +259,8 @@ export default function BlogPost() {
                                 );
                             case 'link-group':
                                 return (
-                                    <div key={i} className="content-block flex flex-wrap items-center gap-4 md:gap-6 mt-8 mb-12 p-6 md:p-8 bg-brand-ink/[0.02] dark:bg-white/[0.02] rounded-2xl border border-brand-ink/5 dark:border-white/5">
-                                        <span className="w-full text-[10px] md:text-xs font-bold uppercase tracking-widest text-brand-ink/40 dark:text-white/40 mb-2">Project Resources</span>
+                                    <div key={i} className="content-block flex flex-wrap items-center gap-4 md:gap-6 mt-8 mb-12 p-6 md:p-8 bg-white/[0.02] rounded-2xl border border-white/5">
+                                        <span className="w-full text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-2">Project Resources</span>
                                         {/* @ts-ignore */}
                                         {block.links.map((link: any, idx: number) => {
                                             const isInternal = link.url.startsWith('/');
@@ -270,7 +270,7 @@ export default function BlogPost() {
                                                     href={link.url}
                                                     label={isInternal ? "Internal Link" : "External Link"}
                                                     description={link.label}
-                                                    className="font-mori font-bold text-sm md:text-base text-brand-ink dark:text-brand-white uppercase tracking-[0.1em] underline decoration-brand-accent/50 underline-offset-[6px] hover:decoration-brand-accent hover:text-brand-accent transition-colors duration-300"
+                                                    className="font-mori font-bold text-sm md:text-base text-brand-white uppercase tracking-[0.1em] underline decoration-brand-accent/50 underline-offset-[6px] hover:decoration-brand-accent hover:text-brand-accent transition-colors duration-300"
                                                 >
                                                     {link.label} {isInternal ? '→' : '↗'}
                                                 </PreviewLink>
@@ -286,11 +286,11 @@ export default function BlogPost() {
             </article>
 
             {/* ── 3. PREV / NEXT NAVIGATION GRID ── */}
-            <section aria-label="Blog Navigation" className="relative border-t border-brand-ink/10 dark:border-brand-white/10 py-20 md:py-32">
+            <section aria-label="Blog Navigation" className="relative border-t border-white/10 py-20 md:py-32">
                 <div className="max-w-[100rem] mx-auto px-6 md:px-12 flex flex-col relative z-10">
 
                     <div className="flex justify-center mb-12 md:mb-20">
-                        <Link href="/blog" className="group inline-flex items-center gap-3 bg-brand-ink dark:bg-brand-white text-white dark:text-brand-ink px-8 md:px-12 py-4 md:py-5 rounded-full font-mori font-bold uppercase tracking-[0.2em] text-[10px] md:text-xs hover:scale-105 hover:bg-brand-accent hover:text-brand-dark transition-all duration-300 shadow-xl">
+                        <Link href="/blog" className="group inline-flex items-center gap-3 bg-brand-white text-brand-dark px-8 md:px-12 py-4 md:py-5 rounded-full font-mori font-bold uppercase tracking-[0.2em] text-[10px] md:text-xs hover:scale-105 hover:bg-brand-accent hover:text-brand-dark transition-all duration-300 shadow-xl">
                             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1.5 transition-transform" strokeWidth={2.5} /> View All Journals
                         </Link>
                     </div>
@@ -298,7 +298,7 @@ export default function BlogPost() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
                         {/* PREVIOUS BLOG CARD WITH FEATURED IMAGE BACKGROUND */}
                         {prevPost ? (
-                            <Link href={`/blog/${prevPost.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/10] rounded-[2rem] overflow-hidden border border-brand-ink/10 dark:border-brand-white/10 block cursor-pointer shadow-lg hover:-translate-y-2 transition-all duration-500 hover:shadow-2xl">
+                            <Link href={`/blog/${prevPost.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/10] rounded-[2rem] overflow-hidden border border-white/10 block cursor-pointer shadow-lg hover:-translate-y-2 transition-all duration-500 hover:shadow-2xl">
                                 <Image src={prevPost.featuredImage} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" alt={prevPost.title} sizes="(max-width: 768px) 100vw, 50vw" quality={90} />
                                 <div className="absolute inset-0 bg-[#0A0A0A]/70 group-hover:bg-[#0A0A0A]/50 transition-colors duration-500" />
                                 <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-12">
@@ -315,7 +315,7 @@ export default function BlogPost() {
 
                         {/* NEXT BLOG CARD WITH FEATURED IMAGE BACKGROUND */}
                         {nextPost ? (
-                            <Link href={`/blog/${nextPost.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/10] rounded-[2rem] overflow-hidden border border-brand-ink/10 dark:border-brand-white/10 block cursor-pointer shadow-lg hover:-translate-y-2 transition-all duration-500 hover:shadow-2xl">
+                            <Link href={`/blog/${nextPost.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/10] rounded-[2rem] overflow-hidden border border-white/10 block cursor-pointer shadow-lg hover:-translate-y-2 transition-all duration-500 hover:shadow-2xl">
                                 <Image src={nextPost.featuredImage} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" alt={nextPost.title} sizes="(max-width: 768px) 100vw, 50vw" quality={90} />
                                 <div className="absolute inset-0 bg-[#0A0A0A]/70 group-hover:bg-[#0A0A0A]/50 transition-colors duration-500" />
                                 <div className="absolute inset-0 flex flex-col items-end justify-end p-8 md:p-12 text-right">

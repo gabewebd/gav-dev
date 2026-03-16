@@ -19,29 +19,29 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 function ContentBlockRenderer({ block, onImageClick }: { block: ContentBlock, onImageClick?: (src: string) => void }) {
     switch (block.type) {
         case 'p':
-            return <p className="text-base md:text-xl text-brand-ink/80 dark:text-brand-white/70 leading-relaxed font-medium mb-6">{block.text}</p>;
+            return <p className="text-base md:text-xl text-brand-white/70 leading-relaxed font-medium mb-6">{block.text}</p>;
         case 'role-title':
             return (
                 <div className="mb-8">
-                    <h3 className="font-bold text-brand-ink dark:text-brand-white text-xl md:text-2xl underline decoration-brand-accent decoration-[3px] underline-offset-[12px] inline-block">
+                    <h3 className="font-bold text-brand-white text-xl md:text-2xl underline decoration-brand-accent decoration-[3px] underline-offset-[12px] inline-block">
                         {block.text}
                     </h3>
                 </div>
             );
         case 'h2':
-            return <h2 className="font-mori font-semibold text-2xl md:text-3xl tracking-tighter text-brand-ink dark:text-brand-white mt-12 mb-6">{block.text}</h2>;
+            return <h2 className="font-mori font-semibold text-2xl md:text-3xl tracking-tighter text-brand-white mt-12 mb-6">{block.text}</h2>;
         case 'img':
             return (
                 <div className="flex flex-col gap-4 my-10 relative">
                     <div
-                        className="relative w-full rounded-[1.5rem] md:rounded-[2rem] overflow-hidden border border-brand-ink/10 dark:border-brand-white/10 bg-brand-light-alt dark:bg-brand-dark-alt cursor-zoom-in group"
+                        className="relative w-full rounded-[1.5rem] md:rounded-[2rem] overflow-hidden border border-brand-white/10 bg-brand-dark-alt cursor-zoom-in group"
                         onClick={() => onImageClick && onImageClick(block.src)}
                     >
                         {/* High Quality & Sizes added to inline images */}
                         <Image src={block.src} alt={block.alt || "Project visual"} width={1200} height={800} className="w-full h-auto object-contain group-hover:scale-[1.02] transition-transform duration-700" quality={95} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 60vw" />
                     </div>
                     {block.caption && (
-                        <p className="text-sm md:text-base font-medium text-brand-ink/90 dark:text-brand-white/90 text-center px-4">
+                        <p className="text-sm md:text-base font-medium text-brand-white/90 text-center px-4">
                             {block.caption}
                         </p>
                     )}
@@ -49,9 +49,9 @@ function ContentBlockRenderer({ block, onImageClick }: { block: ContentBlock, on
             );
         case 'quote':
             return (
-                <blockquote className="my-10 pl-6 sm:pl-8 border-l-4 border-brand-ink dark:border-brand-accent italic flex flex-col gap-4">
-                    <p className="text-xl sm:text-2xl md:text-3xl font-medium text-brand-ink/80 dark:text-brand-white/70 leading-relaxed">"{block.text}"</p>
-                    {block.author && <footer className="font-outfit font-bold uppercase tracking-widest text-brand-ink/70 dark:text-brand-white/70 text-[10px] sm:text-xs md:text-sm">— {block.author}</footer>}
+                <blockquote className="my-10 pl-6 sm:pl-8 border-l-4 border-brand-accent italic flex flex-col gap-4">
+                    <p className="text-xl sm:text-2xl md:text-3xl font-medium text-brand-white/70 leading-relaxed">"{block.text}"</p>
+                    {block.author && <footer className="font-outfit font-bold uppercase tracking-widest text-brand-white/70 text-[10px] sm:text-xs md:text-sm">— {block.author}</footer>}
                 </blockquote>
             );
         case 'video':
@@ -61,7 +61,7 @@ function ContentBlockRenderer({ block, onImageClick }: { block: ContentBlock, on
 
             return (
                 <div className="flex flex-col gap-4 my-10 relative">
-                    <div className="relative w-full aspect-video rounded-[1.5rem] md:rounded-[2rem] overflow-hidden border border-brand-ink/10 dark:border-brand-white/10 bg-brand-light-alt dark:bg-brand-dark-alt shadow-xl">
+                    <div className="relative w-full aspect-video rounded-[1.5rem] md:rounded-[2rem] overflow-hidden border border-brand-white/10 bg-brand-dark-alt shadow-xl">
                         {isEmbed ? (
                             <iframe
                                 // @ts-ignore
@@ -80,7 +80,7 @@ function ContentBlockRenderer({ block, onImageClick }: { block: ContentBlock, on
                     </div>
                     {/* @ts-ignore */}
                     {block.caption && (
-                        <p className="text-sm md:text-base font-medium text-brand-ink/90 dark:text-brand-white/90 text-center px-4">
+                        <p className="text-sm md:text-base font-medium text-brand-white/90 text-center px-4">
                             {/* @ts-ignore */}
                             {block.caption}
                         </p>
@@ -97,7 +97,7 @@ function ContentBlockRenderer({ block, onImageClick }: { block: ContentBlock, on
                             href={link.url}
                             label="Project Link"
                             description={link.url}
-                            className="font-outfit font-bold text-sm md:text-base text-brand-ink dark:text-brand-white uppercase tracking-widest underline decoration-brand-ink/20 dark:decoration-brand-white/20 underline-offset-[6px] hover:decoration-brand-accent dark:hover:decoration-brand-accent transition-colors duration-300"
+                            className="font-outfit font-bold text-sm md:text-base text-brand-white uppercase tracking-widest underline decoration-brand-white/20 underline-offset-[6px] hover:decoration-brand-accent transition-colors duration-300"
                         >
                             {link.label} ↗
                         </PreviewLink>
@@ -184,7 +184,7 @@ export default function ProjectDetail() {
         });
     }, { scope: containerRef, dependencies: [project] });
 
-    if (!project) return <div className="min-h-screen flex items-center justify-center font-outfit font-black text-2xl uppercase bg-brand-light dark:bg-brand-dark text-brand-ink dark:text-brand-white">System Error: Project Not Found.</div>;
+    if (!project) return <div className="min-h-screen flex items-center justify-center font-outfit font-black text-2xl uppercase bg-brand-dark text-brand-white">System Error: Project Not Found.</div>;
 
     const gridItems = [
         ...(project.gallery?.map(img => img.src) || []),
@@ -220,7 +220,7 @@ export default function ProjectDetail() {
                     <div className="hero-title flex flex-row flex-wrap items-center gap-3 md:gap-4 mt-4 md:mt-0">
                         {project.live !== "#" && (
                             <PreviewLink href={project.live} label="External Link" description={project.live} className="hero-title">
-                                <div className="group bg-brand-white text-brand-ink px-6 md:px-8 py-3.5 md:py-4 rounded-full font-outfit font-bold uppercase tracking-widest text-[10px] md:text-xs flex items-center gap-2 hover:opacity-85 transition-opacity shadow-lg">
+                                <div className="group bg-brand-white text-brand-dark px-6 md:px-8 py-3.5 md:py-4 rounded-full font-outfit font-bold uppercase tracking-widest text-[10px] md:text-xs flex items-center gap-2 hover:opacity-85 transition-opacity shadow-lg">
                                     <ExternalLink size={16} /> Live Link
                                 </div>
                             </PreviewLink>
@@ -240,7 +240,7 @@ export default function ProjectDetail() {
             {project.gallery && project.gallery.length > 0 && (
                 <section className="relative w-full max-w-5xl mx-auto px-6 md:px-12 pt-16 md:pt-24 z-10 flex flex-col gap-6">
                     <div className="flex flex-col gap-6 sm:gap-8">
-                        <div className="relative grid w-full aspect-[16/10] rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden border border-brand-ink/10 dark:border-brand-white/10 bg-brand-light-alt dark:bg-brand-dark-alt group shadow-xl">
+                        <div className="relative grid w-full aspect-[16/10] rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden border border-brand-white/10 bg-brand-dark-alt group shadow-xl">
 
                             {project.gallery.map((img, idx) => (
                                 <div
@@ -282,7 +282,7 @@ export default function ProjectDetail() {
                         {/* Unified Gallery Captions - Below the gallery for all devices */}
                         {project.gallery[activeGalleryIndex]?.caption && (
                             <div className="px-2 text-center md:text-left">
-                                <p className="text-brand-ink/60 dark:text-brand-white/50 text-xs sm:text-sm font-medium italic leading-relaxed tracking-wide">
+                                <p className="text-brand-white/50 text-xs sm:text-sm font-medium italic leading-relaxed tracking-wide">
                                     {project.gallery[activeGalleryIndex].caption}
                                 </p>
                             </div>
@@ -295,16 +295,16 @@ export default function ProjectDetail() {
             <section className="max-w-7xl mx-auto px-6 md:px-12 pt-16 md:pt-24 pb-32 flex flex-col lg:flex-row gap-16 lg:gap-32 relative z-10">
 
                 <aside className="hidden lg:flex w-1/4 flex-col gap-8 sticky top-40 h-fit">
-                    <Link href="/projects" className="group inline-flex items-center gap-2 text-brand-ink/80 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white text-[10px] font-bold uppercase tracking-widest transition-colors w-fit">
+                    <Link href="/projects" className="group inline-flex items-center gap-2 text-brand-white/70 hover:text-brand-white text-[10px] font-bold uppercase tracking-widest transition-colors w-fit">
                         <ArrowLeft size={14} className="group-hover:-translate-x-1.5 transition-transform" /> Back to projects
                     </Link>
-                    <span className="w-6 h-[2px] bg-brand-ink/30 dark:bg-brand-accent -mt-2" />
+                    <span className="w-6 h-[2px] bg-brand-accent -mt-2" />
                     <nav className="flex flex-col gap-6 font-outfit font-bold uppercase tracking-widest text-xs">
-                        <a href="#overview" onClick={(e) => handleScrollTo(e, "overview")} className="text-brand-ink/80 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white transition-colors">01. Overview</a>
-                        <a href="#role" onClick={(e) => handleScrollTo(e, "role")} className="text-brand-ink/80 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white transition-colors">02. Role & Impact</a>
-                        <a href="#tech" onClick={(e) => handleScrollTo(e, "tech")} className="text-brand-ink/80 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white transition-colors">03. Technology</a>
+                        <a href="#overview" onClick={(e) => handleScrollTo(e, "overview")} className="text-brand-white/70 hover:text-brand-white transition-colors">01. Overview</a>
+                        <a href="#role" onClick={(e) => handleScrollTo(e, "role")} className="text-brand-white/70 hover:text-brand-white transition-colors">02. Role & Impact</a>
+                        <a href="#tech" onClick={(e) => handleScrollTo(e, "tech")} className="text-brand-white/70 hover:text-brand-white transition-colors">03. Technology</a>
                         {project.customSections?.map((section, index) => (
-                            <a key={section.id} href={`#${section.id}`} onClick={(e) => handleScrollTo(e, section.id)} className="text-brand-ink/80 dark:text-brand-white/70 hover:text-brand-ink dark:hover:text-brand-white transition-colors">
+                            <a key={section.id} href={`#${section.id}`} onClick={(e) => handleScrollTo(e, section.id)} className="text-brand-white/70 hover:text-brand-white transition-colors">
                                 {String(index + 4).padStart(2, '0')}. {section.title}
                             </a>
                         ))}
@@ -313,7 +313,7 @@ export default function ProjectDetail() {
 
                 <div className="w-full lg:w-3/4 flex flex-col gap-24 md:gap-32">
                     <div id="overview" className="content-section flex flex-col gap-6 scroll-mt-32">
-                        <h2 className="font-mori font-semibold text-3xl md:text-5xl tracking-tighter text-brand-ink dark:text-brand-white">Project Overview</h2>
+                        <h2 className="font-mori font-semibold text-3xl md:text-5xl tracking-tighter text-brand-white">Project Overview</h2>
                         <div className="flex flex-col">
                             {project.overview.map((block, i) => (
                                 <ContentBlockRenderer key={i} block={block} onImageClick={handleInlineImageClick} />
@@ -322,8 +322,8 @@ export default function ProjectDetail() {
                     </div>
 
                     <div id="role" className="content-section flex flex-col gap-6 scroll-mt-32">
-                        <h2 className="font-mori font-semibold text-3xl md:text-5xl tracking-tighter text-brand-ink dark:text-brand-white">Role & Contributions</h2>
-                        <div className="border-l-2 border-brand-ink/20 dark:border-brand-accent pl-6 py-2">
+                        <h2 className="font-mori font-semibold text-3xl md:text-5xl tracking-tighter text-brand-white">Role & Contributions</h2>
+                        <div className="border-l-2 border-brand-accent pl-6 py-2">
                             {project.role.map((block, i) => (
                                 <ContentBlockRenderer key={i} block={block} onImageClick={handleInlineImageClick} />
                             ))}
@@ -331,11 +331,11 @@ export default function ProjectDetail() {
                     </div>
 
                     <div id="tech" className="content-section flex flex-col gap-8 scroll-mt-32">
-                        <h2 className="font-mori font-semibold text-3xl md:text-5xl tracking-tighter text-brand-ink dark:text-brand-white">Technology Stack</h2>
+                        <h2 className="font-mori font-semibold text-3xl md:text-5xl tracking-tighter text-brand-white">Technology Stack</h2>
                         <div className="flex flex-wrap items-center gap-x-2 gap-y-2 md:gap-x-3">
                             {project.stack.map((t: string, i: number) => (
-                                <div key={i} className="px-4 py-2 rounded-full border border-brand-ink/10 dark:border-brand-white/10 bg-brand-light-alt dark:bg-brand-dark-alt flex items-center justify-center transition-colors">
-                                    <span className="font-bold text-[10px] md:text-[11px] uppercase tracking-[0.2em] text-brand-ink dark:text-brand-white">{t}</span>
+                                <div key={i} className="px-4 py-2 rounded-full border border-brand-white/10 bg-brand-dark-alt flex items-center justify-center transition-colors">
+                                    <span className="font-bold text-[10px] md:text-[11px] uppercase tracking-[0.2em] text-brand-white">{t}</span>
                                 </div>
                             ))}
                         </div>
@@ -343,7 +343,7 @@ export default function ProjectDetail() {
 
                     {project.customSections?.map((section) => (
                         <div id={section.id} key={section.id} className="content-section flex flex-col gap-6 scroll-mt-32">
-                            <h2 className="font-mori font-semibold text-3xl md:text-5xl tracking-tighter text-brand-ink dark:text-brand-white">
+                            <h2 className="font-mori font-semibold text-3xl md:text-5xl tracking-tighter text-brand-white">
                                 {section.title}
                             </h2>
                             <div className="flex flex-col gap-4">
@@ -351,7 +351,7 @@ export default function ProjectDetail() {
                                     // HANDLE THE NEW ITALIC BLOCK TYPE HERE
                                     if (block.type === 'italic') {
                                         return (
-                                            <p key={i} className="text-brand-ink/60 dark:text-brand-white/50 italic text-sm md:text-base leading-relaxed">
+                                            <p key={i} className="text-brand-white/50 italic text-sm md:text-base leading-relaxed">
                                                 {block.text}
                                             </p>
                                         );
@@ -366,17 +366,17 @@ export default function ProjectDetail() {
             </section>
 
             {/* ── 3. PREV / NEXT NAVIGATION GRID ── */}
-            <section className="relative border-t border-brand-ink/10 dark:border-brand-white/10 py-20 md:py-32">
+            <section className="relative border-t border-brand-white/10 py-20 md:py-32">
                 <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col relative z-10">
                     <div className="flex justify-center mb-12 md:mb-16">
-                        <Link href="/projects" className="group inline-flex items-center gap-3 bg-brand-ink dark:bg-brand-white text-white dark:text-brand-ink px-8 md:px-12 py-4 md:py-5 rounded-full font-mori font-bold uppercase tracking-[0.2em] text-[10px] md:text-xs hover:scale-105 hover:bg-brand-accent hover:text-brand-dark transition-all duration-300 shadow-xl">
+                        <Link href="/projects" className="group inline-flex items-center gap-3 bg-brand-white text-brand-dark px-8 md:px-12 py-4 md:py-5 rounded-full font-mori font-bold uppercase tracking-[0.2em] text-[10px] md:text-xs hover:scale-105 hover:bg-brand-accent hover:text-brand-dark transition-all duration-300 shadow-xl">
                             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1.5 transition-transform" strokeWidth={2.5} /> Return to Projects
                         </Link>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
                         {prevProject && (
-                            <Link href={`/projects/${prevProject.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/10] rounded-[2rem] overflow-hidden border border-brand-ink/10 dark:border-brand-white/10 block cursor-pointer shadow-lg hover:-translate-y-2 transition-all duration-500 hover:shadow-2xl">
+                            <Link href={`/projects/${prevProject.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/10] rounded-[2rem] overflow-hidden border border-brand-white/10 block cursor-pointer shadow-lg hover:-translate-y-2 transition-all duration-500 hover:shadow-2xl">
                                 <Image src={prevProject.featuredImg || prevProject.heroImg} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" alt={prevProject.title} sizes="(max-width: 768px) 100vw, 50vw" quality={90} />
                                 <div className="absolute inset-0 bg-[#0A0A0A]/70 group-hover:bg-[#0A0A0A]/50 transition-colors duration-500" />
                                 <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
@@ -390,7 +390,7 @@ export default function ProjectDetail() {
                         )}
 
                         {nextProject && (
-                            <Link href={`/projects/${nextProject.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/10] rounded-[2rem] overflow-hidden border border-brand-ink/10 dark:border-brand-white/10 block cursor-pointer shadow-lg hover:-translate-y-2 transition-all duration-500 hover:shadow-2xl">
+                            <Link href={`/projects/${nextProject.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/10] rounded-[2rem] overflow-hidden border border-brand-white/10 block cursor-pointer shadow-lg hover:-translate-y-2 transition-all duration-500 hover:shadow-2xl">
                                 <Image src={nextProject.featuredImg || nextProject.heroImg} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" alt={nextProject.title} sizes="(max-width: 768px) 100vw, 50vw" quality={90} />
                                 <div className="absolute inset-0 bg-[#0A0A0A]/70 group-hover:bg-[#0A0A0A]/50 transition-colors duration-500" />
                                 <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
@@ -408,7 +408,7 @@ export default function ProjectDetail() {
 
             {/* ── 4. FULLSCREEN LIGHTBOX ── */}
             {lightboxIndex !== null && allImages[lightboxIndex] && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center bg-brand-ink/95 dark:bg-brand-dark/95 backdrop-blur-md p-4 md:p-12 cursor-zoom-out" onClick={() => setLightboxIndex(null)}>
+                <div className="fixed inset-0 z-[100] flex items-center justify-center bg-brand-dark/95 backdrop-blur-md p-4 md:p-12 cursor-zoom-out" onClick={() => setLightboxIndex(null)}>
 
                     {allImages.length > 1 && (
                         <button onClick={prevLightbox} className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 text-white bg-white/10 hover:bg-white hover:text-black p-3 md:p-4 rounded-full backdrop-blur-md transition-colors z-20 shadow-lg">
