@@ -65,12 +65,12 @@ const PreviewLink = React.forwardRef<HTMLAnchorElement | HTMLDivElement, Preview
         if (href.startsWith("http") || href.startsWith("mailto:")) {
             return (
                 <a
+                    {...props}
                     href={href}
                     target={target}
                     rel={rel}
                     className={commonClasses}
                     ref={ref as React.Ref<HTMLAnchorElement>}
-                    {...props}
                 >
                     {linkContent}
                 </a>
@@ -79,10 +79,10 @@ const PreviewLink = React.forwardRef<HTMLAnchorElement | HTMLDivElement, Preview
 
         return (
             <Link 
+                {...(props as React.ComponentPropsWithoutRef<typeof Link>)}
                 href={href} 
                 className={commonClasses} 
                 ref={ref as React.Ref<HTMLAnchorElement>}
-                {...(props as React.ComponentPropsWithoutRef<typeof Link>)}
             >
                 {linkContent}
             </Link>
