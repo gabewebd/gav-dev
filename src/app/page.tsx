@@ -4,6 +4,7 @@ import { useRef, useState, useEffect, useCallback, useMemo } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import OptimizedImage from "@/components/ui/OptimizedImage";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -608,7 +609,7 @@ export default function Home() {
           <div className="hero-portrait-wrapper w-full max-w-[360px] sm:max-w-[400px] md:max-w-[440px] lg:max-w-none lg:w-[480px] xl:w-[520px] mx-auto lg:mx-0 aspect-[4/5] relative z-20 mt-8 lg:mt-0">
             <div className="w-full h-full relative rounded-[2rem] overflow-visible border border-brand-white/10 flex bg-brand-dark-alt">
               <div className="flex-1 relative overflow-hidden group rounded-l-[2rem]">
-                <Image src="/assets/hero-photo.png" alt="Gabrielle Ainshley Velasquez" fill className="object-cover scale-[1.02] grayscale-0 lg:grayscale group-hover:grayscale-0 group-hover:scale-[1.06] transition-all duration-700" priority sizes="(max-width: 768px) 100vw, 540px" />
+                <OptimizedImage src="/assets/hero-photo.png" alt="Gabrielle Ainshley Velasquez" fill className="object-cover scale-[1.02] grayscale-0 lg:grayscale group-hover:grayscale-0 group-hover:scale-[1.06] transition-all duration-700" priority sizes="(max-width: 768px) 100vw, 540px" />
                 <div className="absolute bottom-3 left-3 right-3 md:bottom-4 md:left-4 md:right-4 bg-black/30 backdrop-blur-xl border border-white/20 rounded-xl p-3 md:p-4 flex items-center justify-between">
                   <span className="font-mori font-semibold text-white tracking-[0.15em] text-[10px] md:text-xs uppercase">GAV.DEV</span>
                   <div className="w-2 h-2 rounded-full bg-brand-accent animate-pulse" />

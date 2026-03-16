@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import OptimizedImage from "@/components/ui/OptimizedImage";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -102,7 +103,7 @@ function CardInner({ project, index }: { project: typeof PROJECTS[0]; index: num
                     {/* ── IMAGE MOCKUP ── */}
                     <div className="absolute -bottom-4 -right-4 md:-bottom-8 md:-right-8 w-[110%] md:w-[95%] lg:w-[110%] xl:w-[95%] aspect-[16/10] z-10 pointer-events-none origin-bottom-right transition-transform duration-[800ms] ease-out group-hover/card:scale-105 group-hover/card:-translate-y-2 group-hover/card:-translate-x-2">
                         <div className="relative w-full h-full drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)]">
-                            <Image
+                            <OptimizedImage
                                 src={project.image}
                                 alt={`${project.title} mockup preview`}
                                 fill

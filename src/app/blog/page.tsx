@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import Image from "next/image";
+import OptimizedImage from "@/components/ui/OptimizedImage";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -105,7 +106,7 @@ export default function BlogPage() {
                 <article className={`flex flex-col ${i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse lg:text-right lg:justify-end"} gap-6 lg:gap-10 p-6 md:p-8 rounded-[2.5rem] border border-brand-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.01] backdrop-blur-md shadow-black/20 hover:-translate-y-2 hover:border-brand-white/15 transition-all duration-500 w-full`}>
                   {post.featuredImage && (
                     <div className="relative w-full lg:w-[480px] xl:w-[560px] aspect-[16/10] sm:aspect-[2/1] lg:aspect-[4/3] rounded-[2rem] overflow-hidden shrink-0 border border-brand-white/10 bg-brand-dark-alt">
-                      <Image src={post.featuredImage} alt={post.title} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" sizes="(max-width: 1024px) 100vw, 560px" />
+                      <OptimizedImage src={post.featuredImage} alt={post.title} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" sizes="(max-width: 1024px) 100vw, 560px" />
                     </div>
                   )}
                   <div className={`flex flex-col justify-center gap-4 lg:gap-6 w-full ${i % 2 === 0 ? "" : "lg:items-end"}`}>

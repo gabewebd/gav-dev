@@ -11,6 +11,7 @@ import { ArrowLeft, ExternalLink, Github, ArrowRight, ChevronLeft, ChevronRight,
 import PreviewLink from "@/components/ui/PreviewLink";
 import Button from "@/components/ui/Button";
 import GridMotion from "@/components/ui/GridMotion";
+import OptimizedImage from "@/components/ui/OptimizedImage";
 
 import { PROJECTS_DATA, type ContentBlock, type ProjectImage } from "@/data/projects";
 
@@ -38,7 +39,7 @@ function ContentBlockRenderer({ block, onImageClick }: { block: ContentBlock, on
                         onClick={() => onImageClick && onImageClick(block.src)}
                     >
                         {/* High Quality & Sizes added to inline images */}
-                        <Image src={block.src} alt={block.alt || "Project visual"} width={1200} height={800} className="w-full h-auto object-contain group-hover:scale-[1.02] transition-transform duration-700" quality={95} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 60vw" />
+                        <OptimizedImage src={block.src} alt={block.alt || "Project visual"} width={1200} height={800} className="w-full h-auto object-contain group-hover:scale-[1.02] transition-transform duration-700" quality={95} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 60vw" />
                     </div>
                     {block.caption && (
                         <p className="text-sm md:text-base font-medium text-brand-white/90 text-center px-4">
@@ -248,7 +249,7 @@ export default function ProjectDetail() {
                                     className={`col-start-1 row-start-1 transition-opacity duration-700 ease-in-out ${idx === activeGalleryIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
                                 >
                                     {/* High quality enabled for Gallery Slider with fixed aspect ratio */}
-                                    <Image src={img.src} alt={img.alt} fill className="object-cover cursor-zoom-in transition-transform duration-700 hover:scale-[1.01]" onClick={() => setLightboxIndex(idx)} priority={idx === 0} quality={95} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw" />
+                                    <OptimizedImage src={img.src} alt={img.alt} fill className="object-cover cursor-zoom-in transition-transform duration-700 hover:scale-[1.01]" onClick={() => setLightboxIndex(idx)} priority={idx === 0} quality={95} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw" />
                                 </div>
                             ))}
 
@@ -377,7 +378,7 @@ export default function ProjectDetail() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
                         {prevProject && (
                             <Link href={`/projects/${prevProject.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/10] rounded-[2rem] overflow-hidden border border-brand-white/10 block cursor-pointer shadow-lg hover:-translate-y-2 transition-all duration-500 hover:shadow-2xl">
-                                <Image src={prevProject.featuredImg || prevProject.heroImg} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" alt={prevProject.title} sizes="(max-width: 768px) 100vw, 50vw" quality={90} />
+                                <OptimizedImage src={prevProject.featuredImg || prevProject.heroImg} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" alt={prevProject.title} sizes="(max-width: 768px) 100vw, 50vw" quality={90} />
                                 <div className="absolute inset-0 bg-[#0A0A0A]/70 group-hover:bg-[#0A0A0A]/50 transition-colors duration-500" />
                                 <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
                                     <div className="inline-flex items-center gap-2 mb-4">
@@ -391,7 +392,7 @@ export default function ProjectDetail() {
 
                         {nextProject && (
                             <Link href={`/projects/${nextProject.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/10] rounded-[2rem] overflow-hidden border border-brand-white/10 block cursor-pointer shadow-lg hover:-translate-y-2 transition-all duration-500 hover:shadow-2xl">
-                                <Image src={nextProject.featuredImg || nextProject.heroImg} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" alt={nextProject.title} sizes="(max-width: 768px) 100vw, 50vw" quality={90} />
+                                <OptimizedImage src={nextProject.featuredImg || nextProject.heroImg} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" alt={nextProject.title} sizes="(max-width: 768px) 100vw, 50vw" quality={90} />
                                 <div className="absolute inset-0 bg-[#0A0A0A]/70 group-hover:bg-[#0A0A0A]/50 transition-colors duration-500" />
                                 <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
                                     <div className="inline-flex items-center gap-2 mb-4">
@@ -417,7 +418,7 @@ export default function ProjectDetail() {
                     )}
 
                     <div className="relative w-full h-full max-w-7xl max-h-[90vh] rounded-[1rem] md:rounded-[2rem] overflow-hidden flex flex-col items-center justify-center" onClick={(e) => e.stopPropagation()}>
-                        <Image src={allImages[lightboxIndex].src} alt={allImages[lightboxIndex].alt || "Fullscreen project visual"} fill className="object-contain" quality={100} sizes="100vw" priority />
+                        <OptimizedImage src={allImages[lightboxIndex].src} alt={allImages[lightboxIndex].alt || "Fullscreen project visual"} fill className="object-contain" quality={100} sizes="100vw" priority />
 
                         {allImages[lightboxIndex].caption && (
                             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md px-6 py-3 rounded-full border border-white/10 text-center max-w-[90%] shadow-lg">
