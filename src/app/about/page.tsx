@@ -68,11 +68,11 @@ function CustomCursor() {
 
   useEffect(() => {
     const handleScroll = () => {
-        const el = document.elementFromPoint(mousePosRef.current.x, mousePosRef.current.y);
-        const isOver = !!el?.closest('[data-cursor-about]');
-        if (lastActiveRef.current && !isOver) {
-            setActive(false);
-        }
+      const el = document.elementFromPoint(mousePosRef.current.x, mousePosRef.current.y);
+      const isOver = !!el?.closest('[data-cursor-about]');
+      if (lastActiveRef.current && !isOver) {
+        setActive(false);
+      }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -688,9 +688,9 @@ export default function AboutPage() {
                   <div
                     key={idx}
                     className="interest-card-wrapper relative shrink-0 -ml-16 sm:-ml-24 md:-ml-32 lg:-ml-40 first:ml-0"
-                    style={{ 
+                    style={{
                       transformOrigin: "center bottom",
-                      zIndex: isActive ? 50 : 10 + idx 
+                      zIndex: isActive ? 50 : 10 + idx
                     }}
                   >
                     <motion.div
