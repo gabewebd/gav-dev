@@ -213,9 +213,9 @@ export default function Navbar() {
                     <div className="menu-blob absolute bottom-[-5%] right-[-5%] w-[50%] h-[50%] bg-white/5 rounded-full blur-[100px]" />
                 </div>
 
-                <div ref={menuLinksRef} className="relative z-10 flex flex-col w-full h-full px-8 pt-32 pb-12 justify-between">
+                <div ref={menuLinksRef} className="relative z-10 flex flex-col w-full h-full px-8 pt-24 min-[400px]:pt-32 pb-10 justify-between overflow-y-auto">
 
-                    <div className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-2 min-[400px]:gap-4 shadow-sm">
                         {[
                             ...NAV_LINKS,
                             { label: "Divider", href: "#", isDivider: true },
@@ -246,11 +246,11 @@ export default function Navbar() {
                                             <span className="text-sm font-mono text-white/20">
                                                 0{i + 1}
                                             </span>
-                                            <span className="text-5xl sm:text-6xl font-mori font-bold tracking-tighter text-white hover:text-brand-accent">
+                                            <span className="text-4xl xs:text-5xl sm:text-6xl lg:text-7xl font-mori font-bold tracking-tighter text-white hover:text-brand-accent transition-all duration-300">
                                                 Resume
                                             </span>
                                         </div>
-                                        <ArrowUpRight className="w-6 h-6 opacity-40 group-hover:opacity-100 transition-all duration-500 text-brand-accent pr-1" />
+                                        <ArrowUpRight className="w-5 h-5 opacity-40 group-hover:opacity-100 transition-all duration-500 text-brand-accent pr-1" />
                                     </a>
                                 );
                             }
@@ -260,24 +260,24 @@ export default function Navbar() {
                                     key={link.href}
                                     href={link.href}
                                     onClick={handleLinkClick}
-                                    className={`mobile-link group relative flex items-baseline justify-between py-4 border-b border-white/5 transition-all duration-300`}
+                                    className={`mobile-link group relative flex items-baseline justify-between py-3 border-b border-white/5 transition-all duration-300`}
                                 >
                                     <div className="flex items-center gap-6">
                                         <span className={`text-sm font-mono transition-colors duration-500 ${isActive ? 'text-brand-accent' : 'text-white/20'}`}>
                                             0{i + 1}
                                         </span>
-                                        <span className={`text-5xl sm:text-6xl font-mori font-bold tracking-tighter transition-all duration-500 ${isActive ? 'text-brand-accent italic translate-x-2' : 'text-white hover:text-brand-accent'}`}>
+                                        <span className={`text-4xl xs:text-5xl sm:text-6xl lg:text-7xl font-mori font-bold tracking-tighter transition-all duration-500 ${isActive ? 'text-brand-accent italic translate-x-2' : 'text-white hover:text-brand-accent'}`}>
                                             {link.label}
                                         </span>
                                     </div>
-                                    <ArrowRight className={`w-6 h-6 transition-all duration-500 ${isActive ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'} text-brand-accent`} />
+                                    <ArrowRight className={`w-5 h-5 transition-all duration-500 ${isActive ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'} text-brand-accent`} />
                                 </Link>
                             );
                         })}
                     </div>
 
-                    <div className="flex flex-col gap-10 mt-12">
-                        <div className="flex items-center gap-8">
+                    <div className="flex flex-col gap-6 mt-6">
+                        <div className="flex items-center gap-6">
                             {[
                                 { icon: Github, href: "https://github.com/gabewebd" },
                                 { icon: Linkedin, href: "https://linkedin.com/in/gabrielle-velasquez-gav" },

@@ -40,6 +40,7 @@ export interface ProjectData {
     slugImg: string;   // NEW: Used for 100vh Landscape Hero on Project Details
     featuredImg: string; // NEW: Used for Projects Listing Page
     showcaseImg: string;
+    projectRole: string; // NEW: Displayed in hero section
     images: string[];
     gallery: ProjectImage[];
     customSections?: ProjectSection[];
@@ -81,6 +82,7 @@ export const PROJECTS_DATA: ProjectData[] = [
         slugImg: "/assets/projects/danonos/danonos-slug.png",
         featuredImg: "/assets/projects/danonos/danonos-featured.png",
         showcaseImg: "/assets/projects/danonos/danonos-showcase.png",
+        projectRole: "Project Lead & Full-Stack Developer",
         images: ["/assets/projects/danonos/danonos.png", "/assets/projects/danonos/danonos-favorites.png", "/assets/projects/danonos/danonos-blogs.png", "/assets/projects/danonos/danonos-locations.png"],
         gallery: [
             { src: "/assets/projects/danonos/danonos-favorites.png", alt: "Most Loved Treats Section", caption: "The 'Most Loved Treats' section highlighting popular menu items." },
@@ -143,6 +145,7 @@ export const PROJECTS_DATA: ProjectData[] = [
         slugImg: "/assets/projects/chanel/chanel-slug.png",
         featuredImg: "/assets/projects/chanel/chanel-featured.png",
         showcaseImg: "/assets/projects/chanel/chanel-showcase.png",
+        projectRole: "UI/UX Designer & Developer",
         images: ["/assets/projects/chanel/chanel.png", "/assets/projects/chanel/chanel-products.png", "/assets/projects/chanel/chanel-directory.png"],
         gallery: [
             { src: "/assets/projects/chanel/chanel-products.png", alt: "Product Catalog", caption: "The immersive product catalog featuring sorting, filtering, and high-fidelity hover micro-interactions." },
@@ -183,7 +186,7 @@ export const PROJECTS_DATA: ProjectData[] = [
             { type: 'p', text: "By transforming routine eco-friendly activities into entertaining quests, the platform promotes community involvement through digital badges, point systems, and friendly rivalry via dynamic leaderboards." }
         ],
         role: [
-            { type: 'role-title', text: "Lead Full-Stack Developer Lead and UI/UX Designer" },
+            { type: 'role-title', text: "Lead Full-Stack Developer and UI/UX Designer" },
             { type: 'p', text: "I built out nearly all the core pages. This included the Quest page, Community feed, Login and Signup flows, Dashboard data visualizations, and Role Management architecture." },
             { type: 'p', text: "I successfully integrated Cloudinary for secure image proof uploads, managed our weekly Agile sprint planning in Notion, and executed the dual-deployment strategy using Vercel for the frontend and Render for the backend." }
         ],
@@ -195,6 +198,7 @@ export const PROJECTS_DATA: ProjectData[] = [
         slugImg: "/assets/projects/hau-ecoquest/ecoquest-slug.png",
         featuredImg: "/assets/projects/hau-ecoquest/ecoquest-featured.png",
         showcaseImg: "/assets/projects/hau-ecoquest/ecoquest-showcase.png",
+        projectRole: "Full-Stack Developer Lead & UI/UX Designer",
         images: ["/assets/projects/hau-ecoquest/hau-ecoquest.png", "/assets/projects/hau-ecoquest/ecoquest-quests.png", "/assets/projects/hau-ecoquest/ecoquest-community.png", "/assets/projects/hau-ecoquest/ecoquest-leaderboard.png"],
         gallery: [
             { src: "/assets/projects/hau-ecoquest/ecoquest-quests.png", alt: "Quests Page", caption: "The main Quests interface where users browse and accept environmental challenges." },
@@ -263,6 +267,7 @@ export const PROJECTS_DATA: ProjectData[] = [
         slugImg: "/assets/projects/wellness-apparel/wellness-apparel-slug.png",
         featuredImg: "/assets/projects/wellness-apparel/wellness-featured.png",
         showcaseImg: "/assets/projects/wellness-apparel/wellness-showcase.png",
+        projectRole: "Full-Stack Developer & UI/UX Designer",
         images: ["/assets/projects/wellness-apparel/wellness-apparel.png", "/assets/projects/wellness-apparel/wellness-shop.png", "/assets/projects/wellness-apparel/wellness-cart.png", "/assets/projects/wellness-apparel/wellness-checkout.png"],
         gallery: [
             { src: "/assets/projects/wellness-apparel/wellness-shop.png", alt: "Shopping Page", caption: "The dynamic digital product catalog where users can browse active inventory." },
@@ -331,6 +336,7 @@ export const PROJECTS_DATA: ProjectData[] = [
         slugImg: "/assets/projects/vrc-designs/vrc-slug.png",
         featuredImg: "/assets/projects/vrc-designs/vrc-featured.png",
         showcaseImg: "/assets/projects/vrc-designs/vrc-showcase.png",
+        projectRole: "Lead Developer & UI Designer",
         images: [
             "/assets/projects/vrc-designs/vrc-hero.png",
             "/assets/projects/vrc-designs/vrc-about.png",

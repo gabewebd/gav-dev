@@ -132,8 +132,8 @@ export default function BlogPage() {
       </div>
 
       <section className="cta-section py-20 px-6 max-w-7xl mx-auto border-t border-brand-white/10 relative z-10">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8 text-left">
-          <div>
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 text-left">
+          <div className="flex-1">
             <h2 className="font-mori font-semibold text-3xl md:text-5xl uppercase tracking-tighter leading-tight text-brand-white">
               Ready to build something <span className="text-brand-accent">remarkable</span>?
             </h2>
@@ -141,11 +141,11 @@ export default function BlogPage() {
               I’m always open to new opportunities, collaborations, and building meaningful digital solutions.
             </p>
           </div>
-          <Magnetic>
+          <div className="flex flex-wrap items-center lg:justify-end gap-4 w-full lg:w-auto">
             <Button href="/contact" icon={ArrowRight}>
               Let&apos;s Talk
             </Button>
-          </Magnetic>
+          </div>
         </div>
       </section>
     </main>

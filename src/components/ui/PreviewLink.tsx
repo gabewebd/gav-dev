@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import React from "react";
+import Magnetic from "./Magnetic";
 
-interface PreviewLinkProps {
+interface PreviewLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
     href: string;
     children: React.ReactNode;
     label?: string;
@@ -11,6 +12,8 @@ interface PreviewLinkProps {
     className?: string;
     target?: string;
     rel?: string;
+    hideTooltip?: boolean;
+    disableMagnetic?: boolean;
 }
 
 const PreviewLink = React.forwardRef<HTMLAnchorElement | HTMLDivElement, PreviewLinkProps>(
@@ -22,31 +25,42 @@ const PreviewLink = React.forwardRef<HTMLAnchorElement | HTMLDivElement, Preview
         className = "",
         target = "_blank",
         rel = "noopener noreferrer",
+        hideTooltip = false,
+        disableMagnetic = false,
+        ...props
     }, ref) => {
         const isExternal = href.startsWith("http") || href.startsWith("mailto:");
 
+        const commonClasses = `group/preview relative inline-flex items-center ${className}`;
+
         const linkContent = (
             <>
-                {children}
+                {disableMagnetic ? (
+                    <span className="relative z-10">{children}</span>
+                ) : (
+                    <Magnetic>
+                        <span className="relative z-10">{children}</span>
+                    </Magnetic>
+                )}
                 {/* Tooltip */}
-                <span className="absolute bottom-full left-0 mb-3 px-4 py-2.5 rounded-xl bg-brand-white shadow-2xl opacity-0 scale-95 pointer-events-none group-hover/preview:opacity-100 group-hover/preview:scale-100 transition-all duration-300 origin-bottom-left whitespace-nowrap z-[100] block">
-                    <span className="flex flex-col gap-0.5">
-                        <span className="text-[10px] sm:text-xs font-bold text-brand-dark tracking-wide">
-                            {label} {isExternal ? "↗" : "→"}
-                        </span>
-                        {description && (
-                            <span className="text-[9px] sm:text-[10px] text-brand-dark/70 max-w-[200px] sm:max-w-[260px] truncate block">
-                                {description}
+                {!hideTooltip && (
+                    <span className="absolute bottom-full left-0 mb-3 px-4 py-2.5 rounded-xl bg-brand-white shadow-2xl opacity-0 scale-95 pointer-events-none group-hover/preview:opacity-100 group-hover/preview:scale-100 transition-all duration-300 origin-bottom-left whitespace-nowrap z-[100] block">
+                        <span className="flex flex-col gap-0.5">
+                            <span className="text-[10px] sm:text-xs font-bold text-brand-dark tracking-wide">
+                                {label} {isExternal ? "↗" : "→"}
                             </span>
-                        )}
+                            {description && (
+                                <span className="text-[9px] sm:text-[10px] text-brand-dark/70 max-w-[200px] sm:max-w-[260px] truncate block">
+                                    {description}
+                                </span>
+                            )}
+                        </span>
+                        {/* Arrow */}
+                        <span className="absolute -bottom-1 left-4 w-2 h-2 bg-brand-white rotate-45 block" />
                     </span>
-                    {/* Arrow */}
-                    <span className="absolute -bottom-1 left-4 w-2 h-2 bg-brand-white rotate-45 block" />
-                </span>
+                )}
             </>
         );
-
-        const commonClasses = `group/preview relative inline-flex items-center ${className}`;
 
         if (href.startsWith("http") || href.startsWith("mailto:")) {
             return (
@@ -56,6 +70,7 @@ const PreviewLink = React.forwardRef<HTMLAnchorElement | HTMLDivElement, Preview
                     rel={rel}
                     className={commonClasses}
                     ref={ref as React.Ref<HTMLAnchorElement>}
+                    {...props}
                 >
                     {linkContent}
                 </a>
@@ -63,7 +78,12 @@ const PreviewLink = React.forwardRef<HTMLAnchorElement | HTMLDivElement, Preview
         }
 
         return (
-            <Link href={href} className={commonClasses} ref={ref as React.Ref<HTMLAnchorElement>}>
+            <Link 
+                href={href} 
+                className={commonClasses} 
+                ref={ref as React.Ref<HTMLAnchorElement>}
+                {...(props as React.ComponentPropsWithoutRef<typeof Link>)}
+            >
                 {linkContent}
             </Link>
         );

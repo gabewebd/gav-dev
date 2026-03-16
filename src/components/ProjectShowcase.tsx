@@ -50,6 +50,7 @@ function CardInner({ project, index }: { project: typeof PROJECTS[0]; index: num
                         label="Project Details"
                         description={project.title}
                         target="_self"
+                        disableMagnetic={true}
                         className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full border border-brand-white/20 flex items-center justify-center text-brand-white hover:bg-brand-accent hover:border-brand-accent hover:text-brand-dark group-hover/card:border-white/30 group-hover/card:text-white transition-all group/link shrink-0 relative shadow-lg"
                     >
                         <ArrowRight className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 group-hover/link:-rotate-45 transition-transform" />
@@ -83,6 +84,7 @@ function CardInner({ project, index }: { project: typeof PROJECTS[0]; index: num
                                 icon={ExternalLink}
                                 iconPosition="left"
                                 className="flex-1 !px-0 !py-3 md:!py-3.5 !text-[10px] md:!text-xs !bg-brand-white !text-brand-ink !border-transparent group-hover/card:!bg-white group-hover/card:!text-black transition-colors shadow-lg"
+                                disableMagnetic={true}
                             >
                                 Live Link
                             </Button>
@@ -93,6 +95,7 @@ function CardInner({ project, index }: { project: typeof PROJECTS[0]; index: num
                                 icon={Github}
                                 iconPosition="left"
                                 className="flex-1 !px-0 !py-3 md:!py-3.5 !text-[10px] md:!text-xs !border-brand-white/30 !text-brand-white group-hover/card:!bg-white/10 group-hover/card:!border-white/50 group-hover/card:!text-white transition-colors shadow-lg backdrop-blur-md"
+                                disableMagnetic={true}
                             >
                                 Source
                             </Button>

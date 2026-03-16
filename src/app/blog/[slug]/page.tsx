@@ -298,13 +298,13 @@ export default function BlogPost() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
                         {/* PREVIOUS BLOG CARD WITH FEATURED IMAGE BACKGROUND */}
                         {prevPost ? (
-                            <Link href={`/blog/${prevPost.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/10] rounded-[2rem] overflow-hidden border border-white/10 block cursor-pointer shadow-lg hover:-translate-y-2 transition-all duration-500 hover:shadow-2xl">
-                                <Image src={prevPost.featuredImage} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" alt={prevPost.title} sizes="(max-width: 768px) 100vw, 50vw" quality={90} />
-                                <div className="absolute inset-0 bg-[#0A0A0A]/70 group-hover:bg-[#0A0A0A]/50 transition-colors duration-500" />
-                                <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-12">
-                                    <div className="inline-flex items-center gap-2 mb-4">
-                                        <ArrowLeft className="w-4 h-4 text-brand-accent group-hover:-translate-x-1.5 transition-transform" strokeWidth={3} />
-                                        <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/70">Previous Post</span>
+                            <Link href={`/blog/${prevPost.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/10] rounded-[2rem] overflow-hidden border border-white/10 block cursor-pointer shadow-lg hover:border-brand-white/20 transition-all duration-500 w-full">
+                                <Image src={prevPost.featuredImage} fill className="object-cover group-hover:scale-110 transition-transform duration-1000 ease-out" alt={prevPost.title} sizes="(max-width: 768px) 100vw, 50vw" quality={90} />
+                                <div className="absolute inset-0 bg-[#0A0A0A]/70 group-hover:bg-[#0A0A0A]/50 transition-colors duration-500 z-10" />
+                                <div className="relative h-full w-full flex flex-col justify-end p-8 md:p-12 z-20">
+                                    <div className="flex items-center gap-2 text-[10px] md:text-xs text-brand-accent font-bold uppercase tracking-widest mb-4">
+                                        <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1.5 transition-transform" strokeWidth={3} />
+                                        Previous Post
                                     </div>
                                     <h4 className="font-mori font-bold text-3xl md:text-5xl tracking-tighter text-white leading-[1.1] drop-shadow-md line-clamp-2">
                                         {prevPost.title}
@@ -315,13 +315,13 @@ export default function BlogPost() {
 
                         {/* NEXT BLOG CARD WITH FEATURED IMAGE BACKGROUND */}
                         {nextPost ? (
-                            <Link href={`/blog/${nextPost.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/10] rounded-[2rem] overflow-hidden border border-white/10 block cursor-pointer shadow-lg hover:-translate-y-2 transition-all duration-500 hover:shadow-2xl">
-                                <Image src={nextPost.featuredImage} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" alt={nextPost.title} sizes="(max-width: 768px) 100vw, 50vw" quality={90} />
-                                <div className="absolute inset-0 bg-[#0A0A0A]/70 group-hover:bg-[#0A0A0A]/50 transition-colors duration-500" />
-                                <div className="absolute inset-0 flex flex-col items-end justify-end p-8 md:p-12 text-right">
-                                    <div className="inline-flex items-center gap-2 mb-4">
-                                        <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/70">Next Post</span>
-                                        <ArrowRight className="w-4 h-4 text-brand-accent group-hover:translate-x-1.5 transition-transform" strokeWidth={3} />
+                            <Link href={`/blog/${nextPost.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/10] rounded-[2rem] overflow-hidden border border-white/10 block cursor-pointer shadow-lg hover:border-brand-white/20 transition-all duration-500 w-full">
+                                <Image src={nextPost.featuredImage} fill className="object-cover group-hover:scale-110 transition-transform duration-1000 ease-out" alt={nextPost.title} sizes="(max-width: 768px) 100vw, 50vw" quality={90} />
+                                <div className="absolute inset-0 bg-[#0A0A0A]/70 group-hover:bg-[#0A0A0A]/50 transition-colors duration-500 z-10" />
+                                <div className="relative h-full w-full flex flex-col items-end justify-end p-8 md:p-12 text-right z-20">
+                                    <div className="flex items-center gap-2 text-[10px] md:text-xs text-brand-accent font-bold uppercase tracking-widest mb-4">
+                                        Next Post
+                                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" strokeWidth={3} />
                                     </div>
                                     <h4 className="font-mori font-bold text-3xl md:text-5xl tracking-tighter text-white leading-[1.1] drop-shadow-md line-clamp-2">
                                         {nextPost.title}

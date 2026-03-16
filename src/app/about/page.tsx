@@ -11,6 +11,7 @@ import {
   Download,
   Smile,
   ArrowRight,
+  ArrowUpRight,
 } from "lucide-react";
 
 import Button from "@/components/ui/Button";
@@ -19,6 +20,93 @@ import SectionTitle from "@/components/ui/SectionTitle";
 import HeroHeading from "@/components/ui/HeroHeading";
 import PreviewLink from "@/components/ui/PreviewLink";
 import Magnetic from "@/components/ui/Magnetic";
+import { create } from "zustand";
+
+interface CursorState {
+  active: boolean;
+  label: string;
+  description: string;
+  setActive: (active: boolean, label?: string, description?: string) => void;
+}
+
+const useCursorStore = create<CursorState>((set) => ({
+  active: false,
+  label: "",
+  description: "",
+  setActive: (active, label = "", description = "") => set({ active, label, description }),
+}));
+
+function CustomCursor() {
+  const { active, label, description, setActive } = useCursorStore();
+  const cursorRef = useRef<HTMLDivElement>(null);
+  const mousePosRef = useRef({ x: 0, y: 0 });
+  const lastActiveRef = useRef(active);
+
+  useEffect(() => {
+    lastActiveRef.current = active;
+  }, [active]);
+
+  useGSAP(() => {
+    if (!cursorRef.current) return;
+
+    gsap.set(cursorRef.current, { xPercent: -50, yPercent: -50, opacity: 0, scale: 0.5 });
+
+    const xTo = gsap.quickTo(cursorRef.current, "x", { duration: 0.15, ease: "power3.out" });
+    const yTo = gsap.quickTo(cursorRef.current, "y", { duration: 0.15, ease: "power3.out" });
+
+    const onMouseMove = (e: MouseEvent) => {
+      mousePosRef.current = { x: e.clientX, y: e.clientY };
+      xTo(e.clientX);
+      yTo(e.clientY);
+    };
+
+    window.addEventListener("mousemove", onMouseMove);
+    return () => {
+      window.removeEventListener("mousemove", onMouseMove);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+        const el = document.elementFromPoint(mousePosRef.current.x, mousePosRef.current.y);
+        const isOver = !!el?.closest('[data-cursor-about]');
+        if (lastActiveRef.current && !isOver) {
+            setActive(false);
+        }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [setActive]);
+
+  useEffect(() => {
+    if (!cursorRef.current) return;
+    gsap.to(cursorRef.current, {
+      opacity: active ? 1 : 0,
+      scale: active ? 1 : 0.5,
+      duration: 0.3,
+      ease: "power2.out"
+    });
+  }, [active]);
+
+  useEffect(() => {
+    setActive(false);
+    return () => setActive(false);
+  }, [setActive]);
+
+  return (
+    <div
+      ref={cursorRef}
+      className="hidden lg:flex fixed top-0 left-0 z-[999] pointer-events-none flex-col items-center justify-center"
+    >
+      <div className="bg-brand-white text-brand-dark px-6 py-3 rounded-full shadow-2xl flex flex-col items-center min-w-[140px] border border-brand-dark/10">
+        <span className="font-mori font-black text-[10px] uppercase tracking-[0.2em] mb-1 leading-none">{label}</span>
+        {description && (
+          <span className="text-[9px] font-medium text-brand-dark/50 truncate max-w-[180px]">{description}</span>
+        )}
+      </div>
+    </div>
+  );
+}
 
 
 import { FaFileAlt, FaGraduationCap } from "react-icons/fa";
@@ -100,8 +188,9 @@ export default function AboutPage() {
   const timelineLineRef2 = useRef<HTMLDivElement>(null);
   const timelineLineRef3 = useRef<HTMLDivElement>(null);
   const goalProgressDotRef = useRef<HTMLDivElement>(null);
-  const ctaHighlightRef = useRef<HTMLSpanElement>(null);
   const interestsSectionRef = useRef<HTMLElement>(null);
+
+  const { setActive } = useCursorStore();
 
   const [activeFilter, setActiveFilter] = useState<SkillCategory>("frontend");
   const [activeInterest, setActiveInterest] = useState(0);
@@ -282,21 +371,6 @@ export default function AboutPage() {
       );
     }
 
-    gsap.fromTo(".cta-section > div > *",
-      { y: 60, opacity: 0 },
-      {
-        y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: "power4.out",
-        scrollTrigger: { trigger: ".cta-section", start: "top 80%" }
-      }
-    );
-
-    if (ctaHighlightRef.current) {
-      gsap.fromTo(ctaHighlightRef.current,
-        { scaleX: 0, transformOrigin: "left center" },
-        { scaleX: 1, ease: "none", scrollTrigger: { trigger: ".cta-section", start: "top 70%", end: "center center", scrub: 1 } }
-      );
-    }
-
     gsap.set(".interest-card-wrapper", { scale: 0, y: 50, opacity: 0 });
 
     // ─── Soft skills: stagger rows in from left on scroll ────────────────────
@@ -319,6 +393,7 @@ export default function AboutPage() {
       ref={containerRef}
       className="relative overflow-x-clip pb-32 transition-colors duration-500"
     >
+      <CustomCursor />
 
       <div className="max-w-[100rem] mx-auto px-4 sm:px-6 md:px-12 relative z-10 w-full">
         {/* ─── HERO ── */}
@@ -522,18 +597,18 @@ export default function AboutPage() {
                 return (
                   <div
                     key={`${skill.name}-${i}`}
-                    className="skill-row group flex flex-col items-center gap-3 p-4 sm:p-5 rounded-xl border border-brand-white/10 shadow-none bg-white/[0.02] backdrop-blur-sm hover:border-brand-white/20 hover:bg-brand-accent/[0.05] transition-all duration-300 cursor-default"
+                    className="skill-row group flex flex-col items-center gap-3 p-4 sm:p-5 rounded-xl border border-brand-white/10 shadow-none bg-white/[0.02] backdrop-blur-sm hover:border-brand-white/20 hover:bg-brand-accent/[0.05] transition-all duration-300 cursor-default relative overflow-hidden"
                   >
+                    {skill.learning && (
+                      <span className="absolute top-2 right-2 text-[8px] font-black uppercase tracking-widest px-1.5 py-0.5 rounded-full bg-brand-accent text-brand-dark leading-none z-10">
+                        Soon
+                      </span>
+                    )}
                     <Icon className="w-9 h-9 sm:w-11 sm:h-11 shrink-0 text-brand-white/60 group-hover:text-brand-accent transition-colors duration-300" />
                     <div className="flex flex-col items-center gap-1 w-full">
                       <span className="font-mori font-semibold tracking-tight text-xs sm:text-sm text-brand-white text-center leading-tight">
                         {skill.name}
                       </span>
-                      {skill.learning && (
-                        <span className="text-[8px] font-black uppercase tracking-widest px-1.5 py-0.5 rounded-full bg-brand-accent text-brand-dark leading-none">
-                          Soon
-                        </span>
-                      )}
                     </div>
                   </div>
                 );
@@ -602,7 +677,7 @@ export default function AboutPage() {
 
           <div className="w-full flex flex-col items-center">
             <div
-              className="interests-fan flex justify-center items-center h-[280px] sm:h-[400px] lg:h-[450px] w-full relative"
+              className="interests-fan flex justify-center items-center h-[280px] sm:h-[400px] lg:h-[450px] w-full relative -ml-12 sm:ml-0"
               style={{ perspective: "1200px" }}
             >
               {INTERESTS.map((item, idx) => {
@@ -629,7 +704,7 @@ export default function AboutPage() {
                       }}
                       transition={{ type: "spring", stiffness: 260, damping: 25 }}
                     >
-                      <div className={`w-[160px] h-[220px] sm:w-[240px] sm:h-[320px] lg:w-[300px] lg:h-[400px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/20 shadow-2xl relative transition-shadow duration-300 ${isActive ? "ring-2 ring-brand-accent shadow-[0_20px_50px_rgba(0,0,0,0.5)]" : "hover:shadow-[0_12px_32px_rgba(0,0,0,0.4)]"}`}>
+                      <div className={`w-[130px] h-[180px] sm:w-[240px] sm:h-[320px] lg:w-[300px] lg:h-[400px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/20 shadow-2xl relative transition-shadow duration-300 ${isActive ? "ring-2 ring-brand-accent shadow-[0_20px_50px_rgba(0,0,0,0.5)]" : "hover:shadow-[0_12px_32px_rgba(0,0,0,0.4)]"}`}>
                         <Image
                           src={item.image}
                           alt={item.title}
@@ -743,18 +818,24 @@ export default function AboutPage() {
                 </div>
                 <div className="flex flex-col gap-2 sm:gap-3">
                   {group.items.map((item, ii) => (
+                    <div key={ii}>
                       <PreviewLink
-                        key={ii}
                         href={item.url}
                         label="View Certificate"
                         description={item.url}
-                        className="px-3 sm:px-5 py-3 sm:py-4 -mx-3 sm:-mx-5 rounded-xl sm:rounded-2xl hover:bg-[#111]/50 transition-all duration-300"
+                        data-cursor-about="true"
+                        className="px-3 sm:px-5 py-3 sm:py-4 -mx-3 sm:-mx-5 rounded-xl sm:rounded-2xl hover:bg-[#111]/50 transition-all duration-300 w-full lg:cursor-none"
+                        hideTooltip
+                        disableMagnetic={true}
+                        onMouseEnter={() => setActive(true, "View Certificate", item.url.replace(/^https?:\/\/(www\.)?/, "").split("/")[0])}
+                        onMouseLeave={() => setActive(false)}
                       >
                         <h3 className="font-mori font-semibold text-base sm:text-xl md:text-2xl lg:text-3xl tracking-tight text-brand-white leading-[1.1] group-hover/preview:text-brand-accent transition-colors duration-300">
                           {item.title}
                           <ArrowRight className="inline-block w-[1em] h-[1em] -rotate-45 ml-1 align-baseline" strokeWidth={2.5} />
                         </h3>
                       </PreviewLink>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -763,10 +844,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ─── CTA SECTION ── */}
       <section className="cta-section py-20 px-6 max-w-7xl mx-auto border-t border-brand-white/10 relative z-10">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          <div>
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 text-left">
+          <div className="flex-1">
             <h2 className="font-mori font-semibold text-3xl md:text-5xl uppercase tracking-tighter leading-tight text-brand-white">
               Curious to see what I&apos;ve <span className="text-brand-accent">built</span>?
             </h2>
@@ -774,11 +854,14 @@ export default function AboutPage() {
               Explore my portfolio to see how I combine technical precision with thoughtful design.
             </p>
           </div>
-          <Magnetic>
+          <div className="flex flex-wrap items-center lg:justify-end gap-4 w-full lg:w-auto">
             <Button href="/projects" icon={ArrowRight}>
               View Projects
             </Button>
-          </Magnetic>
+            <Button href="/blog" variant="secondary">
+              Read Blogs
+            </Button>
+          </div>
         </div>
       </section>
     </main>

@@ -30,14 +30,23 @@ const useCursorStore = create<CursorState>((set) => ({
 function CustomCursor() {
   const { active, setActive } = useCursorStore();
   const cursorRef = useRef<HTMLDivElement>(null);
+  const mousePosRef = useRef({ x: 0, y: 0 });
+  const lastActiveRef = useRef(active);
+
+  useEffect(() => {
+    lastActiveRef.current = active;
+  }, [active]);
 
   useGSAP(() => {
     if (!cursorRef.current) return;
+
+    gsap.set(cursorRef.current, { xPercent: -50, yPercent: -50, opacity: 0, scale: 0.5 });
 
     const xTo = gsap.quickTo(cursorRef.current, "x", { duration: 0.15, ease: "power3.out" });
     const yTo = gsap.quickTo(cursorRef.current, "y", { duration: 0.15, ease: "power3.out" });
 
     const onMouseMove = (e: MouseEvent) => {
+      mousePosRef.current = { x: e.clientX, y: e.clientY };
       xTo(e.clientX);
       yTo(e.clientY);
     };
@@ -46,18 +55,54 @@ function CustomCursor() {
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
     };
-  });
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const el = document.elementFromPoint(mousePosRef.current.x, mousePosRef.current.y);
+      const isOver = !!el?.closest('[data-cursor-project]');
+      if (lastActiveRef.current !== isOver) {
+        setActive(isOver);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [setActive]);
+
+  useEffect(() => {
+    if (!cursorRef.current) return;
+    
+    if (active) {
+      gsap.to(cursorRef.current, {
+        opacity: 1,
+        scale: 1,
+        duration: 0.3,
+        ease: "power2.out"
+      });
+    } else {
+      gsap.to(cursorRef.current, {
+        opacity: 0,
+        scale: 0.5,
+        duration: 0.3,
+        ease: "power2.out"
+      });
+    }
+  }, [active]);
 
   // Ensure cursor is hidden on mount and when navigating away
   useEffect(() => {
     setActive(false);
+    if (cursorRef.current) {
+        gsap.set(cursorRef.current, { opacity: 0, scale: 0.5 });
+    }
     return () => setActive(false);
   }, [setActive]);
 
   return (
     <div
       ref={cursorRef}
-      className={`hidden lg:flex fixed top-0 left-0 z-[100] pointer-events-none flex-col items-center justify-center -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ease-out will-change-transform ${active ? 'opacity-100 scale-100' : 'opacity-0 scale-50'}`}
+      className="hidden lg:flex fixed top-0 left-0 z-[999] pointer-events-none flex-col items-center justify-center will-change-transform opacity-0 scale-50"
     >
       <div className="w-28 h-28 md:w-32 md:h-32 rounded-full bg-white flex items-center justify-center shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
         <ArrowUpRight className="w-10 h-10 md:w-12 md:h-12 text-black stroke-[1.5]" />
@@ -182,10 +227,8 @@ export default function ProjectsPage() {
 
   return (
     <>
-      <CustomCursor />
-
       <main ref={containerRef} className="relative overflow-x-clip pt-28 md:pt-40 pb-32 transition-colors duration-500">
-
+        <CustomCursor />
 
 
         <div
@@ -223,7 +266,10 @@ export default function ProjectsPage() {
         <div className="max-w-[100rem] mx-auto px-4 sm:px-6 md:px-12 relative z-10">
 
           <section className="hero-section mb-20 md:mb-32 relative max-w-7xl mx-auto">
-            <div className="hero-bg-icon absolute top-[-5vh] right-[-5vw] lg:right-5 w-[300px] h-[300px] md:w-[450px] md:h-[450px] pointer-events-none z-0 opacity-[0.05]">
+            <div 
+              className="hero-bg-icon absolute top-[-5vh] right-[-5vw] lg:right-5 w-[300px] h-[300px] md:w-[450px] md:h-[450px] pointer-events-none z-0 opacity-[0.05]"
+              onMouseEnter={() => setActive(false)}
+            >
               <Layers className="w-full h-full text-white" strokeWidth={1} />
             </div>
 
@@ -267,6 +313,7 @@ export default function ProjectsPage() {
                   <div
                     key={i}
                     className={`nav-project-item relative pl-10 py-2 cursor-default transition-all duration-500 text-white will-change-transform ${activeIndex === i ? 'opacity-100 translate-x-4' : 'opacity-40 translate-x-0 scale-[0.85] origin-left'}`}
+                    onMouseEnter={() => setActive(false)}
                   >
                     <div className={`nav-dot absolute left-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#BFFF00] transition-all duration-500 shadow-[0_0_10px_rgba(191,255,0,0.8)] ${activeIndex === i ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
 
@@ -291,10 +338,15 @@ export default function ProjectsPage() {
 
 
 
-                    <div className="relative w-full aspect-[4/3] md:aspect-[16/10] bg-[#0A0A0A] rounded-2xl md:rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.6)] cursor-pointer lg:cursor-none group">
+                    <div 
+                      data-cursor-project="true"
+                      className="relative w-full aspect-[4/3] md:aspect-[16/10] bg-[#0A0A0A] rounded-2xl md:rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.6)] cursor-pointer lg:cursor-none group"
+                      onMouseEnter={() => setActive(true)}
+                      onMouseLeave={() => setActive(false)}
+                    >
                       <Link
                         href={`/projects/${project.slug}`}
-                        className="hidden lg:block absolute inset-0 z-20"
+                        className="hidden lg:block absolute inset-0 z-20 lg:cursor-none"
                         onMouseEnter={() => setActive(true)}
                         onMouseLeave={() => setActive(false)}
                       />
@@ -313,7 +365,10 @@ export default function ProjectsPage() {
                       <div className="absolute inset-0 bg-black/0 lg:group-hover:bg-black/50 transition-colors duration-700 pointer-events-none z-10" />
                     </div>
 
-                    <div className="project-details-reveal flex flex-col xl:flex-row gap-8 xl:gap-16 justify-between items-start">
+                    <div 
+                      className="project-details-reveal flex flex-col xl:flex-row gap-8 xl:gap-16 justify-between items-start"
+                      onMouseEnter={() => setActive(false)}
+                    >
 
                       <div className="w-full xl:w-[60%] flex flex-col gap-6">
                         <p className="text-base md:text-lg text-white/70 leading-relaxed font-medium">
@@ -333,10 +388,10 @@ export default function ProjectsPage() {
 
                       <div className="w-full xl:w-[35%] flex flex-col gap-6">
                         <div className="flex flex-row xl:flex-col gap-4">
-                          <Button href={project.live} target="_blank" icon={ExternalLink} iconPosition="left" className="flex-1 xl:flex-none w-full !px-0 !py-4 md:!py-5 !text-[11px] md:!text-xs !bg-white !text-black !border-transparent hover:scale-[1.02] transition-transform shadow-xl">
+                          <Button href={project.live} target="_blank" icon={ExternalLink} iconPosition="left" className="flex-1 xl:flex-none w-full !px-0 !py-4 md:!py-5 !text-[11px] md:!text-xs !bg-white !text-black !border-transparent hover:scale-[1.02] transition-transform shadow-xl" disableMagnetic={true}>
                             Live Link
                           </Button>
-                          <Button href={project.github} target="_blank" variant="secondary" icon={Github} iconPosition="left" className="flex-1 xl:flex-none w-full !px-0 !py-4 md:!py-5 !text-[11px] md:!text-xs !border-white/20 !text-white hover:!bg-white/10 hover:!border-white transition-all shadow-xl">
+                          <Button href={project.github} target="_blank" variant="secondary" icon={Github} iconPosition="left" className="flex-1 xl:flex-none w-full !px-0 !py-4 md:!py-5 !text-[11px] md:!text-xs !border-white/20 !text-white hover:!bg-white/10 hover:!border-white transition-all shadow-xl" disableMagnetic={true}>
                             Source
                           </Button>
                         </div>
@@ -360,9 +415,12 @@ export default function ProjectsPage() {
           </section>
         </div>
 
-      <section className="cta-section py-20 px-6 max-w-7xl mx-auto border-t border-brand-white/10 relative z-10">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8 text-left">
-          <div>
+      <section 
+        className="cta-section py-20 px-6 max-w-7xl mx-auto border-t border-brand-white/10 relative z-10"
+        onMouseEnter={() => setActive(false)}
+      >
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 text-left">
+          <div className="flex-1">
             <h2 className="font-mori font-semibold text-3xl md:text-5xl uppercase tracking-tighter leading-tight text-brand-white">
               Curious to read some <span className="text-brand-accent">insights</span>?
             </h2>
@@ -370,11 +428,14 @@ export default function ProjectsPage() {
               Visit my blog where I share my thoughts on development, design, and technical deep dives into building modern systems.
             </p>
           </div>
-          <Magnetic>
+          <div className="flex flex-wrap items-center lg:justify-end gap-4 w-full lg:w-auto">
             <Button href="/blog" icon={ArrowRight}>
-              Visit Blog
+              Read Blogs
             </Button>
-          </Magnetic>
+            <Button href="/contact" variant="secondary">
+              Get in Touch
+            </Button>
+          </div>
         </div>
       </section>
       </main>

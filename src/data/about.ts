@@ -153,7 +153,7 @@ export const SOFT_SKILLS: SoftSkill[] = [
     },
     {
         title: "Adaptability",
-        description: "Quickly adjusting to new technologies, environments, and shifting project requirements with ease.",
+        description: "Quickly adjusting to new technologies, environments, and shifting project requirements with a strong willingness to learn and patience.",
         icon: Workflow
     },
     {

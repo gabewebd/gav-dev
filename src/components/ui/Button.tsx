@@ -3,6 +3,7 @@
 import Link from "next/link";
 import React, { forwardRef } from "react";
 import { LucideIcon } from "lucide-react";
+import Magnetic from "./Magnetic";
 
 interface ButtonProps {
     href?: string;
@@ -18,6 +19,7 @@ interface ButtonProps {
     disabled?: boolean;
     type?: "button" | "submit" | "reset";
     iconClassName?: string;
+    disableMagnetic?: boolean;
 }
 
 const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, ButtonProps>(({
@@ -34,6 +36,7 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, ButtonProps>(({
     disabled,
     type = "button",
     iconClassName = "",
+    disableMagnetic = false,
 }, ref) => {
     const baseStyles = "group inline-flex items-center justify-center gap-2 md:gap-3 rounded-full font-mori font-bold uppercase tracking-[0.15em] text-xs md:text-sm transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap";
 
@@ -54,22 +57,18 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, ButtonProps>(({
         </>
     );
 
-    if (href) {
-        return (
-            <Link
-                href={href}
-                className={`${baseStyles} ${variants[variant]} ${className}`}
-                target={target}
-                rel={rel}
-                aria-label={ariaLabel}
-                ref={ref as React.Ref<HTMLAnchorElement>}
-            >
-                {content}
-            </Link>
-        );
-    }
-
-    return (
+    const buttonElement = href ? (
+        <Link
+            href={href}
+            className={`${baseStyles} ${variants[variant]} ${className}`}
+            target={target}
+            rel={rel}
+            aria-label={ariaLabel}
+            ref={ref as React.Ref<HTMLAnchorElement>}
+        >
+            {content}
+        </Link>
+    ) : (
         <button
             type={type}
             onClick={onClick}
@@ -80,6 +79,16 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, ButtonProps>(({
         >
             {content}
         </button>
+    );
+
+    if (disableMagnetic) {
+        return buttonElement;
+    }
+
+    return (
+        <Magnetic>
+            {buttonElement}
+        </Magnetic>
     );
 });
 

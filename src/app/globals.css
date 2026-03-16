@@ -27,11 +27,11 @@
    THEME VARIABLES
    ───────────────────────────────────────────────────────────── */
 :root {
-  --background: #050505;
+  --background: #131111;
   --foreground: #EDEDED;
   --brand-accent: #CFF949;
   --brand-white: #EDEDED;
-  --brand-dark: #0A0A0A;
+  --brand-dark: #1a1919;
   --brand-dark-alt: #111111;
 }
 

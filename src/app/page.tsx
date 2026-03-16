@@ -149,7 +149,7 @@ const Masonry: React.FC<MasonryProps> = ({
   colorShiftOnHover = false
 }) => {
   const columns = useMedia(
-    ['(min-width:1500px)', '(min-width:1000px)', '(min-width:600px)', '(min-width:400px)'],
+    ['(min-width:1500px)', '(min-width:1100px)', '(min-width:768px)', '(min-width:320px)'],
     [5, 4, 3, 2],
     1
   );
@@ -801,7 +801,8 @@ export default function Home() {
                       <span className="font-mori font-semibold text-lg text-brand-white">{TESTIMONIALS[tIndex].author[0]}</span>
                     </div>
                     <div>
-                      <p className="text-xs md:text-sm text-brand-ink/70 dark:text-brand-white/70">{TESTIMONIALS[tIndex].role}</p>
+                      <h4 className="font-mori font-bold text-sm md:text-base text-brand-white leading-tight mb-0.5">{TESTIMONIALS[tIndex].author}</h4>
+                      <p className="text-[10px] md:text-sm text-brand-white/50">{TESTIMONIALS[tIndex].role}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">

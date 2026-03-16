@@ -27,8 +27,8 @@ export default function AmbientBackground() {
     // 2. Blob Scroll-Triggered Movement
     // Acid Green: Drifts from Top-Left gently towards the Center/Bottom-Right
     gsap.to('.blob-wrapper-1', {
-      x: "40vw", // Reduced from 90vw to keep it on screen
-      y: "40vh", // Reduced from 110vh to keep it on screen
+      x: () => window.innerWidth < 768 ? "20vw" : "40vw",
+      y: () => window.innerWidth < 768 ? "20vh" : "40vh",
       ease: "none",
       scrollTrigger: {
         trigger: "body",
@@ -40,8 +40,8 @@ export default function AmbientBackground() {
 
     // Electric Blue: Drifts from Right gently towards the Bottom-Left
     gsap.to('.blob-wrapper-2', {
-      x: "-40vw", // Reduced from -100vw to keep it on screen
-      y: "30vh",  // Reduced from 100vh to keep it on screen
+      x: () => window.innerWidth < 768 ? "-20vw" : "-40vw",
+      y: () => window.innerWidth < 768 ? "15vh" : "30vh",
       ease: "none",
       scrollTrigger: {
         trigger: "body",

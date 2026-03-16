@@ -23,7 +23,7 @@ function ContentBlockRenderer({ block, onImageClick }: { block: ContentBlock, on
         case 'role-title':
             return (
                 <div className="mb-8">
-                    <h3 className="font-bold text-brand-white text-xl md:text-2xl underline decoration-brand-accent decoration-[3px] underline-offset-[12px] inline-block">
+                    <h3 className="font-bold text-brand-white text-xl md:text-2xl inline-block">
                         {block.text}
                     </h3>
                 </div>
@@ -197,8 +197,8 @@ export default function ProjectDetail() {
 
 
             {/* ── 1. 100VH HERO IMAGE ── */}
-            <section className="relative w-full h-[80vh] md:h-screen flex items-end pb-16 md:pb-24 px-6 md:px-12">
-                <div className="absolute inset-0 z-0 opacity-25">
+            <section className="relative w-full h-[60vh] md:h-screen flex items-end pb-16 md:pb-24 px-6 md:px-12">
+                <div className="absolute inset-0 z-0 opacity-10 md:opacity-25">
                     <GridMotion items={gridItems} gradientColor="transparent" />
                 </div>
 
@@ -215,18 +215,21 @@ export default function ProjectDetail() {
                         <h1 className="hero-title font-mori font-semibold text-5xl md:text-7xl lg:text-[8rem] tracking-tighter leading-none text-white drop-shadow-lg">
                             {project.title}
                         </h1>
+                        <p className="hero-title text-brand-white/70 font-mori font-bold uppercase tracking-[0.2em] text-[11px] md:text-sm mt-4 md:mt-6 drop-shadow-md">
+                            {project.projectRole}
+                        </p>
                     </div>
 
                     <div className="hero-title flex flex-row flex-wrap items-center gap-3 md:gap-4 mt-4 md:mt-0">
                         {project.live !== "#" && (
-                            <PreviewLink href={project.live} label="External Link" description={project.live} className="hero-title">
+                            <PreviewLink href={project.live} label="External Link" description={project.live} className="hero-title" disableMagnetic={true}>
                                 <div className="group bg-brand-white text-brand-dark px-6 md:px-8 py-3.5 md:py-4 rounded-full font-mori font-bold uppercase tracking-widest text-[10px] md:text-xs flex items-center gap-2 hover:opacity-85 transition-opacity shadow-lg">
                                     <ExternalLink size={16} /> Live Link
                                 </div>
                             </PreviewLink>
                         )}
                         {project.github !== "#" && (
-                            <PreviewLink href={project.github} label="Repository" description={project.github} className="hero-title">
+                            <PreviewLink href={project.github} label="Repository" description={project.github} className="hero-title" disableMagnetic={true}>
                                 <div className="group border border-white/30 text-white backdrop-blur-md px-6 md:px-8 py-3.5 md:py-4 rounded-full font-mori font-bold uppercase tracking-widest text-[10px] md:text-xs flex items-center gap-2 hover:bg-white/10 transition-colors shadow-lg">
                                     <Github size={16} /> Source Code
                                 </div>
@@ -376,29 +379,33 @@ export default function ProjectDetail() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
                         {prevProject && (
-                            <Link href={`/projects/${prevProject.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/10] rounded-[2rem] overflow-hidden border border-brand-white/10 block cursor-pointer shadow-lg hover:-translate-y-2 transition-all duration-500 hover:shadow-2xl">
-                                <Image src={prevProject.featuredImg || prevProject.heroImg} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" alt={prevProject.title} sizes="(max-width: 768px) 100vw, 50vw" quality={90} />
-                                <div className="absolute inset-0 bg-[#0A0A0A]/70 group-hover:bg-[#0A0A0A]/50 transition-colors duration-500" />
-                                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                                    <div className="inline-flex items-center gap-2 mb-4">
-                                        <ArrowLeft className="w-3.5 h-3.5 text-brand-accent group-hover:-translate-x-1.5 transition-transform" strokeWidth={3} />
-                                        <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/70">Previous</span>
+                            <Link href={`/projects/${prevProject.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/10] rounded-[2rem] overflow-hidden border border-brand-white/10 block cursor-pointer shadow-lg hover:border-brand-white/20 transition-all duration-500 w-full">
+                                <Image src={prevProject.featuredImg} fill className="object-cover group-hover:scale-110 transition-transform duration-1000 ease-out" alt={prevProject.title} sizes="(max-width: 768px) 100vw, 50vw" quality={90} />
+                                <div className="absolute inset-0 bg-[#0A0A0A]/70 group-hover:bg-[#0A0A0A]/50 transition-colors duration-500 z-10" />
+                                <div className="relative h-full w-full flex flex-col justify-end p-8 md:p-12 z-20">
+                                    <div className="flex items-center gap-2 text-[10px] md:text-xs text-brand-accent font-bold uppercase tracking-widest mb-4">
+                                        <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1.5 transition-transform" strokeWidth={3} />
+                                        Previous Project
                                     </div>
-                                    <h4 className="font-mori font-bold text-2xl md:text-5xl tracking-tighter text-white leading-[1.1] drop-shadow-md">{prevProject.title}</h4>
+                                    <h4 className="font-mori font-bold text-3xl md:text-5xl tracking-tighter text-white leading-[1.1] drop-shadow-md line-clamp-2">
+                                        {prevProject.title}
+                                    </h4>
                                 </div>
                             </Link>
                         )}
 
                         {nextProject && (
-                            <Link href={`/projects/${nextProject.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/10] rounded-[2rem] overflow-hidden border border-brand-white/10 block cursor-pointer shadow-lg hover:-translate-y-2 transition-all duration-500 hover:shadow-2xl">
-                                <Image src={nextProject.featuredImg || nextProject.heroImg} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" alt={nextProject.title} sizes="(max-width: 768px) 100vw, 50vw" quality={90} />
-                                <div className="absolute inset-0 bg-[#0A0A0A]/70 group-hover:bg-[#0A0A0A]/50 transition-colors duration-500" />
-                                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                                    <div className="inline-flex items-center gap-2 mb-4">
-                                        <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-white/70">Next Project</span>
-                                        <ArrowRight className="w-3.5 h-3.5 text-brand-accent group-hover:translate-x-1.5 transition-transform" strokeWidth={3} />
+                            <Link href={`/projects/${nextProject.slug}`} className="group relative w-full aspect-[4/3] md:aspect-[16/10] rounded-[2rem] overflow-hidden border border-brand-white/10 block cursor-pointer shadow-lg hover:border-brand-white/20 transition-all duration-500 w-full">
+                                <Image src={nextProject.featuredImg} fill className="object-cover group-hover:scale-110 transition-transform duration-1000 ease-out" alt={nextProject.title} sizes="(max-width: 768px) 100vw, 50vw" quality={90} />
+                                <div className="absolute inset-0 bg-[#0A0A0A]/70 group-hover:bg-[#0A0A0A]/50 transition-colors duration-500 z-10" />
+                                <div className="relative h-full w-full flex flex-col items-end justify-end p-8 md:p-12 text-right z-20">
+                                    <div className="flex items-center gap-2 text-[10px] md:text-xs text-brand-accent font-bold uppercase tracking-widest mb-4">
+                                        Next Project
+                                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" strokeWidth={3} />
                                     </div>
-                                    <h4 className="font-mori font-bold text-2xl md:text-5xl tracking-tighter text-white leading-[1.1] drop-shadow-md">{nextProject.title}</h4>
+                                    <h4 className="font-mori font-bold text-3xl md:text-5xl tracking-tighter text-white leading-[1.1] drop-shadow-md line-clamp-2">
+                                        {nextProject.title}
+                                    </h4>
                                 </div>
                             </Link>
                         )}
