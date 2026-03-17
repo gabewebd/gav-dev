@@ -347,9 +347,9 @@ const StatusTooltip = ({ icon: Icon, label, value }: { icon: any; label: string;
     <div className="relative group flex items-center justify-center w-full cursor-pointer py-4 outline-none" tabIndex={isTouch ? 0 : -1}>
       <Icon className={`w-5 h-5 md:w-6 md:h-6 text-brand-dark transition-transform duration-300 group-hover:scale-110 ${isTouch ? "group-focus:scale-110" : ""}`} strokeWidth={2.5} />
       <div className={`absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:-translate-x-1 transition-all duration-300 pointer-events-none z-50 ${isTouch ? "group-focus:opacity-100 group-focus:-translate-x-1" : ""}`}>
-        <div className="bg-white text-[#111111] px-4 py-2.5 rounded-xl border border-black/5 shadow-xl">
-          <span className="text-[10px] font-bold uppercase tracking-widest text-muted mb-0.5 block">{label}</span>
-          <span className="text-xs md:text-sm font-mori font-bold whitespace-nowrap block">{value}</span>
+        <div className="bg-white text-brand-dark px-4 py-2.5 rounded-xl border border-black/5 shadow-xl">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-brand-dark/50 mb-0.5 block">{label}</span>
+          <span className="text-xs md:text-sm font-mori font-bold whitespace-nowrap block text-brand-dark">{value}</span>
         </div>
         <div className="absolute right-[-4px] top-1/2 -translate-y-1/2 border-[6px] border-transparent border-l-white" />
       </div>
