@@ -836,7 +836,7 @@ export default function Home() {
             <motion.span
               whileHover={{ scale: 1.08, rotateZ: -4, y: -8 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className="inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-3 sm:py-6 rounded-full bg-white/[0.05] border border-white/10 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-colors duration-300 font-mori font-bold text-[clamp(3.5rem,9vw,8rem)] text-white cursor-default leading-[0.9] tracking-tighter"
+              className="inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-3 sm:py-6 rounded-full bg-white/[0.05] border border-white/10 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] hover:bg-brand-blue hover:text-white hover:border-brand-blue transition-colors duration-300 font-mori font-bold text-[clamp(3.5rem,9vw,8rem)] text-white cursor-default leading-[0.9] tracking-tighter"
             >
               Let&apos;s
             </motion.span>
@@ -844,7 +844,7 @@ export default function Home() {
             <motion.span
               whileHover={{ scale: 1.08, rotateZ: 3, y: -8 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className="inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-3 sm:py-6 rounded-[2rem] sm:rounded-[4rem] bg-brand-accent shadow-[0_10px_40px_-10px_rgba(191,255,0,0.4)] hover:bg-blue-600 hover:text-white transition-colors duration-300 font-mori font-bold text-[clamp(3.5rem,9vw,8rem)] text-brand-dark cursor-default leading-[0.9] tracking-tighter"
+              className="inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-3 sm:py-6 rounded-[2rem] sm:rounded-[4rem] bg-brand-accent shadow-[0_10px_40px_-10px_rgba(var(--brand-accent-rgb),0.4)] hover:bg-brand-blue hover:text-white hover:border-brand-blue transition-colors duration-300 font-mori font-bold text-[clamp(3.5rem,9vw,8rem)] text-brand-dark cursor-default leading-[0.9] tracking-tighter"
             >
               build
             </motion.span>
@@ -852,7 +852,7 @@ export default function Home() {
             <motion.span
               whileHover={{ scale: 1.08, rotateZ: -2, y: -8 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className="inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-3 sm:py-6 rounded-full bg-brand-ink dark:bg-brand-white shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2)] hover:bg-blue-600 transition-colors duration-300 font-mori font-bold text-[clamp(3.5rem,9vw,8rem)] text-white dark:text-brand-ink cursor-default leading-[0.9] tracking-tighter hover:text-white"
+              className="inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-3 sm:py-6 rounded-full bg-brand-ink dark:bg-brand-white shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2)] hover:bg-brand-blue hover:text-white transition-colors duration-300 font-mori font-bold text-[clamp(3.5rem,9vw,8rem)] text-white dark:text-brand-ink cursor-default leading-[0.9] tracking-tighter hover:text-white"
             >
               something
             </motion.span>
@@ -860,7 +860,7 @@ export default function Home() {
             <motion.span
               whileHover={{ scale: 1.08, rotateZ: 5, y: -8 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className="inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-3 sm:py-6 rounded-[2rem] sm:rounded-[4rem] border-2 border-white hover:bg-blue-600 hover:border-blue-600 hover:text-white transition-colors duration-300 font-mori font-bold text-[clamp(3.5rem,9vw,8rem)] text-white cursor-default leading-[0.9] tracking-tighter"
+              className="inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-3 sm:py-6 rounded-[2rem] sm:rounded-[4rem] border-2 border-white hover:bg-brand-accent hover:border-brand-accent hover:text-brand-dark transition-colors duration-300 font-mori font-bold text-[clamp(3.5rem,9vw,8rem)] text-white cursor-default leading-[0.9] tracking-tighter"
             >
               together.
             </motion.span>

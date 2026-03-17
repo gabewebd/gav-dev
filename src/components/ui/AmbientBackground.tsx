@@ -58,7 +58,7 @@ export default function AmbientBackground() {
       {/* ── AURORA BLOBS ── */}
       <div className="absolute inset-0 overflow-visible mix-blend-screen opacity-50">
         <div className="blob-wrapper-1 absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] max-w-[600px] max-h-[600px]">
-          <div className="aurora-blob w-full h-full bg-[#BFFF00] rounded-full blur-[100px] md:blur-[140px] opacity-60 md:opacity-40" />
+          <div className="aurora-blob w-full h-full bg-brand-accent rounded-full blur-[100px] md:blur-[140px] opacity-60 md:opacity-40" />
         </div>
         <div className="blob-wrapper-2 absolute top-[30%] right-[-10%] w-[60vw] h-[60vw] max-w-[700px] max-h-[700px]">
           <div className="aurora-blob w-full h-full bg-[#3B82F6] rounded-full blur-[120px] md:blur-[160px] opacity-70 md:opacity-50" />

@@ -161,7 +161,7 @@ export default function Navbar() {
                                     </span>
                                     {/* Premium Active Indicator: Subtle dot below text */}
                                     {isActive && (
-                                        <span className="absolute -bottom-1 w-1 h-1 rounded-full bg-[#BFFF00] shadow-[0_0_8px_rgba(191,255,0,0.6)]" />
+                                        <span className="absolute -bottom-1 w-1 h-1 rounded-full bg-brand-accent shadow-[0_0_8px_rgba(var(--brand-accent-rgb),0.6)]" />
                                     )}
                                 </Link>
                             );
@@ -182,7 +182,7 @@ export default function Navbar() {
                         </div>
                         <Link
                             href="/contact"
-                            className="hidden md:flex items-center justify-center px-5 py-2.5 text-sm font-mori font-semibold text-[#050505] bg-white rounded-full hover:scale-105 hover:bg-[#BFFF00] transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_20px_rgba(191,255,0,0.3)]"
+                            className="hidden md:flex items-center justify-center px-5 py-2.5 text-sm font-mori font-semibold text-[#050505] bg-white rounded-full hover:scale-105 hover:bg-brand-accent transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_20px_rgba(var(--brand-accent-rgb),0.3)]"
                         >
                             Contact
                         </Link>

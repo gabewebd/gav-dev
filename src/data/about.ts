@@ -181,8 +181,8 @@ export const SOFT_SKILLS: SoftSkill[] = [
 
 export const INTERESTS: Interest[] = [
     {
-        title: "Reading & Watching Stories",
-        desc: "I love consuming stories in any form—books, shows, or movies. I'm especially drawn to ones that make me think and completely immerse me in their world.",
+        title: "Immersive Stories",
+        desc: "I love consuming stories in any form like lore-driven games, shows, or movies. I'm especially drawn to ones that make me think and completely immerse me in their world.",
         icon: Tv,
         image: "/assets/interests/stories.png"
     },

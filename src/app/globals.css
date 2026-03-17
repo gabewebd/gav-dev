@@ -8,6 +8,7 @@
   --color-brand-dark: #0A0A0A;
   --color-brand-accent: #CFF949;
   --color-brand-accent-muted: #b8e600;
+  --color-brand-blue: #3B82F6;
   --color-brand-white: #EDEDED;
 
   --color-brand-dark: #0A0A0A;
@@ -32,6 +33,8 @@
   --background: #131111;
   --foreground: #EDEDED;
   --brand-accent: #CFF949;
+  --brand-accent-rgb: 207, 249, 73;
+  --brand-blue-rgb: 59, 130, 246;
   --brand-white: #EDEDED;
   --brand-dark: #0A0A0A;
   --brand-dark-alt: #111111;
@@ -50,7 +53,7 @@ body {
 }
 
 ::selection {
-  background-color: #CCFF00;
+  background-color: var(--brand-accent);
   color: #111111;
 }
 

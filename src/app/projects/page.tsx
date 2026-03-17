@@ -280,7 +280,7 @@ export default function ProjectsPage() {
                 <span className={`text-base sm:text-lg font-mori font-black ${activeIndex === i ? 'text-white' : 'text-white'}`}>
                   0{i + 1}
                 </span>
-                <div className={`w-2 h-2 rounded-full transition-colors duration-500 ${activeIndex === i ? 'bg-[#BFFF00] shadow-[0_0_8px_rgba(191,255,0,0.8)]' : 'bg-white/30'}`} />
+                <div className={`w-2 h-2 rounded-full transition-colors duration-500 ${activeIndex === i ? 'bg-brand-accent shadow-[0_0_8px_rgba(var(--brand-accent-rgb),0.8)]' : 'bg-white/30'}`} />
                 <span className={`text-4xl sm:text-5xl font-mori font-bold tracking-tight transition-colors duration-500 ${activeIndex === i ? 'text-white' : 'text-white'}`}>
                   {p.title}
                 </span>
@@ -346,7 +346,7 @@ export default function ProjectsPage() {
                       onMouseEnter={() => setActive(false)}
                       onClick={(e) => handleScrollTo(e, p.slug)}
                     >
-                      <div className={`nav-dot absolute left-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#BFFF00] transition-all duration-500 shadow-[0_0_10px_rgba(191,255,0,0.8)] ${activeIndex === i ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
+                      <div className={`nav-dot absolute left-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-brand-accent transition-all duration-500 shadow-[0_0_10px_rgba(var(--brand-accent-rgb),0.8)] ${activeIndex === i ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
 
                       <div className={`font-mori uppercase tracking-[0.25em] font-bold text-muted mb-2 transition-all duration-500 ${activeIndex === i ? 'text-xs' : 'text-[10px]'}`}>
                         {p.tagline}

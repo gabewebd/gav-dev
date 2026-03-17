@@ -411,15 +411,15 @@ export default function AboutPage() {
           onEnter: () => {
             dot.classList.add('is-filled');
             if (selector === '.dot-interaction-goal') {
-              yearText?.classList.add('text-[#bbf700]/[0.1]');
+              yearText?.classList.add('text-brand-accent/[0.1]');
               yearText?.classList.remove('text-brand-white/[0.02]');
               const containerGoal = dot.closest('.group\\/goal');
               const divider = containerGoal?.querySelector('.goal-divider');
               const iconBox = containerGoal?.querySelector('.icon-box');
               const icon = iconBox?.querySelector('svg');
-              divider?.classList.add('bg-[#bbf700]');
+              divider?.classList.add('bg-brand-accent');
               divider?.classList.remove('bg-brand-white/10');
-              iconBox?.classList.add('bg-[#bbf700]', 'border-[#bbf700]');
+              iconBox?.classList.add('bg-brand-accent', 'border-brand-accent');
               iconBox?.classList.remove('bg-white/[0.02]', 'border-brand-white/10');
               icon?.classList.add('text-brand-dark');
               icon?.classList.remove('text-brand-white/30');
@@ -431,15 +431,15 @@ export default function AboutPage() {
           onLeaveBack: () => {
             dot.classList.remove('is-filled');
             if (selector === '.dot-interaction-goal') {
-              yearText?.classList.remove('text-[#bbf700]/[0.1]');
+              yearText?.classList.remove('text-brand-accent/[0.1]');
               yearText?.classList.add('text-brand-white/[0.02]');
               const containerGoal = dot.closest('.group\\/goal');
               const divider = containerGoal?.querySelector('.goal-divider');
               const iconBox = containerGoal?.querySelector('.icon-box');
               const icon = iconBox?.querySelector('svg');
-              divider?.classList.remove('bg-[#bbf700]');
+              divider?.classList.remove('bg-brand-accent');
               divider?.classList.add('bg-brand-white/10');
-              iconBox?.classList.remove('bg-[#bbf700]', 'border-[#bbf700]');
+              iconBox?.classList.remove('bg-brand-accent', 'border-brand-accent');
               iconBox?.classList.add('bg-white/[0.02]', 'border-brand-white/10');
               icon?.classList.remove('text-brand-dark');
               icon?.classList.add('text-brand-white/30');
@@ -485,12 +485,12 @@ export default function AboutPage() {
     const style = document.createElement('style');
     style.textContent = `
       .dot-marker.is-filled {
-        background-color: #bbf700 !important;
-        border-color: #bbf700 !important;
-        box-shadow: 0 0 20px rgba(187,247,0,0.5) !important;
+        background-color: var(--brand-accent) !important;
+        border-color: var(--brand-accent) !important;
+        box-shadow: 0 0 20px rgba(var(--brand-accent-rgb), 0.5) !important;
       }
       .dot-marker.is-filled .dot-inner {
-        background-color: #bbf700 !important;
+        background-color: var(--brand-accent) !important;
         opacity: 1 !important;
       }
     `;
@@ -630,7 +630,7 @@ export default function AboutPage() {
                 {/* Filling Progress Line */}
                 <div
                   ref={timelineLineRef2}
-                  className="absolute top-0 left-0 w-[2px] md:w-[3px] bg-[#bbf700] origin-top z-10"
+                  className="absolute top-0 left-0 w-[2px] md:w-[3px] bg-brand-accent origin-top z-10"
                   style={{ height: '0%' }} // Controlled by GSAP
                 />
 
@@ -643,13 +643,13 @@ export default function AboutPage() {
                       >
                         {/* Wavelength Dot */}
                         <div className="absolute -left-[14px] md:-left-[18px] top-4 z-20">
-                          <div className="w-7 h-7 md:w-9 md:h-9 rounded-full bg-brand-dark border-2 border-brand-white/10 flex items-center justify-center transition-all duration-700 dot-marker group-hover/edu:border-[#bbf700] group-hover/edu:bg-[#bbf700]/5 dot-interaction-edu">
-                            <div className="w-2.5 h-2.5 rounded-full bg-brand-white/20 transition-all duration-500 group-hover/edu:bg-[#bbf700] dot-inner" />
+                          <div className="w-7 h-7 md:w-9 md:h-9 rounded-full bg-brand-dark border-2 border-brand-white/10 flex items-center justify-center transition-all duration-700 dot-marker group-hover/edu:border-brand-accent group-hover/edu:bg-brand-accent/5 dot-interaction-edu">
+                            <div className="w-2.5 h-2.5 rounded-full bg-brand-white/20 transition-all duration-500 group-hover/edu:bg-brand-accent dot-inner" />
                           </div>
                         </div>
 
                         <div className="flex flex-col gap-2 md:gap-4 mb-6">
-                          <span className="font-mono text-xs md:text-sm font-medium text-muted transition-colors duration-500 group-hover/edu:text-[#bbf700] year-text">{edu.period}</span>
+                          <span className="font-mono text-xs md:text-sm font-medium text-brand-white/30 transition-colors duration-500 group-hover/edu:text-brand-accent year-text">{edu.period}</span>
                           <h3 className="font-mori font-bold text-3xl md:text-5xl tracking-tighter text-brand-white leading-[1] transition-colors duration-500">{edu.degree}</h3>
                           <div className="flex items-center gap-3 text-sm md:text-base font-medium text-muted">
                             <span className="w-5 h-[1px] bg-brand-white/20" />
@@ -684,7 +684,7 @@ export default function AboutPage() {
                 {/* Filling Progress Line */}
                 <div
                   ref={expProgressDotRef}
-                  className="absolute top-0 left-0 w-[2px] md:w-[3px] bg-[#bbf700] origin-top z-10"
+                  className="absolute top-0 left-0 w-[2px] md:w-[3px] bg-brand-accent origin-top z-10"
                   style={{ height: '0%' }}
                 />
 
@@ -697,13 +697,13 @@ export default function AboutPage() {
                       >
                         {/* Wavelength Dot */}
                         <div className="absolute -left-[14px] md:-left-[18px] top-4 z-20">
-                          <div className="w-7 h-7 md:w-9 md:h-9 rounded-full bg-brand-dark border-2 border-brand-white/10 flex items-center justify-center transition-all duration-700 dot-marker group-hover/exp:border-[#bbf700] group-hover/exp:bg-[#bbf700]/5 dot-interaction-exp">
-                            <div className="w-2.5 h-2.5 rounded-full bg-brand-white/20 transition-all duration-500 group-hover/exp:bg-[#bbf700] dot-inner" />
+                          <div className="w-7 h-7 md:w-9 md:h-9 rounded-full bg-brand-dark border-2 border-brand-white/10 flex items-center justify-center transition-all duration-700 dot-marker group-hover/exp:border-brand-accent group-hover/exp:bg-brand-accent/5 dot-interaction-exp">
+                            <div className="w-2.5 h-2.5 rounded-full bg-brand-white/20 transition-all duration-500 group-hover/exp:bg-brand-accent dot-inner" />
                           </div>
                         </div>
 
                         <div className="flex flex-col gap-2 md:gap-4 mb-6">
-                          <span className="font-mono text-xs md:text-sm font-medium text-brand-white/30 transition-colors duration-500 group-hover/exp:text-[#bbf700] year-text">{exp.period}</span>
+                          <span className="font-mono text-xs md:text-sm font-medium text-brand-white/30 transition-colors duration-500 group-hover/exp:text-brand-accent year-text">{exp.period}</span>
                           <h3 className="font-mori font-bold text-3xl md:text-5xl tracking-tighter text-brand-white leading-[1] transition-colors duration-500">{exp.role}</h3>
                           <div className="flex items-center gap-3 text-sm md:text-base font-medium text-brand-white/40">
                             <span className="w-5 h-[1px] bg-brand-white/20" />
@@ -752,7 +752,7 @@ export default function AboutPage() {
                   key={tab.value}
                   onClick={() => handleFilterChange(tab.value)}
                   className={`flex-shrink-0 px-4 sm:px-6 py-2 sm:py-2.5 rounded-full border transition-all duration-500 font-mori font-bold text-[11px] sm:text-sm tracking-tight ${isActive
-                    ? "bg-[#bbf700] text-brand-dark border-[#bbf700]"
+                    ? "bg-brand-accent text-brand-dark border-brand-accent"
                     : "bg-brand-white/[0.03] text-brand-white/40 border-brand-white/10 hover:border-brand-white/30 hover:text-brand-white"
                     }`}
                 >
@@ -952,7 +952,7 @@ export default function AboutPage() {
               {/* Filling Progress Line */}
               <div
                 ref={goalProgressDotRef}
-                className="absolute top-0 left-0 w-[2px] md:w-[3px] bg-[#bbf700] origin-top z-10"
+                className="absolute top-0 left-0 w-[2px] md:w-[3px] bg-brand-accent origin-top z-10"
                 style={{ height: '0%' }}
               />
 
@@ -965,24 +965,24 @@ export default function AboutPage() {
                     >
                       {/* Wavelength Dot */}
                       <div className="absolute -left-[14px] md:-left-[18px] top-4 z-20">
-                        <div className="w-7 h-7 md:w-9 md:h-9 rounded-full bg-brand-dark border-2 border-brand-white/10 flex items-center justify-center transition-all duration-700 dot-marker group-hover/goal:border-[#bbf700] group-hover/goal:bg-[#bbf700]/5 dot-interaction-goal">
-                          <div className="w-2.5 h-2.5 rounded-full bg-brand-white/20 transition-all duration-500 group-hover/goal:bg-[#bbf700] dot-inner" />
+                        <div className="w-7 h-7 md:w-9 md:h-9 rounded-full bg-brand-dark border-2 border-brand-white/10 flex items-center justify-center transition-all duration-700 dot-marker group-hover/goal:border-brand-accent group-hover/goal:bg-brand-accent/5 dot-interaction-goal">
+                          <div className="w-2.5 h-2.5 rounded-full bg-brand-white/20 transition-all duration-500 group-hover/goal:bg-brand-accent dot-inner" />
                         </div>
                       </div>
 
                       <div className="relative z-10 w-full">
-                        <span className="absolute left-8 sm:left-12 -top-6 sm:-top-10 text-[4rem] sm:text-[6rem] md:text-[8rem] font-mori font-black text-brand-white/[0.02] select-none pointer-events-none group-hover/goal:text-[#bbf700]/[0.1] transition-colors duration-700 leading-none year-text">
+                        <span className="absolute left-8 sm:left-12 -top-6 sm:-top-10 text-[4rem] sm:text-[6rem] md:text-[8rem] font-mori font-black text-brand-white/[0.02] select-none pointer-events-none group-hover/goal:text-brand-accent/[0.1] transition-colors duration-700 leading-none year-text">
                           {goal.num}
                         </span>
                         <div className="flex items-center gap-6 mb-8">
-                          <div className="w-12 h-12 md:w-16 md:h-16 rounded-[1.25rem] border border-brand-white/10 flex items-center justify-center bg-white/[0.02] backdrop-blur-sm transition-all duration-500 shrink-0 group-hover/goal:bg-[#bbf700] group-hover/goal:border-[#bbf700] icon-box">
+                          <div className="w-12 h-12 md:w-16 md:h-16 rounded-[1.25rem] border border-brand-white/10 flex items-center justify-center bg-white/[0.02] backdrop-blur-sm transition-all duration-500 shrink-0 group-hover/goal:bg-brand-accent group-hover/goal:border-brand-accent icon-box">
                             <goal.icon className="w-6 h-6 md:w-8 md:h-8 text-brand-white/30 transition-colors duration-500 group-hover/goal:text-brand-dark" strokeWidth={1.5} />
                           </div>
                           <h3 className="font-mori font-bold text-3xl sm:text-5xl md:text-7xl tracking-tighter text-brand-white leading-[0.95] transition-colors duration-500">
                             {goal.title}
                           </h3>
                         </div>
-                        <div className="w-full h-[1px] bg-brand-white/10 mb-10 transition-all duration-700 group-hover/goal:bg-[#bbf700] goal-divider" />
+                        <div className="w-full h-[1px] bg-brand-white/10 mb-10 transition-all duration-700 group-hover/goal:bg-brand-accent goal-divider" />
                         <p className="text-sm md:text-lg lg:text-xl text-brand-white/70 font-light leading-relaxed max-w-xl group-hover/goal:text-brand-white transition-colors">
                           {goal.desc}
                         </p>
@@ -1015,7 +1015,7 @@ export default function AboutPage() {
                     key={idx}
                     onClick={() => setActiveCertIndex(issuer.firstIndex)}
                     className={`flex-shrink-0 px-4 sm:px-6 py-2 sm:py-2.5 rounded-full border transition-all duration-500 font-mori font-bold text-[11px] sm:text-sm tracking-tight ${isGroupActive
-                      ? "bg-[#bbf700] text-brand-dark border-[#bbf700]"
+                      ? "bg-brand-accent text-brand-dark border-brand-accent"
                       : "bg-brand-white/[0.03] text-brand-white/40 border-brand-white/10 hover:border-brand-white/30 hover:text-brand-white"
                       }`}
                   >
