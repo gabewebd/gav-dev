@@ -98,10 +98,10 @@ export default function Footer() {
 
             {/* ── Main Footer Grid ───────────────────────────────── */}
             <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-20">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-10 md:gap-8">
+                <div className="grid grid-cols-2 md:grid-cols-12 gap-10 md:gap-8">
 
                     {/* Brand Column */}
-                    <div className="sm:col-span-2 md:col-span-5">
+                    <div className="col-span-2 md:col-span-5">
                         <Link href="/" className="inline-block hover:opacity-80 transition-opacity">
                             <Logo className="h-10 w-auto text-white" />
                         </Link>
@@ -120,7 +120,7 @@ export default function Footer() {
                     </div>
 
                     {/* Quick Links */}
-                    <div className="md:col-span-3 md:col-start-7">
+                    <div className="col-span-1 md:col-span-3 md:col-start-7">
                         <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted mb-6">
                             Navigation
                         </h4>
@@ -144,29 +144,19 @@ export default function Footer() {
                     </div>
 
                     {/* Contact Column */}
-                    <div className="md:col-span-3">
+                    <div className="col-span-1 md:col-span-3">
                         <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted mb-6">
                             Get In Touch
                         </h4>
                         
                         <Button 
                             href="/contact" 
-                            className="w-full !py-3.5 !text-[11px] mb-8 shadow-xl"
+                            className="w-full !py-3.5 !text-[11px] mb-6 shadow-xl"
                         >
                             Contact Me
                         </Button>
 
-                        <PreviewLink
-                            href="mailto:vlsqz.gabrielle@gmail.com"
-                            label="Send Email"
-                            description="vlsqz.gabrielle@gmail.com"
-                            className="text-sm text-body hover:text-brand-accent
-                                transition-colors duration-200 break-all font-light"
-                        >
-                            vlsqz.gabrielle@gmail.com
-                        </PreviewLink>
-
-                        <p className="mt-6 text-[11px] text-muted leading-relaxed font-light">
+                        <p className="text-[11px] text-muted leading-relaxed font-light">
                             Holy Angel University<br />
                             BSIT 2023–2027<br />
                             Angeles City, Philippines
@@ -177,11 +167,11 @@ export default function Footer() {
 
             {/* ── Bottom Bar ─────────────────────────────────────── */}
             <div className="border-t border-white/5">
-                <div className="max-w-7xl mx-auto px-6 md:px-12 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4 text-center sm:text-left opacity-30">
+                <div className="max-w-7xl mx-auto px-6 md:px-12 py-5 flex flex-col xs:flex-row items-center justify-between gap-2 xs:gap-4 text-center xs:text-left opacity-30">
                     <p className="text-[10px] uppercase tracking-widest">
                         &copy; {new Date().getFullYear()} Gabrielle Ainshley Velasquez.
                     </p>
-                    <p className="text-[10px] uppercase tracking-widest hidden sm:block">
+                    <p className="text-[10px] uppercase tracking-widest hidden xs:block">
                         Designed & Developed with care
                     </p>
                 </div>

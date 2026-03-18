@@ -401,6 +401,11 @@ export default function Home() {
   const [hoveredService, setHoveredService] = useState<number | null>(null);
   const [tIndex, setTIndex] = useState(0);
   const [slideDir, setSlideDir] = useState(1);
+  const [activeBubbles, setActiveBubbles] = useState<number[]>([]);
+
+  const toggleBubble = (id: number) => {
+    setActiveBubbles(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
+  };
 
   const { index: rotatingIndex, wordRef: rotatingWordRef, iconRef: rotatingIconRef } = useRotatingText(ROTATING_PAIRS, 3000);
   const CurrentIcon = ROTATING_PAIRS[rotatingIndex].icon;
@@ -835,32 +840,40 @@ export default function Home() {
           <div className="flex flex-wrap items-center justify-center gap-3 md:gap-5 w-full max-w-[90rem] mx-auto perspective-[1000px]">
             <motion.span
               whileHover={{ scale: 1.08, rotateZ: -4, y: -8 }}
+              whileTap={{ scale: 0.95, rotateZ: -2, y: 0 }}
+              onClick={() => toggleBubble(0)}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className="inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-3 sm:py-6 rounded-full bg-white/[0.05] border border-white/10 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] hover:bg-brand-blue hover:text-white hover:border-brand-blue transition-colors duration-300 font-mori font-bold text-[clamp(3.5rem,9vw,8rem)] text-white cursor-default leading-[0.9] tracking-tighter"
+              className={`inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-3 sm:py-6 rounded-full border shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] hover:bg-brand-blue hover:text-white hover:border-brand-blue transition-colors duration-300 font-mori font-bold text-[clamp(3.5rem,9vw,8rem)] cursor-default leading-[0.9] tracking-tighter ${activeBubbles.includes(0) ? "bg-brand-blue text-white border-brand-blue" : "bg-white/[0.05] border-white/10 text-white"}`}
             >
               Let&apos;s
             </motion.span>
 
             <motion.span
               whileHover={{ scale: 1.08, rotateZ: 3, y: -8 }}
+              whileTap={{ scale: 0.95, rotateZ: 2, y: 0 }}
+              onClick={() => toggleBubble(1)}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className="inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-3 sm:py-6 rounded-[2rem] sm:rounded-[4rem] bg-brand-accent shadow-[0_10px_40px_-10px_rgba(var(--brand-accent-rgb),0.4)] hover:bg-brand-blue hover:text-white hover:border-brand-blue transition-colors duration-300 font-mori font-bold text-[clamp(3.5rem,9vw,8rem)] text-brand-dark cursor-default leading-[0.9] tracking-tighter"
+              className={`inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-3 sm:py-6 rounded-[2rem] sm:rounded-[4rem] shadow-[0_10px_40px_-10px_rgba(var(--brand-accent-rgb),0.4)] hover:bg-brand-blue hover:text-white hover:border-brand-blue transition-colors duration-300 font-mori font-bold text-[clamp(3.5rem,9vw,8rem)] cursor-default leading-[0.9] tracking-tighter ${activeBubbles.includes(1) ? "bg-brand-blue text-white border-brand-blue" : "bg-brand-accent text-brand-dark"}`}
             >
               build
             </motion.span>
 
             <motion.span
               whileHover={{ scale: 1.08, rotateZ: -2, y: -8 }}
+              whileTap={{ scale: 0.95, rotateZ: -1, y: 0 }}
+              onClick={() => toggleBubble(2)}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className="inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-3 sm:py-6 rounded-full bg-brand-ink dark:bg-brand-white shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2)] hover:bg-brand-blue hover:text-white transition-colors duration-300 font-mori font-bold text-[clamp(3.5rem,9vw,8rem)] text-white dark:text-brand-ink cursor-default leading-[0.9] tracking-tighter hover:text-white"
+              className={`inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-3 sm:py-6 rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2)] hover:bg-brand-blue hover:text-white transition-colors duration-300 font-mori font-bold text-[clamp(3.5rem,9vw,8rem)] cursor-default leading-[0.9] tracking-tighter ${activeBubbles.includes(2) ? "bg-brand-blue text-white" : "bg-brand-ink dark:bg-brand-white text-white dark:text-brand-ink"}`}
             >
               something
             </motion.span>
 
             <motion.span
               whileHover={{ scale: 1.08, rotateZ: 5, y: -8 }}
+              whileTap={{ scale: 0.95, rotateZ: 3, y: 0 }}
+              onClick={() => toggleBubble(3)}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className="inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-3 sm:py-6 rounded-[2rem] sm:rounded-[4rem] border-2 border-white hover:bg-brand-accent hover:border-brand-accent hover:text-brand-dark transition-colors duration-300 font-mori font-bold text-[clamp(3.5rem,9vw,8rem)] text-white cursor-default leading-[0.9] tracking-tighter"
+              className={`inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-3 sm:py-6 rounded-[2rem] sm:rounded-[4rem] border-2 hover:bg-brand-accent hover:border-brand-accent hover:text-brand-dark transition-colors duration-300 font-mori font-bold text-[clamp(3.5rem,9vw,8rem)] cursor-default leading-[0.9] tracking-tighter ${activeBubbles.includes(3) ? "bg-brand-accent border-brand-accent text-brand-dark" : "border-white text-white"}`}
             >
               together.
             </motion.span>
