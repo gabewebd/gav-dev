@@ -218,7 +218,6 @@ export default function Navbar() {
                     <div className="flex flex-col gap-2 min-[400px]:gap-4 shadow-sm">
                         {[
                             ...NAV_LINKS,
-                            { label: "Divider", href: "#", isDivider: true },
                             { label: "Resume", href: "/assets/gav-resume.pdf", isExternal: true },
                             { label: "Contact", href: "/contact" }
                         ].map((link, i) => {
