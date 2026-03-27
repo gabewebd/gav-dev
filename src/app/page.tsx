@@ -61,221 +61,6 @@ function cn(...classes: (string | undefined | null | boolean)[]): string {
   return classes.filter(Boolean).join(' ');
 }
 
-// ─── INLINE MASONRY COMPONENTS & HOOKS ───────────────────────────────────────
-
-const useMedia = (queries: string[], values: number[], defaultValue: number): number => {
-  const get = () => {
-    if (typeof window === 'undefined') return defaultValue;
-    return values[queries.findIndex(q => matchMedia(q).matches)] ?? defaultValue;
-  };
-
-  const [value, setValue] = useState<number>(defaultValue);
-
-  useEffect(() => {
-    setValue(get());
-    const handler = () => setValue(get);
-    queries.forEach(q => matchMedia(q).addEventListener('change', handler));
-    return () => queries.forEach(q => matchMedia(q).removeEventListener('change', handler));
-  }, [queries]);
-
-  return value;
-};
-
-const useMeasure = <T extends HTMLElement>() => {
-  const ref = useRef<T | null>(null);
-  const [size, setSize] = useState({ width: 0, height: 0 });
-
-  useEffect(() => {
-    if (!ref.current) return;
-    const ro = new ResizeObserver(([entry]) => {
-      const { width, height } = entry.contentRect;
-      setSize({ width, height });
-    });
-    ro.observe(ref.current);
-    return () => ro.disconnect();
-  }, []);
-
-  return [ref, size] as const;
-};
-
-const preloadImages = async (urls: string[]): Promise<void> => {
-  await Promise.all(
-    urls.map(
-      src =>
-        new Promise<void>(resolve => {
-          const img = new window.Image();
-          img.src = src;
-          img.onload = img.onerror = () => resolve();
-        })
-    )
-  );
-};
-
-interface Item {
-  id: string;
-  img: string;
-  url: string;
-  height: number;
-}
-
-interface GridItem extends Item {
-  x: number;
-  y: number;
-  w: number;
-  h: number;
-}
-
-interface MasonryProps {
-  items: Item[];
-  ease?: string;
-  duration?: number;
-  stagger?: number;
-  animateFrom?: 'bottom' | 'top' | 'left' | 'right' | 'center' | 'random';
-  scaleOnHover?: boolean;
-  hoverScale?: number;
-  blurToFocus?: boolean;
-  colorShiftOnHover?: boolean;
-}
-
-const Masonry: React.FC<MasonryProps> = ({
-  items,
-  ease = 'power3.out',
-  duration = 0.6,
-  stagger = 0.05,
-  animateFrom = 'bottom',
-  scaleOnHover = true,
-  hoverScale = 0.95,
-  blurToFocus = true,
-  colorShiftOnHover = false
-}) => {
-  const columns = useMedia(
-    ['(min-width:1500px)', '(min-width:1100px)', '(min-width:768px)', '(min-width:320px)'],
-    [5, 4, 3, 2],
-    1
-  );
-
-  const [containerRef, { width }] = useMeasure<HTMLDivElement>();
-  const [imagesReady, setImagesReady] = useState(false);
-
-  const getInitialPosition = (item: GridItem) => {
-    const containerRect = containerRef.current?.getBoundingClientRect();
-    if (!containerRect) return { x: item.x, y: item.y };
-
-    let direction = animateFrom;
-    if (animateFrom === 'random') {
-      const dirs = ['top', 'bottom', 'left', 'right'];
-      direction = dirs[Math.floor(Math.random() * dirs.length)] as typeof animateFrom;
-    }
-
-    switch (direction) {
-      case 'top': return { x: item.x, y: -200 };
-      case 'bottom': return { x: item.x, y: window.innerHeight + 200 };
-      case 'left': return { x: -200, y: item.y };
-      case 'right': return { x: window.innerWidth + 200, y: item.y };
-      case 'center':
-        return {
-          x: containerRect.width / 2 - item.w / 2,
-          y: containerRect.height / 2 - item.h / 2
-        };
-      default: return { x: item.x, y: item.y + 100 };
-    }
-  };
-
-  useEffect(() => {
-    preloadImages(items.map(i => i.img)).then(() => setImagesReady(true));
-  }, [items]);
-
-  const grid = useMemo<GridItem[]>(() => {
-    if (!width) return [];
-    const colHeights = new Array(columns).fill(0);
-    const gap = 16;
-    const totalGaps = (columns - 1) * gap;
-    const columnWidth = (width - totalGaps) / columns;
-
-    return items.map(child => {
-      const col = colHeights.indexOf(Math.min(...colHeights));
-      const x = col * (columnWidth + gap);
-      const height = child.height / 2;
-      const y = colHeights[col];
-
-      colHeights[col] += height + gap;
-      return { ...child, x, y, w: columnWidth, h: height };
-    });
-  }, [columns, items, width]);
-
-  // Dynamically calculate explicit height so two grids stack perfectly for infinite scroll
-  const maxHeight = useMemo(() => {
-    if (!width) return 0;
-    const colHeights = new Array(columns).fill(0);
-    const gap = 16;
-    items.forEach(child => {
-      const col = colHeights.indexOf(Math.min(...colHeights));
-      colHeights[col] += (child.height / 2) + gap;
-    });
-    return Math.max(...colHeights);
-  }, [columns, items, width]);
-
-  const hasMounted = useRef(false);
-
-  useEffect(() => {
-    if (!imagesReady || !grid.length) return;
-
-    grid.forEach((item, index) => {
-      const selector = `[data-key="${item.id}"]`;
-      const animProps = { x: item.x, y: item.y, width: item.w, height: item.h };
-
-      if (!hasMounted.current) {
-        const start = getInitialPosition(item);
-        gsap.fromTo(
-          selector,
-          {
-            opacity: 0,
-            x: start.x,
-            y: start.y,
-            width: item.w,
-            height: item.h,
-            ...(blurToFocus && { filter: 'blur(10px)' })
-          },
-          {
-            opacity: 1,
-            ...animProps,
-            ...(blurToFocus && { filter: 'blur(0px)' }),
-            duration: 0.8,
-            ease: 'power3.out',
-            delay: index * stagger
-          }
-        );
-      } else {
-        gsap.to(selector, {
-          ...animProps,
-          duration,
-          ease,
-          overwrite: 'auto'
-        });
-      }
-    });
-
-    hasMounted.current = true;
-  }, [grid, imagesReady, stagger, animateFrom, blurToFocus, duration, ease]);
-
-  return (
-    <div ref={containerRef} className="relative w-full" style={{ height: maxHeight }}>
-      {grid.map(item => (
-        <div
-          key={item.id}
-          data-key={item.id}
-          className="absolute box-content"
-          style={{ willChange: 'transform, width, height, opacity' }}
-        >
-          <div
-            className="relative w-full h-full bg-cover bg-center rounded-2xl shadow-[0px_10px_50px_-10px_rgba(0,0,0,0.2)] grayscale-[0.5] opacity-80"
-            style={{ backgroundImage: `url(${item.img})` }}
-          />
-        </div>
-      ))}
-    </div>
-  );
-};
 
 // ─── ROTATING TEXT HOOK ───────────────────────────────────────────────────────
 
@@ -305,37 +90,6 @@ function useRotatingText(pairs: typeof ROTATING_PAIRS, interval = 3000) {
 
 // ─── SOLID BACKGROUND ICON COMPONENTS ────────────────────────────────────────
 
-function CodeSolid({ className }: { className?: string }) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" fill="currentColor" className={className}>
-      <path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z" />
-    </svg>
-  );
-}
-
-function LightbulbSolid({ className }: { className?: string }) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="currentColor" className={className}>
-      <path d="M272 384c9.6-31.9 29.5-59.1 49.2-86.2c0 0 0 0 0 0c5.2-7.1 10.4-14.2 15.4-21.4c19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3c5 7.2 10.2 14.3 15.4 21.4c0 0 0 0 0 0c19.8 27.1 39.7 54.4 49.2 86.2H272zM192 512c44.2 0 80-35.8 80-80V416H112v16c0 44.2 35.8 80 80 80zM112 176c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112c8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z" />
-    </svg>
-  );
-}
-
-function PersonSolid({ className }: { className?: string }) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor" className={className}>
-      <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z" />
-    </svg>
-  );
-}
-
-function SparklesSolid({ className }: { className?: string }) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" className={className}>
-      <path d="M327.5 85.2c-4.5 1.7-7.5 6-7.5 10.8s3 9.1 7.5 10.8L384 128l21.2 56.5c1.7 4.5 6 7.5 10.8 7.5s9.1-3 10.8-7.5L448 128l56.5-21.2c4.5-1.7 7.5-6 7.5-10.8s-3-9.1-7.5-10.8L448 64 426.8 7.5C425.1 3 420.8 0 416 0s-9.1 3-10.8 7.5L384 64 327.5 85.2zM205.1 73.3c-2.6-5.7-8.3-9.3-14.5-9.3s-11.9 3.6-14.5 9.3L123.5 188.5 8.3 241.1C2.6 243.7 0 249.4 0 255.6s3.6 11.9 9.3 14.5l115.2 52.6L177.1 437.7c2.6 5.7 8.3 9.3 14.5 9.3s11.9-3.6 14.5-9.3l52.6-115.2 115.2-52.6c5.7-2.6 9.3-8.3 9.3-14.5s-3.6-11.9-9.3-14.5L259.7 188.5 205.1 73.3zM384 384l-56.5 21.2c-4.5 1.7-7.5 6-7.5 10.8s3 9.1 7.5 10.8L384 448l21.2 56.5c1.7 4.5 6 7.5 10.8 7.5s9.1-3 10.8-7.5L448 448l56.5-21.2c4.5-1.7 7.5-6 7.5-10.8s-3-9.1-7.5-10.8L448 384l-21.2-56.5c-1.7-4.5-6-7.5-10.8-7.5s-9.1 3-10.8 7.5L384 384z" />
-    </svg>
-  );
-}
 
 // ─── TOOLTIP COMPONENT ────────────────────────────────────────────────────────
 
@@ -357,36 +111,6 @@ const StatusTooltip = ({ icon: Icon, label, value }: { icon: any; label: string;
   );
 };
 
-// ─── MASONRY DATA PREPARATION ─────────────────────────────────────────────────
-
-// Generate a rich set of items by flatMapping over PROJECTS_DATA and grabbing all secondary visuals
-const baseMasonryItems = PROJECTS_DATA.flatMap((p, pIndex) => {
-  // Your gallery array already holds the 2nd to 4th visuals. 
-  // If it's missing, we fallback to slicing the images array from index 1 onwards.
-  const projectVisuals = p.gallery?.length
-    ? p.gallery.map(g => g.src)
-    : (p.images?.length > 1 ? p.images.slice(1) : [p.showcaseImg || p.heroImg]);
-
-  return projectVisuals.map((imgSrc, imgIndex) => {
-    // Create a unique index multiplier so heights remain staggered and random-looking
-    const uniqueId = pIndex * 10 + imgIndex;
-
-    return {
-      id: `bg-proj-${p.slug}-${imgIndex}`,
-      img: imgSrc,
-      url: p.live,
-      height: 600 + ((uniqueId * 123) % 400) // Generates stable, staggered heights between 600-1000px
-    };
-  });
-});
-
-// Duplicate the set to fill out the width of the screen beautifully
-const masonryItems = [
-  ...baseMasonryItems,
-  ...baseMasonryItems.map(item => ({ ...item, id: item.id + '-dup1' })),
-  ...baseMasonryItems.map(item => ({ ...item, id: item.id + '-dup2' })),
-  ...baseMasonryItems.map(item => ({ ...item, id: item.id + '-dup3' }))
-];
 
 // ─── PAGE ─────────────────────────────────────────────────────────────────────
 
@@ -436,13 +160,6 @@ export default function Home() {
       .fromTo(".hero-cta-btn", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8, stagger: 0.15 }, "-=0.6")
       .from(".hero-portrait-wrapper", { opacity: 0, x: 40, duration: 1.5, ease: "power3.out" }, "-=1");
 
-    // Infinite Masonry Background Strip
-    gsap.to('.masonry-scroller', {
-      yPercent: -50,
-      ease: "none",
-      duration: 70,
-      repeat: -1
-    });
 
     if (marqueeTrackRef.current) {
       const track = marqueeTrackRef.current;
@@ -491,19 +208,6 @@ export default function Home() {
       y: 40, opacity: 0, duration: 0.8, ease: "power3.out",
     });
 
-    gsap.utils.toArray<HTMLElement>(".bg-icon-parallax").forEach((icon) => {
-      gsap.to(icon, {
-        y: 160,
-        rotation: 28,
-        ease: "none",
-        scrollTrigger: {
-          trigger: icon.closest("section") ?? icon.parentElement,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 1.5,
-        },
-      });
-    });
 
   }, { scope: mainRef });
 
@@ -531,16 +235,6 @@ export default function Home() {
   return (
     <main ref={mainRef} className="relative overflow-x-clip pb-32 transition-colors duration-500">
 
-      {/* ═══════════════════════════════════════════════════════
-          HERO MASONRY INFINITE BACKGROUND
-          ═══════════════════════════════════════════════════════ */}
-      <div className="absolute top-0 left-0 w-full h-[120vh] overflow-hidden z-0 pointer-events-none opacity-[0.06] [mask-image:linear-gradient(to_bottom,black_30%,transparent_90%)]">
-        <div className="masonry-scroller flex flex-col w-[110%] -ml-[5%]">
-          {/* Render two exact copies so GSAP can loop them seamlessly */}
-          <Masonry items={masonryItems} blurToFocus={true} animateFrom="bottom" scaleOnHover={false} colorShiftOnHover={false} />
-          <Masonry items={masonryItems} blurToFocus={true} animateFrom="bottom" scaleOnHover={false} colorShiftOnHover={false} />
-        </div>
-      </div>
 
       {/* ═══════════════════════════════════════════════════════
           SECTION 1 — HERO FOREGROUND
@@ -650,10 +344,6 @@ export default function Home() {
           SECTION 3 — CAPABILITIES
           ═══════════════════════════════════════════════════════ */}
       <section className="services-section py-20 md:py-40 px-6 md:px-12 max-w-7xl mx-auto relative z-10">
-
-        <div className="absolute top-1/2 right-[-15vw] lg:right-[-5vw] -translate-y-1/2 w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] lg:w-[500px] lg:h-[500px] bg-brand-white/[0.02] rounded-[3rem] sm:rounded-[4rem] lg:rounded-[5rem] rotate-12 flex items-center justify-center pointer-events-none z-0 bg-icon-parallax will-change-transform">
-          <CodeSolid className="w-[100px] h-[100px] sm:w-[150px] sm:h-[150px] lg:w-[200px] lg:h-[200px] text-brand-white/[0.07]" />
-        </div>
 
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-start relative z-10">
 
@@ -826,14 +516,6 @@ export default function Home() {
           ═══════════════════════════════════════════════════════ */}
       <section className="cta-section pt-32 md:pt-48 pb-12 md:pb-16 px-4 md:px-12 text-center border-t border-brand-ink/5 dark:border-brand-white/5 relative z-10 overflow-hidden">
 
-        <div className="bg-icon-parallax absolute top-1/2 left-[-15vw] sm:left-[-5vw] lg:left-10 -translate-y-1/2 w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] lg:w-[500px] lg:h-[500px] bg-brand-ink/[0.03] dark:bg-brand-white/[0.02] rounded-[3rem] sm:rounded-[4rem] lg:rounded-[5rem] -rotate-12 flex items-center justify-center pointer-events-none z-0 will-change-transform">
-          <LightbulbSolid className="w-[100px] h-[100px] sm:w-[150px] sm:h-[150px] lg:w-[200px] lg:h-[200px] text-brand-ink/[0.08] dark:text-brand-white/[0.07]" />
-        </div>
-
-        <div className="bg-icon-parallax absolute top-1/2 right-[-15vw] sm:right-[-5vw] lg:right-10 -translate-y-1/2 w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] lg:w-[500px] lg:h-[500px] bg-brand-ink/[0.03] dark:bg-brand-white/[0.02] rounded-[3rem] sm:rounded-[4rem] lg:rounded-[5rem] rotate-[25deg] flex items-center justify-center pointer-events-none z-0 will-change-transform">
-          <SparklesSolid className="w-[100px] h-[100px] sm:w-[150px] sm:h-[150px] lg:w-[200px] lg:h-[200px] text-brand-ink/[0.08] dark:text-brand-white/[0.07] -scale-x-100" />
-        </div>
-
         <div className="max-w-5xl mx-auto relative z-10">
 
           {/* BUBBLE HEADING */}
@@ -853,7 +535,7 @@ export default function Home() {
               whileTap={{ scale: 0.95, rotateZ: 2, y: 0 }}
               onClick={() => toggleBubble(1)}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className={`inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-3 sm:py-6 rounded-[2rem] sm:rounded-[4rem] shadow-[0_10px_40px_-10px_rgba(var(--brand-accent-rgb),0.4)] hover:bg-brand-blue hover:text-white hover:border-brand-blue transition-colors duration-300 font-mori font-bold text-[clamp(3.5rem,9vw,8rem)] cursor-default leading-[0.9] tracking-tighter ${activeBubbles.includes(1) ? "bg-brand-blue text-white border-brand-blue" : "bg-brand-accent text-brand-dark"}`}
+              className={`inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-3 sm:py-6 rounded-[2rem] sm:rounded-[4rem] hover:bg-brand-blue hover:text-white hover:border-brand-blue transition-colors duration-300 font-mori font-bold text-[clamp(3.5rem,9vw,8rem)] cursor-default leading-[0.9] tracking-tighter ${activeBubbles.includes(1) ? "bg-brand-blue text-white border-brand-blue" : "bg-brand-accent text-brand-dark"}`}
             >
               build
             </motion.span>
@@ -863,7 +545,7 @@ export default function Home() {
               whileTap={{ scale: 0.95, rotateZ: -1, y: 0 }}
               onClick={() => toggleBubble(2)}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className={`inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-3 sm:py-6 rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2)] hover:bg-brand-blue hover:text-white transition-colors duration-300 font-mori font-bold text-[clamp(3.5rem,9vw,8rem)] cursor-default leading-[0.9] tracking-tighter ${activeBubbles.includes(2) ? "bg-brand-blue text-white" : "bg-brand-ink dark:bg-brand-white text-white dark:text-brand-ink"}`}
+              className={`inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-3 sm:py-6 rounded-full hover:bg-brand-blue hover:text-white transition-colors duration-300 font-mori font-bold text-[clamp(3.5rem,9vw,8rem)] cursor-default leading-[0.9] tracking-tighter ${activeBubbles.includes(2) ? "bg-brand-blue text-white" : "bg-white text-black"}`}
             >
               something
             </motion.span>
@@ -902,7 +584,7 @@ export default function Home() {
             </Magnetic>
           </div>
 
-          <p className="mt-12 md:mt-16 text-xs md:text-sm font-light uppercase tracking-widest text-brand-ink/80 dark:text-brand-white/85 max-w-md mx-auto px-4">
+          <p className="mt-12 md:mt-16 text-[10px] md:text-xs font-light uppercase tracking-[0.2em] text-white max-w-md mx-auto px-4 leading-relaxed">
             Always open to new opportunities, collaborations, and building something meaningful.
           </p>
         </div>

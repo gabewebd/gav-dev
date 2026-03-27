@@ -92,7 +92,7 @@ export default function Footer() {
     return (
         <footer className="relative bg-[#0A0A0A]/80 backdrop-blur-xl text-white border-t border-white/10 overflow-hidden">
             {/* Subtle top glow to separate from main content */}
-            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-accent/20 to-transparent shadow-[0_-20px_40px_rgba(var(--brand-accent-rgb),0.05)]" />
+            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-accent/20 to-transparent" />
 
 
 

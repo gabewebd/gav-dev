@@ -129,13 +129,6 @@ import { PROJECTS_DATA } from "@/data/projects";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 // ─── SOLID COMPUTER / DESKTOP MONITOR SVG ────────────────────────────────────
-function ComputerSolidIcon({ className }: { className?: string }) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" className={className} fill="currentColor">
-      <path d="M64 0C28.7 0 0 28.7 0 64V352c0 35.3 28.7 64 64 64H240l-10.7 32H160c-17.7 0-32 14.3-32 32s14.3 32 32 32H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H346.7L336 416H512c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H64zM512 64V352H64V64H512z" />
-    </svg>
-  );
-}
 
 // ─── SMOOTH HEIGHT WRAPPER ────────────────────────────────────────────────────
 function SmoothHeightWrapper({
@@ -294,23 +287,6 @@ export default function AboutPage() {
       }
     );
 
-    gsap.to('.hero-bg-icon', {
-      y: "80vh",
-      rotation: 25,
-      scale: 1.4,
-      ease: "none",
-      scrollTrigger: { trigger: ".hero-section", start: "top top", end: "bottom -80%", scrub: 1 }
-    });
-
-    gsap.utils.toArray(".bg-icon-parallax").forEach((icon: any) => {
-      gsap.to(icon, {
-        y: 160, rotation: 28, ease: "none",
-        scrollTrigger: {
-          trigger: icon.closest("section") || icon.parentElement,
-          start: "top bottom", end: "bottom top", scrub: 1.5,
-        },
-      });
-    });
 
     gsap.fromTo(".toggle-card",
       { y: 50, opacity: 0 },
@@ -487,7 +463,6 @@ export default function AboutPage() {
       .dot-marker.is-filled {
         background-color: var(--brand-accent) !important;
         border-color: var(--brand-accent) !important;
-        box-shadow: 0 0 20px rgba(var(--brand-accent-rgb), 0.5) !important;
       }
       .dot-marker.is-filled .dot-inner {
         background-color: var(--brand-accent) !important;
@@ -606,16 +581,15 @@ export default function AboutPage() {
               <div className="absolute left-10 -top-8 text-[10px] font-bold uppercase tracking-[0.3em] text-muted">Background</div>
 
               <div className={`nav-project-item relative py-2 cursor-default transition-all duration-500 will-change-transform ${activeBackgroundIndex === 0 ? 'opacity-100 translate-x-4' : 'opacity-30 translate-x-0 scale-[0.85] origin-left'}`}>
-                <div className={`nav-dot absolute left-[-44px] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-brand-accent transition-all duration-500 shadow-[0_0_10px_rgba(var(--brand-accent-rgb),0.8)] ${activeBackgroundIndex === 0 ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
+                <div className={`nav-dot absolute left-[-44px] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-brand-accent transition-all duration-500 ${activeBackgroundIndex === 0 ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
                 <div className="font-mori font-bold text-5xl xl:text-6xl text-brand-white">Academic</div>
               </div>
               <div className={`nav-project-item relative py-2 cursor-default transition-all duration-500 will-change-transform ${activeBackgroundIndex === 1 ? 'opacity-100 translate-x-4' : 'opacity-30 translate-x-0 scale-[0.85] origin-left'}`}>
-                <div className={`nav-dot absolute left-[-44px] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-brand-accent transition-all duration-500 shadow-[0_0_10px_rgba(var(--brand-accent-rgb),0.8)] ${activeBackgroundIndex === 1 ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
+                <div className={`nav-dot absolute left-[-44px] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-brand-accent transition-all duration-500 ${activeBackgroundIndex === 1 ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
                 <div className="font-mori font-bold text-5xl xl:text-6xl text-brand-white">Professional</div>
               </div>
             </div>
           </div>
-
           <div className="flex flex-col gap-32 md:gap-48">
             {/* Education Content */}
             <div className="background-content-section w-full">
@@ -756,9 +730,6 @@ export default function AboutPage() {
                     : "bg-brand-white/[0.03] text-brand-white/40 border-brand-white/10 hover:border-brand-white/30 hover:text-brand-white"
                     }`}
                 >
-                  <span className={`mr-2 opacity-50 tabular-nums`}>
-                    {String(idx + 1).padStart(2, "0")}
-                  </span>
                   {tab.label}
                 </button>
               );

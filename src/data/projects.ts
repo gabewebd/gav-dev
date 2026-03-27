@@ -43,6 +43,7 @@ export interface ProjectData {
     projectRole: string;
     images: string[];
     gallery: ProjectImage[];
+    category: string;
     customSections?: ProjectSection[];
 }
 
@@ -89,6 +90,7 @@ export const PROJECTS_DATA: ProjectData[] = [
             { src: "/assets/projects/danonos/danonos-blogs.png", alt: "Danono's Blogs Page", caption: "The dynamic Blogs page, powered by our custom mini-CMS." },
             { src: "/assets/projects/danonos/danonos-locations.png", alt: "Danono's Locations Page", caption: "The Locations page directing users to physical branches." },
         ],
+        category: "Full-Stack",
         customSections: [
             {
                 id: "design-philosophy",
@@ -151,6 +153,7 @@ export const PROJECTS_DATA: ProjectData[] = [
             { src: "/assets/projects/chanel/chanel-products.png", alt: "Product Catalog", caption: "The immersive product catalog featuring sorting, filtering, and high-fidelity hover micro-interactions." },
             { src: "/assets/projects/chanel/chanel-directory.png", alt: "Chanel Employee Directory", caption: "The Employee Directory featuring conditional filtering and elegant UI." },
         ],
+        category: "Frontend",
         customSections: [
             {
                 id: "employee-directory",
@@ -205,6 +208,7 @@ export const PROJECTS_DATA: ProjectData[] = [
             { src: "/assets/projects/hau-ecoquest/ecoquest-community.png", alt: "Community Feed", caption: "An online community hub where users post updates and participate in weekly challenges." },
             { src: "/assets/projects/hau-ecoquest/ecoquest-leaderboard.png", alt: "HAU Leaderboard", caption: "The live leaderboard where user rankings and scores are prominently displayed." },
         ],
+        category: "Full-Stack",
         customSections: [
             {
                 id: "gamification-engine",
@@ -274,6 +278,7 @@ export const PROJECTS_DATA: ProjectData[] = [
             { src: "/assets/projects/wellness-apparel/wellness-cart.png", alt: "Shopping Cart", caption: "The session-based shopping cart handling dynamic stock validation." },
             { src: "/assets/projects/wellness-apparel/wellness-checkout.png", alt: "Checkout Flow", caption: "The checkout pipeline pulling saved user addresses for final order processing." },
         ],
+        category: "Full-Stack",
         customSections: [
             {
                 id: "system-architecture",
@@ -347,6 +352,7 @@ export const PROJECTS_DATA: ProjectData[] = [
             { src: "/assets/projects/vrc-designs/vrc-about.png", alt: "VRC Designs About Page", caption: "Clean, elegant about page layout with smooth transitions." },
             { src: "/assets/projects/vrc-designs/vrc-work.png", alt: "Selected Works Gallery", caption: "A sleek, interactive portfolio grid showcasing the best projects." }
         ],
+        category: "Frontend",
         customSections: [
             {
                 id: "fluid-interactivity",
@@ -405,6 +411,7 @@ export const PROJECTS_DATA: ProjectData[] = [
             { src: "/assets/projects/mr-yogurt/mryogurt-diy.png", alt: "DIY Process Illustration", caption: "Visual diagrams translating the physical DIY experience for digital users." },
             { src: "/assets/projects/mr-yogurt/mryogurt-customers.png", alt: "Customer Interaction", caption: "Integrating real community photos to build trust and brand authenticity." }
         ],
+        category: "UI/UX Design",
         customSections: [
             {
                 id: "brand-identity",

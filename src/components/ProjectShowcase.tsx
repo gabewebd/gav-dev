@@ -34,8 +34,6 @@ function CardInner({ project, index }: { project: typeof PROJECTS[0]; index: num
             {/* ── MAIN CONTAINER (transparent background) ── */}
             <div className="relative z-10 flex flex-col h-full bg-transparent border border-white/10 rounded-2xl overflow-visible backdrop-blur-sm">
 
-                {/* ── DEFAULT AMBIENT GLOW (Subtle light for mockups) ── */}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(var(--brand-accent-rgb),0.03)_0%,transparent_60%)] z-[1] rounded-2xl pointer-events-none" />
 
                 {/* ── FULL CARD HOVER GRADIENT ( sweeps entire card background ) ── */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${getHoverGradient(index)} opacity-0 group-hover/card:opacity-100 transition-opacity duration-700 ease-out z-[2] rounded-2xl`} />

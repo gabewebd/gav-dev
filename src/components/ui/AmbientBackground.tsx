@@ -56,36 +56,17 @@ export default function AmbientBackground() {
   return (
     <div ref={containerRef} className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[#050505]">
       {/* ── AURORA BLOBS ── */}
-      <div className="absolute inset-0 overflow-visible mix-blend-screen opacity-50">
-        <div className="blob-wrapper-1 absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] max-w-[600px] max-h-[600px]">
-          <div className="aurora-blob w-full h-full bg-brand-accent rounded-full blur-[100px] md:blur-[140px] opacity-60 md:opacity-40" />
+      <div className="absolute inset-0 overflow-visible mix-blend-screen opacity-40">
+        {/* Deeper, larger teal/blue glow */}
+        <div className="blob-wrapper-1 absolute top-[-20%] left-[-20%] w-[120vw] h-[120vw] max-w-[1400px] max-h-[1400px]">
+          <div className="aurora-blob w-full h-full bg-brand-accent rounded-full blur-[180px] md:blur-[240px] opacity-40 md:opacity-25" />
         </div>
-        <div className="blob-wrapper-2 absolute top-[30%] right-[-10%] w-[60vw] h-[60vw] max-w-[700px] max-h-[700px]">
-          <div className="aurora-blob w-full h-full bg-[#3B82F6] rounded-full blur-[120px] md:blur-[160px] opacity-70 md:opacity-50" />
+        {/* Large, soft deep blue/purple glow */}
+        <div className="blob-wrapper-2 absolute bottom-[-20%] right-[-10%] w-[130vw] h-[130vw] max-w-[1500px] max-h-[1500px]">
+          <div className="aurora-blob w-full h-full bg-[#3B82F6] rounded-full blur-[200px] md:blur-[280px] opacity-50 md:opacity-30" />
         </div>
       </div>
 
-      {/* ── STATIC NOISE GRAIN ── */}
-      <div className="absolute inset-0 opacity-[0.03] md:opacity-[0.05]">
-        <svg className="w-full h-full">
-          <filter id="global-static-noise">
-            <feTurbulence type="fractalNoise" baseFrequency="3.5" numOctaves="3" stitchTiles="stitch" />
-            <feColorMatrix type="matrix" values="1 0 0 0 0, 1 0 0 0 0, 1 0 0 0 0, 0 0 0 1 0" />
-          </filter>
-          <rect width="100%" height="100%" filter="url(#global-static-noise)" />
-        </svg>
-      </div>
-
-      {/* ── NATIVE NOISE LAYER (from Projects Page) ── */}
-      <div className="absolute inset-0 opacity-[0.16] mix-blend-overlay">
-        <svg className="w-full h-full">
-          <filter id="global-native-noise">
-            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch" />
-            <feColorMatrix type="matrix" values="1 0 0 0 0, 1 0 0 0 0, 1 0 0 0 0, 0 0 0 1 0" />
-          </filter>
-          <rect width="100%" height="100%" filter="url(#global-native-noise)" />
-        </svg>
-      </div>
     </div>
   );
 }

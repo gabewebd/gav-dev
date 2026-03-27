@@ -6,7 +6,8 @@ import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { ArrowRight, ExternalLink, Github, ArrowUpRight, Mail, User, Layers, Code2 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, ExternalLink, Github, ArrowUpRight, Mail, User, Layers, Code2, Search, X } from "lucide-react";
 import Button from "@/components/ui/Button";
 import SectionTag from "@/components/ui/SectionTag";
 import HeroHeading from "@/components/ui/HeroHeading";
@@ -118,48 +119,18 @@ function CustomCursor() {
 export default function ProjectsPage() {
   const containerRef = useRef<HTMLElement>(null);
   const epicHighlightRef = useRef<HTMLSpanElement>(null);
-  const mobileNavRef = useRef<HTMLDivElement>(null);
-  const mobileNavContainerRef = useRef<HTMLDivElement>(null);
-  const desktopSidebarListRef = useRef<HTMLDivElement>(null);
 
   const { setActive } = useCursorStore();
+ 
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const [activeIndex, setActiveIndex] = useState(0);
+  const categories = ["All", ...Array.from(new Set(PROJECTS.map(p => p.category)))];
 
-  const handleScrollTo = (e: React.MouseEvent, id: string) => {
-    e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      const offset = 100; // Adjust for sticky header
-      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-      window.scrollTo({
-        top: elementPosition - offset,
-        behavior: "smooth"
-      });
-    }
-  };
+  const filteredProjects = PROJECTS.filter(project => {
+    return selectedCategory === "All" || project.category === selectedCategory;
+  });
 
-  useEffect(() => {
-    if (!mobileNavContainerRef.current) return;
-    const container = mobileNavContainerRef.current;
-    const activeItem = container.children[activeIndex] as HTMLElement;
 
-    if (activeItem) {
-      const scrollLeft = activeItem.offsetLeft - (container.clientWidth / 2) + (activeItem.clientWidth / 2);
-      container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
-    }
-  }, [activeIndex]);
-
-  useEffect(() => {
-    if (!desktopSidebarListRef.current) return;
-    const container = desktopSidebarListRef.current;
-    const activeItem = container.children[activeIndex] as HTMLElement;
-
-    if (activeItem) {
-      const scrollPos = activeItem.offsetTop - (container.clientHeight / 2) + (activeItem.clientHeight / 2);
-      container.scrollTo({ top: scrollPos, behavior: 'smooth' });
-    }
-  }, [activeIndex]);
 
   useGSAP(() => {
     const blobs = gsap.utils.toArray('.aurora-blob');
@@ -196,47 +167,6 @@ export default function ProjectsPage() {
 
 
 
-    gsap.to(mobileNavRef.current, {
-      opacity: 1,
-      y: 0,
-      pointerEvents: "auto",
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: ".exhibition-section",
-        start: "top 100px",
-        endTrigger: ".cta-section",
-        end: "top bottom",
-        toggleActions: "play reverse play reverse"
-      }
-    });
-
-    gsap.utils.toArray('.project-content-section').forEach((section: any, i) => {
-
-
-      const details = section.querySelector('.project-details-reveal');
-      if (details) {
-        gsap.fromTo(details,
-          { opacity: 0, y: 40 },
-          { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", scrollTrigger: { trigger: section, start: "top 75%" } }
-        );
-      }
-
-      ScrollTrigger.create({
-        trigger: section,
-        start: "top 50%",
-        end: "bottom 50%",
-        onToggle: (self) => {
-          if (self.isActive) {
-            setActiveIndex(i);
-
-            const counter = document.querySelector('.dynamic-counter');
-            if (counter) counter.textContent = `0${i + 1}`;
-
-
-          }
-        }
-      });
-    });
 
     gsap.fromTo(".cta-section > div > *",
       { y: 60, opacity: 0 },
@@ -255,39 +185,6 @@ export default function ProjectsPage() {
     <>
       <main ref={containerRef} className="relative overflow-x-clip pt-28 md:pt-40 pb-32 transition-colors duration-500">
         <CustomCursor />
-
-
-        <div
-          ref={mobileNavRef}
-          className="lg:hidden fixed top-[75px] sm:top-[85px] left-0 right-0 z-40 bg-[#050505] border-b border-t border-white/10 py-5 opacity-0 pointer-events-none -translate-y-2"
-        >
-          <div className="absolute bottom-full left-0 w-full h-[150px] bg-[#050505]" />
-
-          <style>{`
-                        .hide-nav-scroll::-webkit-scrollbar { display: none; }
-                        .hide-nav-scroll { -ms-overflow-style: none; scrollbar-width: none; }
-                    `}</style>
-
-          <div
-            ref={mobileNavContainerRef}
-            className="hide-nav-scroll flex items-center overflow-x-auto px-6 gap-8 md:gap-12 scroll-smooth relative z-10"
-          >
-            {PROJECTS.map((p, i) => (
-              <div
-                key={i}
-                className={`flex items-center gap-4 whitespace-nowrap transition-all duration-500 will-change-transform ${activeIndex === i ? 'opacity-100 scale-100' : 'opacity-40 scale-95'}`}
-              >
-                <span className={`text-base sm:text-lg font-mori font-black ${activeIndex === i ? 'text-white' : 'text-white'}`}>
-                  0{i + 1}
-                </span>
-                <div className={`w-2 h-2 rounded-full transition-colors duration-500 ${activeIndex === i ? 'bg-brand-accent shadow-[0_0_8px_rgba(var(--brand-accent-rgb),0.8)]' : 'bg-white/30'}`} />
-                <span className={`text-4xl sm:text-5xl font-mori font-bold tracking-tight transition-colors duration-500 ${activeIndex === i ? 'text-white' : 'text-white'}`}>
-                  {p.title}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
 
         <div className="max-w-[100rem] mx-auto px-4 sm:px-6 md:px-12 relative z-10">
 
@@ -322,133 +219,127 @@ export default function ProjectsPage() {
             </div>
           </section>
 
-          <section className="exhibition-section relative w-full pb-32 md:pb-40 max-w-[95rem] mx-auto flex flex-col lg:flex-row gap-12 lg:gap-20">
-
-            <div className="hidden lg:flex w-[25%] xl:w-[30%] sticky top-32 h-[calc(100vh-10rem)] flex-col justify-between z-30">
-
-              <div className="flex items-start">
-                <div className="text-[60px] xl:text-[70px] font-mori font-black leading-[0.8] text-white drop-shadow-2xl flex items-end">
-                  <span className="dynamic-counter text-white">01</span>
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-8 relative pb-10 flex-1 overflow-visible">
-                <div className="absolute left-0 top-0 bottom-0 w-px bg-white/10" />
-
-                <div
-                  ref={desktopSidebarListRef}
-                  className="hide-nav-scroll flex flex-col gap-8 overflow-y-auto max-h-[calc(100vh-20rem)] py-4"
-                >
-                  {PROJECTS.map((p, i) => (
-                    <div
-                      key={i}
-                      className={`nav-project-item relative pl-10 py-2 cursor-pointer transition-all duration-500 text-white will-change-transform ${activeIndex === i ? 'opacity-100 translate-x-4' : 'opacity-40 translate-x-0 scale-[0.85] origin-left'}`}
-                      onMouseEnter={() => setActive(false)}
-                      onClick={(e) => handleScrollTo(e, p.slug)}
-                    >
-                      <div className={`nav-dot absolute left-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-brand-accent transition-all duration-500 shadow-[0_0_10px_rgba(var(--brand-accent-rgb),0.8)] ${activeIndex === i ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`} />
-
-                      <div className={`font-mori uppercase tracking-[0.25em] font-bold text-muted mb-2 transition-all duration-500 ${activeIndex === i ? 'text-xs' : 'text-[10px]'}`}>
-                        {p.tagline}
-                      </div>
-                      <div className={`font-mori font-bold tracking-tighter transition-all duration-500 ${activeIndex === i ? 'text-3xl xl:text-4xl' : 'text-xl xl:text-2xl'}`}>
-                        {p.title}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className="w-full lg:w-[75%] xl:w-[70%] flex flex-col gap-32 md:gap-48 relative z-20 mt-16 lg:mt-0">
-              {PROJECTS.map((project, index) => {
-
-                const targetVisual = project.featuredImg || project.gallery?.[1]?.src || project.images?.[1] || project.showcaseImg || project.images?.[0] || '';
-
+          <section className="exhibition-section relative w-full pb-32 md:pb-40 max-w-7xl mx-auto z-10">
+            {/* ─── Category Filters (Styled like About Page) ─── */}
+            <div className="mb-12 md:mb-20 flex flex-nowrap overflow-x-auto hide-scrollbar items-center justify-center gap-3 relative z-30 pb-4 md:pb-0 py-4 px-2 -mx-2">
+              {categories.map((cat, idx) => {
+                const isActive = selectedCategory === cat;
                 return (
-                  <div key={project.id} id={project.slug} className="project-content-section w-full flex flex-col gap-8 md:gap-14 scroll-mt-32">
-
-
-
-                    <div
-                      data-cursor-project="true"
-                      className="relative w-full aspect-[4/3] md:aspect-[16/10] bg-[#0A0A0A] rounded-2xl md:rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.6)] cursor-pointer lg:cursor-none group"
-                      onMouseEnter={() => setActive(true)}
-                      onMouseLeave={() => setActive(false)}
-                    >
-                      <Link
-                        href={`/projects/${project.slug}`}
-                        className="hidden lg:block absolute inset-0 z-20 lg:cursor-none"
-                        onMouseEnter={() => setActive(true)}
-                        onMouseLeave={() => setActive(false)}
-                      />
-
-                      <div className="absolute inset-[-10%] w-[120%] h-[120%]">
-                        <Image
-                          src={targetVisual}
-                          alt={project.title}
-                          fill
-                          className="project-img-parallax object-cover object-center transition-transform duration-1000 group-hover:scale-[1.1]"
-                          sizes="(max-width: 1024px) 100vw, 70vw"
-                          quality={100}
-                        />
-                      </div>
-
-                      {/* Feathered Vignette Overlay */}
-                      <div className="feather-overlay" />
-
-                      <div className="absolute inset-0 bg-black/0 lg:group-hover:bg-black/50 transition-colors duration-700 pointer-events-none z-10" />
-                    </div>
-
-                    <div
-                      className="project-details-reveal flex flex-col xl:flex-row gap-8 xl:gap-16 justify-between items-start"
-                      onMouseEnter={() => setActive(false)}
-                    >
-
-                      <div className="w-full xl:w-[60%] flex flex-col gap-6">
-                        <p className="text-base md:text-lg text-body leading-relaxed font-light">
-                          {project.desc}
-                        </p>
-
-                        <div className="flex flex-wrap items-center gap-2 pt-2">
-                          {project.stack.map((tech, idx) => (
-                            <div key={idx} className="px-3 md:px-3 text-center pt-1 pb-1.5 md:pt-1 md:pb-1.5 rounded-full bg-white/5 border border-white/10">
-                              <span className="font-mori font-bold text-[10px] md:text-[11px] uppercase tracking-[0.1em] text-white/90">
-                                {tech}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div className="w-full xl:w-[35%] flex flex-col gap-6">
-                        <div className="flex flex-row xl:flex-col gap-4">
-                          <Button href={project.live} target="_blank" icon={ExternalLink} iconPosition="left" className="flex-1 xl:flex-none w-full !px-0 !py-4 md:!py-5 !text-[11px] md:!text-xs !bg-white !text-black !border-transparent hover:scale-[1.02] transition-transform shadow-xl" disableMagnetic={true}>
-                            Live Link
-                          </Button>
-                          {project.github && project.github !== "#" && (
-                            <Button href={project.github} target="_blank" variant="secondary" icon={Github} iconPosition="left" className="flex-1 xl:flex-none w-full !px-0 !py-4 md:!py-5 !text-[11px] md:!text-xs !border-white/20 !text-white hover:!bg-white/10 hover:!border-white transition-all shadow-xl" disableMagnetic={true}>
-                              Source
-                            </Button>
-                          )}
-                        </div>
-
-                        <Link
-                          href={`/projects/${project.slug}`}
-                          className="lg:hidden flex items-center justify-center gap-2 group/details py-2 border-t border-white/5 pt-6"
-                        >
-                          <span className="text-[11px] font-mori font-bold uppercase tracking-[0.2em] text-white/80 group-hover/details:text-white transition-colors">View Project Details</span>
-                          <ArrowRight className="w-4 h-4 text-white/60 group-hover/details:text-white group-hover/details:translate-x-1 transition-all" />
-                        </Link>
-                      </div>
-
-                    </div>
-
-                  </div>
+                  <button
+                    key={cat}
+                    onClick={() => setSelectedCategory(cat)}
+                    className={`flex-shrink-0 px-4 sm:px-6 py-2 sm:py-2.5 rounded-full border transition-all duration-500 font-mori font-bold text-[11px] sm:text-sm tracking-tight ${isActive
+                      ? "bg-brand-accent text-brand-dark border-brand-accent"
+                      : "bg-brand-white/[0.03] text-brand-white/40 border-brand-white/10 hover:border-brand-white/30 hover:text-brand-white"
+                      }`}
+                  >
+                    {cat}
+                  </button>
                 );
               })}
             </div>
 
+            {/* ─── Pinterest Masonry Grid ─── */}
+            <div className="columns-1 sm:columns-2 xl:columns-3 gap-6 space-y-6">
+              {filteredProjects.map((project) => (
+                <div
+                  key={project.id}
+                  className="break-inside-avoid"
+                >
+                    <div className="group relative bg-white/[0.03] backdrop-blur-xl rounded-3xl overflow-hidden border border-white/10 hover:border-brand-accent/30 transition-all duration-500 shadow-2xl">
+                      <Link href={`/projects/${project.slug}`} className="block relative w-full aspect-[4/3] overflow-hidden">
+                        <Image 
+                          src={project.featuredImg || project.heroImg}
+                          alt={project.title}
+                          fill
+                          className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                        {/* Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+                        
+                        {/* Category Tag */}
+                        <div className="absolute top-4 left-4">
+                          <span className="px-3 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-[9px] font-bold uppercase tracking-widest text-brand-accent">
+                            {project.category}
+                          </span>
+                        </div>
+                      </Link>
+
+                      <div className="p-6 md:p-8">
+                        <div className="flex justify-between items-start mb-4">
+                          <h3 className="font-mori font-bold text-2xl md:text-3xl tracking-tight text-white group-hover:text-brand-accent transition-colors">
+                            {project.title}
+                          </h3>
+                        </div>
+                        
+                        <p className="text-sm text-white/50 font-light leading-relaxed mb-6 line-clamp-3">
+                          {project.desc}
+                        </p>
+
+                        <div className="flex flex-wrap gap-2 mb-8">
+                          {project.stack.slice(0, 3).map((tech, idx) => (
+                            <span key={idx} className="text-[10px] font-mono font-medium text-white/30 uppercase tracking-wider">
+                              #{tech.replace(/\s+/g, '')}
+                            </span>
+                          ))}
+                          {project.stack.length > 3 && (
+                            <span className="text-[10px] font-mono font-medium text-white/20 uppercase tracking-wider">
+                              +{project.stack.length - 3} more
+                            </span>
+                          )}
+                        </div>
+
+                        <div className="flex items-center gap-3">
+                          <Link 
+                            href={`/projects/${project.slug}`}
+                            className="flex-1 py-3.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl flex items-center justify-center gap-2 group/btn transition-all"
+                          >
+                            <span className="text-[11px] font-mori font-bold uppercase tracking-[0.2em] text-white">Details</span>
+                            <ArrowRight className="w-3.5 h-3.5 text-white/60 group-hover/btn:translate-x-1 transition-transform" />
+                          </Link>
+                          
+                          <div className="flex items-center gap-2 shrink-0">
+                            {project.github && project.github !== "#" && (
+                              <a 
+                                href={project.github} 
+                                target="_blank" 
+                                className="p-3.5 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-2xl hover:scale-105 transition-all"
+                                title="Source Code"
+                              >
+                                <Github className="w-4 h-4" />
+                              </a>
+                            )}
+                            <a 
+                              href={project.live} 
+                              target="_blank" 
+                              className="p-3.5 bg-brand-accent text-brand-dark rounded-2xl hover:scale-105 transition-transform"
+                              title="Live Preview"
+                            >
+                              <ExternalLink className="w-4 h-4" />
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              ))}
+            </div>
+
+            {filteredProjects.length === 0 && (
+              <div className="py-32 flex flex-col items-center justify-center text-center">
+                <div className="w-20 h-20 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-6">
+                  <Search className="w-8 h-8 text-white/20" />
+                </div>
+                <h3 className="text-2xl font-mori font-black text-white mb-2">No projects found</h3>
+                <p className="text-muted font-light">Try adjusting your search or category filters.</p>
+                <button 
+                  onClick={() => { setSelectedCategory("All"); }}
+                  className="mt-8 px-8 py-3 bg-brand-accent text-brand-dark font-mori font-bold rounded-full hover:scale-105 transition-transform"
+                >
+                  Clear All Filters
+                </button>
+              </div>
+            )}
           </section>
         </div>
 

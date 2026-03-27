@@ -65,6 +65,7 @@ export const metadata: Metadata = {
 
 import SmoothScroll from "@/components/SmoothScroll";
 import AmbientBackground from "@/components/ui/AmbientBackground";
+import { CommandPalette } from "@/components/ui/CommandPalette";
 
 export default function RootLayout({
   children,
@@ -80,6 +81,7 @@ export default function RootLayout({
           {/* Glassmorphic Shell */}
           <Navbar />
           <main className="relative min-h-screen">
+            <CommandPalette />
             {children}
           </main>
           <Footer />
